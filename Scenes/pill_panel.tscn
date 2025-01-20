@@ -1,0 +1,125 @@
+[gd_scene load_steps=6 format=3 uid="uid://b3tbfvy4w7tw6"]
+
+[ext_resource type="PackedScene" uid="uid://dinm5mm24ef1v" path="res://Scenes/pill_bonus_calculator_popup.tscn" id="1_aoxrl"]
+[ext_resource type="StyleBox" uid="uid://gm2yh2rbas86" path="res://Themes/panels.tres" id="1_jjb84"]
+[ext_resource type="Script" path="res://Scenes/PillPanel.cs" id="2_lojxw"]
+[ext_resource type="PackedScene" uid="uid://dnfqi15tdamy6" path="res://Scenes/pill_widget.tscn" id="3_iwy0q"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kgiv5"]
+bg_color = Color(0.748599, 0.912452, 0.855326, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+
+[node name="Pill Panel" type="PanelContainer"]
+theme_override_styles/panel = ExtResource("1_jjb84")
+script = ExtResource("2_lojxw")
+
+[node name="Contents" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Contents"]
+layout_mode = 2
+text = "Pills"
+horizontal_alignment = 1
+
+[node name="Bonuses" type="HBoxContainer" parent="Contents"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Contents/Bonuses"]
+layout_mode = 2
+text = "Pill Value Bonuses:"
+
+[node name="LineEdit" type="LineEdit" parent="Contents/Bonuses"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "100.00%"
+alignment = 1
+editable = false
+
+[node name="Set Rank for All" type="HBoxContainer" parent="Contents"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Contents/Set Rank for All"]
+layout_mode = 2
+text = "Set Rank for All:"
+
+[node name="OptionButton" type="OptionButton" parent="Contents/Set Rank for All"]
+layout_mode = 2
+alignment = 1
+selected = 0
+item_count = 1
+popup/item_0/text = "Rank"
+
+[node name="Widgets" type="GridContainer" parent="Contents"]
+layout_mode = 2
+columns = 2
+
+[node name="Label2" type="Label" parent="Contents/Widgets"]
+layout_mode = 2
+text = "Pill Selection|       Quality         |       Value "
+
+[node name="Label3" type="Label" parent="Contents/Widgets"]
+layout_mode = 2
+text = "Needed"
+
+[node name="Pill Widget" parent="Contents/Widgets" instance=ExtResource("3_iwy0q")]
+layout_mode = 2
+
+[node name="Needed1" type="Label" parent="Contents/Widgets"]
+layout_mode = 2
+text = "xxx"
+horizontal_alignment = 1
+
+[node name="Pill Widget2" parent="Contents/Widgets" instance=ExtResource("3_iwy0q")]
+layout_mode = 2
+
+[node name="Needed2" type="Label" parent="Contents/Widgets"]
+layout_mode = 2
+text = "xxx"
+horizontal_alignment = 1
+
+[node name="Pill Widget3" parent="Contents/Widgets" instance=ExtResource("3_iwy0q")]
+layout_mode = 2
+
+[node name="Needed3" type="Label" parent="Contents/Widgets"]
+layout_mode = 2
+text = "xxx"
+horizontal_alignment = 1
+
+[node name="Pill Widget4" parent="Contents/Widgets" instance=ExtResource("3_iwy0q")]
+layout_mode = 2
+
+[node name="Needed4" type="Label" parent="Contents/Widgets"]
+layout_mode = 2
+text = "xxx"
+horizontal_alignment = 1
+
+[node name="Pill Widget5" parent="Contents/Widgets" instance=ExtResource("3_iwy0q")]
+layout_mode = 2
+
+[node name="Needed5" type="Label" parent="Contents/Widgets"]
+layout_mode = 2
+text = "xxx"
+horizontal_alignment = 1
+
+[node name="Popup Display Button" type="Button" parent="."]
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+tooltip_text = "Click here to set your pill bonus."
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_kgiv5")
+text = "?"
+
+[node name="Pill Bonus Calculator Popup" parent="." instance=ExtResource("1_aoxrl")]
+visible = false

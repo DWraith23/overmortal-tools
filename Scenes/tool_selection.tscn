@@ -1,0 +1,76 @@
+[gd_scene load_steps=7 format=3 uid="uid://5ivxm42e7fom"]
+
+[ext_resource type="PackedScene" uid="uid://bhmirjtxb0n4c" path="res://Scenes/myrimon_calculator.tscn" id="1_bi5kd"]
+[ext_resource type="Script" path="res://Scenes/ToolSelection.cs" id="1_hwaib"]
+[ext_resource type="PackedScene" uid="uid://cof2hqt21hwwn" path="res://Scenes/breakthrough_calculator.tscn" id="3_sln6x"]
+[ext_resource type="PackedScene" uid="uid://cn24r0kvopgfs" path="res://Scenes/save_state_controller.tscn" id="4_qbnut"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_scttl"]
+allow_unpress = true
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_my8jm"]
+
+[node name="Tool Selection" type="Control" node_paths=PackedStringArray("BreakthroughCalculatorButton", "MyrimonCalculatorButton", "SaveStateController", "BreakthroughCalculator", "MyrimonCalculator")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hwaib")
+BreakthroughCalculatorButton = NodePath("Contents/Buttons/Breakthrough Calculator")
+MyrimonCalculatorButton = NodePath("Contents/Buttons/Myrimon Calculator")
+SaveStateController = NodePath("Save State Controller")
+BreakthroughCalculator = NodePath("Contents/Tools/Breakthrough Calculator")
+MyrimonCalculator = NodePath("Contents/Tools/Myrimon Calculator")
+
+[node name="Contents" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Buttons" type="VBoxContainer" parent="Contents"]
+layout_mode = 2
+
+[node name="Breakthrough Calculator" type="Button" parent="Contents/Buttons"]
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_scttl")
+text = "Breakthrough Calculator"
+alignment = 2
+
+[node name="Myrimon Calculator" type="Button" parent="Contents/Buttons"]
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_scttl")
+text = "Myrimon Calculator"
+alignment = 2
+
+[node name="Tools" type="PanelContainer" parent="Contents"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_my8jm")
+
+[node name="Breakthrough Calculator" parent="Contents/Tools" instance=ExtResource("3_sln6x")]
+visible = false
+layout_mode = 2
+
+[node name="Myrimon Calculator" parent="Contents/Tools" instance=ExtResource("1_bi5kd")]
+visible = false
+layout_mode = 2
+
+[node name="Save State Controller" parent="." instance=ExtResource("4_qbnut")]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -110.0
+offset_top = -74.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[connection signal="toggled" from="Contents/Buttons/Breakthrough Calculator" to="." method="BreakthroughCalculatorButtonToggled"]
+[connection signal="toggled" from="Contents/Buttons/Myrimon Calculator" to="." method="MyrimonCalculatorButtonToggled"]

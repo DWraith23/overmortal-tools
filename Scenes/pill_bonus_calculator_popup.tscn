@@ -1,0 +1,59 @@
+[gd_scene load_steps=3 format=3 uid="uid://dinm5mm24ef1v"]
+
+[ext_resource type="StyleBox" uid="uid://gm2yh2rbas86" path="res://Themes/panels.tres" id="1_1yv14"]
+[ext_resource type="Script" path="res://Scenes/PillBonusCalculatorPopup.cs" id="1_uo0wh"]
+
+[node name="Pill Bonus Calculator Popup" type="PopupPanel" node_paths=PackedStringArray("ValueInput", "PlusInput", "PercentageLabel", "CloseButton", "ApplyButton")]
+initial_position = 2
+size = Vector2i(201, 140)
+visible = true
+theme_override_styles/panel = ExtResource("1_1yv14")
+script = ExtResource("1_uo0wh")
+ValueInput = NodePath("VBoxContainer/GridContainer/Value Input")
+PlusInput = NodePath("VBoxContainer/GridContainer/Plus Input")
+PercentageLabel = NodePath("VBoxContainer/Percentage")
+CloseButton = NodePath("VBoxContainer/Buttons/Close")
+ApplyButton = NodePath("VBoxContainer/Buttons/Apply")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 193.0
+offset_bottom = 132.0
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="Value" type="Label" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Total Pill Value"
+horizontal_alignment = 1
+
+[node name="Additional" type="Label" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "+Value"
+horizontal_alignment = 1
+
+[node name="Value Input" type="LineEdit" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Plus Input" type="LineEdit" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Percentage" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="Buttons" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Close" type="Button" parent="VBoxContainer/Buttons"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Close"
+
+[node name="Apply" type="Button" parent="VBoxContainer/Buttons"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Apply"

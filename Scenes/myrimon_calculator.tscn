@@ -1,0 +1,435 @@
+[gd_scene load_steps=3 format=3 uid="uid://bhmirjtxb0n4c"]
+
+[ext_resource type="Script" path="res://Scenes/MyrimonCalculator.cs" id="1_epk3e"]
+[ext_resource type="StyleBox" uid="uid://gm2yh2rbas86" path="res://Themes/panels.tres" id="2_cpquh"]
+
+[node name="Myrimon Calculator" type="Control" node_paths=PackedStringArray("EXPSpinBox", "QualitySpinBox", "GushSpinBox", "TechSpinBox", "FruitTypeButton", "QualityButton", "FruitQuantity", "BaseFruitValue", "CommonValue", "CommonGush", "CommonOdds", "UncommonValue", "UncommonGush", "UncommonOdds", "RareValue", "RareGush", "RareOdds", "EpicValue", "EpicGush", "EpicOdds", "LegendaryValue", "LegendaryGush", "LegendaryOdds", "MythicValue", "MythicGush", "MythicOdds", "MinimumXP", "AverageXP", "MaximumXP", "AverageTech")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_epk3e")
+EXPSpinBox = NodePath("Contents/Input/Contents/Node Values/EXP/SpinBox")
+QualitySpinBox = NodePath("Contents/Input/Contents/Node Values/Quality/SpinBox")
+GushSpinBox = NodePath("Contents/Input/Contents/Node Values/Gush/SpinBox")
+TechSpinBox = NodePath("Contents/Input/Contents/Node Values/Tech/SpinBox")
+FruitTypeButton = NodePath("Contents/Input/Contents/Options/Fruit Type/OptionButton")
+QualityButton = NodePath("Contents/Input/Contents/Options/Extractor Quality/OptionButton")
+FruitQuantity = NodePath("Contents/Input/Contents/Options/Fruit Quantity/SpinBox")
+BaseFruitValue = NodePath("Contents/Output/Contents/Base Value/LineEdit")
+CommonValue = NodePath("Contents/Output/Contents/GridContainer/Common Value")
+CommonGush = NodePath("Contents/Output/Contents/GridContainer/Common Gush")
+CommonOdds = NodePath("Contents/Output/Contents/GridContainer/Common Odds")
+UncommonValue = NodePath("Contents/Output/Contents/GridContainer/Uncommon Value2")
+UncommonGush = NodePath("Contents/Output/Contents/GridContainer/Uncommon Gush2")
+UncommonOdds = NodePath("Contents/Output/Contents/GridContainer/Uncommon Odds3")
+RareValue = NodePath("Contents/Output/Contents/GridContainer/Rare Value3")
+RareGush = NodePath("Contents/Output/Contents/GridContainer/Rare Gush3")
+RareOdds = NodePath("Contents/Output/Contents/GridContainer/Rare Odds")
+EpicValue = NodePath("Contents/Output/Contents/GridContainer/Epic Value4")
+EpicGush = NodePath("Contents/Output/Contents/GridContainer/Epic Gush4")
+EpicOdds = NodePath("Contents/Output/Contents/GridContainer/Epic Odds")
+LegendaryValue = NodePath("Contents/Output/Contents/GridContainer/Legendary Value5")
+LegendaryGush = NodePath("Contents/Output/Contents/GridContainer/Legendary Gush5")
+LegendaryOdds = NodePath("Contents/Output/Contents/GridContainer/Legendary Odds")
+MythicValue = NodePath("Contents/Output/Contents/GridContainer/Mythic Value6")
+MythicGush = NodePath("Contents/Output/Contents/GridContainer/Mythic Gush6")
+MythicOdds = NodePath("Contents/Output/Contents/GridContainer/Mythic Odds")
+MinimumXP = NodePath("Contents/Output/Contents/Min XP/LineEdit")
+AverageXP = NodePath("Contents/Output/Contents/Average Xp/LineEdit")
+MaximumXP = NodePath("Contents/Output/Contents/Max XP/LineEdit")
+AverageTech = NodePath("Contents/Output/Contents/Tech/LineEdit")
+
+[node name="Contents" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Input" type="PanelContainer" parent="Contents"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_styles/panel = ExtResource("2_cpquh")
+
+[node name="Contents" type="VBoxContainer" parent="Contents/Input"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Node Values" type="VBoxContainer" parent="Contents/Input/Contents"]
+layout_mode = 2
+
+[node name="EXP" type="HBoxContainer" parent="Contents/Input/Contents/Node Values"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Contents/Input/Contents/Node Values/EXP"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+text = "Cultivation EXP:"
+horizontal_alignment = 2
+
+[node name="SpinBox" type="SpinBox" parent="Contents/Input/Contents/Node Values/EXP"]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 30.0
+alignment = 1
+
+[node name="Quality" type="HBoxContainer" parent="Contents/Input/Contents/Node Values"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Contents/Input/Contents/Node Values/Quality"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+text = "Quality:"
+horizontal_alignment = 2
+
+[node name="SpinBox" type="SpinBox" parent="Contents/Input/Contents/Node Values/Quality"]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 30.0
+alignment = 1
+
+[node name="Gush" type="HBoxContainer" parent="Contents/Input/Contents/Node Values"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Contents/Input/Contents/Node Values/Gush"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+text = "Gush:"
+horizontal_alignment = 2
+
+[node name="SpinBox" type="SpinBox" parent="Contents/Input/Contents/Node Values/Gush"]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 30.0
+alignment = 1
+
+[node name="Tech" type="HBoxContainer" parent="Contents/Input/Contents/Node Values"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Contents/Input/Contents/Node Values/Tech"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+text = "High Rank:"
+horizontal_alignment = 2
+
+[node name="SpinBox" type="SpinBox" parent="Contents/Input/Contents/Node Values/Tech"]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 30.0
+alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Contents/Input/Contents"]
+layout_mode = 2
+
+[node name="Options" type="VBoxContainer" parent="Contents/Input/Contents"]
+layout_mode = 2
+
+[node name="Fruit Type" type="HBoxContainer" parent="Contents/Input/Contents/Options"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Contents/Input/Contents/Options/Fruit Type"]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+text = "Fruit Type:"
+horizontal_alignment = 2
+
+[node name="OptionButton" type="OptionButton" parent="Contents/Input/Contents/Options/Fruit Type"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+selected = 0
+item_count = 2
+popup/item_0/text = "Mortal"
+popup/item_1/text = "Voidbreak"
+popup/item_1/id = 1
+
+[node name="Extractor Quality" type="HBoxContainer" parent="Contents/Input/Contents/Options"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Contents/Input/Contents/Options/Extractor Quality"]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+text = "Extractor Quality:"
+horizontal_alignment = 2
+
+[node name="OptionButton" type="OptionButton" parent="Contents/Input/Contents/Options/Extractor Quality"]
+layout_mode = 2
+alignment = 1
+selected = 0
+item_count = 6
+popup/item_0/text = "Common"
+popup/item_1/text = "Uncommon"
+popup/item_1/id = 1
+popup/item_2/text = "Rare"
+popup/item_2/id = 2
+popup/item_3/text = "Epic"
+popup/item_3/id = 3
+popup/item_4/text = "Legendary"
+popup/item_4/id = 4
+popup/item_5/text = "Mythic"
+popup/item_5/id = 5
+
+[node name="Fruit Quantity" type="HBoxContainer" parent="Contents/Input/Contents/Options"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Contents/Input/Contents/Options/Fruit Quantity"]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+text = "Fruit Quantity:"
+horizontal_alignment = 2
+
+[node name="SpinBox" type="SpinBox" parent="Contents/Input/Contents/Options/Fruit Quantity"]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1000.0
+alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="Contents/Input/Contents/Options"]
+layout_mode = 2
+
+[node name="Output" type="PanelContainer" parent="Contents"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("2_cpquh")
+
+[node name="Contents" type="VBoxContainer" parent="Contents/Output"]
+layout_mode = 2
+
+[node name="Base Value" type="HBoxContainer" parent="Contents/Output/Contents"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Contents/Output/Contents/Base Value"]
+layout_mode = 2
+text = "Base Fruit Value:"
+
+[node name="LineEdit" type="LineEdit" parent="Contents/Output/Contents/Base Value"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+editable = false
+
+[node name="GridContainer" type="GridContainer" parent="Contents/Output/Contents"]
+layout_mode = 2
+columns = 4
+
+[node name="Quality" type="Label" parent="Contents/Output/Contents/GridContainer"]
+layout_mode = 2
+text = "Quality"
+
+[node name="Value" type="Label" parent="Contents/Output/Contents/GridContainer"]
+layout_mode = 2
+text = "Value"
+
+[node name="Gush" type="Label" parent="Contents/Output/Contents/GridContainer"]
+layout_mode = 2
+text = "Gush"
+
+[node name="Odds" type="Label" parent="Contents/Output/Contents/GridContainer"]
+layout_mode = 2
+text = "Odds"
+
+[node name="Common" type="Label" parent="Contents/Output/Contents/GridContainer"]
+layout_mode = 2
+text = "Common"
+
+[node name="Common Value" type="LineEdit" parent="Contents/Output/Contents/GridContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+alignment = 1
+editable = false
+
+[node name="Common Gush" type="LineEdit" parent="Contents/Output/Contents/GridContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+alignment = 1
+editable = false
+
+[node name="Common Odds" type="LineEdit" parent="Contents/Output/Contents/GridContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+alignment = 1
+editable = false
+
+[node name="Uncommon" type="Label" parent="Contents/Output/Contents/GridContainer"]
+layout_mode = 2
+text = "Uncommon"
+
+[node name="Uncommon Value2" type="LineEdit" parent="Contents/Output/Contents/GridContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+alignment = 1
+editable = false
+
+[node name="Uncommon Gush2" type="LineEdit" parent="Contents/Output/Contents/GridContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+alignment = 1
+editable = false
+
+[node name="Uncommon Odds3" type="LineEdit" parent="Contents/Output/Contents/GridContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+alignment = 1
+editable = false
+
+[node name="Rare" type="Label" parent="Contents/Output/Contents/GridContainer"]
+layout_mode = 2
+text = "Rare"
+
+[node name="Rare Value3" type="LineEdit" parent="Contents/Output/Contents/GridContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+alignment = 1
+editable = false
+
+[node name="Rare Gush3" type="LineEdit" parent="Contents/Output/Contents/GridContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+alignment = 1
+editable = false
+
+[node name="Rare Odds" type="LineEdit" parent="Contents/Output/Contents/GridContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+alignment = 1
+editable = false
+
+[node name="Epic" type="Label" parent="Contents/Output/Contents/GridContainer"]
+layout_mode = 2
+text = "Epic"
+
+[node name="Epic Value4" type="LineEdit" parent="Contents/Output/Contents/GridContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+alignment = 1
+editable = false
+
+[node name="Epic Gush4" type="LineEdit" parent="Contents/Output/Contents/GridContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+alignment = 1
+editable = false
+
+[node name="Epic Odds" type="LineEdit" parent="Contents/Output/Contents/GridContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+alignment = 1
+editable = false
+
+[node name="Legendary" type="Label" parent="Contents/Output/Contents/GridContainer"]
+layout_mode = 2
+text = "Legendary"
+
+[node name="Legendary Value5" type="LineEdit" parent="Contents/Output/Contents/GridContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+alignment = 1
+editable = false
+
+[node name="Legendary Gush5" type="LineEdit" parent="Contents/Output/Contents/GridContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+alignment = 1
+editable = false
+
+[node name="Legendary Odds" type="LineEdit" parent="Contents/Output/Contents/GridContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+alignment = 1
+editable = false
+
+[node name="Mythic" type="Label" parent="Contents/Output/Contents/GridContainer"]
+layout_mode = 2
+text = "Mythic"
+
+[node name="Mythic Value6" type="LineEdit" parent="Contents/Output/Contents/GridContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+alignment = 1
+editable = false
+
+[node name="Mythic Gush6" type="LineEdit" parent="Contents/Output/Contents/GridContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+alignment = 1
+editable = false
+
+[node name="Mythic Odds" type="LineEdit" parent="Contents/Output/Contents/GridContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+alignment = 1
+editable = false
+
+[node name="HSeparator" type="HSeparator" parent="Contents/Output/Contents"]
+layout_mode = 2
+
+[node name="Min XP" type="HBoxContainer" parent="Contents/Output/Contents"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Contents/Output/Contents/Min XP"]
+custom_minimum_size = Vector2(105, 0)
+layout_mode = 2
+text = "Minimum XP:"
+horizontal_alignment = 2
+
+[node name="LineEdit" type="LineEdit" parent="Contents/Output/Contents/Min XP"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+editable = false
+
+[node name="Average Xp" type="HBoxContainer" parent="Contents/Output/Contents"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Contents/Output/Contents/Average Xp"]
+custom_minimum_size = Vector2(105, 0)
+layout_mode = 2
+text = "Average XP:"
+horizontal_alignment = 2
+
+[node name="LineEdit" type="LineEdit" parent="Contents/Output/Contents/Average Xp"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+editable = false
+
+[node name="Max XP" type="HBoxContainer" parent="Contents/Output/Contents"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Contents/Output/Contents/Max XP"]
+custom_minimum_size = Vector2(105, 0)
+layout_mode = 2
+text = "Maximum XP:"
+horizontal_alignment = 2
+
+[node name="LineEdit" type="LineEdit" parent="Contents/Output/Contents/Max XP"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+editable = false
+
+[node name="HSeparator2" type="HSeparator" parent="Contents/Output/Contents"]
+layout_mode = 2
+
+[node name="Tech" type="HBoxContainer" parent="Contents/Output/Contents"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Contents/Output/Contents/Tech"]
+custom_minimum_size = Vector2(105, 0)
+layout_mode = 2
+text = "Average Tech:"
+horizontal_alignment = 2
+
+[node name="LineEdit" type="LineEdit" parent="Contents/Output/Contents/Tech"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+editable = false
+
+[connection signal="value_changed" from="Contents/Input/Contents/Node Values/EXP/SpinBox" to="." method="SpinboxUpdated"]
+[connection signal="value_changed" from="Contents/Input/Contents/Node Values/Quality/SpinBox" to="." method="SpinboxUpdated"]
+[connection signal="value_changed" from="Contents/Input/Contents/Node Values/Gush/SpinBox" to="." method="SpinboxUpdated"]
+[connection signal="value_changed" from="Contents/Input/Contents/Node Values/Tech/SpinBox" to="." method="SpinboxUpdated"]
+[connection signal="item_selected" from="Contents/Input/Contents/Options/Fruit Type/OptionButton" to="." method="TypeSelected"]
+[connection signal="item_selected" from="Contents/Input/Contents/Options/Extractor Quality/OptionButton" to="." method="QualitySelected"]
+[connection signal="value_changed" from="Contents/Input/Contents/Options/Fruit Quantity/SpinBox" to="." method="QuantityUpdated"]
