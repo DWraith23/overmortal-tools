@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3 uid="uid://b7lpaktb1ga4t"]
+
+[ext_resource type="Script" path="res://Scenes/Planner/BasicInformation.cs" id="1_3rpgl"]
+[ext_resource type="PackedScene" uid="uid://dwx51nt8fxjpe" path="res://Scenes/Planner/stage_calculator.tscn" id="1_tgjly"]
+[ext_resource type="PackedScene" uid="uid://h6ofog5khv2b" path="res://Scenes/Planner/passive_cultivation.tscn" id="2_vg0im"]
+[ext_resource type="PackedScene" uid="uid://bj4wqwevxef1o" path="res://Scenes/Planner/vase_data.tscn" id="3_wrhd3"]
+[ext_resource type="PackedScene" uid="uid://lj3w3fdb3rd8" path="res://Scenes/Planner/mirror_data.tscn" id="4_tabmb"]
+
+[node name="Basic Information" type="VBoxContainer"]
+offset_right = 451.0
+offset_bottom = 303.0
+script = ExtResource("1_3rpgl")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "Stage Selections"
+horizontal_alignment = 1
+
+[node name="Stage Calculator" parent="." instance=ExtResource("1_tgjly")]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="."]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 2
+text = "Passive Cultivation"
+horizontal_alignment = 1
+
+[node name="Passive Cultivation" parent="." instance=ExtResource("2_vg0im")]
+layout_mode = 2
+
+[node name="HSeparator2" type="HSeparator" parent="."]
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="."]
+layout_mode = 2
+text = "Artifacts"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Vase Data" parent="HBoxContainer" instance=ExtResource("3_wrhd3")]
+layout_mode = 2
+
+[node name="Mirror Data" parent="HBoxContainer" instance=ExtResource("4_tabmb")]
+layout_mode = 2

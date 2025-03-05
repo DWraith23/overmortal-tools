@@ -26,7 +26,9 @@ public partial class Pill : Consumable
         NascentSoul,
         Incarnation,
         Voidbreak,
-        Wholeness
+        Wholeness,
+        Perfection,
+        Nirvana,
     }
 
     private static Dictionary<Quality, float> QualityMultipliers => new()
@@ -48,6 +50,8 @@ public partial class Pill : Consumable
         { Realm.Incarnation, 8000 },
         { Realm.Voidbreak, 12000 },
         { Realm.Wholeness, 20500 },
+        { Realm.Perfection,  31000 },
+        { Realm.Nirvana, 57000 },
     };
 
     [Export] public Realm CultivationRealm { get; set; } = Realm.Connection;

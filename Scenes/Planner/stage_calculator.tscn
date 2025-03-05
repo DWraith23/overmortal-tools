@@ -1,0 +1,156 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwx51nt8fxjpe"]
+
+[ext_resource type="Script" path="res://Scenes/Planner/StageCalculator.cs" id="1_3o1p3"]
+
+[node name="Stage Calculator" type="VBoxContainer" node_paths=PackedStringArray("CurrentMajorRealm", "CurrentMinorRealm", "CurrentStage", "CurrentPercent", "TargetMajorRealm", "TargetMinorRealm", "TargetStage", "RemainingXp")]
+theme_override_constants/separation = 8
+script = ExtResource("1_3o1p3")
+CurrentMajorRealm = NodePath("Current Level/Major Realm Select")
+CurrentMinorRealm = NodePath("Current Level/Minor Realm Select")
+CurrentStage = NodePath("Current Level/Stage Select")
+CurrentPercent = NodePath("Current Level/LineEdit")
+TargetMajorRealm = NodePath("Target Level/Major Realm Select")
+TargetMinorRealm = NodePath("Target Level/Minor Realm Select")
+TargetStage = NodePath("Target Level/Stage Select")
+RemainingXp = NodePath("Details/LineEdit")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "Current Stage"
+horizontal_alignment = 1
+
+[node name="Current Level" type="GridContainer" parent="."]
+layout_mode = 2
+theme_override_constants/h_separation = 12
+theme_override_constants/v_separation = 8
+columns = 7
+
+[node name="Major Realm" type="Label" parent="Current Level"]
+layout_mode = 2
+text = "Major Realm"
+horizontal_alignment = 1
+
+[node name="VSeparator" type="VSeparator" parent="Current Level"]
+layout_mode = 2
+
+[node name="Minor Realm" type="Label" parent="Current Level"]
+layout_mode = 2
+text = "Minor Realm"
+horizontal_alignment = 1
+
+[node name="VSeparator2" type="VSeparator" parent="Current Level"]
+layout_mode = 2
+
+[node name="Stage" type="Label" parent="Current Level"]
+layout_mode = 2
+text = "Stage"
+horizontal_alignment = 1
+
+[node name="VSeparator3" type="VSeparator" parent="Current Level"]
+layout_mode = 2
+
+[node name="Percent" type="Label" parent="Current Level"]
+layout_mode = 2
+text = "Percent"
+horizontal_alignment = 1
+
+[node name="Major Realm Select" type="OptionButton" parent="Current Level"]
+custom_minimum_size = Vector2(135, 31)
+layout_mode = 2
+alignment = 1
+
+[node name="VSeparator4" type="VSeparator" parent="Current Level"]
+layout_mode = 2
+
+[node name="Minor Realm Select" type="OptionButton" parent="Current Level"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="VSeparator5" type="VSeparator" parent="Current Level"]
+layout_mode = 2
+
+[node name="Stage Select" type="OptionButton" parent="Current Level"]
+custom_minimum_size = Vector2(65, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="VSeparator6" type="VSeparator" parent="Current Level"]
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="Current Level"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 2
+text = "Target Stage"
+horizontal_alignment = 1
+
+[node name="Target Level" type="GridContainer" parent="."]
+layout_mode = 2
+theme_override_constants/h_separation = 12
+theme_override_constants/v_separation = 8
+columns = 5
+
+[node name="Major Realm" type="Label" parent="Target Level"]
+layout_mode = 2
+text = "Major Realm"
+horizontal_alignment = 1
+
+[node name="VSeparator" type="VSeparator" parent="Target Level"]
+layout_mode = 2
+
+[node name="Minor Realm" type="Label" parent="Target Level"]
+layout_mode = 2
+text = "Minor Realm"
+horizontal_alignment = 1
+
+[node name="VSeparator2" type="VSeparator" parent="Target Level"]
+layout_mode = 2
+
+[node name="Stage" type="Label" parent="Target Level"]
+layout_mode = 2
+text = "Stage"
+horizontal_alignment = 1
+
+[node name="Major Realm Select" type="OptionButton" parent="Target Level"]
+custom_minimum_size = Vector2(135, 31)
+layout_mode = 2
+alignment = 1
+
+[node name="VSeparator4" type="VSeparator" parent="Target Level"]
+layout_mode = 2
+
+[node name="Minor Realm Select" type="OptionButton" parent="Target Level"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="VSeparator5" type="VSeparator" parent="Target Level"]
+layout_mode = 2
+
+[node name="Stage Select" type="OptionButton" parent="Target Level"]
+custom_minimum_size = Vector2(65, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="Details" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Details"]
+layout_mode = 2
+text = "XP Remaining:"
+
+[node name="LineEdit" type="LineEdit" parent="Details"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+alignment = 1
+editable = false
+
+[connection signal="item_selected" from="Current Level/Major Realm Select" to="." method="CurrentMajorRealmChanged"]
+[connection signal="item_selected" from="Current Level/Minor Realm Select" to="." method="CurrentMinorRealmChanged"]
+[connection signal="item_selected" from="Current Level/Stage Select" to="." method="CurrentStageChanged"]
+[connection signal="text_changed" from="Current Level/LineEdit" to="." method="CurrentPercentChanged"]
+[connection signal="item_selected" from="Target Level/Major Realm Select" to="." method="TargetButtonSelected"]
+[connection signal="item_selected" from="Target Level/Minor Realm Select" to="." method="TargetButtonSelected"]
+[connection signal="item_selected" from="Target Level/Stage Select" to="." method="TargetButtonSelected"]

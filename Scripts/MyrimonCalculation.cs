@@ -21,6 +21,7 @@ public partial class MyrimonCalculation : Resource
     {
         { "Mortal", 65000 },
         { "Voidbreak", 96000 },
+        { "Wholeness", 130000 },
     };
 
     public static Dictionary<Quality, float> QualityMultipliers => new()

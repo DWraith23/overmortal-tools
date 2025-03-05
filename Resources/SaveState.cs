@@ -19,7 +19,7 @@ public partial class SaveState : Resource
     [Export] public int DailyEpicPills { get; set; }
     [Export] public int DailyLegendaryPills { get; set; }
     [Export] public int DailyMythicPills { get; set; }
-    [Export] public MyrimonCalculation Myrimon { get; set; }
+    // [Export] public MyrimonCalculation Myrimon { get; set; }
 
     public static SaveState GenerateSaveState(ToolSelection tools)
     {
@@ -39,7 +39,7 @@ public partial class SaveState : Resource
             DailyEpicPills = (int) tools.BreakthroughCalculator.PillCalculator.DailyEpicsSpinbox.Value,
             DailyLegendaryPills = (int) tools.BreakthroughCalculator.PillCalculator.DailyLegendarySpinbox.Value,
             DailyMythicPills = (int) tools.BreakthroughCalculator.PillCalculator.DailyMythicSpinbox.Value,
-            Myrimon = tools.MyrimonCalculator.Calculator
+            // Myrimon = tools.MyrimonCalculator.Calculator
         };
 
         return result;
@@ -66,7 +66,7 @@ public partial class SaveState : Resource
         tools.BreakthroughCalculator.PillCalculator.DailyEpicsSpinbox.Value = state.DailyEpicPills;
         tools.BreakthroughCalculator.PillCalculator.DailyLegendarySpinbox.Value = state.DailyLegendaryPills;
         tools.BreakthroughCalculator.PillCalculator.DailyMythicSpinbox.Value = state.DailyMythicPills;
-        tools.MyrimonCalculator.Calculator = state.Myrimon;
+        // tools.MyrimonCalculator.Calculator = state.Myrimon;
         tools.BreakthroughCalculator.CosmoapsisCalculator.Update();
     }
 }

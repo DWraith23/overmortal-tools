@@ -75,7 +75,7 @@ public partial class MyrimonCalculator : Control
         Update();
     }
 
-    private void QualitySelected(int index, bool fix = false)
+    private void QualitySelected(int index)
     {
         Calculator.ExtractorQuality = (MyrimonCalculation.Quality) index;
 
@@ -111,7 +111,7 @@ public partial class MyrimonCalculator : Control
             QualitySpinBox.MinValue = 21;
         }
 
-        if (!fix) Update();
+        Update();
     }
 
     private void QuantityUpdated(double value)
@@ -127,7 +127,7 @@ public partial class MyrimonCalculator : Control
         GD.Print("UPDATING MYRIMON CALCULATOR");
         GD.Print("-----------------------");
 
-        CheckNodes();
+        // CheckNodes();
 
         BaseFruitValue.Text = MyrimonCalculation.BaseFruitValues[FruitTypeButton.Text].ToString("N0");
 
@@ -183,7 +183,7 @@ public partial class MyrimonCalculator : Control
             _ => 0,
         };
         QualityButton.Select(extractorQualityID);
-        QualitySelected(extractorQualityID, true);
+        QualitySelected(extractorQualityID);
         if (EXPSpinBox.Value != Calculator.XPLevel) EXPSpinBox.Value = Calculator.XPLevel;
         if (QualitySpinBox.Value != Calculator.QualityLevel) QualitySpinBox.Value = Calculator.QualityLevel;
         if (GushSpinBox.Value != Calculator.GushLevel) GushSpinBox.Value = Calculator.GushLevel;

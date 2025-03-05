@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=3 uid="uid://lj3w3fdb3rd8"]
+
+[ext_resource type="Script" path="res://Scenes/Planner/MirrorData.cs" id="1_vkoju"]
+
+[node name="Mirror Data" type="VBoxContainer"]
+custom_minimum_size = Vector2(135, 60)
+offset_right = 134.0
+offset_bottom = 59.0
+script = ExtResource("1_vkoju")
+
+[node name="Check" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(135, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Check"]
+layout_mode = 2
+text = "Mirror?"
+
+[node name="CheckBox" type="CheckBox" parent="Check"]
+layout_mode = 2
+
+[node name="Stars" type="HBoxContainer" parent="."]
+visible = false
+custom_minimum_size = Vector2(135, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Stars"]
+layout_mode = 2
+text = "Stars?"
+
+[node name="SpinBox" type="SpinBox" parent="Stars"]
+layout_mode = 2
+max_value = 5.0
+alignment = 1
+suffix = "*"

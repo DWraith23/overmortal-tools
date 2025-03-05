@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=3 uid="uid://bj4wqwevxef1o"]
+
+[ext_resource type="Script" path="res://Scenes/Planner/VaseData.cs" id="1_3be1r"]
+
+[node name="Vase Data" type="VBoxContainer"]
+custom_minimum_size = Vector2(135, 60)
+offset_right = 135.0
+offset_bottom = 24.0
+script = ExtResource("1_3be1r")
+
+[node name="Check" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(135, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Check"]
+layout_mode = 2
+text = "Vase?"
+
+[node name="CheckBox" type="CheckBox" parent="Check"]
+layout_mode = 2
+
+[node name="Stars" type="HBoxContainer" parent="."]
+visible = false
+custom_minimum_size = Vector2(135, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Stars"]
+layout_mode = 2
+text = "Stars?"
+
+[node name="SpinBox" type="SpinBox" parent="Stars"]
+layout_mode = 2
+max_value = 5.0
+alignment = 1
+suffix = "*"
