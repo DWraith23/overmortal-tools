@@ -1,4 +1,5 @@
 using Godot;
+using OvermortalTools.Scripts;
 
 namespace OvermortalTools.Resources.Planner;
 
@@ -11,7 +12,7 @@ public partial class MyrimonPlannerData : Resource
     private int _fruitTypeIndex = 0;
     private int _extractorQualityIndex = 0;
     private int _fruitQuantity = 0;
-    private bool _isRealmMatch = false;
+    private bool _isRealmMatch = true;
 
 
     [Export]
@@ -101,4 +102,52 @@ public partial class MyrimonPlannerData : Resource
             EmitChanged();
         }
     }
+
+    public MyrimonCalculation.Quality ExtractorQuality => (MyrimonCalculation.Quality)ExtractorQualityIndex;
+    public MyrimonCalculation.Realm FruitRealm => (MyrimonCalculation.Realm)FruitTypeIndex;
+
+    /// <summary>
+    /// The minimum amount of XP you can get from the given parameters.
+    /// </summary>
+    public int MinimumXP => MyrimonCalculation.GetMinimumXP(
+        ExtractorQuality,
+        QualityLevel,
+        FruitQuantity,
+        FruitRealm,
+        ExpLevel,
+        IsRealmMatch,
+        GushLevel
+        );
+
+    /// <summary>
+    /// The average xp you can get from the given parameters.
+    /// </summary>
+    public int AverageXp => MyrimonCalculation.GetAverageXP(
+      ExtractorQuality,
+      QualityLevel,
+      FruitQuantity,
+      FruitRealm,
+      ExpLevel,
+      IsRealmMatch,
+      GushLevel
+    );
+
+    /// <summary>
+    /// The absolute maximum amount of XP you can get from the given parameters.
+    /// </summary>
+    public int MaximumXp => MyrimonCalculation.GetMaximumXP(
+        ExtractorQuality,
+        QualityLevel,
+        FruitQuantity,
+        FruitRealm,
+        ExpLevel,
+        IsRealmMatch,
+        GushLevel
+    );
+
+    /// <summary>
+    /// Returns the average tech points you can get from the given parameters.
+    /// </summary>
+    public int AverageTechPts => MyrimonCalculation.GetAverageTechPts(ExtractorQuality, HighRankLevel, FruitQuantity);
+
 }

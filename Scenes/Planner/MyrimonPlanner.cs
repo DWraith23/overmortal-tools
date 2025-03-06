@@ -1,4 +1,6 @@
+using System;
 using Godot;
+using OvermortalTools.Resources.Planner;
 using OvermortalTools.Scripts;
 
 namespace OvermortalTools.Scenes.Planner;
@@ -24,58 +26,46 @@ public partial class MyrimonPlanner : VBoxContainer
 
     #endregion
 
-    private MyrimonCalculation _calculator = new();
-    public MyrimonCalculation Calculator
+    private MyrimonPlannerData _data = new();
+    public MyrimonPlannerData Data
     {
-        get => _calculator;
+        get => _data;
         set
         {
-            _calculator = value;
-            Update();
+            _data = value;
+            _data.Changed += Update;
         }
     }
 
-    private int ExpValue => (int)ExpSpinBox.Value;
-    private int QualityValue => (int)QualitySpinBox.Value;
-    private int GushValue => (int)GushSpinBox.Value;
-    private int HighRankValue => (int)HighRankSpinBox.Value;
-    private int FruitQuanity => (int)FruitQuanitySpinBox.Value;
-
-
     public override void _Ready()
     {
-        
+        Data.Changed += Update;
     }
 
     #region Events
-
-    private void OnSpinboxChanged(double value) => Update();
-    private void OnOptionSelected(int index) => Update();
-    private void OnRealmMatchToggled(bool on) => Update();
+    private void OnExpSpinBoxChanged(double value) => Data.ExpLevel = (int)value;
+    private void OnQualitySpinBoxChanged(double value) => Data.QualityLevel = (int)value;
+    private void OnGushSpinBoxChanged(double value) => Data.GushLevel = (int)value;
+    private void OnHighRankSpinBoxChanged(double value) => Data.HighRankLevel = (int)value;
+    private void OnFruitQuantitySpinBoxChanged(double value) => Data.FruitQuantity = (int)value;
+    private void OnFruitTypeOptionSelected(int index) => Data.FruitTypeIndex = index;
+    private void OnExtractorQualityOptionSelected(int index) => Data.ExtractorQualityIndex = index;
+    private void OnRealmMatchCheckBoxToggled(bool toggledOn) => Data.IsRealmMatch = toggledOn;
+    
     #endregion
 
     #region Actions
 
     private void Update()
     {
-        Calculator.FruitType = FruitTypeSelect.Text;
-        Calculator.ExtractorQuality = (MyrimonCalculation.Quality) ExtractorQualitySelect.Selected;
-        Calculator.XPLevel = ExpValue;
-        Calculator.QualityLevel = QualityValue;
-        Calculator.GushLevel = GushValue;
-        Calculator.TechLevel = HighRankValue;
-        Calculator.FruitQuantity = FruitQuanity;
-        Calculator.MatchesServerLevel = RealmMatchCheckBox.ButtonPressed;
+        GD.Print($"{DateTime.Now} : DEBUG: Updating MyrimonPlanner.");
 
-        var techPts = Calculator.FruitQuantity * Calculator.TechChance * Calculator.TechPoints;
-        var averageXp = Calculator.GetAverageXP();
-
-        AverageTechValue.Text = techPts.ToString("N0");
-        AverageXpValue.Text = averageXp.ToString("N0");
-
+        AverageTechValue.Text = Data.AverageTechPts.ToString("N0");
+        AverageXpValue.Text = Data.AverageXp.ToString("N0");
 
         EmitSignal(SignalName.ValuesChanged);
     }
+
 
     #endregion
 }

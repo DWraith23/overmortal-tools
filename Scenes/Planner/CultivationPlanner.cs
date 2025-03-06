@@ -42,7 +42,7 @@ public partial class CultivationPlanner : VBoxContainer
         TargetCalculation.CurrentXp = BasicInformation.StageCalculator.Data.CurrentXp;
         TargetCalculation.TargetXp = BasicInformation.StageCalculator.Data.TargetXp;
         TargetCalculation.DailyXp = DailyXp;
-        TargetCalculation.MyrimonAverageXp = MyrimonPlanner.Calculator.GetAverageXP();
+        TargetCalculation.MyrimonAverageXp = MyrimonPlanner.Data.AverageXp;
     }
 
     #endregion

@@ -199,11 +199,11 @@ size_flags_horizontal = 3
 alignment = 1
 editable = false
 
-[connection signal="value_changed" from="Node Values/EXP/SpinBox" to="." method="OnSpinboxChanged"]
-[connection signal="value_changed" from="Node Values/Quality/SpinBox" to="." method="OnSpinboxChanged"]
-[connection signal="value_changed" from="Node Values/Gush/SpinBox" to="." method="OnSpinboxChanged"]
-[connection signal="value_changed" from="Node Values/Tech/SpinBox" to="." method="OnSpinboxChanged"]
-[connection signal="item_selected" from="Options/Fruit Type/OptionButton" to="." method="OnOptionSelected"]
-[connection signal="item_selected" from="Options/Extractor Quality/OptionButton" to="." method="OnOptionSelected"]
-[connection signal="value_changed" from="Options/Fruit Quantity/SpinBox" to="." method="OnSpinboxChanged"]
-[connection signal="toggled" from="Options/Server Level Match/CheckBox" to="." method="OnRealmMatchToggled"]
+[connection signal="value_changed" from="Node Values/EXP/SpinBox" to="." method="OnExpSpinBoxChanged"]
+[connection signal="value_changed" from="Node Values/Quality/SpinBox" to="." method="OnQualitySpinBoxChanged"]
+[connection signal="value_changed" from="Node Values/Gush/SpinBox" to="." method="OnGushSpinBoxChanged"]
+[connection signal="value_changed" from="Node Values/Tech/SpinBox" to="." method="OnHighRankSpinBoxChanged"]
+[connection signal="item_selected" from="Options/Fruit Type/OptionButton" to="." method="OnFruitTypeOptionSelected"]
+[connection signal="item_selected" from="Options/Extractor Quality/OptionButton" to="." method="OnExtractorQualityOptionSelected"]
+[connection signal="value_changed" from="Options/Fruit Quantity/SpinBox" to="." method="OnFruitQuantitySpinBoxChanged"]
+[connection signal="toggled" from="Options/Server Level Match/CheckBox" to="." method="OnRealmMatchCheckBoxToggled"]
