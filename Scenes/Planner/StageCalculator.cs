@@ -155,6 +155,8 @@ public partial class StageCalculator : VBoxContainer
         GD.Print($"{DateTime.Now} : DEBUG: Updating StageCalculator.");
 
         SetRemainingXpText();
+
+        EmitSignal(SignalName.ValuesChanged);
     }
 
     private void ValidateIndices()
