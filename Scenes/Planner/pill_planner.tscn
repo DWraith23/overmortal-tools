@@ -152,9 +152,9 @@ layout_mode = 2
 size_flags_horizontal = 3
 texture = ExtResource("2_vrtk7")
 
-[connection signal="item_selected" from="Pill Level/OptionButton" to="." method="RealmSelected"]
-[connection signal="value_changed" from="Daily Pills/Rare" to="." method="SpinBoxChanged"]
-[connection signal="value_changed" from="Daily Pills/Epic" to="." method="SpinBoxChanged"]
-[connection signal="value_changed" from="Daily Pills/Legendary" to="." method="SpinBoxChanged"]
-[connection signal="text_changed" from="Bonus/Bonus Calculator/Total Value/LineEdit" to="." method="TotalPillInputChanged"]
-[connection signal="text_changed" from="Bonus/Bonus Calculator/Base Value/LineEdit" to="." method="BonusPillInputChanged"]
+[connection signal="item_selected" from="Pill Level/OptionButton" to="." method="OnPillRealmOptionSelected"]
+[connection signal="value_changed" from="Daily Pills/Rare" to="." method="OnRarePillsSpinBoxChanged"]
+[connection signal="value_changed" from="Daily Pills/Epic" to="." method="OnEpicPillsSpinBoxChanged"]
+[connection signal="value_changed" from="Daily Pills/Legendary" to="." method="OnLegendaryPillsSpinBoxChanged"]
+[connection signal="text_changed" from="Bonus/Bonus Calculator/Total Value/LineEdit" to="." method="OnTotalPillInputChanged"]
+[connection signal="text_changed" from="Bonus/Bonus Calculator/Base Value/LineEdit" to="." method="OnBonusPillInputChanged"]

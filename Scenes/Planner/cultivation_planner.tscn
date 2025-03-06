@@ -38,6 +38,7 @@ metadata/_tab_index = 1
 layout_mode = 2
 size_flags_horizontal = 4
 
-[connection signal="ValuesChanged" from="Contents/Basic Information" to="." method="OnBasicInformationChanged"]
-[connection signal="ValuesChanged" from="Contents/Advanced Information/Pill Planner" to="." method="OnAdvancedInformationChanged"]
-[connection signal="ValuesChanged" from="Contents/Advanced Information/Myrimon Planner" to="." method="OnAdvancedInformationChanged"]
+[connection signal="ArtifactsUpdated" from="Contents/Basic Information" to="Contents/Advanced Information/Pill Planner" method="OnArtifactsUpdated"]
+[connection signal="ValuesChanged" from="Contents/Basic Information" to="." method="OnValuesChanged"]
+[connection signal="ValuesChanged" from="Contents/Advanced Information/Pill Planner" to="." method="OnValuesChanged"]
+[connection signal="ValuesChanged" from="Contents/Advanced Information/Myrimon Planner" to="." method="OnValuesChanged"]

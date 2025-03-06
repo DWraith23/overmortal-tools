@@ -24,26 +24,18 @@ public partial class CultivationPlanner : VBoxContainer
     {
         var result = 1;
         result += (int)BasicInformation.PassiveCultivation.Data.CosmoPerDay;
-        result += PillPlanner.DailyPillValue;
+        result += PillPlanner.Data.DailyPillValue;
 
         return result;
     }
 
     #region Events
 
-    private void OnBasicInformationChanged() => UpdateAdvancedInformation();
-    private void OnAdvancedInformationChanged() => UpdateTargetCalculation();
+    private void OnValuesChanged() => UpdateTargetCalculation();
 
     #endregion
 
     #region Actions
-
-    private void UpdateAdvancedInformation()
-    {
-        PillPlanner.SetMythicPills(BasicInformation.VaseStatus.Data.DailyMythicPills + BasicInformation.MirrorStatus.Data.DailyMythicPills);
-
-        UpdateTargetCalculation();
-    }
 
     private void UpdateTargetCalculation()
     {

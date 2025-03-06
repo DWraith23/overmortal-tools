@@ -54,4 +54,6 @@ layout_mode = 2
 [connection signal="ValuesChanged" from="Stage Calculator" to="." method="OnValuesChanged"]
 [connection signal="ValuesChanged" from="Passive Cultivation" to="." method="OnValuesChanged"]
 [connection signal="ValuesChanged" from="HBoxContainer/Vase Data" to="." method="OnValuesChanged"]
+[connection signal="ValuesChanged" from="HBoxContainer/Vase Data" to="." method="OnArtifactsUpdated"]
 [connection signal="ValuesChanged" from="HBoxContainer/Mirror Data" to="." method="OnValuesChanged"]
+[connection signal="ValuesChanged" from="HBoxContainer/Mirror Data" to="." method="OnArtifactsUpdated"]
