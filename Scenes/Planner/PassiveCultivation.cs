@@ -80,6 +80,8 @@ public partial class PassiveCultivation : VBoxContainer
 
     private void Update()
     {
+        GD.Print($"{DateTime.Now} : DEBUG: Updating PassiveCultivation.");
+
         PerMinuteNode.Text = Data.CosmoPerMinute.ToString("N0");
         HourlyNode.Text = Data.CosmoPerHour.ToString("N0");
         DailyNode.Text = Data.CosmoPerDay.ToString("N0");
