@@ -1,13 +1,39 @@
-[gd_scene format=3 uid="uid://vvlj2y5cqf2q"]
+[gd_scene load_steps=3 format=3 uid="uid://vvlj2y5cqf2q"]
 
-[node name="Pill Planner" type="VBoxContainer"]
-offset_right = 379.0
+[ext_resource type="Script" path="res://Scenes/Planner/PillPlanner.cs" id="1_xis8l"]
+[ext_resource type="Texture2D" uid="uid://1btukscmcbuj" path="res://assets/pill_example.png" id="2_vrtk7"]
+
+[node name="Pill Planner" type="VBoxContainer" node_paths=PackedStringArray("RealmSelect", "RarePills", "EpicPills", "LegendaryPills", "TotalPillInput", "BonusPillInput", "MythicPills", "DailyValue", "PillCount", "BonusPercentOutput")]
+offset_right = 352.0
 offset_bottom = 120.0
+script = ExtResource("1_xis8l")
+RealmSelect = NodePath("Pill Level/OptionButton")
+RarePills = NodePath("Daily Pills/Rare")
+EpicPills = NodePath("Daily Pills/Epic")
+LegendaryPills = NodePath("Daily Pills/Legendary")
+TotalPillInput = NodePath("Bonus/Bonus Calculator/Total Value/LineEdit")
+BonusPillInput = NodePath("Bonus/Bonus Calculator/Base Value/LineEdit")
+MythicPills = NodePath("Daily Pills/Mythic")
+DailyValue = NodePath("Daily Value/LineEdit")
+PillCount = NodePath("Daily Value/Pill Count")
+BonusPercentOutput = NodePath("Bonus/Bonus Calculator/Bonus/LineEdit")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 2
 text = "Expected Daily Pills"
 horizontal_alignment = 1
+
+[node name="Pill Level" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Pill Level"]
+layout_mode = 2
+text = "Pill Realm: "
+
+[node name="OptionButton" type="OptionButton" parent="Pill Level"]
+custom_minimum_size = Vector2(135, 31)
+layout_mode = 2
+alignment = 1
 
 [node name="Daily Pills" type="GridContainer" parent="."]
 layout_mode = 2
@@ -35,41 +61,100 @@ text = "Mythic"
 horizontal_alignment = 1
 
 [node name="Rare" type="SpinBox" parent="Daily Pills"]
+custom_minimum_size = Vector2(85, 0)
 layout_mode = 2
 alignment = 1
 
 [node name="Epic" type="SpinBox" parent="Daily Pills"]
+custom_minimum_size = Vector2(85, 0)
 layout_mode = 2
 alignment = 1
 
 [node name="Legendary" type="SpinBox" parent="Daily Pills"]
+custom_minimum_size = Vector2(85, 0)
 layout_mode = 2
 alignment = 1
 
 [node name="Mythic" type="LineEdit" parent="Daily Pills"]
+custom_minimum_size = Vector2(85, 0)
+layout_mode = 2
+text = "0"
+alignment = 1
+editable = false
+
+[node name="Daily Value" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Daily Value"]
+layout_mode = 2
+text = "Daily XP:"
+
+[node name="LineEdit" type="LineEdit" parent="Daily Value"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 alignment = 1
 editable = false
 
-[node name="Rare Val" type="LineEdit" parent="Daily Pills"]
-custom_minimum_size = Vector2(100, 0)
+[node name="Pill Count" type="LineEdit" parent="Daily Value"]
+custom_minimum_size = Vector2(77, 0)
 layout_mode = 2
 alignment = 1
 editable = false
 
-[node name="Epic Val" type="LineEdit" parent="Daily Pills"]
-custom_minimum_size = Vector2(100, 0)
+[node name="HSeparator" type="HSeparator" parent="."]
 layout_mode = 2
-alignment = 1
+
+[node name="Bonus" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Bonus Calculator" type="VBoxContainer" parent="Bonus"]
+layout_mode = 2
+
+[node name="Total Value" type="HBoxContainer" parent="Bonus/Bonus Calculator"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Bonus/Bonus Calculator/Total Value"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+text = "Total Pill Value: "
+horizontal_alignment = 2
+
+[node name="LineEdit" type="LineEdit" parent="Bonus/Bonus Calculator/Total Value"]
+layout_mode = 2
+
+[node name="Base Value" type="HBoxContainer" parent="Bonus/Bonus Calculator"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Bonus/Bonus Calculator/Base Value"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+text = "Bonus Pill Value: "
+horizontal_alignment = 2
+
+[node name="LineEdit" type="LineEdit" parent="Bonus/Bonus Calculator/Base Value"]
+layout_mode = 2
+
+[node name="Bonus" type="HBoxContainer" parent="Bonus/Bonus Calculator"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Bonus/Bonus Calculator/Bonus"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+text = "Bonus %: "
+horizontal_alignment = 2
+
+[node name="LineEdit" type="LineEdit" parent="Bonus/Bonus Calculator/Bonus"]
+layout_mode = 2
 editable = false
 
-[node name="Leg Val" type="LineEdit" parent="Daily Pills"]
-custom_minimum_size = Vector2(100, 0)
+[node name="TextureRect" type="TextureRect" parent="Bonus/Bonus Calculator"]
 layout_mode = 2
-alignment = 1
-editable = false
+size_flags_horizontal = 3
+texture = ExtResource("2_vrtk7")
 
-[node name="Myth Val" type="LineEdit" parent="Daily Pills"]
-layout_mode = 2
-alignment = 1
-editable = false
+[connection signal="item_selected" from="Pill Level/OptionButton" to="." method="RealmSelected"]
+[connection signal="value_changed" from="Daily Pills/Rare" to="." method="SpinBoxChanged"]
+[connection signal="value_changed" from="Daily Pills/Epic" to="." method="SpinBoxChanged"]
+[connection signal="value_changed" from="Daily Pills/Legendary" to="." method="SpinBoxChanged"]
+[connection signal="text_changed" from="Bonus/Bonus Calculator/Total Value/LineEdit" to="." method="TotalPillInputChanged"]
+[connection signal="text_changed" from="Bonus/Bonus Calculator/Base Value/LineEdit" to="." method="BonusPillInputChanged"]

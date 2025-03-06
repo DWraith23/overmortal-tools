@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://ce87tphwioqew"]
+
+[ext_resource type="Script" path="res://trash/ChatMessage.cs" id="1_f10lq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_368d4"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.62505, 1, 0.983731, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="Chat Message" type="PanelContainer" node_paths=PackedStringArray("TextLabel")]
+offset_right = 40.0
+offset_bottom = 40.0
+size_flags_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_368d4")
+script = ExtResource("1_f10lq")
+TextLabel = NodePath("Label")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16

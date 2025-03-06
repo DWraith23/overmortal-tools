@@ -123,10 +123,6 @@ public partial class MyrimonCalculator : Control
 
     private void Update()
     {
-        GD.Print("-----------------------");
-        GD.Print("UPDATING MYRIMON CALCULATOR");
-        GD.Print("-----------------------");
-
         // CheckNodes();
 
         BaseFruitValue.Text = MyrimonCalculation.BaseFruitValues[FruitTypeButton.Text].ToString("N0");
@@ -156,9 +152,9 @@ public partial class MyrimonCalculator : Control
         MythicOdds.Text = Calculator.QualityChances[MyrimonCalculation.Quality.Mythic].ToString("N2") + "%";
 
 
-        MinimumXP.Text = Calculator.GetMinimumXP(NumberOfFruits).ToString("N0");
-        AverageXP.Text = Calculator.GetAverageXP(NumberOfFruits).ToString("N0");
-        MaximumXP.Text = Calculator.GetMaximumXP(NumberOfFruits).ToString("N0");
+        MinimumXP.Text = Calculator.GetMinimumXP().ToString("N0");
+        AverageXP.Text = Calculator.GetAverageXP().ToString("N0");
+        MaximumXP.Text = Calculator.GetMaximumXP().ToString("N0");
 
         var techPts = NumberOfFruits * Calculator.TechChance * Calculator.TechPoints;
         AverageTech.Text = techPts.ToString("N0");
@@ -166,11 +162,6 @@ public partial class MyrimonCalculator : Control
 
     private void CheckNodes()
     {
-        GD.Print($"Exp: {EXPSpinBox.Value} | CalcXp: {Calculator.XPLevel}");
-        GD.Print($"Quality: {QualitySpinBox.Value} | CalcQuality: {Calculator.QualityLevel}");
-        GD.Print($"Gush: {GushSpinBox.Value} | CalcGush: {Calculator.GushLevel}");
-        GD.Print($"Tech: {TechSpinBox.Value} | CalcTech: {Calculator.TechLevel}");
-        GD.Print($"Fruit: {FruitQuantity.Value} | CalcFruit: {Calculator.FruitQuantity}");
         
         int extractorQualityID = Calculator.ExtractorQuality switch
         {

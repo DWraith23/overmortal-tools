@@ -1,0 +1,38 @@
+[gd_scene load_steps=2 format=3 uid="uid://chnmskh3rlqkl"]
+
+[ext_resource type="Script" path="res://Scenes/Planner/TargetCalculation.cs" id="1_u7hep"]
+
+[node name="Target Calculation" type="VBoxContainer" node_paths=PackedStringArray("WithMyrimonDays", "WithoutMyrimonDays")]
+offset_right = 268.0
+offset_bottom = 31.0
+script = ExtResource("1_u7hep")
+WithMyrimonDays = NodePath("With Myrimon/LineEdit")
+WithoutMyrimonDays = NodePath("Without Myrimon/LineEdit")
+
+[node name="Without Myrimon" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Without Myrimon"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Days (Without Myrimon): "
+horizontal_alignment = 2
+
+[node name="LineEdit" type="LineEdit" parent="Without Myrimon"]
+layout_mode = 2
+alignment = 1
+editable = false
+
+[node name="With Myrimon" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="With Myrimon"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Days (With Myrimon): "
+horizontal_alignment = 2
+
+[node name="LineEdit" type="LineEdit" parent="With Myrimon"]
+layout_mode = 2
+alignment = 1
+editable = false

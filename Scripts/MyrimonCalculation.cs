@@ -125,7 +125,7 @@ public partial class MyrimonCalculation : Resource
         return result;
     }
     
-    private Dictionary<Quality, int> GetMinimumQuantities(int fruits)
+    private Dictionary<Quality, int> GetMinimumQuantities()
     {
         var result = new Dictionary<Quality, int>()
         {
@@ -140,14 +140,14 @@ public partial class MyrimonCalculation : Resource
         foreach (var kvp in CalculateQualityChances())
         {
             if (kvp.Value == 0f) continue;
-            result[kvp.Key] = fruits;
+            result[kvp.Key] = FruitQuantity;
             break;        
         }
 
         return result;
     }
 
-    private Dictionary<Quality, int> GetAverageQuantities(int fruits)
+    private Dictionary<Quality, int> GetAverageQuantities()
     {
         var result = new Dictionary<Quality, int>()
         {
@@ -164,26 +164,26 @@ public partial class MyrimonCalculation : Resource
             if (kvp.Value == 0f) continue;
             if (kvp.Value == 50)
             {
-                if (fruits == 1)
+                if (FruitQuantity == 1)
                 {
                     result[kvp.Key] = 1;
                     break;
                 }
-                if (fruits % 2 != 0 && result.Values.Sum() == 0)
+                if (FruitQuantity % 2 != 0 && result.Values.Sum() == 0)
                 {
-                    result[kvp.Key] = fruits / 2 + 1;
+                    result[kvp.Key] = FruitQuantity / 2 + 1;
                     continue;
                 }
-                result[kvp.Key] = fruits / 2;
+                result[kvp.Key] = FruitQuantity / 2;
                 continue;
             }
-            result[kvp.Key] = (int) Math.Round(fruits * kvp.Value / 100);
+            result[kvp.Key] = (int) Math.Round(FruitQuantity * kvp.Value / 100);
         }
 
         return result;
     }
 
-    private Dictionary<Quality, int> GetMaximumQuantities(int fruits)
+    private Dictionary<Quality, int> GetMaximumQuantities()
     {
         var result = new Dictionary<Quality, int>()
         {
@@ -198,7 +198,7 @@ public partial class MyrimonCalculation : Resource
         foreach (var kvp in CalculateQualityChances().Reverse())
         {
             if (kvp.Value == 0f) continue;
-            result[kvp.Key] = fruits;
+            result[kvp.Key] = FruitQuantity;
             break;
         }
 
@@ -214,11 +214,11 @@ public partial class MyrimonCalculation : Resource
         return (int) Math.Floor(value);
     }
 
-    public int GetMinimumXP(int fruits)
+    public int GetMinimumXP()
     {
         int value = 0;
         
-        foreach (var kvp in GetMinimumQuantities(fruits))
+        foreach (var kvp in GetMinimumQuantities())
         {
             if (kvp.Value == 0) continue;
             var gushes = GetGuaranteedGushes(kvp.Value);
@@ -230,53 +230,36 @@ public partial class MyrimonCalculation : Resource
         return value;
     }
 
-    public int GetAverageXP(int fruits)
+    public int GetAverageXP()
     {
         int value = 0;
-        float totalGushes = GetGuaranteedGushes(fruits);
-        totalGushes += (float) Math.Floor((fruits - totalGushes) * GushChance);
-        GD.Print($"Total Gushes: {totalGushes}");
-        GD.Print($"Total Fruit: {fruits}");
-        GD.Print($"Gush Chance: {GushChance}|Gush Multiplier: {GushMultiplier}|Tech Chance: {TechChance}");
+        float totalGushes = GetGuaranteedGushes(FruitQuantity);
+        totalGushes += (float) Math.Floor((FruitQuantity - totalGushes) * GushChance);
 
 
-        foreach (var kvp in GetAverageQuantities(fruits))
+        foreach (var kvp in GetAverageQuantities())
         {
             if (kvp.Value == 0) continue;
-            GD.Print($"DEBUG: Average Quantities: key:{kvp.Key}|value:{kvp.Value}");
-            // var gushes = (int) Math.Round((float) kvp.Value /  fruits * totalGushes);
-            // var fruit = kvp.Value - gushes;
-            // var gushValue = (int) (gushes * GushMultiplier * GetFruitValue(kvp.Key));
-            // var fruitValue = fruit * GetFruitValue(kvp.Key);
-            // value += fruitValue + gushValue;
 
-            var gushes = (float) kvp.Value / fruits * totalGushes;
+            var gushes = (float) kvp.Value / FruitQuantity * totalGushes;
             var fruit = kvp.Value - gushes;
             var gushValue = (int) Math.Floor(gushes * GushMultiplier * GetFruitValue(kvp.Key));
             var fruitValue = (int) Math.Floor(fruit * GetFruitValue(kvp.Key));
             value += fruitValue + gushValue;
-
-            GD.Print($"Key: {kvp.Key}");
-            GD.Print($"|    fruit:{fruit}");
-            GD.Print($"|    DEBUG: {(float) kvp.Value / fruits}");
-            GD.Print($"|    gushes:{gushes} / {totalGushes}");
-            GD.Print($"|    fruitValue:{fruitValue}");
-            GD.Print($"|    gushValue:{gushValue}");
-            GD.Print($"|    value:{value}");
 
         }
 
         return value;
     }
 
-    public int GetMaximumXP(int fruits)
+    public int GetMaximumXP()
     {
         int value = 0;
 
-        foreach (var kvp in GetMaximumQuantities(fruits))
+        foreach (var kvp in GetMaximumQuantities())
         {
             if (kvp.Value == 0) continue;
-            var gushes = fruits;
+            var gushes = FruitQuantity;
             var fruit = 0;
             value += fruit * GetFruitValue(kvp.Key);
             value += (int) Math.Floor(gushes * GetFruitValue(kvp.Key) * GushMultiplier);

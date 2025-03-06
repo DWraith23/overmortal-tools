@@ -8,6 +8,8 @@ namespace OvermortalTools.Scenes.Planner;
 public partial class StageCalculator : VBoxContainer
 {
 
+    [Signal] public delegate void ValuesChangedEventHandler();
+
     #region Exports
     [ExportGroup("Nodes")]
     [ExportSubgroup("Current")]
@@ -92,6 +94,10 @@ public partial class StageCalculator : VBoxContainer
 
     public int RemainingXpValue => TargetXp - CurrentXp;
 
+    public string MajorRealm => CurrentMajorRealm.GetItemText(CurrentMajorRealm.Selected);
+    public string MinorRealm => CurrentMinorRealm.GetItemText(CurrentMinorRealm.Selected);
+    public string Stage => CurrentStage.GetItemText(CurrentStage.Selected);
+
     #endregion
 
     #region Events
@@ -100,7 +106,10 @@ public partial class StageCalculator : VBoxContainer
     private void CurrentMinorRealmChanged(long index) => SetTargetButtons(1);
     private void CurrentStageChanged(long index) => SetTargetButtons(2);
     private void CurrentPercentChanged(string text) => SetCurrentPercent(text);
-    private void TargetButtonSelected(long index) => SetRemainingXpText();
+    private void TargetMajorRealmChanged(long index) => CheckTargetRealms(0);
+    private void TargetMinorRealmChanged(long index) => CheckTargetRealms(1);
+    private void TargetStageChanged(long index) => CheckTargetRealms(2);
+
 
     #endregion
 
@@ -115,6 +124,7 @@ public partial class StageCalculator : VBoxContainer
         if (code == 0) SetCurrentMinorRealms();
         if (code == 0 || code == 1) SetCurrentStages();
 
+        GD.Print($"DEBUG: Setting Target Realms");
         SetTargetMajorRealms(majorIndex);
         SetTargetMinorRealms(minorIndex);
         SetTargetStages(stageIndex);
@@ -122,8 +132,17 @@ public partial class StageCalculator : VBoxContainer
         SetRemainingXpText();
     }
 
+    private void CheckTargetRealms(int code)
+    {
+        if (code == 0) SetTargetMinorRealms(CurrentMinorRealm.Selected);
+        if (code == 0 || code == 1) SetTargetStages(CurrentStage.Selected);
+        SetRemainingXpText();
+    }
+
     private void SetTargetMajorRealms(int index)
     {
+        GD.Print($"|    Setting Major Realms");
+
         TargetMajorRealm.Clear();
 
         for (int i = 0; i < CultivationStage.MajorRealms.Count; i++)
@@ -138,9 +157,11 @@ public partial class StageCalculator : VBoxContainer
     {
         if (TargetMajorRealm.Selected == -1) return;
 
+        GD.Print($"|    Setting Minor Realms");
+
         TargetMinorRealm.Clear();
 
-        if (CurrentMajorRealm.GetItemText(CurrentMajorRealm.Selected) != TargetMajorRealm.GetItemText(TargetMajorRealm.Selected))
+        if (CurrentMajorRealm.Text != TargetMajorRealm.Text)
         {
             for (int i = 0; i < CultivationStage.MinorRealms(TargetMajorRealm.GetItemText(TargetMajorRealm.Selected)).Count; i++)
             {
@@ -161,6 +182,9 @@ public partial class StageCalculator : VBoxContainer
     private void SetTargetStages(int index)
     {
         if (TargetMajorRealm.Selected == -1 || TargetMinorRealm.Selected == -1) return;
+
+        GD.Print($"|    Setting Stages");
+
         var cMajorText = CurrentMajorRealm.GetItemText(CurrentMajorRealm.Selected);
         var cMinorText = CurrentMinorRealm.GetItemText(CurrentMinorRealm.Selected);
         var tMajorText = TargetMajorRealm.GetItemText(TargetMajorRealm.Selected);
@@ -203,10 +227,16 @@ public partial class StageCalculator : VBoxContainer
         SetRemainingXpText();
     }
 
-    private void SetRemainingXpText() => RemainingXp.Text =
+    private void SetRemainingXpText()
+    {
+        RemainingXp.Text =
         TargetXp == 0
             ? "---"
             : (TargetXp - CurrentXp).ToString("N0");
+
+        EmitSignal(SignalName.ValuesChanged);
+    }
+
 
     #endregion
 }

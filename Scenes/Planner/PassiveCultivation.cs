@@ -22,6 +22,8 @@ public partial class PassiveCultivation : VBoxContainer
         { 6, 0.28f },
     };
 
+    [Signal] public delegate void ValuesChangedEventHandler();
+
 
     #region Exports
     [ExportGroup("Nodes")]
@@ -48,7 +50,7 @@ public partial class PassiveCultivation : VBoxContainer
     }
     private float AuraGemMultiplier =>
         AuraGem == null ? 0 : AuraGemValues[AuraGem.Selected];
-    private float CosmoPerSecond => CosmoapsisValue / 8f;
+    private float CosmoPerSecond => CosmoapsisValue / 8f * (AuraGemMultiplier + 1f);
     public float MinuteValue { get; set; } = 0;
     public float HourValue { get; set; } = 0;
     public float DayValue { get; set; } = 0;
@@ -93,9 +95,11 @@ public partial class PassiveCultivation : VBoxContainer
             return;
         }
         CosmoapsisValue = float.Parse(text);
-        PerMinuteNode.Text = (MinuteValue + (MinuteValue * AuraGemMultiplier)).ToString("N0");
-        HourlyNode.Text = (HourValue + (HourValue * AuraGemMultiplier)).ToString("N0");
-        DailyNode.Text = (DayValue + (DayValue * AuraGemMultiplier)).ToString("N0");
+        PerMinuteNode.Text = MinuteValue.ToString("N0");
+        HourlyNode.Text = HourValue.ToString("N0");
+        DailyNode.Text = DayValue.ToString("N0");
+
+        EmitSignal(SignalName.ValuesChanged);
     }
     
     #endregion

@@ -2,11 +2,14 @@
 
 [ext_resource type="Script" path="res://Scenes/Planner/MirrorData.cs" id="1_vkoju"]
 
-[node name="Mirror Data" type="VBoxContainer"]
+[node name="Mirror Data" type="VBoxContainer" node_paths=PackedStringArray("HasArtifactCheck", "StarsContainer", "StarsBox")]
 custom_minimum_size = Vector2(135, 60)
 offset_right = 134.0
 offset_bottom = 59.0
 script = ExtResource("1_vkoju")
+HasArtifactCheck = NodePath("Check/CheckBox")
+StarsContainer = NodePath("Stars")
+StarsBox = NodePath("Stars/SpinBox")
 
 [node name="Check" type="HBoxContainer" parent="."]
 custom_minimum_size = Vector2(135, 0)
@@ -33,3 +36,6 @@ layout_mode = 2
 max_value = 5.0
 alignment = 1
 suffix = "*"
+
+[connection signal="toggled" from="Check/CheckBox" to="." method="OnToggled"]
+[connection signal="value_changed" from="Stars/SpinBox" to="." method="OnValueChanged"]

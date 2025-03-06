@@ -1,0 +1,209 @@
+[gd_scene load_steps=2 format=3 uid="uid://d3yft6mkjvrno"]
+
+[ext_resource type="Script" path="res://Scenes/Planner/MyrimonPlanner.cs" id="1_8uunu"]
+
+[node name="Myrimon Planner" type="VBoxContainer" node_paths=PackedStringArray("ExpSpinBox", "QualitySpinBox", "GushSpinBox", "HighRankSpinBox", "FruitTypeSelect", "ExtractorQualitySelect", "FruitQuanitySpinBox", "RealmMatchCheckBox", "AverageXpValue", "AverageTechValue")]
+script = ExtResource("1_8uunu")
+ExpSpinBox = NodePath("Node Values/EXP/SpinBox")
+QualitySpinBox = NodePath("Node Values/Quality/SpinBox")
+GushSpinBox = NodePath("Node Values/Gush/SpinBox")
+HighRankSpinBox = NodePath("Node Values/Tech/SpinBox")
+FruitTypeSelect = NodePath("Options/Fruit Type/OptionButton")
+ExtractorQualitySelect = NodePath("Options/Extractor Quality/OptionButton")
+FruitQuanitySpinBox = NodePath("Options/Fruit Quantity/SpinBox")
+RealmMatchCheckBox = NodePath("Options/Server Level Match/CheckBox")
+AverageXpValue = NodePath("Outputs/Average Value/LineEdit")
+AverageTechValue = NodePath("Outputs/Average Tech/LineEdit")
+
+[node name="Node Values" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="EXP" type="HBoxContainer" parent="Node Values"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Node Values/EXP"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+text = "Cultivation EXP:"
+horizontal_alignment = 2
+
+[node name="SpinBox" type="SpinBox" parent="Node Values/EXP"]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 30.0
+alignment = 1
+
+[node name="Quality" type="HBoxContainer" parent="Node Values"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Node Values/Quality"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+text = "Quality:"
+horizontal_alignment = 2
+
+[node name="SpinBox" type="SpinBox" parent="Node Values/Quality"]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 30.0
+alignment = 1
+
+[node name="Gush" type="HBoxContainer" parent="Node Values"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Node Values/Gush"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+text = "Gush:"
+horizontal_alignment = 2
+
+[node name="SpinBox" type="SpinBox" parent="Node Values/Gush"]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 30.0
+alignment = 1
+
+[node name="Tech" type="HBoxContainer" parent="Node Values"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Node Values/Tech"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+text = "High Rank:"
+horizontal_alignment = 2
+
+[node name="SpinBox" type="SpinBox" parent="Node Values/Tech"]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 30.0
+alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="."]
+layout_mode = 2
+
+[node name="Options" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Fruit Type" type="HBoxContainer" parent="Options"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Options/Fruit Type"]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+text = "Fruit Type:"
+horizontal_alignment = 2
+
+[node name="OptionButton" type="OptionButton" parent="Options/Fruit Type"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+selected = 0
+item_count = 5
+popup/item_0/text = "Mortal"
+popup/item_1/text = "Voidbreak"
+popup/item_1/id = 1
+popup/item_2/text = "Wholeness"
+popup/item_2/id = 2
+popup/item_3/text = "Perfection"
+popup/item_3/id = 3
+popup/item_4/text = "Nirvana"
+popup/item_4/id = 4
+
+[node name="Extractor Quality" type="HBoxContainer" parent="Options"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Options/Extractor Quality"]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+text = "Extractor Quality:"
+horizontal_alignment = 2
+
+[node name="OptionButton" type="OptionButton" parent="Options/Extractor Quality"]
+layout_mode = 2
+alignment = 1
+selected = 0
+item_count = 6
+popup/item_0/text = "Common"
+popup/item_1/text = "Uncommon"
+popup/item_1/id = 1
+popup/item_2/text = "Rare"
+popup/item_2/id = 2
+popup/item_3/text = "Epic"
+popup/item_3/id = 3
+popup/item_4/text = "Legendary"
+popup/item_4/id = 4
+popup/item_5/text = "Mythic"
+popup/item_5/id = 5
+
+[node name="Fruit Quantity" type="HBoxContainer" parent="Options"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Options/Fruit Quantity"]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+text = "Fruit Quantity:"
+horizontal_alignment = 2
+
+[node name="SpinBox" type="SpinBox" parent="Options/Fruit Quantity"]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1000.0
+alignment = 1
+
+[node name="Server Level Match" type="HBoxContainer" parent="Options"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Options/Server Level Match"]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+text = "Realm Match Bonus?: "
+horizontal_alignment = 2
+
+[node name="CheckBox" type="CheckBox" parent="Options/Server Level Match"]
+layout_mode = 2
+button_pressed = true
+
+[node name="HSeparator2" type="HSeparator" parent="Options"]
+layout_mode = 2
+
+[node name="Outputs" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Average Value" type="HBoxContainer" parent="Outputs"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Outputs/Average Value"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+text = "Average Value: "
+horizontal_alignment = 2
+
+[node name="LineEdit" type="LineEdit" parent="Outputs/Average Value"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+editable = false
+
+[node name="Average Tech" type="HBoxContainer" parent="Outputs"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Outputs/Average Tech"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+text = "Average Tech Pts: "
+horizontal_alignment = 2
+
+[node name="LineEdit" type="LineEdit" parent="Outputs/Average Tech"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+editable = false
+
+[connection signal="value_changed" from="Node Values/EXP/SpinBox" to="." method="OnSpinboxChanged"]
+[connection signal="value_changed" from="Node Values/Quality/SpinBox" to="." method="OnSpinboxChanged"]
+[connection signal="value_changed" from="Node Values/Gush/SpinBox" to="." method="OnSpinboxChanged"]
+[connection signal="value_changed" from="Node Values/Tech/SpinBox" to="." method="OnSpinboxChanged"]
+[connection signal="item_selected" from="Options/Fruit Type/OptionButton" to="." method="OnOptionSelected"]
+[connection signal="item_selected" from="Options/Extractor Quality/OptionButton" to="." method="OnOptionSelected"]
+[connection signal="value_changed" from="Options/Fruit Quantity/SpinBox" to="." method="OnSpinboxChanged"]
+[connection signal="toggled" from="Options/Server Level Match/CheckBox" to="." method="OnRealmMatchToggled"]

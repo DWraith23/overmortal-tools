@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://bmo4q4somi6mr"]
+
+[ext_resource type="Script" path="res://Scenes/Planner/CultivationPlanner.cs" id="1_x5if4"]
+[ext_resource type="PackedScene" uid="uid://b7lpaktb1ga4t" path="res://Scenes/Planner/basic_information.tscn" id="2_a8256"]
+[ext_resource type="PackedScene" uid="uid://vvlj2y5cqf2q" path="res://Scenes/Planner/pill_planner.tscn" id="3_xmuxf"]
+[ext_resource type="PackedScene" uid="uid://d3yft6mkjvrno" path="res://Scenes/Planner/myrimon_planner.tscn" id="4_jyk7a"]
+[ext_resource type="PackedScene" uid="uid://chnmskh3rlqkl" path="res://Scenes/Planner/target_calculation.tscn" id="5_im5p8"]
+
+[node name="Cultivation Planner" type="VBoxContainer" node_paths=PackedStringArray("BasicInformation", "PillPlanner", "MyrimonPlanner", "TargetCalculation", "AdvancedTabs")]
+script = ExtResource("1_x5if4")
+BasicInformation = NodePath("Contents/Basic Information")
+PillPlanner = NodePath("Contents/Advanced Information/Pill Planner")
+MyrimonPlanner = NodePath("Contents/Advanced Information/Myrimon Planner")
+TargetCalculation = NodePath("Target Calculation")
+AdvancedTabs = NodePath("Contents/Advanced Information")
+
+[node name="Contents" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Basic Information" parent="Contents" instance=ExtResource("2_a8256")]
+layout_mode = 2
+
+[node name="Advanced Information" type="TabContainer" parent="Contents"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+current_tab = 0
+
+[node name="Pill Planner" parent="Contents/Advanced Information" instance=ExtResource("3_xmuxf")]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="Myrimon Planner" parent="Contents/Advanced Information" instance=ExtResource("4_jyk7a")]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="Target Calculation" parent="." instance=ExtResource("5_im5p8")]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[connection signal="ValuesChanged" from="Contents/Basic Information" to="." method="OnBasicInformationChanged"]
+[connection signal="ValuesChanged" from="Contents/Advanced Information/Pill Planner" to="." method="OnAdvancedInformationChanged"]
+[connection signal="ValuesChanged" from="Contents/Advanced Information/Myrimon Planner" to="." method="OnAdvancedInformationChanged"]

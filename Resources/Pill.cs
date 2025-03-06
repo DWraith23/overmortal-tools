@@ -6,7 +6,7 @@ using OvermortalTools.Scripts.Enums;
 namespace OvermortalTools.Resources;
 
 [GlobalClass, Tool]
-public partial class Pill : Consumable
+public partial class Pill : Resource
 {
     public enum Quality
     {

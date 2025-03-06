@@ -360,9 +360,7 @@ public partial class CultivationStage : Resource
 
         foreach (var realm in MajorRealms)
         {
-            GD.Print($"Realm: {realm}");
             var values = AllStages.Where(s => s.MajorRealm == realm).Select(s => s.XPRequired);
-            GD.Print($"Values count: {values.Count()}");
         }
 
         return result;
@@ -403,8 +401,6 @@ public partial class CultivationStage : Resource
         MinorRealm = minor;
         Stage = stage;
         XPRequired = xp;
-
-        GD.Print($"Created Cultivation Stage: {ToString()} with XP: {XPRequired:N0}");
     }
 
     /// <summary>

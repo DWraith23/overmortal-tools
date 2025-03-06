@@ -15,8 +15,9 @@ public partial class MirrorData : VBoxContainer
         { 5, 3f }
     };
 
-     [Signal] public delegate void StatusChangedEventHandler(int stars);
+    [Signal] public delegate void ValuesChangedEventHandler();
 
+    [Export] private CheckBox HasArtifactCheck { get; set; }
     [Export] private HBoxContainer StarsContainer { get; set; }
     [Export] private SpinBox StarsBox { get; set; }
 
@@ -26,12 +27,14 @@ public partial class MirrorData : VBoxContainer
 
     private float GetDailyMythicPills()
     {
+        if (!HasArtifactCheck.ButtonPressed) return 0f;
+
         var energy = 100f + (96f * RechargeValues[Stars]);
         var cost = 200 *
-            Stars == 0 ? 1f
+            (Stars == 0 ? 1f
                 : Stars < 3 ? 0.95f // 1* mirror has 5% cost reduction
-                : 0.9f; // 3* mirror has 10% cost reduction
-        return energy / cost * Stars == 5 ? 1.15f : 1f; // 5* mirror has 15% chance of double duplication
+                : 0.9f); // 3* mirror has 10% cost reduction
+        return energy / cost * (Stars == 5 ? 1.15f : 1f); // 5* mirror has 15% chance of double duplication
     }
 
     private void OnToggled(bool on)
@@ -39,8 +42,8 @@ public partial class MirrorData : VBoxContainer
         StarsContainer.Visible = on;
 
         if (!on) StarsBox.Value = 0f;
-        EmitSignal(SignalName.StatusChanged, Stars);
+        EmitSignal(SignalName.ValuesChanged);
     }
 
-    private void OnValueChanged(double value) => EmitSignal(SignalName.StatusChanged, Stars);
+    private void OnValueChanged(double value) => EmitSignal(SignalName.ValuesChanged);
 }

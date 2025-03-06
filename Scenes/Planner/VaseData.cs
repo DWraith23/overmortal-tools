@@ -16,8 +16,9 @@ public partial class VaseData : VBoxContainer
         { 5, 3f }
     };
 
-    [Signal] public delegate void StatusChangedEventHandler(int stars);
+    [Signal] public delegate void ValuesChangedEventHandler();
 
+    [Export] private CheckBox HasArtifactCheck { get; set; }
     [Export] private HBoxContainer StarsContainer { get; set; }
     [Export] private SpinBox StarsBox { get; set; }
 
@@ -27,6 +28,8 @@ public partial class VaseData : VBoxContainer
 
     private float GetDailyMythicPills()
     {
+        if (!HasArtifactCheck.ButtonPressed) return 0f;
+
         var energy = 100f + (96f * RechargeValues[Stars]);
         var basic = energy / 100f;
         return Stars == 5 ? basic * 1.15f : basic;
@@ -42,8 +45,8 @@ public partial class VaseData : VBoxContainer
         StarsContainer.Visible = on;
 
         if (!on) StarsBox.Value = 0f;
-        EmitSignal(SignalName.StatusChanged, Stars);
+        EmitSignal(SignalName.ValuesChanged);
     }
 
-    private void OnValueChanged(double value) => EmitSignal(SignalName.StatusChanged, Stars);
+    private void OnValueChanged(double value) => EmitSignal(SignalName.ValuesChanged);
 }
