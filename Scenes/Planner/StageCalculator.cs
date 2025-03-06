@@ -124,7 +124,6 @@ public partial class StageCalculator : VBoxContainer
         if (code == 0) SetCurrentMinorRealms();
         if (code == 0 || code == 1) SetCurrentStages();
 
-        GD.Print($"DEBUG: Setting Target Realms");
         SetTargetMajorRealms(majorIndex);
         SetTargetMinorRealms(minorIndex);
         SetTargetStages(stageIndex);
@@ -141,7 +140,6 @@ public partial class StageCalculator : VBoxContainer
 
     private void SetTargetMajorRealms(int index)
     {
-        GD.Print($"|    Setting Major Realms");
 
         TargetMajorRealm.Clear();
 
@@ -156,8 +154,6 @@ public partial class StageCalculator : VBoxContainer
     private void SetTargetMinorRealms(int index)
     {
         if (TargetMajorRealm.Selected == -1) return;
-
-        GD.Print($"|    Setting Minor Realms");
 
         TargetMinorRealm.Clear();
 
@@ -182,8 +178,6 @@ public partial class StageCalculator : VBoxContainer
     private void SetTargetStages(int index)
     {
         if (TargetMajorRealm.Selected == -1 || TargetMinorRealm.Selected == -1) return;
-
-        GD.Print($"|    Setting Stages");
 
         var cMajorText = CurrentMajorRealm.GetItemText(CurrentMajorRealm.Selected);
         var cMinorText = CurrentMinorRealm.GetItemText(CurrentMinorRealm.Selected);
