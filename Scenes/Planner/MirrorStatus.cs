@@ -41,6 +41,9 @@ public partial class MirrorStatus : VBoxContainer
 
     #endregion
 
+    /// <summary>
+    /// Updates the UI.  This is called any time the Data resource changes.
+    /// </summary>
     private void Update()
     {
         GD.Print($"{DateTime.Now} : DEBUG: Updating MirrorStatus.");
@@ -51,6 +54,9 @@ public partial class MirrorStatus : VBoxContainer
         EmitSignal(SignalName.ValuesChanged);
     }
 
+    /// <summary>
+    /// Verifies that the UI matches the Data container values.
+    /// </summary>
     private void CheckValues()
     {
         if (HasArtifactCheck.ButtonPressed != Data.HasMirror) HasArtifactCheck.ButtonPressed = Data.HasMirror;

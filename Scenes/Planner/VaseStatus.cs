@@ -36,6 +36,9 @@ public partial class VaseStatus : VBoxContainer
         _data.Changed += Update;
     }
 
+    /// <summary>
+    /// Updates the UI.  This is called any time the Data resource changes.
+    /// </summary>
     private void Update()
     {
         GD.Print($"{DateTime.Now} : DEBUG: Updating VaseStatus.");
