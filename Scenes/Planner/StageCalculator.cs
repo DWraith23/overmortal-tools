@@ -148,7 +148,6 @@ public partial class StageCalculator : VBoxContainer
     {
         GD.Print($"{DateTime.Now} : DEBUG: Updating StageCalculator.");
 
-        CurrentPercent.Text = $"{Data.CurrentPercent * 100f:N2}";
         ValidateNames();
         SetRemainingXpText();
 
@@ -197,6 +196,7 @@ public partial class StageCalculator : VBoxContainer
         SetTargetMinorRealm();
         TargetStage.Select(tStaIdx);
         SetTargetStage();
+        CurrentPercent.Text = $"{Data.CurrentPercent * 100f:N2}";
     }
 
     #region OptionButton Handling
