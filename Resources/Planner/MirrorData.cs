@@ -55,10 +55,12 @@ public partial class MirrorData : Resource
         if (!HasMirror) return 0f;
 
         var energy = 100f + (96f * RechargeValues[Stars]);
-        var cost = 200 *
-            (Stars == 0 ? 1f
+        var efficiencyMultiplier =
+            Stars == 0 ? 1f
                 : Stars < 3 ? 0.95f // 1* mirror has 5% cost reduction
-                : 0.9f); // 3* mirror has 10% cost reduction
-        return energy / cost * (Stars == 5 ? 1.15f : 1f); // 5* mirror has 15% chance of double duplication
+                : 0.9f; // 3* mirror has 10% cost reduction
+        var duplicationMultiplier = Stars == 5 ? 1.15f : 1f; // 5* mirror has 15% chance of double duplication
+        var cost = 200 * efficiencyMultiplier;
+        return energy / cost * duplicationMultiplier; 
     }
 }
