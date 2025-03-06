@@ -21,6 +21,7 @@ public partial class VaseStatus : VBoxContainer
         {
             _data = value;
             _data.Changed += Update;
+            Update();
         }
     }
 

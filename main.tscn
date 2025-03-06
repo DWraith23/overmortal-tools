@@ -1,17 +1,24 @@
-[gd_scene load_steps=4 format=3 uid="uid://c1js08ch8t4c7"]
+[gd_scene load_steps=5 format=3 uid="uid://c1js08ch8t4c7"]
 
 [ext_resource type="Script" path="res://Main.cs" id="1_7vvrf"]
 [ext_resource type="StyleBox" uid="uid://gm2yh2rbas86" path="res://Themes/panels.tres" id="2_v3aor"]
 [ext_resource type="PackedScene" uid="uid://bmo4q4somi6mr" path="res://Scenes/Planner/cultivation_planner.tscn" id="3_rwv6w"]
 
-[node name="Main" type="Control"]
+[sub_resource type="Theme" id="Theme_lgpk8"]
+Label/colors/font_color = Color(1, 1, 1, 1)
+Label/colors/font_outline_color = Color(0, 0, 0, 1)
+Label/constants/outline_size = 4
+
+[node name="Main" type="Control" node_paths=PackedStringArray("Planner")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_lgpk8")
 script = ExtResource("1_7vvrf")
+Planner = NodePath("PanelContainer/Cultivation Planner")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -24,3 +31,5 @@ theme_override_styles/panel = ExtResource("2_v3aor")
 
 [node name="Cultivation Planner" parent="PanelContainer" instance=ExtResource("3_rwv6w")]
 layout_mode = 2
+
+[connection signal="RequestSave" from="PanelContainer/Cultivation Planner" to="." method="OnSaveRequested"]

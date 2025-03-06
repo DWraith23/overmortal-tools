@@ -37,6 +37,7 @@ public partial class PillPlanner : VBoxContainer
         {
             _data = value;
             _data.Changed += Update;
+            Update();
         }
     }
     
@@ -88,7 +89,18 @@ public partial class PillPlanner : VBoxContainer
         GD.Print($"{DateTime.Now} : DEBUG: Updating PillPlanner.");
 
         UpdateTextBoxes();
+        ValidateInputs();
         EmitSignal(SignalName.ValuesChanged);
+    }
+
+    private void ValidateInputs()
+    {
+        RealmSelect.Select(Data.PillRealmIndex);
+        RarePills.Value = Data.RarePills;
+        EpicPills.Value = Data.EpicPills;
+        LegendaryPills.Value = Data.LegendaryPills;
+        TotalPillInput.Text = Data.TotalPillValue.ToString("N0");
+        BonusPillInput.Text = Data.BonusPillValue.ToString("N0");
     }
 
     private void UpdateTextBoxes()

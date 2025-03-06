@@ -30,6 +30,7 @@ public partial class PassiveCultivation : VBoxContainer
         {
             _data = value;
             _data.Changed += Update;
+            Update();
         }
     }
 
@@ -86,6 +87,14 @@ public partial class PassiveCultivation : VBoxContainer
         HourlyNode.Text = Data.CosmoPerHour.ToString("N0");
         DailyNode.Text = Data.CosmoPerDay.ToString("N0");
 
+        ValidateValues();
+
         EmitSignal(SignalName.ValuesChanged);
+    }
+
+    private void ValidateValues()
+    {
+        Cosmoapsis.Text = $"{Data.Cosmoapsis:N2}";
+        AuraGem.Select(Data.AuraGemIndex);
     }
 }

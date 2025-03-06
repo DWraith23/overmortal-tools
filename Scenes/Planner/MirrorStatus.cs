@@ -25,6 +25,7 @@ public partial class MirrorStatus : VBoxContainer
         {
             _data = value;
             _data.Changed += Update;
+            Update();
         }
     }
 

@@ -18,7 +18,7 @@ public partial class MyrimonPlanner : VBoxContainer
     [Export] private SpinBox HighRankSpinBox { get; set; }
     [Export] private OptionButton FruitTypeSelect { get; set; }
     [Export] private OptionButton ExtractorQualitySelect { get; set; }
-    [Export] private SpinBox FruitQuanitySpinBox { get; set; }
+    [Export] private SpinBox FruitQuantitySpinBox { get; set; }
     [Export] private CheckBox RealmMatchCheckBox { get; set; }
     [ExportSubgroup("Outputs")]
     [Export] private LineEdit AverageXpValue { get; set; }
@@ -34,6 +34,7 @@ public partial class MyrimonPlanner : VBoxContainer
         {
             _data = value;
             _data.Changed += Update;
+            Update();
         }
     }
 
@@ -54,11 +55,11 @@ public partial class MyrimonPlanner : VBoxContainer
     
     #endregion
 
-    #region Actions
-
     private void Update()
     {
         GD.Print($"{DateTime.Now} : DEBUG: Updating MyrimonPlanner.");
+
+        ValidateInputs();
 
         AverageTechValue.Text = Data.AverageTechPts.ToString("N0");
         AverageXpValue.Text = Data.AverageXp.ToString("N0");
@@ -66,6 +67,17 @@ public partial class MyrimonPlanner : VBoxContainer
         EmitSignal(SignalName.ValuesChanged);
     }
 
+    private void ValidateInputs()
+    {
+        ExpSpinBox.Value = Data.ExpLevel;
+        QualitySpinBox.Value = Data.QualityLevel;
+        GushSpinBox.Value = Data.GushLevel;
+        HighRankSpinBox.Value = Data.HighRankLevel;
+        FruitQuantitySpinBox.Value = Data.FruitQuantity;
+        FruitTypeSelect.Select(Data.FruitTypeIndex);
+        ExtractorQualitySelect.Select(Data.ExtractorQualityIndex);
+        RealmMatchCheckBox.ButtonPressed = Data.IsRealmMatch;
+    }
 
-    #endregion
+
 }

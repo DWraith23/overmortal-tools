@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scenes/Planner/MyrimonPlanner.cs" id="1_8uunu"]
 
-[node name="Myrimon Planner" type="VBoxContainer" node_paths=PackedStringArray("ExpSpinBox", "QualitySpinBox", "GushSpinBox", "HighRankSpinBox", "FruitTypeSelect", "ExtractorQualitySelect", "FruitQuanitySpinBox", "RealmMatchCheckBox", "AverageXpValue", "AverageTechValue")]
+[node name="Myrimon Planner" type="VBoxContainer" node_paths=PackedStringArray("ExpSpinBox", "QualitySpinBox", "GushSpinBox", "HighRankSpinBox", "FruitTypeSelect", "ExtractorQualitySelect", "FruitQuantitySpinBox", "RealmMatchCheckBox", "AverageXpValue", "AverageTechValue")]
 script = ExtResource("1_8uunu")
 ExpSpinBox = NodePath("Node Values/EXP/SpinBox")
 QualitySpinBox = NodePath("Node Values/Quality/SpinBox")
@@ -10,7 +10,7 @@ GushSpinBox = NodePath("Node Values/Gush/SpinBox")
 HighRankSpinBox = NodePath("Node Values/Tech/SpinBox")
 FruitTypeSelect = NodePath("Options/Fruit Type/OptionButton")
 ExtractorQualitySelect = NodePath("Options/Extractor Quality/OptionButton")
-FruitQuanitySpinBox = NodePath("Options/Fruit Quantity/SpinBox")
+FruitQuantitySpinBox = NodePath("Options/Fruit Quantity/SpinBox")
 RealmMatchCheckBox = NodePath("Options/Server Level Match/CheckBox")
 AverageXpValue = NodePath("Outputs/Average Value/LineEdit")
 AverageTechValue = NodePath("Outputs/Average Tech/LineEdit")

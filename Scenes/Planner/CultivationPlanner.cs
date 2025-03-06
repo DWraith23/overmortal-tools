@@ -5,13 +5,14 @@ namespace OvermortalTools.Scenes.Planner;
 
 public partial class CultivationPlanner : VBoxContainer
 {
+    [Signal] public delegate void RequestSaveEventHandler();
 
     #region Exports
     [ExportGroup("Nodes")]
     [ExportSubgroup("Scenes")]
-    [Export] private BasicInformation BasicInformation { get; set; }
-    [Export] private PillPlanner PillPlanner { get; set; }
-    [Export] private MyrimonPlanner MyrimonPlanner { get; set; }
+    [Export] public BasicInformation BasicInformation { get; set; }
+    [Export] public PillPlanner PillPlanner { get; set; }
+    [Export] public MyrimonPlanner MyrimonPlanner { get; set; }
     [Export] private TargetCalculation TargetCalculation { get; set; }
     [ExportSubgroup("Nodes")]
     [Export] private TabContainer AdvancedTabs { get; set; }
@@ -43,6 +44,8 @@ public partial class CultivationPlanner : VBoxContainer
         TargetCalculation.TargetXp = BasicInformation.StageCalculator.Data.TargetXp;
         TargetCalculation.DailyXp = DailyXp;
         TargetCalculation.MyrimonAverageXp = MyrimonPlanner.Data.AverageXp;
+
+        EmitSignal(SignalName.RequestSave);
     }
 
     #endregion
