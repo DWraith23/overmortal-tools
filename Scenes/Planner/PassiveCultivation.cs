@@ -30,6 +30,7 @@ public partial class PassiveCultivation : VBoxContainer
         {
             _data = value;
             _data.Changed += Update;
+            ValidateValues();
             Update();
         }
     }
@@ -86,8 +87,6 @@ public partial class PassiveCultivation : VBoxContainer
         PerMinuteNode.Text = Data.CosmoPerMinute.ToString("N0");
         HourlyNode.Text = Data.CosmoPerHour.ToString("N0");
         DailyNode.Text = Data.CosmoPerDay.ToString("N0");
-
-        ValidateValues();
 
         EmitSignal(SignalName.ValuesChanged);
     }
