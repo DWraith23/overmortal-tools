@@ -23,7 +23,7 @@ public partial class CultivationPlanner : VBoxContainer
     private int GetDailyXp()
     {
         var result = 1;
-        result += (int)BasicInformation.PassiveCultivation.DayValue;
+        result += (int)BasicInformation.PassiveCultivation.Data.CosmoPerDay;
         result += PillPlanner.DailyPillValue;
 
         return result;

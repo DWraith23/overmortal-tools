@@ -1,4 +1,5 @@
 using Godot;
+using OvermortalTools.Resources.Planner;
 using OvermortalTools.Scripts;
 using System;
 using System.Collections.Generic;
@@ -7,23 +8,7 @@ namespace OvermortalTools.Scenes.Planner;
 
 public partial class PassiveCultivation : VBoxContainer
 {
-    /// <summary>
-    /// Dictionary mapping the AuraGem.Selected value to the mulitiplier for Cosmoapsis.
-    /// </summary>
-    private static Dictionary<int, float> AuraGemValues => new()
-    {
-        { -1, 0f },
-        { 0, 0f },
-        { 1, 0.1f },
-        { 2, 0.13f },
-        { 3, 0.16f },
-        { 4, 0.2f },
-        { 5, 0.24f },
-        { 6, 0.28f },
-    };
-
     [Signal] public delegate void ValuesChangedEventHandler();
-
 
     #region Exports
     [ExportGroup("Nodes")]
@@ -36,28 +21,22 @@ public partial class PassiveCultivation : VBoxContainer
     [Export] private LineEdit DailyNode { get; set; }
 
     #endregion
-    private float _cosmoapsisValue = 0f;
-    public float CosmoapsisValue
+
+    private PassiveCultivationData _data = new();
+    public PassiveCultivationData Data
     {
-        get => _cosmoapsisValue;
+        get => _data;
         set
         {
-            _cosmoapsisValue = value;
-            MinuteValue = CosmoPerSecond * 60f;
-            HourValue = MinuteValue * 60f;
-            DayValue = HourValue * 24f;
+            _data = value;
+            _data.Changed += Update;
         }
     }
-    private float AuraGemMultiplier =>
-        AuraGem == null ? 0 : AuraGemValues[AuraGem.Selected];
-    private float CosmoPerSecond => CosmoapsisValue / 8f * (AuraGemMultiplier + 1f);
-    public float MinuteValue { get; set; } = 0;
-    public float HourValue { get; set; } = 0;
-    public float DayValue { get; set; } = 0;
 
     public override void _Ready()
     {
         PopulateAuraGemList();
+        Data.Changed += Update;
     }
 
     private void PopulateAuraGemList()
@@ -75,32 +54,36 @@ public partial class PassiveCultivation : VBoxContainer
 
     #region Events
 
-    private void CosmoapsisChanged(string text) => UpdateValues(text);
-    private void AuraGemChanged(long index) => UpdateValues(CosmoapsisValue.ToString("N2"));
+    private void OnCosmoapsisChanged(string text) => ValidateCosmoapsisText(text);
+    private void OnAuraGemOptionSelected(int index) => Data.AuraGemIndex = index;
 
     #endregion
 
     #region Actions
 
-    private void UpdateValues(string text)
+    private void ValidateCosmoapsisText(string text)
     {
         if (text == "")
         {
-            CosmoapsisValue = 0f;
-            Cosmoapsis.Text = CosmoapsisValue.ToString("N2");
+            Data.Cosmoapsis = 0f;
+            Cosmoapsis.Text = Data.Cosmoapsis.ToString("N2");
         }
         if (!text.IsValidFloat())
         {
             Cosmoapsis.DeleteLastCharacter();
             return;
         }
-        CosmoapsisValue = float.Parse(text);
-        PerMinuteNode.Text = MinuteValue.ToString("N0");
-        HourlyNode.Text = HourValue.ToString("N0");
-        DailyNode.Text = DayValue.ToString("N0");
-
-        EmitSignal(SignalName.ValuesChanged);
+        Data.Cosmoapsis = float.Parse(text);
     }
     
     #endregion
+
+    private void Update()
+    {
+        PerMinuteNode.Text = Data.CosmoPerMinute.ToString("N0");
+        HourlyNode.Text = Data.CosmoPerHour.ToString("N0");
+        DailyNode.Text = Data.CosmoPerDay.ToString("N0");
+
+        EmitSignal(SignalName.ValuesChanged);
+    }
 }
