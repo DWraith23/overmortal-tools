@@ -5,7 +5,7 @@ using Godot;
 
 namespace OvermortalTools.Scripts;
 
-public partial class MyrimonCalculation : Resource
+public static class MyrimonCalculation
 {
     public enum Quality
     {
@@ -17,11 +17,18 @@ public partial class MyrimonCalculation : Resource
         Mythic
     }
 
-    public static Dictionary<string, int> BaseFruitValues => new()
+    public enum Realm
     {
-        { "Mortal", 65000 },
-        { "Voidbreak", 96000 },
-        { "Wholeness", 130000 },
+        Mortal,
+        Voidbreak,
+        Wholeness,
+    }
+
+    public static Dictionary<Realm, int> BaseFruitValues => new()
+    {
+        { Realm.Mortal, 65000 },
+        { Realm.Voidbreak, 96000 },
+        { Realm.Wholeness, 130000 },
     };
 
     public static Dictionary<Quality, float> QualityMultipliers => new()
@@ -54,27 +61,18 @@ public partial class MyrimonCalculation : Resource
         { Quality.Mythic, 26 },
     };
 
-    public Dictionary<Quality, float> QualityChances => CalculateQualityChances();
+    public static Dictionary<Quality, float> QualityChances(Quality extractorQuality, int qualityLevel)
+        => CalculateQualityChances(extractorQuality, qualityLevel);
 
-    [Export] public Quality ExtractorQuality { get; set; } = Quality.Common;
-    [Export] public string FruitType { get; set; } = "Mortal";
+    public static float GushMultiplier(int gushLevel) => 1.5f + 0.04f * gushLevel;
+    public static float GushChance(int gushLevel) => (float) Math.Floor(gushLevel / 5.1f) * 0.05f + 0.1f;
+    public static float TechChance(Quality extractorQuality, int techLevel)
+        => (int) extractorQuality > 3 ? 0.19f + techLevel * 0.01f : 0f;
+    public static int TechPoints(int techLevel) => (int) Math.Floor(techLevel / 5.1f) * 50 + 150;
 
-    [Export] public int XPLevel { get; set; } = 0;
-    [Export] public int QualityLevel { get; set; } = 0;
-    [Export] public int GushLevel { get; set; } = 0;
-    [Export] public int TechLevel { get; set; } = 0;
+    private static int GetGuaranteedGushes(int fruit) => (int) Math.Floor(fruit / 6f);
 
-    [Export] public bool MatchesServerLevel { get; set; } = true;
-    [Export] public int FruitQuantity { get; set; } = 0;
-    public float GushMultiplier => 1.5f + 0.04f * GushLevel;
-    public float GushChance => (float) Math.Floor(GushLevel / 5.1f) * 0.05f + 0.1f;
-    public float TechChance => (int) ExtractorQuality > 3 ? 0.19f + TechLevel * 0.01f : 0f;
-    public int TechPoints =>
-        (int) Math.Floor(TechLevel / 5.1f) * 50 + 150;
-
-    private int GetGuaranteedGushes(int fruit) => (int) Math.Floor(fruit / 6f);
-
-    private Dictionary<Quality, float> CalculateQualityChances()
+    private static Dictionary<Quality, float> CalculateQualityChances(Quality extractorQuality, int qualityLevel)
     {
         var result = new Dictionary<Quality, float>()
         {
@@ -86,9 +84,9 @@ public partial class MyrimonCalculation : Resource
             { Quality.Mythic, 0f },
         };
 
-        var qualityBonus = (float) Math.Floor(QualityLevel / 5.1d) * 20f;
-        qualityBonus += (int) ExtractorQuality * 30f;
-        for (int i = 0; i < QualityLevel; i++)
+        var qualityBonus = (float) Math.Floor(qualityLevel / 5.1d) * 20f;
+        qualityBonus += (int) extractorQuality * 30f;
+        for (int i = 0; i < qualityLevel; i++)
         {
             if (i < 10) qualityBonus += 5;
             else qualityBonus += 10;
@@ -125,7 +123,7 @@ public partial class MyrimonCalculation : Resource
         return result;
     }
     
-    private Dictionary<Quality, int> GetMinimumQuantities()
+    private static Dictionary<Quality, int> GetMinimumQuantities(Quality extractorQuality, int qualityLevel, int quantity)
     {
         var result = new Dictionary<Quality, int>()
         {
@@ -137,17 +135,17 @@ public partial class MyrimonCalculation : Resource
             { Quality.Mythic, 0 },
         };
 
-        foreach (var kvp in CalculateQualityChances())
+        foreach (var kvp in CalculateQualityChances(extractorQuality, qualityLevel))
         {
             if (kvp.Value == 0f) continue;
-            result[kvp.Key] = FruitQuantity;
+            result[kvp.Key] = quantity;
             break;        
         }
 
         return result;
     }
 
-    private Dictionary<Quality, int> GetAverageQuantities()
+    private static Dictionary<Quality, int> GetAverageQuantities(Quality extractorQuality, int qualityLevel, int quantity)
     {
         var result = new Dictionary<Quality, int>()
         {
@@ -159,31 +157,31 @@ public partial class MyrimonCalculation : Resource
             { Quality.Mythic, 0 },
         };
 
-        foreach (var kvp in CalculateQualityChances())
+        foreach (var kvp in CalculateQualityChances(extractorQuality, qualityLevel))
         {
             if (kvp.Value == 0f) continue;
             if (kvp.Value == 50)
             {
-                if (FruitQuantity == 1)
+                if (quantity == 1)
                 {
                     result[kvp.Key] = 1;
                     break;
                 }
-                if (FruitQuantity % 2 != 0 && result.Values.Sum() == 0)
+                if (quantity % 2 != 0 && result.Values.Sum() == 0)
                 {
-                    result[kvp.Key] = FruitQuantity / 2 + 1;
+                    result[kvp.Key] = quantity / 2 + 1;
                     continue;
                 }
-                result[kvp.Key] = FruitQuantity / 2;
+                result[kvp.Key] = quantity / 2;
                 continue;
             }
-            result[kvp.Key] = (int) Math.Round(FruitQuantity * kvp.Value / 100);
+            result[kvp.Key] = (int) Math.Round(quantity * kvp.Value / 100);
         }
 
         return result;
     }
 
-    private Dictionary<Quality, int> GetMaximumQuantities()
+    private static Dictionary<Quality, int> GetMaximumQuantities(Quality extractorQuality, int qualityLevel, int quantity)
     {
         var result = new Dictionary<Quality, int>()
         {
@@ -195,56 +193,77 @@ public partial class MyrimonCalculation : Resource
             { Quality.Mythic, 0 },
         };
 
-        foreach (var kvp in CalculateQualityChances().Reverse())
+        foreach (var kvp in CalculateQualityChances(extractorQuality, qualityLevel).Reverse())
         {
             if (kvp.Value == 0f) continue;
-            result[kvp.Key] = FruitQuantity;
+            result[kvp.Key] = quantity;
             break;
         }
 
         return result;
     }
 
-    public int GetFruitValue(Quality quality)
+    private static int GetFruitValue(Quality quality, Realm realm, int expLevel, bool matchesServerLevel)
     {
-        var baseValue = BaseFruitValues[FruitType];
+        var baseValue = BaseFruitValues[realm];
         var value = (baseValue * QualityMultipliers[quality]);
-        value *= 1 + XPLevel * 0.02f;
-        if (MatchesServerLevel) value *= 1.5f;
+        value *= 1 + expLevel * 0.02f;
+        if (matchesServerLevel) value *= 1.5f;
         return (int) Math.Floor(value);
     }
 
-    public int GetMinimumXP()
+    public static int GetAverageTechPts(Quality extractorQuality, int techLevel, int quantity)
+    {
+        var averagePts = TechPoints(techLevel) * TechChance(extractorQuality, techLevel);
+        return (int) Math.Floor(averagePts * quantity);
+    }
+
+    public static int GetMinimumXP(
+        Quality extractorQuality,
+        int qualityLevel,
+        int quantity,
+        Realm realm,
+        int expLevel,
+        bool matchesServerLevel,
+        int gushLevel
+        )
     {
         int value = 0;
         
-        foreach (var kvp in GetMinimumQuantities())
+        foreach (var kvp in GetMinimumQuantities(extractorQuality, qualityLevel, quantity))
         {
             if (kvp.Value == 0) continue;
             var gushes = GetGuaranteedGushes(kvp.Value);
             var fruit = kvp.Value - gushes;
-            value += fruit * GetFruitValue(kvp.Key);
-            value += (int) Math.Floor(gushes * GetFruitValue(kvp.Key) * GushMultiplier);
+            value += fruit * GetFruitValue(kvp.Key, realm, expLevel, matchesServerLevel);
+            value += (int) Math.Floor(gushes * GetFruitValue(kvp.Key, realm, expLevel, matchesServerLevel) * GushMultiplier(gushLevel));
         }
 
         return value;
     }
 
-    public int GetAverageXP()
+    public static int GetAverageXP(
+        Quality extractorQuality,
+        int qualityLevel,
+        int quantity,
+        Realm realm,
+        int expLevel,
+        bool matchesServerLevel,
+        int gushLevel
+        )
     {
         int value = 0;
-        float totalGushes = GetGuaranteedGushes(FruitQuantity);
-        totalGushes += (float) Math.Floor((FruitQuantity - totalGushes) * GushChance);
+        float totalGushes = GetGuaranteedGushes(quantity);
+        totalGushes += (float) Math.Floor((quantity - totalGushes) * GushChance(gushLevel));
 
-
-        foreach (var kvp in GetAverageQuantities())
+        foreach (var kvp in GetAverageQuantities(extractorQuality, qualityLevel, quantity))
         {
             if (kvp.Value == 0) continue;
 
-            var gushes = (float) kvp.Value / FruitQuantity * totalGushes;
+            var gushes = (float) kvp.Value / quantity * totalGushes;
             var fruit = kvp.Value - gushes;
-            var gushValue = (int) Math.Floor(gushes * GushMultiplier * GetFruitValue(kvp.Key));
-            var fruitValue = (int) Math.Floor(fruit * GetFruitValue(kvp.Key));
+            var gushValue = (int) Math.Floor(gushes * GushMultiplier(gushLevel) * GetFruitValue(kvp.Key, realm, expLevel, matchesServerLevel));
+            var fruitValue = (int) Math.Floor(fruit * GetFruitValue(kvp.Key, realm, expLevel, matchesServerLevel));
             value += fruitValue + gushValue;
 
         }
@@ -252,17 +271,25 @@ public partial class MyrimonCalculation : Resource
         return value;
     }
 
-    public int GetMaximumXP()
+    public static int GetMaximumXP(
+        Quality extractorQuality,
+        int qualityLevel,
+        int quantity,
+        Realm realm,
+        int expLevel,
+        bool matchesServerLevel,
+        int gushLevel
+        )
     {
         int value = 0;
 
-        foreach (var kvp in GetMaximumQuantities())
+        foreach (var kvp in GetMaximumQuantities(extractorQuality, qualityLevel, quantity))
         {
             if (kvp.Value == 0) continue;
-            var gushes = FruitQuantity;
+            var gushes = quantity;
             var fruit = 0;
-            value += fruit * GetFruitValue(kvp.Key);
-            value += (int) Math.Floor(gushes * GetFruitValue(kvp.Key) * GushMultiplier);
+            value += fruit * GetFruitValue(kvp.Key, realm, expLevel, matchesServerLevel);
+            value += (int) Math.Floor(gushes * GetFruitValue(kvp.Key, realm, expLevel, matchesServerLevel) * GushMultiplier(gushLevel));
         }
 
         return value;
