@@ -47,8 +47,8 @@ public partial class CultivationPlanner : VBoxContainer
 
     private void UpdateTargetCalculation()
     {
-        TargetCalculation.CurrentXp = BasicInformation.StageCalculator.CurrentXp;
-        TargetCalculation.TargetXp = BasicInformation.StageCalculator.TargetXp;
+        TargetCalculation.CurrentXp = BasicInformation.StageCalculator.Data.CurrentXp;
+        TargetCalculation.TargetXp = BasicInformation.StageCalculator.Data.TargetXp;
         TargetCalculation.DailyXp = DailyXp;
         TargetCalculation.MyrimonAverageXp = MyrimonPlanner.Calculator.GetAverageXP();
     }
