@@ -80,6 +80,7 @@ layout_mode = 2
 
 [node name="LineEdit" type="LineEdit" parent="Current Level"]
 layout_mode = 2
+alignment = 1
 
 [node name="Label2" type="Label" parent="."]
 layout_mode = 2
