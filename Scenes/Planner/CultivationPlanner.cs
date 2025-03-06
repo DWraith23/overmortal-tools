@@ -40,7 +40,7 @@ public partial class CultivationPlanner : VBoxContainer
 
     private void UpdateAdvancedInformation()
     {
-        PillPlanner.SetMythicPills(BasicInformation.VaseData.DailyMythicPills + BasicInformation.MirrorData.DailyMythicPills);
+        PillPlanner.SetMythicPills(BasicInformation.VaseStatus.DailyMythicPills + BasicInformation.MirrorStatus.Data.DailyMythicPills);
 
         UpdateTargetCalculation();
     }

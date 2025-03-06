@@ -4,10 +4,11 @@
 
 [node name="Mirror Status" type="VBoxContainer" node_paths=PackedStringArray("HasArtifactCheck", "StarsContainer", "StarsBox")]
 custom_minimum_size = Vector2(135, 60)
-offset_right = 134.0
-offset_bottom = 59.0
+offset_top = -1.0
+offset_right = 135.0
+offset_bottom = 60.0
 script = ExtResource("1_8x4ed")
-HasArtifactCheck = NodePath("Check/CheckBox")
+HasArtifactCheck = NodePath("Check/Has Mirror?")
 StarsContainer = NodePath("Stars")
 StarsBox = NodePath("Stars/SpinBox")
 
@@ -19,7 +20,7 @@ layout_mode = 2
 layout_mode = 2
 text = "Mirror?"
 
-[node name="CheckBox" type="CheckBox" parent="Check"]
+[node name="Has Mirror?" type="CheckBox" parent="Check"]
 layout_mode = 2
 
 [node name="Stars" type="HBoxContainer" parent="."]
@@ -37,5 +38,5 @@ max_value = 5.0
 alignment = 1
 suffix = "*"
 
-[connection signal="toggled" from="Check/CheckBox" to="." method="OnToggled"]
-[connection signal="value_changed" from="Stars/SpinBox" to="." method="OnValueChanged"]
+[connection signal="toggled" from="Check/Has Mirror?" to="." method="OnHasMirrorCheckboxToggled"]
+[connection signal="value_changed" from="Stars/SpinBox" to="." method="OnStarsSpinBoxValueChanged"]
