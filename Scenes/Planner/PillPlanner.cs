@@ -37,6 +37,8 @@ public partial class PillPlanner : VBoxContainer
         {
             _data = value;
             _data.Changed += Update;
+            TotalPillInput.Text = Data.TotalPillValue.ToString("N0");
+            BonusPillInput.Text = Data.BonusPillValue.ToString("N0");
             Update();
         }
     }
@@ -99,8 +101,6 @@ public partial class PillPlanner : VBoxContainer
         RarePills.Value = Data.RarePills;
         EpicPills.Value = Data.EpicPills;
         LegendaryPills.Value = Data.LegendaryPills;
-        TotalPillInput.Text = Data.TotalPillValue.ToString("N0");
-        BonusPillInput.Text = Data.BonusPillValue.ToString("N0");
     }
 
     private void UpdateTextBoxes()
