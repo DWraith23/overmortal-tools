@@ -125,39 +125,39 @@ public partial class MyrimonCalculator : Control
     {
         // CheckNodes();
 
-        BaseFruitValue.Text = MyrimonCalculation.BaseFruitValues[FruitTypeButton.Text].ToString("N0");
+        // BaseFruitValue.Text = MyrimonCalculation.BaseFruitValues[FruitTypeButton.Text].ToString("N0");
 
-        CommonValue.Text = Calculator.GetFruitValue(MyrimonCalculation.Quality.Common).ToString("N0");
-        CommonGush.Text = (Calculator.GetFruitValue(MyrimonCalculation.Quality.Common) * Calculator.GushMultiplier).ToString("N0");
-        CommonOdds.Text = Calculator.QualityChances[MyrimonCalculation.Quality.Common].ToString("N2") + "%";
+        // CommonValue.Text = Calculator.GetFruitValue(MyrimonCalculation.Quality.Common).ToString("N0");
+        // CommonGush.Text = (Calculator.GetFruitValue(MyrimonCalculation.Quality.Common) * Calculator.GushMultiplier).ToString("N0");
+        // CommonOdds.Text = Calculator.QualityChances[MyrimonCalculation.Quality.Common].ToString("N2") + "%";
 
-        UncommonValue.Text = Calculator.GetFruitValue(MyrimonCalculation.Quality.Uncommon).ToString("N0");
-        UncommonGush.Text = (Calculator.GetFruitValue(MyrimonCalculation.Quality.Uncommon) * Calculator.GushMultiplier).ToString("N0");
-        UncommonOdds.Text = Calculator.QualityChances[MyrimonCalculation.Quality.Uncommon].ToString("N2") + "%";
+        // UncommonValue.Text = Calculator.GetFruitValue(MyrimonCalculation.Quality.Uncommon).ToString("N0");
+        // UncommonGush.Text = (Calculator.GetFruitValue(MyrimonCalculation.Quality.Uncommon) * Calculator.GushMultiplier).ToString("N0");
+        // UncommonOdds.Text = Calculator.QualityChances[MyrimonCalculation.Quality.Uncommon].ToString("N2") + "%";
 
-        RareValue.Text = Calculator.GetFruitValue(MyrimonCalculation.Quality.Rare).ToString("N0");
-        RareGush.Text = (Calculator.GetFruitValue(MyrimonCalculation.Quality.Rare) * Calculator.GushMultiplier).ToString("N0");
-        RareOdds.Text = Calculator.QualityChances[MyrimonCalculation.Quality.Rare].ToString("N2") + "%";
+        // RareValue.Text = Calculator.GetFruitValue(MyrimonCalculation.Quality.Rare).ToString("N0");
+        // RareGush.Text = (Calculator.GetFruitValue(MyrimonCalculation.Quality.Rare) * Calculator.GushMultiplier).ToString("N0");
+        // RareOdds.Text = Calculator.QualityChances[MyrimonCalculation.Quality.Rare].ToString("N2") + "%";
 
-        EpicValue.Text = Calculator.GetFruitValue(MyrimonCalculation.Quality.Epic).ToString("N0");
-        EpicGush.Text = (Calculator.GetFruitValue(MyrimonCalculation.Quality.Epic) * Calculator.GushMultiplier).ToString("N0");
-        EpicOdds.Text = Calculator.QualityChances[MyrimonCalculation.Quality.Epic].ToString("N2") + "%";
+        // EpicValue.Text = Calculator.GetFruitValue(MyrimonCalculation.Quality.Epic).ToString("N0");
+        // EpicGush.Text = (Calculator.GetFruitValue(MyrimonCalculation.Quality.Epic) * Calculator.GushMultiplier).ToString("N0");
+        // EpicOdds.Text = Calculator.QualityChances[MyrimonCalculation.Quality.Epic].ToString("N2") + "%";
 
-        LegendaryValue.Text = Calculator.GetFruitValue(MyrimonCalculation.Quality.Legendary).ToString("N0");
-        LegendaryGush.Text = (Calculator.GetFruitValue(MyrimonCalculation.Quality.Legendary) * Calculator.GushMultiplier).ToString("N0");
-        LegendaryOdds.Text = Calculator.QualityChances[MyrimonCalculation.Quality.Legendary].ToString("N2") + "%";
+        // LegendaryValue.Text = Calculator.GetFruitValue(MyrimonCalculation.Quality.Legendary).ToString("N0");
+        // LegendaryGush.Text = (Calculator.GetFruitValue(MyrimonCalculation.Quality.Legendary) * Calculator.GushMultiplier).ToString("N0");
+        // LegendaryOdds.Text = Calculator.QualityChances[MyrimonCalculation.Quality.Legendary].ToString("N2") + "%";
 
-        MythicValue.Text = Calculator.GetFruitValue(MyrimonCalculation.Quality.Mythic).ToString("N0");
-        MythicGush.Text = (Calculator.GetFruitValue(MyrimonCalculation.Quality.Mythic) * Calculator.GushMultiplier).ToString("N0");
-        MythicOdds.Text = Calculator.QualityChances[MyrimonCalculation.Quality.Mythic].ToString("N2") + "%";
+        // MythicValue.Text = Calculator.GetFruitValue(MyrimonCalculation.Quality.Mythic).ToString("N0");
+        // MythicGush.Text = (Calculator.GetFruitValue(MyrimonCalculation.Quality.Mythic) * Calculator.GushMultiplier).ToString("N0");
+        // MythicOdds.Text = Calculator.QualityChances[MyrimonCalculation.Quality.Mythic].ToString("N2") + "%";
 
 
-        MinimumXP.Text = Calculator.GetMinimumXP().ToString("N0");
-        AverageXP.Text = Calculator.GetAverageXP().ToString("N0");
-        MaximumXP.Text = Calculator.GetMaximumXP().ToString("N0");
+        // MinimumXP.Text = Calculator.GetMinimumXP().ToString("N0");
+        // AverageXP.Text = Calculator.GetAverageXP().ToString("N0");
+        // MaximumXP.Text = Calculator.GetMaximumXP().ToString("N0");
 
-        var techPts = NumberOfFruits * Calculator.TechChance * Calculator.TechPoints;
-        AverageTech.Text = techPts.ToString("N0");
+        // var techPts = NumberOfFruits * Calculator.TechChance * Calculator.TechPoints;
+        // AverageTech.Text = techPts.ToString("N0");
     }
 
     private void CheckNodes()
