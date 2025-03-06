@@ -9,8 +9,8 @@ public partial class BasicInformation : VBoxContainer
 
     [Export] public StageCalculator StageCalculator { get; set; }
     [Export] public PassiveCultivation PassiveCultivation { get; set; }
-    [Export] public VaseData VaseData { get; set; }
-    [Export] public MirrorData MirrorData { get; set; }
+    [Export] public VaseStatus VaseData { get; set; }
+    [Export] public MirrorStatus MirrorData { get; set; }
 
     private void OnValuesChanged() => EmitSignal(SignalName.ValuesChanged);
 }

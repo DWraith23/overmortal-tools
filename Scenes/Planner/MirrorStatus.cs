@@ -1,10 +1,9 @@
 using Godot;
-using System;
 using System.Collections.Generic;
 
 namespace OvermortalTools.Scenes.Planner;
 
-public partial class VaseData : VBoxContainer
+public partial class MirrorStatus : VBoxContainer
 {
     private static Dictionary<int, float> RechargeValues => new()
     {
@@ -31,14 +30,12 @@ public partial class VaseData : VBoxContainer
         if (!HasArtifactCheck.ButtonPressed) return 0f;
 
         var energy = 100f + (96f * RechargeValues[Stars]);
-        var basic = energy / 100f;
-        return Stars == 5 ? basic * 1.15f : basic;
+        var cost = 200 *
+            (Stars == 0 ? 1f
+                : Stars < 3 ? 0.95f // 1* mirror has 5% cost reduction
+                : 0.9f); // 3* mirror has 10% cost reduction
+        return energy / cost * (Stars == 5 ? 1.15f : 1f); // 5* mirror has 15% chance of double duplication
     }
-
-    public float XpMultiplier =>
-        Stars == 0 ? 1f
-            : Stars < 3 ? 1.1f
-            : 1.2f;
 
     private void OnToggled(bool on)
     {

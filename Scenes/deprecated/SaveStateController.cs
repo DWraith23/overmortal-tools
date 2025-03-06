@@ -3,40 +3,40 @@ using OvermortalTools.Resources;
 using System;
 
 public partial class SaveStateController : PanelContainer
-{
-    public ToolSelection Tools { get; set; }
+{}
+//     public ToolSelection Tools { get; set; }
 
-    [Export] private Label SuccessLabel { get; set; }
-    private void SaveButtonPressed()
-    {
-        var path = OS.GetExecutablePath().GetBaseDir() + "/savestate.res";
-        var state = SaveState.GenerateSaveState(Tools);
-        var result = ResourceSaver.Save(state, path);
-        if (result != Error.Ok)
-        {
-            SuccessLabel.Text = "Failed to save.";
-        }
-        else
-        {
-            SuccessLabel.Text = "Game saved.";
-        }
-    }
+//     [Export] private Label SuccessLabel { get; set; }
+//     private void SaveButtonPressed()
+//     {
+//         var path = OS.GetExecutablePath().GetBaseDir() + "/savestate.res";
+//         var state = SaveState.GenerateSaveState(Tools);
+//         var result = ResourceSaver.Save(state, path);
+//         if (result != Error.Ok)
+//         {
+//             SuccessLabel.Text = "Failed to save.";
+//         }
+//         else
+//         {
+//             SuccessLabel.Text = "Game saved.";
+//         }
+//     }
 
-    private void LoadButtonPressed()
-    {
-        var path = OS.GetExecutablePath().GetBaseDir() + "/savestate.res";
-        var loaded = ResourceLoader.Load(path, "", 0);
-        if (loaded is SaveState state)
-        {
-            SaveState.LoadSaveState(Tools, state);
-            SuccessLabel.Text = "Game loaded.";
-        }
-        else
-        {
-            SuccessLabel.Text = "Failed to load.";
-        }
-    }
-}
+//     private void LoadButtonPressed()
+//     {
+//         var path = OS.GetExecutablePath().GetBaseDir() + "/savestate.res";
+//         var loaded = ResourceLoader.Load(path, "", 0);
+//         if (loaded is SaveState state)
+//         {
+//             SaveState.LoadSaveState(Tools, state);
+//             SuccessLabel.Text = "Game loaded.";
+//         }
+//         else
+//         {
+//             SuccessLabel.Text = "Failed to load.";
+//         }
+//     }
+// }
 
 // public static async void SaveGame(string name, bool autosave = false)
 //     {

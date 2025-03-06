@@ -1,12 +1,12 @@
 [gd_scene load_steps=2 format=3 uid="uid://lj3w3fdb3rd8"]
 
-[ext_resource type="Script" path="res://Scenes/Planner/MirrorData.cs" id="1_vkoju"]
+[ext_resource type="Script" path="res://Scenes/Planner/MirrorStatus.cs" id="1_8x4ed"]
 
-[node name="Mirror Data" type="VBoxContainer" node_paths=PackedStringArray("HasArtifactCheck", "StarsContainer", "StarsBox")]
+[node name="Mirror Status" type="VBoxContainer" node_paths=PackedStringArray("HasArtifactCheck", "StarsContainer", "StarsBox")]
 custom_minimum_size = Vector2(135, 60)
 offset_right = 134.0
 offset_bottom = 59.0
-script = ExtResource("1_vkoju")
+script = ExtResource("1_8x4ed")
 HasArtifactCheck = NodePath("Check/CheckBox")
 StarsContainer = NodePath("Stars")
 StarsBox = NodePath("Stars/SpinBox")

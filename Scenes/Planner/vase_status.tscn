@@ -1,12 +1,12 @@
 [gd_scene load_steps=2 format=3 uid="uid://bj4wqwevxef1o"]
 
-[ext_resource type="Script" path="res://Scenes/Planner/VaseData.cs" id="1_3be1r"]
+[ext_resource type="Script" path="res://Scenes/Planner/VaseStatus.cs" id="1_s68bk"]
 
-[node name="Vase Data" type="VBoxContainer" node_paths=PackedStringArray("HasArtifactCheck", "StarsContainer", "StarsBox")]
+[node name="Vase Status" type="VBoxContainer" node_paths=PackedStringArray("HasArtifactCheck", "StarsContainer", "StarsBox")]
 custom_minimum_size = Vector2(135, 60)
 offset_right = 135.0
 offset_bottom = 24.0
-script = ExtResource("1_3be1r")
+script = ExtResource("1_s68bk")
 HasArtifactCheck = NodePath("Check/CheckBox")
 StarsContainer = NodePath("Stars")
 StarsBox = NodePath("Stars/SpinBox")

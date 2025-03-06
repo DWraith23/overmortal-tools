@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://Scenes/Planner/BasicInformation.cs" id="1_3rpgl"]
 [ext_resource type="PackedScene" uid="uid://dwx51nt8fxjpe" path="res://Scenes/Planner/stage_calculator.tscn" id="1_tgjly"]
 [ext_resource type="PackedScene" uid="uid://h6ofog5khv2b" path="res://Scenes/Planner/passive_cultivation.tscn" id="2_vg0im"]
-[ext_resource type="PackedScene" uid="uid://bj4wqwevxef1o" path="res://Scenes/Planner/vase_data.tscn" id="3_wrhd3"]
-[ext_resource type="PackedScene" uid="uid://lj3w3fdb3rd8" path="res://Scenes/Planner/mirror_data.tscn" id="4_tabmb"]
+[ext_resource type="PackedScene" uid="uid://bj4wqwevxef1o" path="res://Scenes/Planner/vase_status.tscn" id="3_wrhd3"]
+[ext_resource type="PackedScene" uid="uid://lj3w3fdb3rd8" path="res://Scenes/Planner/mirror_status.tscn" id="4_tabmb"]
 
 [node name="Basic Information" type="VBoxContainer" node_paths=PackedStringArray("StageCalculator", "PassiveCultivation", "VaseData", "MirrorData")]
 offset_right = 451.0
@@ -54,4 +54,3 @@ layout_mode = 2
 [connection signal="ValuesChanged" from="Stage Calculator" to="." method="OnValuesChanged"]
 [connection signal="ValuesChanged" from="Passive Cultivation" to="." method="OnValuesChanged"]
 [connection signal="ValuesChanged" from="HBoxContainer/Vase Data" to="." method="OnValuesChanged"]
-[connection signal="ValuesChanged" from="HBoxContainer/Mirror Data" to="." method="OnValuesChanged"]
