@@ -6,14 +6,14 @@
 [ext_resource type="PackedScene" uid="uid://bj4wqwevxef1o" path="res://Scenes/Planner/vase_status.tscn" id="3_wrhd3"]
 [ext_resource type="PackedScene" uid="uid://lj3w3fdb3rd8" path="res://Scenes/Planner/mirror_status.tscn" id="4_tabmb"]
 
-[node name="Basic Information" type="VBoxContainer" node_paths=PackedStringArray("StageCalculator", "PassiveCultivation", "VaseData", "MirrorData")]
+[node name="Basic Information" type="VBoxContainer" node_paths=PackedStringArray("StageCalculator", "PassiveCultivation", "VaseStatus", "MirrorStatus")]
 offset_right = 451.0
 offset_bottom = 303.0
 script = ExtResource("1_3rpgl")
 StageCalculator = NodePath("Stage Calculator")
 PassiveCultivation = NodePath("Passive Cultivation")
-VaseData = NodePath("HBoxContainer/Vase Data")
-MirrorData = NodePath("HBoxContainer/Mirror Data")
+VaseStatus = NodePath("HBoxContainer/Vase Data")
+MirrorStatus = NodePath("HBoxContainer/Mirror Data")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 2

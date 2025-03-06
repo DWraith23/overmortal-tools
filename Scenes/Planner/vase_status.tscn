@@ -37,5 +37,5 @@ max_value = 5.0
 alignment = 1
 suffix = "*"
 
-[connection signal="toggled" from="Check/CheckBox" to="." method="OnToggled"]
-[connection signal="value_changed" from="Stars/SpinBox" to="." method="OnValueChanged"]
+[connection signal="toggled" from="Check/CheckBox" to="." method="OnHasVaseCheckboxToggled"]
+[connection signal="value_changed" from="Stars/SpinBox" to="." method="OnStarsSpinBoxValueChange"]

@@ -29,6 +29,7 @@ public partial class MirrorData : Resource
         set
         {
             _hasMirror = value;
+            if (!value) Stars = 0;
             EmitChanged();
         }
     }

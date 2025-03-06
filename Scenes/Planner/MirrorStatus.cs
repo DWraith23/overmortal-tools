@@ -44,7 +44,16 @@ public partial class MirrorStatus : VBoxContainer
     private void Update()
     {
         GD.Print($"{DateTime.Now} : DEBUG: Updating MirrorStatus.");
+
+        CheckValues();
+
         StarsContainer.Visible = Data.HasMirror;
         EmitSignal(SignalName.ValuesChanged);
+    }
+
+    private void CheckValues()
+    {
+        if (HasArtifactCheck.ButtonPressed != Data.HasMirror) HasArtifactCheck.ButtonPressed = Data.HasMirror;
+        if (StarsBox.Value != Data.Stars) StarsBox.Value = Data.Stars;
     }
 }
