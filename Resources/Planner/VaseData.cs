@@ -5,7 +5,7 @@ namespace OvermortalTools.Resources.Planner;
 public partial class VaseData : Resource
 {
     private bool _hasVase = false;
-    private int _vaseStars = 0;
+    private int _stars = 0;
 
     [Export]
     public bool HasVase
@@ -19,12 +19,12 @@ public partial class VaseData : Resource
     }
 
     [Export]
-    public int VaseStars
+    public int Stars
     {
-        get => _vaseStars;
+        get => _stars;
         set
         {
-            _vaseStars = value;
+            _stars = value;
             EmitChanged();
         }
     }

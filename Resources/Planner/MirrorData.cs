@@ -5,7 +5,7 @@ namespace OvermortalTools.Resources.Planner;
 public partial class MirrorData : Resource
 {
     private bool _hasMirror = false;
-    private int _mirrorStars = 0;
+    private int _stars = 0;
 
     [Export]
     public bool HasMirror
@@ -19,12 +19,12 @@ public partial class MirrorData : Resource
     }
 
     [Export]
-    public int MirrorStars
+    public int Stars
     {
-        get => _mirrorStars;
+        get => _stars;
         set
         {
-            _mirrorStars = value;
+            _stars = value;
             EmitChanged();
         }
     }
