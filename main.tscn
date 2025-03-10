@@ -1,31 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://c1js08ch8t4c7"]
+[gd_scene load_steps=6 format=3 uid="uid://c1js08ch8t4c7"]
 
 [ext_resource type="Script" path="res://Main.cs" id="1_7vvrf"]
+[ext_resource type="Theme" uid="uid://dtaby1vtkwq8j" path="res://Themes/main_theme.tres" id="1_s7h68"]
 [ext_resource type="StyleBox" uid="uid://gm2yh2rbas86" path="res://Themes/panels.tres" id="2_v3aor"]
 [ext_resource type="PackedScene" uid="uid://bmo4q4somi6mr" path="res://Scenes/Planner/cultivation_planner.tscn" id="3_rwv6w"]
 [ext_resource type="PackedScene" uid="uid://5qdm8u3mcqj7" path="res://Scenes/Planner/profile_swapper.tscn" id="4_mddom"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wjtty"]
-bg_color = Color(0, 0, 0, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(4.33177e-07, 0.386281, 0.540764, 0.643137)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-expand_margin_left = 2.0
-expand_margin_top = 2.0
-expand_margin_right = 2.0
-expand_margin_bottom = 2.0
-
-[sub_resource type="Theme" id="Theme_lgpk8"]
-Button/styles/normal = SubResource("StyleBoxFlat_wjtty")
-Label/colors/font_color = Color(1, 1, 1, 1)
-Label/colors/font_outline_color = Color(0, 0, 0, 1)
-Label/constants/outline_size = 4
 
 [node name="Main" type="Control" node_paths=PackedStringArray("Planner")]
 layout_mode = 3
@@ -34,7 +13,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource("Theme_lgpk8")
+theme = ExtResource("1_s7h68")
 script = ExtResource("1_7vvrf")
 Planner = NodePath("PanelContainer/Cultivation Planner")
 
