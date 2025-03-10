@@ -109,7 +109,7 @@ public partial class StageCalculator : VBoxContainer
         if (text == "")
         {
             Data.CurrentPercent = 0f;
-            CurrentPercent.Text = (CurrentPercentValue / 100f).ToString("P2");
+            return;
         }
         if (!text.IsValidFloat())
         {
