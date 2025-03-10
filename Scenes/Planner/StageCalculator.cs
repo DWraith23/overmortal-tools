@@ -17,7 +17,7 @@ public partial class StageCalculator : VBoxContainer
     [Export] private OptionButton CurrentMajorRealm { get; set; }
     [Export] private OptionButton CurrentMinorRealm { get; set; }
     [Export] private OptionButton CurrentStage { get; set; }
-    [Export] private LineEdit CurrentPercent { get; set; }
+    [Export] private SpinBox CurrentPercent { get; set; }
     [ExportSubgroup("Target")]
     [Export] private OptionButton TargetMajorRealm { get; set; }
     [Export] private OptionButton TargetMinorRealm { get; set; }
@@ -72,7 +72,7 @@ public partial class StageCalculator : VBoxContainer
     private void OnCurrentMajorRealmSelected(int index) => SetCurrentMajorRealm();
     private void OnCurrentMinorRealmSelected(int index) => SetCurrentMinorRealm();
     private void OnCurrentStageSelected(int index) => SetCurrentStage();
-    private void OnCurrentPercentChanged(string text) => SetCurrentPercent(text);
+    private void OnCurrentPercentValueChanged(double value) => Data.CurrentPercent = (float)value / 100f;
     private void OnTargetMajorRealmSelected(int index) => SetTargetMajorRealm();
     private void OnTargetMinorRealmSelected(int index) => SetTargetMinorRealm();
     private void OnTargetStageSelected(int index) => SetTargetStage();
@@ -102,21 +102,6 @@ public partial class StageCalculator : VBoxContainer
         Data.CurrentStageIndex = CurrentStage.Selected;
         Data.CurrentStage = CurrentStage.Text;
         HandleTargetStageOptions();
-    }
-
-    private void SetCurrentPercent(string text)
-    {
-        if (text == "")
-        {
-            Data.CurrentPercent = 0f;
-            return;
-        }
-        if (!text.IsValidFloat())
-        {
-            CurrentPercent.DeleteLastCharacter();
-            return;
-        }
-        Data.CurrentPercent = float.Parse(text) / 100f; // Converts the full % number into an actual percent value.
     }
 
     private void SetTargetMajorRealm()
@@ -196,7 +181,7 @@ public partial class StageCalculator : VBoxContainer
         SetTargetMinorRealm();
         TargetStage.Select(tStaIdx);
         SetTargetStage();
-        CurrentPercent.Text = $"{Data.CurrentPercent * 100f:N2}";
+        CurrentPercent.Value = Data.CurrentPercent * 100f;
     }
 
     #region OptionButton Handling

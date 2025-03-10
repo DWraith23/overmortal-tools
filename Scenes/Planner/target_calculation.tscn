@@ -2,62 +2,125 @@
 
 [ext_resource type="Script" path="res://Scenes/Planner/TargetCalculation.cs" id="1_u7hep"]
 
-[node name="Target Calculation" type="VBoxContainer" node_paths=PackedStringArray("DailyXpNode", "WithMyrimonDays", "WithoutMyrimonDays")]
+[node name="Target Calculation" type="VBoxContainer" node_paths=PackedStringArray("PassiveCheck", "RespiraCheck", "PillCheck", "PassiveXpNode", "RespiraXpNode", "PillXpNode", "DailyXpNode", "WithMyrimonDays", "WithoutMyrimonDays")]
 offset_right = 268.0
 offset_bottom = 31.0
 script = ExtResource("1_u7hep")
-DailyXpNode = NodePath("HBoxContainer/XP/Daily/LineEdit")
-WithMyrimonDays = NodePath("HBoxContainer/Days/With Myrimon/LineEdit")
-WithoutMyrimonDays = NodePath("HBoxContainer/Days/Without Myrimon/LineEdit")
+PassiveCheck = NodePath("XP/Passive/CheckBox")
+RespiraCheck = NodePath("XP/Respira/CheckBox")
+PillCheck = NodePath("XP/Pills/CheckBox")
+PassiveXpNode = NodePath("XP/Passive/LineEdit")
+RespiraXpNode = NodePath("XP/Respira/LineEdit")
+PillXpNode = NodePath("XP/Pills/LineEdit")
+DailyXpNode = NodePath("XP/Daily/LineEdit")
+WithMyrimonDays = NodePath("Days/With Myrimon/LineEdit")
+WithoutMyrimonDays = NodePath("Days/Without Myrimon/LineEdit")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="XP" type="VBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="XP" type="VBoxContainer" parent="HBoxContainer"]
+[node name="Passive" type="HBoxContainer" parent="XP"]
 layout_mode = 2
 
-[node name="Daily" type="HBoxContainer" parent="HBoxContainer/XP"]
+[node name="Label" type="Label" parent="XP/Passive"]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
+text = "Passive XP: "
+horizontal_alignment = 2
 
-[node name="Label" type="Label" parent="HBoxContainer/XP/Daily"]
-layout_mode = 2
-text = "Daily XP: "
-
-[node name="LineEdit" type="LineEdit" parent="HBoxContainer/XP/Daily"]
+[node name="LineEdit" type="LineEdit" parent="XP/Passive"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 editable = false
 
-[node name="VSeparator" type="VSeparator" parent="HBoxContainer"]
+[node name="CheckBox" type="CheckBox" parent="XP/Passive"]
+layout_mode = 2
+button_pressed = true
+
+[node name="Respira" type="HBoxContainer" parent="XP"]
 layout_mode = 2
 
-[node name="Days" type="VBoxContainer" parent="HBoxContainer"]
+[node name="Label" type="Label" parent="XP/Respira"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Respira XP: "
+horizontal_alignment = 2
+
+[node name="LineEdit" type="LineEdit" parent="XP/Respira"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+editable = false
+
+[node name="CheckBox" type="CheckBox" parent="XP/Respira"]
+layout_mode = 2
+button_pressed = true
+
+[node name="Pills" type="HBoxContainer" parent="XP"]
 layout_mode = 2
 
-[node name="Without Myrimon" type="HBoxContainer" parent="HBoxContainer/Days"]
+[node name="Label" type="Label" parent="XP/Pills"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Pill XP: "
+horizontal_alignment = 2
+
+[node name="LineEdit" type="LineEdit" parent="XP/Pills"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+editable = false
+
+[node name="CheckBox" type="CheckBox" parent="XP/Pills"]
+layout_mode = 2
+button_pressed = true
+
+[node name="Daily" type="HBoxContainer" parent="XP"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="HBoxContainer/Days/Without Myrimon"]
+[node name="Label" type="Label" parent="XP/Daily"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Daily XP: "
+horizontal_alignment = 2
+
+[node name="LineEdit" type="LineEdit" parent="XP/Daily"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+editable = false
+
+[node name="HSeparator" type="HSeparator" parent="."]
+layout_mode = 2
+
+[node name="Days" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Without Myrimon" type="HBoxContainer" parent="Days"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Days/Without Myrimon"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 text = "Days (Without Myrimon): "
 horizontal_alignment = 2
 
-[node name="LineEdit" type="LineEdit" parent="HBoxContainer/Days/Without Myrimon"]
+[node name="LineEdit" type="LineEdit" parent="Days/Without Myrimon"]
 layout_mode = 2
 alignment = 1
 editable = false
 
-[node name="With Myrimon" type="HBoxContainer" parent="HBoxContainer/Days"]
+[node name="With Myrimon" type="HBoxContainer" parent="Days"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="HBoxContainer/Days/With Myrimon"]
+[node name="Label" type="Label" parent="Days/With Myrimon"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 text = "Days (With Myrimon): "
 horizontal_alignment = 2
 
-[node name="LineEdit" type="LineEdit" parent="HBoxContainer/Days/With Myrimon"]
+[node name="LineEdit" type="LineEdit" parent="Days/With Myrimon"]
 layout_mode = 2
 alignment = 1
 editable = false
+
+[connection signal="toggled" from="XP/Passive/CheckBox" to="." method="OnCheckBoxChecked"]
+[connection signal="toggled" from="XP/Respira/CheckBox" to="." method="OnCheckBoxChecked"]
+[connection signal="toggled" from="XP/Pills/CheckBox" to="." method="OnCheckBoxChecked"]

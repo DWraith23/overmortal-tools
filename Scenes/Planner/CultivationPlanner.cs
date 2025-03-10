@@ -21,18 +21,6 @@ public partial class CultivationPlanner : VBoxContainer
 
     #endregion
 
-    private int DailyXp => GetDailyXp();
-
-    private int GetDailyXp()
-    {
-        var result = 1;
-        result += (int)BasicInformation.PassiveCultivation.Data.CosmoPerDay;
-        result += PillPlanner.Data.DailyPillValue;
-        result += RespiraPlanner.Data.DailyRespiraValue;
-
-        return result;
-    }
-
     #region Events
 
     private void OnValuesChanged() => UpdateTargetCalculation();
@@ -45,7 +33,9 @@ public partial class CultivationPlanner : VBoxContainer
     {
         TargetCalculation.CurrentXp = BasicInformation.StageCalculator.Data.CurrentXp;
         TargetCalculation.TargetXp = BasicInformation.StageCalculator.Data.TargetXp;
-        TargetCalculation.DailyXp = DailyXp;
+        TargetCalculation.PassiveXp = (int)BasicInformation.PassiveCultivation.Data.CosmoPerDay;
+        TargetCalculation.RespiraXp = RespiraPlanner.Data.DailyRespiraValue;
+        TargetCalculation.PillXp = PillPlanner.Data.DailyPillValue;
         TargetCalculation.MyrimonAverageXp = MyrimonPlanner.Data.AverageXp;
 
         EmitSignal(SignalName.RequestSave);

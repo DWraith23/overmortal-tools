@@ -8,7 +8,7 @@ script = ExtResource("1_3o1p3")
 CurrentMajorRealm = NodePath("Current Level/Major Realm Select")
 CurrentMinorRealm = NodePath("Current Level/Minor Realm Select")
 CurrentStage = NodePath("Current Level/Stage Select")
-CurrentPercent = NodePath("Current Level/LineEdit")
+CurrentPercent = NodePath("Current Level/Stage Percent/SpinBox")
 TargetMajorRealm = NodePath("Target Level/Major Realm Select")
 TargetMinorRealm = NodePath("Target Level/Minor Realm Select")
 TargetStage = NodePath("Target Level/Stage Select")
@@ -23,7 +23,7 @@ horizontal_alignment = 1
 layout_mode = 2
 theme_override_constants/h_separation = 12
 theme_override_constants/v_separation = 8
-columns = 7
+columns = 5
 
 [node name="Major Realm" type="Label" parent="Current Level"]
 layout_mode = 2
@@ -44,14 +44,6 @@ layout_mode = 2
 [node name="Stage" type="Label" parent="Current Level"]
 layout_mode = 2
 text = "Stage"
-horizontal_alignment = 1
-
-[node name="VSeparator3" type="VSeparator" parent="Current Level"]
-layout_mode = 2
-
-[node name="Percent" type="Label" parent="Current Level"]
-layout_mode = 2
-text = "Percent"
 horizontal_alignment = 1
 
 [node name="Major Realm Select" type="OptionButton" parent="Current Level"]
@@ -75,12 +67,19 @@ custom_minimum_size = Vector2(65, 0)
 layout_mode = 2
 alignment = 1
 
-[node name="VSeparator6" type="VSeparator" parent="Current Level"]
+[node name="Stage Percent" type="VBoxContainer" parent="Current Level"]
 layout_mode = 2
 
-[node name="LineEdit" type="LineEdit" parent="Current Level"]
+[node name="Percent" type="Label" parent="Current Level/Stage Percent"]
 layout_mode = 2
+text = "Percent"
+horizontal_alignment = 1
+
+[node name="SpinBox" type="SpinBox" parent="Current Level/Stage Percent"]
+layout_mode = 2
+step = 0.1
 alignment = 1
+suffix = "%"
 
 [node name="Label2" type="Label" parent="."]
 layout_mode = 2
@@ -151,7 +150,6 @@ editable = false
 [connection signal="item_selected" from="Current Level/Major Realm Select" to="." method="OnCurrentMajorRealmSelected"]
 [connection signal="item_selected" from="Current Level/Minor Realm Select" to="." method="OnCurrentMinorRealmSelected"]
 [connection signal="item_selected" from="Current Level/Stage Select" to="." method="OnCurrentStageSelected"]
-[connection signal="text_changed" from="Current Level/LineEdit" to="." method="OnCurrentPercentChanged"]
 [connection signal="item_selected" from="Target Level/Major Realm Select" to="." method="OnTargetMajorRealmSelected"]
 [connection signal="item_selected" from="Target Level/Minor Realm Select" to="." method="OnTargetMinorRealmSelected"]
 [connection signal="item_selected" from="Target Level/Stage Select" to="." method="OnTargetStageSelected"]

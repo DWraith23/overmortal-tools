@@ -30,7 +30,7 @@ BasicInformation = NodePath("Contents/Basic Information")
 PillPlanner = NodePath("Contents/Advanced Information/Pill Planner")
 RespiraPlanner = NodePath("Contents/Advanced Information/Respira Planner")
 MyrimonPlanner = NodePath("Contents/Advanced Information/Myrimon Planner")
-TargetCalculation = NodePath("Target Calculation")
+TargetCalculation = NodePath("Contents/Target Calculation")
 AdvancedTabs = NodePath("Contents/Advanced Information")
 
 [node name="Contents" type="HBoxContainer" parent="."]
@@ -59,7 +59,7 @@ visible = false
 layout_mode = 2
 metadata/_tab_index = 2
 
-[node name="Target Calculation" parent="." instance=ExtResource("5_im5p8")]
+[node name="Target Calculation" parent="Contents" instance=ExtResource("5_im5p8")]
 layout_mode = 2
 size_flags_horizontal = 4
 
