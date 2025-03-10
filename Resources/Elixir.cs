@@ -50,6 +50,7 @@ public partial class Elixir : Resource
 
     private static Dictionary<Realm.Classification, List<(int, float)>> MainPathElixirsMultipliers => new()
     {
+        {  Realm.Classification.Novice, [ ] },
         {  Realm.Classification.Connection, [ (5, 1.5f), (15, 1f), ] },
         {  Realm.Classification.Foundation, [ (5, 1.5f), (10, 1f), (20, 0.8f), ] },
         {  Realm.Classification.Virtuoso, [ (5, 1.5f), (10, 1f), (15, .8f), (30, .6f), ] },

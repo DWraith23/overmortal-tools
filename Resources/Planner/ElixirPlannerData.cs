@@ -12,6 +12,7 @@ public partial class ElixirPlannerData : Resource
     private int _usedMonspiritia = 0;
     private int _plannedMonspiritia = 0;
 
+    [Export]
     public int RealmIndex
     {
         get => _realmIndex;
@@ -21,7 +22,8 @@ public partial class ElixirPlannerData : Resource
             EmitChanged();
         }
     }
-
+    
+    [Export]
     public int UsedElixirs
     {
         get => _usedElixirs;
@@ -32,6 +34,7 @@ public partial class ElixirPlannerData : Resource
         }
     }
 
+    [Export]
     public int DailyElixirs
     {
         get => _dailyElixirs;
@@ -42,6 +45,7 @@ public partial class ElixirPlannerData : Resource
         }
     }
 
+    [Export]
     public int UsedMonspiritia
     {
         get => _usedMonspiritia;
@@ -52,6 +56,7 @@ public partial class ElixirPlannerData : Resource
         }
     }
 
+    [Export]
     public int PlannedMonspiritia
     {
         get => _plannedMonspiritia;

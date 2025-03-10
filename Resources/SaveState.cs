@@ -16,6 +16,7 @@ public partial class SaveState : Resource
     [Export] public PillPlannerData PillPlannerData { get; set; }
     [Export] public MyrimonPlannerData MyrimonPlannerData { get; set; }
     [Export] public RespiraPlannerData RespiraPlannerData { get; set; }
+    [Export] public ElixirPlannerData ElixirPlannerData { get; set; }
 
     #endregion
 
@@ -30,7 +31,8 @@ public partial class SaveState : Resource
             MirrorData = planner.BasicInformation.MirrorStatus.Data,
             PillPlannerData = planner.PillPlanner.Data,
             MyrimonPlannerData = planner.MyrimonPlanner.Data,
-            RespiraPlannerData = planner.RespiraPlanner.Data
+            RespiraPlannerData = planner.RespiraPlanner.Data,
+            ElixirPlannerData = planner.ElixirPlanner.Data
         };
 
         return result;
@@ -45,6 +47,7 @@ public partial class SaveState : Resource
         planner.PillPlanner.Data = state.PillPlannerData ?? new PillPlannerData();
         planner.MyrimonPlanner.Data = state.MyrimonPlannerData ?? new MyrimonPlannerData();
         planner.RespiraPlanner.Data = state.RespiraPlannerData ?? new RespiraPlannerData();
+        planner.ElixirPlanner.Data = state.ElixirPlannerData ?? new ElixirPlannerData();
     }
 
     public static SaveState GenerateFreshState()
@@ -57,7 +60,8 @@ public partial class SaveState : Resource
             MirrorData = new MirrorData(),
             PillPlannerData = new PillPlannerData(),
             MyrimonPlannerData = new MyrimonPlannerData(),
-            RespiraPlannerData = new RespiraPlannerData()
+            RespiraPlannerData = new RespiraPlannerData(),
+            ElixirPlannerData = new ElixirPlannerData()
         };
         return result;
     }
