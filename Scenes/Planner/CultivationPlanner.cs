@@ -1,4 +1,5 @@
 using Godot;
+using OvermortalTools.Resources.Planner;
 using System;
 
 namespace OvermortalTools.Scenes.Planner;
@@ -12,6 +13,7 @@ public partial class CultivationPlanner : VBoxContainer
     [ExportSubgroup("Scenes")]
     [Export] public BasicInformation BasicInformation { get; set; }
     [Export] public PillPlanner PillPlanner { get; set; }
+    [Export] public RespiraPlanner RespiraPlanner { get; set; }
     [Export] public MyrimonPlanner MyrimonPlanner { get; set; }
     [Export] private TargetCalculation TargetCalculation { get; set; }
     [ExportSubgroup("Nodes")]
@@ -26,6 +28,7 @@ public partial class CultivationPlanner : VBoxContainer
         var result = 1;
         result += (int)BasicInformation.PassiveCultivation.Data.CosmoPerDay;
         result += PillPlanner.Data.DailyPillValue;
+        result += RespiraPlanner.Data.DailyRespiraValue;
 
         return result;
     }

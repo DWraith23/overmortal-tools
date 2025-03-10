@@ -1,0 +1,216 @@
+[gd_scene load_steps=2 format=3 uid="uid://bu0q6r2heryak"]
+
+[ext_resource type="Script" path="res://Scenes/Planner/RespiraPlanner.cs" id="1_dfppw"]
+
+[node name="Respira Planner" type="VBoxContainer" node_paths=PackedStringArray("ImmortalFriendsData", "RealmSelector", "RespiraAttemptsFromTechniques", "RespiraBonusFromTechniques", "RespiraAttemptsFromFriends", "RespiraBonusFromFriends", "RespiraAttemptsFromCurios", "RespiraBonusFromCurios", "TotalRespiraAttempts", "TotalRespiraBonus", "TotalRespiraValue", "DailyRespiraValue")]
+offset_right = 1.0
+offset_bottom = 23.0
+script = ExtResource("1_dfppw")
+ImmortalFriendsData = NodePath("Contents/Data/Immortal Friends")
+RealmSelector = NodePath("Contents/Data/Realm Select/Realms")
+RespiraAttemptsFromTechniques = NodePath("Contents/Data/Techniques/Attempts/SpinBox")
+RespiraBonusFromTechniques = NodePath("Contents/Data/Techniques/Bonus/SpinBox")
+RespiraAttemptsFromFriends = NodePath("Contents/Data/Immortal Friends/Attempts/SpinBox")
+RespiraBonusFromFriends = NodePath("Contents/Data/Immortal Friends/Bonus/SpinBox")
+RespiraAttemptsFromCurios = NodePath("Contents/Data/Curios/Attempts/SpinBox")
+RespiraBonusFromCurios = NodePath("Contents/Data/Curios/Bonus/SpinBox")
+TotalRespiraAttempts = NodePath("Contents/Data/Total Attempts/LineEdit")
+TotalRespiraBonus = NodePath("Contents/Data/Total Bonus/LineEdit")
+TotalRespiraValue = NodePath("Contents/Data/Total Value/LineEdit")
+DailyRespiraValue = NodePath("Contents/Data/Daily Value/LineEdit")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "Respira Planner"
+horizontal_alignment = 1
+
+[node name="Contents" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Data" type="VBoxContainer" parent="Contents"]
+layout_mode = 2
+
+[node name="Realm Select" type="HBoxContainer" parent="Contents/Data"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Contents/Data/Realm Select"]
+layout_mode = 2
+text = "Highest Realm: "
+
+[node name="Realms" type="OptionButton" parent="Contents/Data/Realm Select"]
+custom_minimum_size = Vector2(135, 31)
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="Contents/Data"]
+layout_mode = 2
+
+[node name="Techniques" type="VBoxContainer" parent="Contents/Data"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Contents/Data/Techniques"]
+layout_mode = 2
+text = "Techniques"
+
+[node name="Attempts" type="HBoxContainer" parent="Contents/Data/Techniques"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Contents/Data/Techniques/Attempts"]
+layout_mode = 2
+text = "Attempts: "
+
+[node name="SpinBox" type="SpinBox" parent="Contents/Data/Techniques/Attempts"]
+layout_mode = 2
+alignment = 1
+
+[node name="Bonus" type="HBoxContainer" parent="Contents/Data/Techniques"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Contents/Data/Techniques/Bonus"]
+layout_mode = 2
+text = "Attempts: "
+
+[node name="SpinBox" type="SpinBox" parent="Contents/Data/Techniques/Bonus"]
+layout_mode = 2
+max_value = 999.0
+alignment = 1
+suffix = "%"
+
+[node name="Curios" type="VBoxContainer" parent="Contents/Data"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Contents/Data/Curios"]
+layout_mode = 2
+text = "Curios"
+
+[node name="Attempts" type="HBoxContainer" parent="Contents/Data/Curios"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Contents/Data/Curios/Attempts"]
+layout_mode = 2
+text = "Attempts: "
+
+[node name="SpinBox" type="SpinBox" parent="Contents/Data/Curios/Attempts"]
+layout_mode = 2
+alignment = 1
+
+[node name="Bonus" type="HBoxContainer" parent="Contents/Data/Curios"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Contents/Data/Curios/Bonus"]
+layout_mode = 2
+text = "Attempts: "
+
+[node name="SpinBox" type="SpinBox" parent="Contents/Data/Curios/Bonus"]
+layout_mode = 2
+max_value = 999.0
+alignment = 1
+suffix = "%"
+
+[node name="Immortal Friends" type="VBoxContainer" parent="Contents/Data"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Contents/Data/Immortal Friends"]
+layout_mode = 2
+text = "Immortal Friends"
+
+[node name="Attempts" type="HBoxContainer" parent="Contents/Data/Immortal Friends"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Contents/Data/Immortal Friends/Attempts"]
+layout_mode = 2
+text = "Attempts: "
+
+[node name="SpinBox" type="SpinBox" parent="Contents/Data/Immortal Friends/Attempts"]
+layout_mode = 2
+alignment = 1
+
+[node name="Bonus" type="HBoxContainer" parent="Contents/Data/Immortal Friends"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Contents/Data/Immortal Friends/Bonus"]
+layout_mode = 2
+text = "Attempts: "
+
+[node name="SpinBox" type="SpinBox" parent="Contents/Data/Immortal Friends/Bonus"]
+layout_mode = 2
+max_value = 999.0
+alignment = 1
+suffix = "%"
+
+[node name="HSeparator2" type="HSeparator" parent="Contents/Data"]
+layout_mode = 2
+
+[node name="Total Attempts" type="HBoxContainer" parent="Contents/Data"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Contents/Data/Total Attempts"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+text = "Total Attempts: "
+horizontal_alignment = 2
+
+[node name="LineEdit" type="LineEdit" parent="Contents/Data/Total Attempts"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+alignment = 1
+editable = false
+
+[node name="Total Bonus" type="HBoxContainer" parent="Contents/Data"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Contents/Data/Total Bonus"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+text = "Total Bonus: "
+horizontal_alignment = 2
+
+[node name="LineEdit" type="LineEdit" parent="Contents/Data/Total Bonus"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+alignment = 1
+editable = false
+
+[node name="Total Value" type="HBoxContainer" parent="Contents/Data"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Contents/Data/Total Value"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+text = "Total Value: "
+horizontal_alignment = 2
+
+[node name="LineEdit" type="LineEdit" parent="Contents/Data/Total Value"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+alignment = 1
+editable = false
+
+[node name="Daily Value" type="HBoxContainer" parent="Contents/Data"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Contents/Data/Daily Value"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+text = "Daily Value: "
+horizontal_alignment = 2
+
+[node name="LineEdit" type="LineEdit" parent="Contents/Data/Daily Value"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+alignment = 1
+editable = false
+
+[node name="TextEdit" type="TextEdit" parent="Contents"]
+custom_minimum_size = Vector2(200, 225)
+layout_mode = 2
+size_flags_vertical = 4
+text = "In order to get Respira information, use Compare BR on another Taoist, and check Details in Techniques, Immortal Friends, and Epic and Rare Curios."
+wrap_mode = 1
+
+[connection signal="item_selected" from="Contents/Data/Realm Select/Realms" to="." method="OnRealmSelectorOptionSelected"]
+[connection signal="value_changed" from="Contents/Data/Techniques/Attempts/SpinBox" to="." method="OnRespiraAttemptsFromTechniquesValueChanged"]
+[connection signal="value_changed" from="Contents/Data/Techniques/Bonus/SpinBox" to="." method="OnRespiraBonusFromTechniquesValueChanged"]
+[connection signal="value_changed" from="Contents/Data/Curios/Attempts/SpinBox" to="." method="OnRespiraAttemptsFromCuriosValueChanged"]
+[connection signal="value_changed" from="Contents/Data/Curios/Bonus/SpinBox" to="." method="OnRespiraBonusFromCuriosValueChanged"]
+[connection signal="value_changed" from="Contents/Data/Immortal Friends/Attempts/SpinBox" to="." method="OnRespiraAttemptsFromFriendsValueChanged"]
+[connection signal="value_changed" from="Contents/Data/Immortal Friends/Bonus/SpinBox" to="." method="OnRespiraBonusFromFriendsValueChanged"]

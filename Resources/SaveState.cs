@@ -14,6 +14,7 @@ public partial class SaveState : Resource
     [Export] public MirrorData MirrorData { get; set; }
     [Export] public PillPlannerData PillPlannerData { get; set; }
     [Export] public MyrimonPlannerData MyrimonPlannerData { get; set; }
+    [Export] public RespiraPlannerData RespiraPlannerData { get; set; }
 
     #endregion
 
@@ -26,7 +27,8 @@ public partial class SaveState : Resource
             VaseData = planner.BasicInformation.VaseStatus.Data,
             MirrorData = planner.BasicInformation.MirrorStatus.Data,
             PillPlannerData = planner.PillPlanner.Data,
-            MyrimonPlannerData = planner.MyrimonPlanner.Data
+            MyrimonPlannerData = planner.MyrimonPlanner.Data,
+            RespiraPlannerData = planner.RespiraPlanner.Data
         };
 
         return result;
@@ -34,12 +36,13 @@ public partial class SaveState : Resource
 
     public static void LoadSaveState(CultivationPlanner planner, SaveState state)
     {
-        planner.BasicInformation.StageCalculator.Data = state.StageCalculatorData;
-        planner.BasicInformation.PassiveCultivation.Data = state.PassiveCultivationData;
-        planner.BasicInformation.VaseStatus.Data = state.VaseData;
-        planner.BasicInformation.MirrorStatus.Data = state.MirrorData;
-        planner.PillPlanner.Data = state.PillPlannerData;
-        planner.MyrimonPlanner.Data = state.MyrimonPlannerData;
+        planner.BasicInformation.StageCalculator.Data = state.StageCalculatorData ?? new StageCalculatorData();
+        planner.BasicInformation.PassiveCultivation.Data = state.PassiveCultivationData ?? new PassiveCultivationData();
+        planner.BasicInformation.VaseStatus.Data = state.VaseData ?? new VaseData();
+        planner.BasicInformation.MirrorStatus.Data = state.MirrorData ?? new MirrorData();
+        planner.PillPlanner.Data = state.PillPlannerData ?? new PillPlannerData();
+        planner.MyrimonPlanner.Data = state.MyrimonPlannerData ?? new MyrimonPlannerData();
+        planner.RespiraPlanner.Data = state.RespiraPlannerData ?? new RespiraPlannerData();
     }
 
     public static SaveState GenerateFreshState()
@@ -51,7 +54,8 @@ public partial class SaveState : Resource
             VaseData = new VaseData(),
             MirrorData = new MirrorData(),
             PillPlannerData = new PillPlannerData(),
-            MyrimonPlannerData = new MyrimonPlannerData()
+            MyrimonPlannerData = new MyrimonPlannerData(),
+            RespiraPlannerData = new RespiraPlannerData()
         };
         return result;
     }

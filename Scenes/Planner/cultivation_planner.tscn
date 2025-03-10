@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bmo4q4somi6mr"]
+[gd_scene load_steps=8 format=3 uid="uid://bmo4q4somi6mr"]
 
 [ext_resource type="Script" path="res://Scenes/Planner/CultivationPlanner.cs" id="1_x5if4"]
 [ext_resource type="PackedScene" uid="uid://b7lpaktb1ga4t" path="res://Scenes/Planner/basic_information.tscn" id="2_a8256"]
 [ext_resource type="PackedScene" uid="uid://vvlj2y5cqf2q" path="res://Scenes/Planner/pill_planner.tscn" id="3_xmuxf"]
 [ext_resource type="PackedScene" uid="uid://d3yft6mkjvrno" path="res://Scenes/Planner/myrimon_planner.tscn" id="4_jyk7a"]
+[ext_resource type="PackedScene" uid="uid://bu0q6r2heryak" path="res://Scenes/Planner/respira_planner.tscn" id="4_nlgta"]
 [ext_resource type="PackedScene" uid="uid://chnmskh3rlqkl" path="res://Scenes/Planner/target_calculation.tscn" id="5_im5p8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t54bn"]
@@ -23,10 +24,11 @@ corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
 
-[node name="Cultivation Planner" type="VBoxContainer" node_paths=PackedStringArray("BasicInformation", "PillPlanner", "MyrimonPlanner", "TargetCalculation", "AdvancedTabs")]
+[node name="Cultivation Planner" type="VBoxContainer" node_paths=PackedStringArray("BasicInformation", "PillPlanner", "RespiraPlanner", "MyrimonPlanner", "TargetCalculation", "AdvancedTabs")]
 script = ExtResource("1_x5if4")
 BasicInformation = NodePath("Contents/Basic Information")
 PillPlanner = NodePath("Contents/Advanced Information/Pill Planner")
+RespiraPlanner = NodePath("Contents/Advanced Information/Respira Planner")
 MyrimonPlanner = NodePath("Contents/Advanced Information/Myrimon Planner")
 TargetCalculation = NodePath("Target Calculation")
 AdvancedTabs = NodePath("Contents/Advanced Information")
@@ -38,7 +40,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="Advanced Information" type="TabContainer" parent="Contents"]
-custom_minimum_size = Vector2(500, 0)
+custom_minimum_size = Vector2(500, 555)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_t54bn")
 current_tab = 0
@@ -47,10 +49,15 @@ current_tab = 0
 layout_mode = 2
 metadata/_tab_index = 0
 
-[node name="Myrimon Planner" parent="Contents/Advanced Information" instance=ExtResource("4_jyk7a")]
+[node name="Respira Planner" parent="Contents/Advanced Information" instance=ExtResource("4_nlgta")]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 1
+
+[node name="Myrimon Planner" parent="Contents/Advanced Information" instance=ExtResource("4_jyk7a")]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
 
 [node name="Target Calculation" parent="." instance=ExtResource("5_im5p8")]
 layout_mode = 2
@@ -59,4 +66,5 @@ size_flags_horizontal = 4
 [connection signal="ArtifactsUpdated" from="Contents/Basic Information" to="Contents/Advanced Information/Pill Planner" method="OnArtifactsUpdated"]
 [connection signal="ValuesChanged" from="Contents/Basic Information" to="." method="OnValuesChanged"]
 [connection signal="ValuesChanged" from="Contents/Advanced Information/Pill Planner" to="." method="OnValuesChanged"]
+[connection signal="ValuesChanged" from="Contents/Advanced Information/Respira Planner" to="." method="OnValuesChanged"]
 [connection signal="ValuesChanged" from="Contents/Advanced Information/Myrimon Planner" to="." method="OnValuesChanged"]
