@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using Godot;
+using OvermortalTools.Scripts.Enums;
 
 namespace OvermortalTools.Resources.Planner;
 
@@ -94,19 +95,19 @@ public partial class PillPlannerData : Resource
         }
     }
 
-    public Pill.Realm PillRealm => (Pill.Realm)PillRealmIndex;
+    public Realm PillRealm => (Realm)PillRealmIndex;
 
     public float PillBonusMultiplier => TotalPillValue / ((float)TotalPillValue - BonusPillValue);
 
-    private int RarePillsValue => GetPillValue(Pill.Quality.Rare) * RarePills;
-    private int EpicPillsValue => GetPillValue(Pill.Quality.Epic) * EpicPills;
-    private int LegendaryPillsValue => GetPillValue(Pill.Quality.Legendary) * LegendaryPills;
-    private int MythicPillsValue => (int)Math.Floor(GetPillValue(Pill.Quality.Mythic) * MythicPills);
+    private int RarePillsValue => GetPillValue(Quality.Classification.Rare) * RarePills;
+    private int EpicPillsValue => GetPillValue(Quality.Classification.Epic) * EpicPills;
+    private int LegendaryPillsValue => GetPillValue(Quality.Classification.Legendary) * LegendaryPills;
+    private int MythicPillsValue => (int)Math.Floor(GetPillValue(Quality.Classification.Mythic) * MythicPills);
 
     public int DailyPillValue => RarePillsValue + EpicPillsValue + LegendaryPillsValue + MythicPillsValue;
 
 
-    private int GetPillValue(Pill.Quality quality)
+    private int GetPillValue(Quality.Classification quality)
     {
         var pill = Pills
             .Where(pill => pill.PillQuality == quality)

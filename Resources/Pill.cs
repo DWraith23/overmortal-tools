@@ -8,41 +8,19 @@ namespace OvermortalTools.Resources;
 [GlobalClass, Tool]
 public partial class Pill : Resource
 {
-    public enum Quality
+    private static Dictionary<Quality.Classification, float> QualityMultipliers => new()
     {
-        Common,
-        Uncommon,
-        Rare,
-        Epic,
-        Legendary,
-        Mythic
-    }
-
-    public enum Realm
-    {
-        Connection,
-        Foundation,
-        Virtuoso,
-        NascentSoul,
-        Incarnation,
-        Voidbreak,
-        Wholeness,
-        Perfection,
-        Nirvana,
-    }
-
-    private static Dictionary<Quality, float> QualityMultipliers => new()
-    {
-        { Quality.Common, 1f },
-        { Quality.Uncommon, 2f },
-        { Quality.Rare, 3.2f },
-        { Quality.Epic, 6f },
-        { Quality.Legendary, 12f },
-        { Quality.Mythic, 24f },
+        { Quality.Classification.Common, 1f },
+        { Quality.Classification.Uncommon, 2f },
+        { Quality.Classification.Rare, 3.2f },
+        { Quality.Classification.Epic, 6f },
+        { Quality.Classification.Legendary, 12f },
+        { Quality.Classification.Mythic, 24f },
     };
 
     private static Dictionary<Realm, int> BaseRealmValues => new()
     {
+        { Realm.Novice, 0 },
         { Realm.Connection, 125 },
         { Realm.Foundation, 625 },
         { Realm.Virtuoso, 1900 },
@@ -55,7 +33,7 @@ public partial class Pill : Resource
     };
 
     [Export] public Realm CultivationRealm { get; set; } = Realm.Connection;
-    [Export] public Quality PillQuality { get; set; } = Quality.Common;
+    [Export] public Quality.Classification PillQuality { get; set; } = Quality.Classification.Common;
 
     public string PillName => $"{PillQuality} {CultivationRealm} Pill";
     public int PillValue => (int) Math.Floor(BaseRealmValues[CultivationRealm] * QualityMultipliers[PillQuality]);
@@ -67,7 +45,7 @@ public partial class Pill : Resource
 
         foreach (var realm in Enum.GetValues<Realm>())
         {
-            foreach(var quality in Enum.GetValues<Quality>())
+            foreach(var quality in Enum.GetValues<Quality.Classification>())
             {
                 result.Add(
                     new Pill()

@@ -22,8 +22,8 @@ public partial class BreakthroughCalculator : HBoxContainer
 
     private void OnCosmoapsisChanged()
     {
-        PillCalculator.DailyExp = PassiveDailyCultivation;
-        PillCalculator.TargetExp = ExpToTarget;
+        // PillCalculator.DailyExp = PassiveDailyCultivation;
+        // PillCalculator.TargetExp = ExpToTarget;
     }
 
 }
