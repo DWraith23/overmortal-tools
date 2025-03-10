@@ -15,6 +15,7 @@ public partial class CultivationPlanner : VBoxContainer
     [Export] public PillPlanner PillPlanner { get; set; }
     [Export] public RespiraPlanner RespiraPlanner { get; set; }
     [Export] public MyrimonPlanner MyrimonPlanner { get; set; }
+    [Export] public ElixirPlanner ElixirPlanner { get; set; }
     [Export] private TargetCalculation TargetCalculation { get; set; }
     [ExportSubgroup("Nodes")]
     [Export] private TabContainer AdvancedTabs { get; set; }
@@ -37,6 +38,7 @@ public partial class CultivationPlanner : VBoxContainer
         TargetCalculation.RespiraXp = RespiraPlanner.Data.DailyRespiraValue;
         TargetCalculation.PillXp = PillPlanner.Data.DailyPillValue;
         TargetCalculation.MyrimonAverageXp = MyrimonPlanner.Data.AverageXp;
+        TargetCalculation.ElixirData = ElixirPlanner.Data;
 
         EmitSignal(SignalName.RequestSave);
     }

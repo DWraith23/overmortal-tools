@@ -1,0 +1,186 @@
+[gd_scene load_steps=3 format=3 uid="uid://cj0xt5owab7bl"]
+
+[ext_resource type="Script" path="res://Scenes/Planner/ElixirPlanner.cs" id="1_o380t"]
+[ext_resource type="PackedScene" uid="uid://bawydrulf7m1f" path="res://Scenes/Components/realms_options.tscn" id="2_nfv80"]
+
+[node name="Elixir Planner" type="VBoxContainer" node_paths=PackedStringArray("MonspiritiaContainer", "RealmSelect", "UsedElixirs", "DailyElixirs", "UsedMonspiritia", "PlannedMonspiritia", "MaxMonspiritia", "MonspiritiaValue", "UsedValue", "CurrentValue", "DailyValue")]
+custom_minimum_size = Vector2(220, 0)
+offset_right = 1.0
+offset_bottom = 23.0
+script = ExtResource("1_o380t")
+MonspiritiaContainer = NodePath("Monspiritia")
+RealmSelect = NodePath("Realm/Realms Options")
+UsedElixirs = NodePath("Used/SpinBox")
+DailyElixirs = NodePath("Daily/SpinBox")
+UsedMonspiritia = NodePath("Monspiritia/Used/SpinBox")
+PlannedMonspiritia = NodePath("Monspiritia/Planned/SpinBox")
+MaxMonspiritia = NodePath("Monspiritia/Max/LineEdit")
+MonspiritiaValue = NodePath("Monspiritia/Value/LineEdit")
+UsedValue = NodePath("Used Value/LineEdit")
+CurrentValue = NodePath("Current Value/LineEdit")
+DailyValue = NodePath("Daily Value/LineEdit")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "Elixir Planner"
+horizontal_alignment = 1
+
+[node name="Realm" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Realm"]
+layout_mode = 2
+text = "Realm: "
+
+[node name="Realms Options" parent="Realm" instance=ExtResource("2_nfv80")]
+layout_mode = 2
+
+[node name="Used" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Used"]
+custom_minimum_size = Vector2(100, 25)
+layout_mode = 2
+text = "Used Elixirs: "
+horizontal_alignment = 2
+
+[node name="SpinBox" type="SpinBox" parent="Used"]
+layout_mode = 2
+max_value = 999.0
+alignment = 1
+
+[node name="Daily" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Daily"]
+custom_minimum_size = Vector2(100, 25)
+layout_mode = 2
+text = "Daily Elixirs: "
+horizontal_alignment = 2
+
+[node name="SpinBox" type="SpinBox" parent="Daily"]
+layout_mode = 2
+max_value = 999.0
+alignment = 1
+
+[node name="Monspiritia" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="Monspiritia"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Monspiritia"]
+layout_mode = 2
+text = "Monspiritia"
+
+[node name="Max" type="HBoxContainer" parent="Monspiritia"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Monspiritia/Max"]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+text = "Max: "
+horizontal_alignment = 2
+
+[node name="LineEdit" type="LineEdit" parent="Monspiritia/Max"]
+layout_mode = 2
+alignment = 1
+editable = false
+
+[node name="Used" type="HBoxContainer" parent="Monspiritia"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Monspiritia/Used"]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+text = "Used: "
+horizontal_alignment = 2
+
+[node name="SpinBox" type="SpinBox" parent="Monspiritia/Used"]
+layout_mode = 2
+max_value = 176.0
+alignment = 1
+
+[node name="Planned" type="HBoxContainer" parent="Monspiritia"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Monspiritia/Planned"]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+text = "Planned: "
+horizontal_alignment = 2
+
+[node name="SpinBox" type="SpinBox" parent="Monspiritia/Planned"]
+layout_mode = 2
+max_value = 176.0
+alignment = 1
+
+[node name="Value" type="HBoxContainer" parent="Monspiritia"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Monspiritia/Value"]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+text = "Value: "
+horizontal_alignment = 2
+
+[node name="LineEdit" type="LineEdit" parent="Monspiritia/Value"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+alignment = 1
+editable = false
+
+[node name="HSeparator" type="HSeparator" parent="."]
+layout_mode = 2
+
+[node name="Used Value" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Used Value"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+text = "Used Value: "
+horizontal_alignment = 2
+
+[node name="LineEdit" type="LineEdit" parent="Used Value"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+alignment = 1
+editable = false
+
+[node name="Current Value" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Current Value"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+text = "Current Value: "
+horizontal_alignment = 2
+
+[node name="LineEdit" type="LineEdit" parent="Current Value"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+alignment = 1
+editable = false
+
+[node name="Daily Value" type="HBoxContainer" parent="."]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Daily Value"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+text = "Daily Value: "
+horizontal_alignment = 2
+
+[node name="LineEdit" type="LineEdit" parent="Daily Value"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+alignment = 1
+editable = false
+
+[connection signal="item_selected" from="Realm/Realms Options" to="." method="OnRealmOptionSelected"]
+[connection signal="value_changed" from="Used/SpinBox" to="." method="OnUsedElixirsChanged"]
+[connection signal="value_changed" from="Daily/SpinBox" to="." method="OnDailyElixirsChanged"]
+[connection signal="value_changed" from="Monspiritia/Used/SpinBox" to="." method="OnUsedMonspiritiaChanged"]
+[connection signal="value_changed" from="Monspiritia/Planned/SpinBox" to="." method="OnPlannedMonspiritiaChanged"]

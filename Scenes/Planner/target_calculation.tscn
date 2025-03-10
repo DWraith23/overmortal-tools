@@ -2,16 +2,18 @@
 
 [ext_resource type="Script" path="res://Scenes/Planner/TargetCalculation.cs" id="1_u7hep"]
 
-[node name="Target Calculation" type="VBoxContainer" node_paths=PackedStringArray("PassiveCheck", "RespiraCheck", "PillCheck", "PassiveXpNode", "RespiraXpNode", "PillXpNode", "DailyXpNode", "WithMyrimonDays", "WithoutMyrimonDays")]
+[node name="Target Calculation" type="VBoxContainer" node_paths=PackedStringArray("PassiveCheck", "RespiraCheck", "PillCheck", "ElixirCheck", "PassiveXpNode", "RespiraXpNode", "PillXpNode", "ElixirXpNode", "DailyXpNode", "WithMyrimonDays", "WithoutMyrimonDays")]
 offset_right = 268.0
 offset_bottom = 31.0
 script = ExtResource("1_u7hep")
 PassiveCheck = NodePath("XP/Passive/CheckBox")
 RespiraCheck = NodePath("XP/Respira/CheckBox")
 PillCheck = NodePath("XP/Pills/CheckBox")
+ElixirCheck = NodePath("XP/Elixirs/CheckBox")
 PassiveXpNode = NodePath("XP/Passive/LineEdit")
 RespiraXpNode = NodePath("XP/Respira/LineEdit")
 PillXpNode = NodePath("XP/Pills/LineEdit")
+ElixirXpNode = NodePath("XP/Elixirs/LineEdit")
 DailyXpNode = NodePath("XP/Daily/LineEdit")
 WithMyrimonDays = NodePath("Days/With Myrimon/LineEdit")
 WithoutMyrimonDays = NodePath("Days/Without Myrimon/LineEdit")
@@ -76,6 +78,25 @@ editable = false
 layout_mode = 2
 button_pressed = true
 
+[node name="Elixirs" type="HBoxContainer" parent="XP"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="XP/Elixirs"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Elixir XP: "
+horizontal_alignment = 2
+
+[node name="LineEdit" type="LineEdit" parent="XP/Elixirs"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+alignment = 1
+editable = false
+
+[node name="CheckBox" type="CheckBox" parent="XP/Elixirs"]
+layout_mode = 2
+button_pressed = true
+
 [node name="Daily" type="HBoxContainer" parent="XP"]
 layout_mode = 2
 
@@ -128,3 +149,4 @@ editable = false
 [connection signal="toggled" from="XP/Passive/CheckBox" to="." method="OnCheckBoxChecked"]
 [connection signal="toggled" from="XP/Respira/CheckBox" to="." method="OnCheckBoxChecked"]
 [connection signal="toggled" from="XP/Pills/CheckBox" to="." method="OnCheckBoxChecked"]
+[connection signal="toggled" from="XP/Elixirs/CheckBox" to="." method="OnCheckBoxChecked"]
