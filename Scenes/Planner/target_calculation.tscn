@@ -2,37 +2,62 @@
 
 [ext_resource type="Script" path="res://Scenes/Planner/TargetCalculation.cs" id="1_u7hep"]
 
-[node name="Target Calculation" type="VBoxContainer" node_paths=PackedStringArray("WithMyrimonDays", "WithoutMyrimonDays")]
+[node name="Target Calculation" type="VBoxContainer" node_paths=PackedStringArray("DailyXpNode", "WithMyrimonDays", "WithoutMyrimonDays")]
 offset_right = 268.0
 offset_bottom = 31.0
 script = ExtResource("1_u7hep")
-WithMyrimonDays = NodePath("With Myrimon/LineEdit")
-WithoutMyrimonDays = NodePath("Without Myrimon/LineEdit")
+DailyXpNode = NodePath("HBoxContainer/XP/Daily/LineEdit")
+WithMyrimonDays = NodePath("HBoxContainer/Days/With Myrimon/LineEdit")
+WithoutMyrimonDays = NodePath("HBoxContainer/Days/Without Myrimon/LineEdit")
 
-[node name="Without Myrimon" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Without Myrimon"]
+[node name="XP" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Daily" type="HBoxContainer" parent="HBoxContainer/XP"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/XP/Daily"]
+layout_mode = 2
+text = "Daily XP: "
+
+[node name="LineEdit" type="LineEdit" parent="HBoxContainer/XP/Daily"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+editable = false
+
+[node name="VSeparator" type="VSeparator" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Days" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Without Myrimon" type="HBoxContainer" parent="HBoxContainer/Days"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/Days/Without Myrimon"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 text = "Days (Without Myrimon): "
 horizontal_alignment = 2
 
-[node name="LineEdit" type="LineEdit" parent="Without Myrimon"]
+[node name="LineEdit" type="LineEdit" parent="HBoxContainer/Days/Without Myrimon"]
 layout_mode = 2
 alignment = 1
 editable = false
 
-[node name="With Myrimon" type="HBoxContainer" parent="."]
+[node name="With Myrimon" type="HBoxContainer" parent="HBoxContainer/Days"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="With Myrimon"]
+[node name="Label" type="Label" parent="HBoxContainer/Days/With Myrimon"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 text = "Days (With Myrimon): "
 horizontal_alignment = 2
 
-[node name="LineEdit" type="LineEdit" parent="With Myrimon"]
+[node name="LineEdit" type="LineEdit" parent="HBoxContainer/Days/With Myrimon"]
 layout_mode = 2
 alignment = 1
 editable = false

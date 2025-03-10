@@ -5,6 +5,7 @@ namespace OvermortalTools.Scenes.Planner;
 
 public partial class TargetCalculation : VBoxContainer
 {
+    [Export] private LineEdit DailyXpNode { get; set; }
     [Export] private LineEdit WithMyrimonDays { get; set; }
     [Export] private LineEdit WithoutMyrimonDays { get; set; }
 
@@ -60,6 +61,7 @@ public partial class TargetCalculation : VBoxContainer
 
     private void Update()
     {
+        DailyXpNode.Text = DailyXp.ToString("N0");
         WithMyrimonDays.Text = DaysWithMyrm.ToString("N0");
         WithoutMyrimonDays.Text = DaysNoMyrm.ToString("N0");
     }
