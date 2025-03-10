@@ -9,9 +9,11 @@ namespace OvermortalTools.Scenes;
 public partial class Main : Control
 {
     [Export] private CultivationPlanner Planner { get; set; }
+    [Export] private ProfileSwapper ProfileSwapper { get; set; }
 
     private bool IsLoading { get; set; } = false;
     private int ActiveProfile { get; set; } = 0;
+    private string ProfileName => ProfileSwapper.ProfileName.Text;
 
     public override void _Ready()
     {
@@ -27,7 +29,7 @@ public partial class Main : Control
         GD.Print("----------------------------");
         GD.Print("Saving state...");
         var path = OS.GetExecutablePath().GetBaseDir() + $"/savestate{ActiveProfile}.tres";
-        var state = SaveState.GenerateSaveState(Planner);
+        var state = SaveState.GenerateSaveState(Planner, ProfileName);
         var result = ResourceSaver.Save(state, path);
         if (result != Error.Ok)
         {
@@ -56,7 +58,9 @@ public partial class Main : Control
         var loaded = ResourceLoader.Load(path, "", 0);
         if (loaded is SaveState state)
         {
+            ProfileSwapper.ProfileName.Text = "";
             SaveState.LoadSaveState(Planner, state);
+            ProfileSwapper.ProfileName.Text = state.ProfileName;
             GD.Print("| Loaded state successfully.");
         }
         else

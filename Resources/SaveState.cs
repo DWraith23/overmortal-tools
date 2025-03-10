@@ -8,6 +8,7 @@ namespace OvermortalTools.Resources;
 public partial class SaveState : Resource
 {
     #region Saved Properties (Exports)
+    [Export] public string ProfileName { get; set; } = "";
     [Export] public StageCalculatorData StageCalculatorData { get; set; }
     [Export] public PassiveCultivationData PassiveCultivationData { get; set; }
     [Export] public VaseData VaseData { get; set; }
@@ -18,10 +19,11 @@ public partial class SaveState : Resource
 
     #endregion
 
-    public static SaveState GenerateSaveState(CultivationPlanner planner)
+    public static SaveState GenerateSaveState(CultivationPlanner planner, string name)
     {
         var result = new SaveState
         {
+            ProfileName = name,
             StageCalculatorData = planner.BasicInformation.StageCalculator.Data,
             PassiveCultivationData = planner.BasicInformation.PassiveCultivation.Data,
             VaseData = planner.BasicInformation.VaseStatus.Data,

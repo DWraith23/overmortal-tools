@@ -2,23 +2,44 @@
 
 [ext_resource type="Script" path="res://Scenes/Planner/ProfileSwapper.cs" id="1_cf2c0"]
 
-[node name="Profile Swapper" type="HBoxContainer"]
-offset_right = 18.0
-offset_bottom = 31.0
+[node name="Profile Swapper" type="VBoxContainer" node_paths=PackedStringArray("ProfileName")]
+offset_right = 161.0
+offset_bottom = 101.0
 script = ExtResource("1_cf2c0")
+ProfileName = NodePath("Name/LineEdit")
 
-[node name="Profile 1" type="Button" parent="."]
+[node name="Name" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Name"]
+layout_mode = 2
+text = "Profile Name: "
+
+[node name="LineEdit" type="LineEdit" parent="Name"]
+custom_minimum_size = Vector2(175, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Main"
+alignment = 1
+max_length = 15
+
+[node name="Buttons" type="HBoxContainer" parent="."]
+layout_mode = 2
+alignment = 1
+
+[node name="Profile 1" type="Button" parent="Buttons"]
 layout_mode = 2
 text = "Slot 1"
 
-[node name="Profile 2" type="Button" parent="."]
+[node name="Profile 2" type="Button" parent="Buttons"]
 layout_mode = 2
 text = "Slot 2"
 
-[node name="Profile 3" type="Button" parent="."]
+[node name="Profile 3" type="Button" parent="Buttons"]
 layout_mode = 2
 text = "Slot 3"
 
-[connection signal="pressed" from="Profile 1" to="." method="OnButtonPressed" binds= [0]]
-[connection signal="pressed" from="Profile 2" to="." method="OnButtonPressed" binds= [1]]
-[connection signal="pressed" from="Profile 3" to="." method="OnButtonPressed" binds= [2]]
+[connection signal="text_changed" from="Name/LineEdit" to="." method="OnProfileNameChanged"]
+[connection signal="pressed" from="Buttons/Profile 1" to="." method="OnButtonPressed" binds= [0]]
+[connection signal="pressed" from="Buttons/Profile 2" to="." method="OnButtonPressed" binds= [1]]
+[connection signal="pressed" from="Buttons/Profile 3" to="." method="OnButtonPressed" binds= [2]]

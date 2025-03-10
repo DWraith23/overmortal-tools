@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bmo4q4somi6mr" path="res://Scenes/Planner/cultivation_planner.tscn" id="3_rwv6w"]
 [ext_resource type="PackedScene" uid="uid://5qdm8u3mcqj7" path="res://Scenes/Planner/profile_swapper.tscn" id="4_mddom"]
 
-[node name="Main" type="Control" node_paths=PackedStringArray("Planner")]
+[node name="Main" type="Control" node_paths=PackedStringArray("Planner", "ProfileSwapper")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -16,6 +16,7 @@ grow_vertical = 2
 theme = ExtResource("1_s7h68")
 script = ExtResource("1_7vvrf")
 Planner = NodePath("PanelContainer/Cultivation Planner")
+ProfileSwapper = NodePath("PanelContainer/Profile Swapper")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -35,4 +36,5 @@ size_flags_horizontal = 8
 size_flags_vertical = 8
 
 [connection signal="RequestSave" from="PanelContainer/Cultivation Planner" to="." method="OnSaveRequested"]
+[connection signal="ProfileNameChanged" from="PanelContainer/Profile Swapper" to="." method="OnSaveRequested"]
 [connection signal="SwapButtonPressed" from="PanelContainer/Profile Swapper" to="." method="OnChangeProfileRequested"]
