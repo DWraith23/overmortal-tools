@@ -13,7 +13,7 @@ public partial class PassiveCultivation : VBoxContainer
     #region Exports
     [ExportGroup("Nodes")]
     [ExportSubgroup("Input")]
-    [Export] private LineEdit Cosmoapsis { get; set; }
+    [Export] private SpinBox Cosmoapsis { get; set; }
     [Export] private OptionButton AuraGem { get; set; }
     [ExportSubgroup("Ouput")]
     [Export] private LineEdit PerMinuteNode { get; set; }
@@ -56,28 +56,9 @@ public partial class PassiveCultivation : VBoxContainer
 
     #region Events
 
-    private void OnCosmoapsisChanged(string text) => ValidateCosmoapsisText(text);
+    private void OnCosmoapsisValueChanged(double value) => Data.Cosmoapsis = (float)value;
     private void OnAuraGemOptionSelected(int index) => Data.AuraGemIndex = index;
 
-    #endregion
-
-    #region Actions
-
-    private void ValidateCosmoapsisText(string text)
-    {
-        if (text == "")
-        {
-            Data.Cosmoapsis = 0f;
-            Cosmoapsis.Text = Data.Cosmoapsis.ToString("N2");
-        }
-        if (!text.IsValidFloat())
-        {
-            Cosmoapsis.DeleteLastCharacter();
-            return;
-        }
-        Data.Cosmoapsis = float.Parse(text);
-    }
-    
     #endregion
 
     private void Update()
@@ -93,7 +74,7 @@ public partial class PassiveCultivation : VBoxContainer
 
     private void ValidateValues()
     {
-        Cosmoapsis.Text = $"{Data.Cosmoapsis:N2}";
+        Cosmoapsis.Value = Data.Cosmoapsis;
         AuraGem.Select(Data.AuraGemIndex);
     }
 }

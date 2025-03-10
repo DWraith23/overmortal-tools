@@ -4,7 +4,7 @@
 
 [node name="Passive Cultivation" type="VBoxContainer" node_paths=PackedStringArray("Cosmoapsis", "AuraGem", "PerMinuteNode", "HourlyNode", "DailyNode")]
 script = ExtResource("1_lmyb1")
-Cosmoapsis = NodePath("Inputs/LineEdit")
+Cosmoapsis = NodePath("Inputs/SpinBox")
 AuraGem = NodePath("Inputs/OptionButton")
 PerMinuteNode = NodePath("Outputs/LineEdit")
 HourlyNode = NodePath("Outputs/LineEdit2")
@@ -28,9 +28,10 @@ layout_mode = 2
 text = "Aura Gem"
 horizontal_alignment = 1
 
-[node name="LineEdit" type="LineEdit" parent="Inputs"]
+[node name="SpinBox" type="SpinBox" parent="Inputs"]
 layout_mode = 2
-text = "1"
+max_value = 10000.0
+step = 0.01
 alignment = 1
 
 [node name="VSeparator2" type="VSeparator" parent="Inputs"]
@@ -90,5 +91,5 @@ layout_mode = 2
 alignment = 1
 editable = false
 
-[connection signal="text_changed" from="Inputs/LineEdit" to="." method="OnCosmoapsisChanged"]
+[connection signal="value_changed" from="Inputs/SpinBox" to="." method="OnCosmoapsisValueChanged"]
 [connection signal="item_selected" from="Inputs/OptionButton" to="." method="OnAuraGemOptionSelected"]

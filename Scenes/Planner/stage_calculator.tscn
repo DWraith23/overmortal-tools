@@ -77,6 +77,7 @@ horizontal_alignment = 1
 
 [node name="SpinBox" type="SpinBox" parent="Current Level/Stage Percent"]
 layout_mode = 2
+max_value = 10000.0
 step = 0.1
 alignment = 1
 suffix = "%"
