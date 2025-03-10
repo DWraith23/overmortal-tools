@@ -18,21 +18,21 @@ public partial class Pill : Resource
         { Quality.Classification.Mythic, 24f },
     };
 
-    private static Dictionary<Realm, int> BaseRealmValues => new()
+    private static Dictionary<Realm.Classification, int> BaseRealmValues => new()
     {
-        { Realm.Novice, 0 },
-        { Realm.Connection, 125 },
-        { Realm.Foundation, 625 },
-        { Realm.Virtuoso, 1900 },
-        { Realm.NascentSoul, 5000 },
-        { Realm.Incarnation, 8000 },
-        { Realm.Voidbreak, 12000 },
-        { Realm.Wholeness, 20500 },
-        { Realm.Perfection,  31000 },
-        { Realm.Nirvana, 57000 },
+        { Realm.Classification.Novice, 0 },
+        { Realm.Classification.Connection, 125 },
+        { Realm.Classification.Foundation, 625 },
+        { Realm.Classification.Virtuoso, 1900 },
+        { Realm.Classification.NascentSoul, 5000 },
+        { Realm.Classification.Incarnation, 8000 },
+        { Realm.Classification.Voidbreak, 12000 },
+        { Realm.Classification.Wholeness, 20500 },
+        { Realm.Classification.Perfection,  31000 },
+        { Realm.Classification.Nirvana, 57000 },
     };
 
-    [Export] public Realm CultivationRealm { get; set; } = Realm.Connection;
+    [Export] public Realm.Classification CultivationRealm { get; set; } = Realm.Classification.Connection;
     [Export] public Quality.Classification PillQuality { get; set; } = Quality.Classification.Common;
 
     public string PillName => $"{PillQuality} {CultivationRealm} Pill";
@@ -43,7 +43,7 @@ public partial class Pill : Resource
     {
         List<Pill> result = [];
 
-        foreach (var realm in Enum.GetValues<Realm>())
+        foreach (var realm in Enum.GetValues<Realm.Classification>())
         {
             foreach(var quality in Enum.GetValues<Quality.Classification>())
             {

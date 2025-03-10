@@ -95,7 +95,7 @@ public partial class PillPlannerData : Resource
         }
     }
 
-    public Realm PillRealm => (Realm)PillRealmIndex;
+    public Realm.Classification PillRealm => (Realm.Classification)PillRealmIndex;
 
     public float PillBonusMultiplier => TotalPillValue / ((float)TotalPillValue - BonusPillValue);
 
