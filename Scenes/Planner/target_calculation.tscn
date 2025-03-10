@@ -29,8 +29,9 @@ text = "Passive XP: "
 horizontal_alignment = 2
 
 [node name="LineEdit" type="LineEdit" parent="XP/Passive"]
-custom_minimum_size = Vector2(100, 0)
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
+alignment = 1
 editable = false
 
 [node name="CheckBox" type="CheckBox" parent="XP/Passive"]
@@ -47,8 +48,9 @@ text = "Respira XP: "
 horizontal_alignment = 2
 
 [node name="LineEdit" type="LineEdit" parent="XP/Respira"]
-custom_minimum_size = Vector2(100, 0)
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
+alignment = 1
 editable = false
 
 [node name="CheckBox" type="CheckBox" parent="XP/Respira"]
@@ -65,8 +67,9 @@ text = "Pill XP: "
 horizontal_alignment = 2
 
 [node name="LineEdit" type="LineEdit" parent="XP/Pills"]
-custom_minimum_size = Vector2(100, 0)
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
+alignment = 1
 editable = false
 
 [node name="CheckBox" type="CheckBox" parent="XP/Pills"]
@@ -83,8 +86,9 @@ text = "Daily XP: "
 horizontal_alignment = 2
 
 [node name="LineEdit" type="LineEdit" parent="XP/Daily"]
-custom_minimum_size = Vector2(100, 0)
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
+alignment = 1
 editable = false
 
 [node name="HSeparator" type="HSeparator" parent="."]
