@@ -41,4 +41,18 @@ public partial class SaveState : Resource
         planner.PillPlanner.Data = state.PillPlannerData;
         planner.MyrimonPlanner.Data = state.MyrimonPlannerData;
     }
+
+    public static SaveState GenerateFreshState()
+    {
+        var result = new SaveState
+        {
+            StageCalculatorData = new StageCalculatorData(),
+            PassiveCultivationData = new PassiveCultivationData(),
+            VaseData = new VaseData(),
+            MirrorData = new MirrorData(),
+            PillPlannerData = new PillPlannerData(),
+            MyrimonPlannerData = new MyrimonPlannerData()
+        };
+        return result;
+    }
 }

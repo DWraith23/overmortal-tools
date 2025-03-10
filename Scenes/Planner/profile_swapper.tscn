@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://5qdm8u3mcqj7"]
+
+[ext_resource type="Script" path="res://Scenes/Planner/ProfileSwapper.cs" id="1_cf2c0"]
+
+[node name="Profile Swapper" type="HBoxContainer"]
+offset_right = 18.0
+offset_bottom = 31.0
+script = ExtResource("1_cf2c0")
+
+[node name="Profile 1" type="Button" parent="."]
+layout_mode = 2
+text = "Slot 1"
+
+[node name="Profile 2" type="Button" parent="."]
+layout_mode = 2
+text = "Slot 2"
+
+[node name="Profile 3" type="Button" parent="."]
+layout_mode = 2
+text = "Slot 3"
+
+[connection signal="pressed" from="Profile 1" to="." method="OnButtonPressed" binds= [0]]
+[connection signal="pressed" from="Profile 2" to="." method="OnButtonPressed" binds= [1]]
+[connection signal="pressed" from="Profile 3" to="." method="OnButtonPressed" binds= [2]]
