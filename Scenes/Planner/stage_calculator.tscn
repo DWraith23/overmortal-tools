@@ -151,6 +151,7 @@ editable = false
 [connection signal="item_selected" from="Current Level/Major Realm Select" to="." method="OnCurrentMajorRealmSelected"]
 [connection signal="item_selected" from="Current Level/Minor Realm Select" to="." method="OnCurrentMinorRealmSelected"]
 [connection signal="item_selected" from="Current Level/Stage Select" to="." method="OnCurrentStageSelected"]
+[connection signal="value_changed" from="Current Level/Stage Percent/SpinBox" to="." method="OnCurrentPercentValueChanged"]
 [connection signal="item_selected" from="Target Level/Major Realm Select" to="." method="OnTargetMajorRealmSelected"]
 [connection signal="item_selected" from="Target Level/Minor Realm Select" to="." method="OnTargetMinorRealmSelected"]
 [connection signal="item_selected" from="Target Level/Stage Select" to="." method="OnTargetStageSelected"]
