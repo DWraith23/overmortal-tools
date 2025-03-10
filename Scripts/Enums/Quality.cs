@@ -34,4 +34,24 @@ public static class Quality
         { Classification.Legendary, 4 },
         { Classification.Mythic, 5 }
     };
+
+    public static readonly Dictionary<Classification, string> Names = new()
+    {
+        { Classification.Common, "Common" },
+        { Classification.Uncommon, "Uncommon" },
+        { Classification.Rare, "Rare" },
+        { Classification.Epic, "Epic" },
+        { Classification.Legendary, "Legendary" },
+        { Classification.Mythic, "Mythic" }
+    };
+
+    public static List<string> NamesList =>
+    [
+        "Common",
+        "Uncommon",
+        "Rare",
+        "Epic",
+        "Legendary",
+        "Mythic"
+    ];
 }
