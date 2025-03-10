@@ -11,8 +11,8 @@ RealmSelect = NodePath("Pill Level/OptionButton")
 RarePills = NodePath("Daily Pills/Rare")
 EpicPills = NodePath("Daily Pills/Epic")
 LegendaryPills = NodePath("Daily Pills/Legendary")
-TotalPillInput = NodePath("Bonus/Bonus Calculator/Total Value/LineEdit")
-BonusPillInput = NodePath("Bonus/Bonus Calculator/Base Value/LineEdit")
+TotalPillInput = NodePath("Bonus/Bonus Calculator/Total Value/SpinBox")
+BonusPillInput = NodePath("Bonus/Bonus Calculator/Base Value/SpinBox")
 MythicPills = NodePath("Daily Pills/Mythic")
 DailyValue = NodePath("Daily Value/LineEdit")
 PillCount = NodePath("Daily Value/Pill Count")
@@ -119,8 +119,11 @@ layout_mode = 2
 text = "Total Pill Value: "
 horizontal_alignment = 2
 
-[node name="LineEdit" type="LineEdit" parent="Bonus/Bonus Calculator/Total Value"]
+[node name="SpinBox" type="SpinBox" parent="Bonus/Bonus Calculator/Total Value"]
+custom_minimum_size = Vector2(125, 0)
 layout_mode = 2
+max_value = 1e+07
+alignment = 1
 
 [node name="Base Value" type="HBoxContainer" parent="Bonus/Bonus Calculator"]
 layout_mode = 2
@@ -131,8 +134,11 @@ layout_mode = 2
 text = "Bonus Pill Value: "
 horizontal_alignment = 2
 
-[node name="LineEdit" type="LineEdit" parent="Bonus/Bonus Calculator/Base Value"]
+[node name="SpinBox" type="SpinBox" parent="Bonus/Bonus Calculator/Base Value"]
+custom_minimum_size = Vector2(125, 0)
 layout_mode = 2
+max_value = 1e+07
+alignment = 1
 
 [node name="Bonus" type="HBoxContainer" parent="Bonus/Bonus Calculator"]
 layout_mode = 2
@@ -156,5 +162,5 @@ texture = ExtResource("2_vrtk7")
 [connection signal="value_changed" from="Daily Pills/Rare" to="." method="OnRarePillsSpinBoxChanged"]
 [connection signal="value_changed" from="Daily Pills/Epic" to="." method="OnEpicPillsSpinBoxChanged"]
 [connection signal="value_changed" from="Daily Pills/Legendary" to="." method="OnLegendaryPillsSpinBoxChanged"]
-[connection signal="text_changed" from="Bonus/Bonus Calculator/Total Value/LineEdit" to="." method="OnTotalPillInputChanged"]
-[connection signal="text_changed" from="Bonus/Bonus Calculator/Base Value/LineEdit" to="." method="OnBonusPillInputChanged"]
+[connection signal="value_changed" from="Bonus/Bonus Calculator/Total Value/SpinBox" to="." method="OnTotalPillValueChanged"]
+[connection signal="value_changed" from="Bonus/Bonus Calculator/Base Value/SpinBox" to="." method="OnBonusPillValueChanged"]
