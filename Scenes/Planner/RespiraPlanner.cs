@@ -48,7 +48,7 @@ public partial class RespiraPlanner : VBoxContainer
     }
 
     #region Events
-    private void OnRealmSelectorOptionSelected(int index) => ChangeRealmSelected(index);
+    private void OnRealmSelectorOptionSelected(int index) => Data.RealmIndex = index;
     private void OnRespiraAttemptsFromTechniquesValueChanged(double value) => Data.RespiraAttemptsFromTechniques = (int)value;
     private void OnRespiraBonusFromTechniquesValueChanged(double value) => Data.RespiraBonusFromTechniques = (float)value;
     private void OnRespiraAttemptsFromFriendsValueChanged(double value) => Data.RespiraAttemptsFromFriends = (int)value;
@@ -58,28 +58,24 @@ public partial class RespiraPlanner : VBoxContainer
 
     #endregion
 
-    #region Actions
-
-    private void ChangeRealmSelected(int index)
-    {
-        Data.RealmIndex = index;
-        ImmortalFriendsData.Visible = index >= 6;
-        if (index < 6)
-        {
-            Data.RespiraAttemptsFromFriends = 0;
-            Data.RespiraBonusFromFriends = 0.0f;
-        }
-    }
-
-    #endregion
-
     private void Update()
     {
         GD.Print($"{DateTime.Now} : DEBUG: Updating RespiraPlanner.");
 
+        CheckImmortalFriendsVisibility();
         UpdateOutputs();
         ValidateInputs();
         EmitSignal(SignalName.ValuesChanged);  
+    }
+
+    private void CheckImmortalFriendsVisibility()
+    {
+        ImmortalFriendsData.Visible = Data.RealmIndex >= 6;
+        if (Data.RealmIndex < 6)
+        {
+            if (Data.RespiraAttemptsFromFriends != 0) Data.RespiraAttemptsFromFriends = 0;
+            if (Data.RespiraBonusFromFriends != 0.0f) Data.RespiraBonusFromFriends = 0.0f;
+        }
     }
 
     private void UpdateOutputs()

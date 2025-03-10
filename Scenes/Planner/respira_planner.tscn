@@ -107,6 +107,7 @@ alignment = 1
 suffix = "%"
 
 [node name="Immortal Friends" type="VBoxContainer" parent="Contents/Data"]
+visible = false
 layout_mode = 2
 
 [node name="Label" type="Label" parent="Contents/Data/Immortal Friends"]
