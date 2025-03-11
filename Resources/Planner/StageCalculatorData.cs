@@ -1,4 +1,5 @@
 using Godot;
+using OvermortalTools.Scripts.Enums;
 
 namespace OvermortalTools.Resources.Planner;
 
@@ -197,6 +198,38 @@ public partial class StageCalculatorData : Resource
     /// The difference between TargetXp and CurrentXp.
     /// </summary>
     public int RemainingXpValue => TargetXp - CurrentXp;
+
+    public Godot.Collections.Array<string> GetAllMajorRealms()
+    {
+        var result = new Godot.Collections.Array<string>();
+
+        for (int i = CurrentMajorRealmIndex; i < Realm.NamesList.Count; i++)
+        {
+            result.Add(Realm.NamesList[i]);
+            if (Realm.NamesList[i] == TargetMajorRealm)
+            {
+                break;  // Stop adding realms once we reach the target realm
+            }
+        }
+
+        return result;
+    }
+
+    public Godot.Collections.Dictionary<string, int> GetAllMajorRealmsXp()
+    {
+        var result = new Godot.Collections.Dictionary<string, int>();
+
+        foreach (var realm in GetAllMajorRealms())
+        {
+            result[realm] = CultivationStage.MajorRealmXp.TryGetValue(realm, out var xp) ? xp : 0;
+            if (realm == CurrentMajorRealm)
+            {
+                result[realm] = CultivationStage.GetTotalXpToCompletion(realm) - CurrentXp;
+            }
+        }
+
+        return result;
+    }
 
 }
 

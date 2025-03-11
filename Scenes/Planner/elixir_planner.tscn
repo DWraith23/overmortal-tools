@@ -8,179 +8,192 @@ custom_minimum_size = Vector2(220, 0)
 offset_right = 1.0
 offset_bottom = 23.0
 script = ExtResource("1_o380t")
-MonspiritiaContainer = NodePath("Monspiritia")
-RealmSelect = NodePath("Realm/Realms Options")
-UsedElixirs = NodePath("Used/SpinBox")
-DailyElixirs = NodePath("Daily/SpinBox")
-UsedMonspiritia = NodePath("Monspiritia/Used/SpinBox")
-PlannedMonspiritia = NodePath("Monspiritia/Planned/SpinBox")
-MaxMonspiritia = NodePath("Monspiritia/Max/LineEdit")
-MonspiritiaValue = NodePath("Monspiritia/Value/LineEdit")
-UsedValue = NodePath("Used Value/LineEdit")
-CurrentValue = NodePath("Current Value/LineEdit")
-DailyValue = NodePath("Daily Value/LineEdit")
+MonspiritiaContainer = NodePath("Contents/Original/Monspiritia")
+RealmSelect = NodePath("Contents/Original/Realm/Realms Options")
+UsedElixirs = NodePath("Contents/Original/Used/SpinBox")
+DailyElixirs = NodePath("Contents/Original/Daily/SpinBox")
+UsedMonspiritia = NodePath("Contents/Original/Monspiritia/Used/SpinBox")
+PlannedMonspiritia = NodePath("Contents/Original/Monspiritia/Planned/SpinBox")
+MaxMonspiritia = NodePath("Contents/Original/Monspiritia/Max/LineEdit")
+MonspiritiaValue = NodePath("Contents/Original/Monspiritia/Value/LineEdit")
+UsedValue = NodePath("Contents/Original/Used Value/LineEdit")
+CurrentValue = NodePath("Contents/Original/Current Value/LineEdit")
+DailyValue = NodePath("Contents/Original/Daily Value/LineEdit")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 2
 text = "Elixir Planner"
 horizontal_alignment = 1
 
-[node name="Realm" type="HBoxContainer" parent="."]
+[node name="Contents" type="HBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Realm"]
+[node name="Original" type="VBoxContainer" parent="Contents"]
+layout_mode = 2
+
+[node name="Realm" type="HBoxContainer" parent="Contents/Original"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Contents/Original/Realm"]
 layout_mode = 2
 text = "Realm: "
 
-[node name="Realms Options" parent="Realm" instance=ExtResource("2_nfv80")]
+[node name="Realms Options" parent="Contents/Original/Realm" instance=ExtResource("2_nfv80")]
 layout_mode = 2
 
-[node name="Used" type="HBoxContainer" parent="."]
+[node name="Used" type="HBoxContainer" parent="Contents/Original"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Used"]
+[node name="Label" type="Label" parent="Contents/Original/Used"]
 custom_minimum_size = Vector2(100, 25)
 layout_mode = 2
 text = "Used Elixirs: "
 horizontal_alignment = 2
 
-[node name="SpinBox" type="SpinBox" parent="Used"]
+[node name="SpinBox" type="SpinBox" parent="Contents/Original/Used"]
 layout_mode = 2
 max_value = 999.0
 alignment = 1
 
-[node name="Daily" type="HBoxContainer" parent="."]
+[node name="Daily" type="HBoxContainer" parent="Contents/Original"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Daily"]
+[node name="Label" type="Label" parent="Contents/Original/Daily"]
 custom_minimum_size = Vector2(100, 25)
 layout_mode = 2
 text = "Daily Elixirs: "
 horizontal_alignment = 2
 
-[node name="SpinBox" type="SpinBox" parent="Daily"]
+[node name="SpinBox" type="SpinBox" parent="Contents/Original/Daily"]
 layout_mode = 2
 max_value = 999.0
 alignment = 1
 
-[node name="Monspiritia" type="VBoxContainer" parent="."]
+[node name="Monspiritia" type="VBoxContainer" parent="Contents/Original"]
 layout_mode = 2
 
-[node name="HSeparator" type="HSeparator" parent="Monspiritia"]
+[node name="HSeparator" type="HSeparator" parent="Contents/Original/Monspiritia"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Monspiritia"]
+[node name="Label" type="Label" parent="Contents/Original/Monspiritia"]
 layout_mode = 2
 text = "Monspiritia"
 
-[node name="Max" type="HBoxContainer" parent="Monspiritia"]
+[node name="Max" type="HBoxContainer" parent="Contents/Original/Monspiritia"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Monspiritia/Max"]
+[node name="Label" type="Label" parent="Contents/Original/Monspiritia/Max"]
 custom_minimum_size = Vector2(75, 0)
 layout_mode = 2
 text = "Max: "
 horizontal_alignment = 2
 
-[node name="LineEdit" type="LineEdit" parent="Monspiritia/Max"]
+[node name="LineEdit" type="LineEdit" parent="Contents/Original/Monspiritia/Max"]
 layout_mode = 2
 alignment = 1
 editable = false
 
-[node name="Used" type="HBoxContainer" parent="Monspiritia"]
+[node name="Used" type="HBoxContainer" parent="Contents/Original/Monspiritia"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Monspiritia/Used"]
+[node name="Label" type="Label" parent="Contents/Original/Monspiritia/Used"]
 custom_minimum_size = Vector2(75, 0)
 layout_mode = 2
 text = "Used: "
 horizontal_alignment = 2
 
-[node name="SpinBox" type="SpinBox" parent="Monspiritia/Used"]
+[node name="SpinBox" type="SpinBox" parent="Contents/Original/Monspiritia/Used"]
 layout_mode = 2
 max_value = 176.0
 alignment = 1
 
-[node name="Planned" type="HBoxContainer" parent="Monspiritia"]
+[node name="Planned" type="HBoxContainer" parent="Contents/Original/Monspiritia"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Monspiritia/Planned"]
+[node name="Label" type="Label" parent="Contents/Original/Monspiritia/Planned"]
 custom_minimum_size = Vector2(75, 0)
 layout_mode = 2
 text = "Planned: "
 horizontal_alignment = 2
 
-[node name="SpinBox" type="SpinBox" parent="Monspiritia/Planned"]
+[node name="SpinBox" type="SpinBox" parent="Contents/Original/Monspiritia/Planned"]
 layout_mode = 2
 max_value = 176.0
 alignment = 1
 
-[node name="Value" type="HBoxContainer" parent="Monspiritia"]
+[node name="Value" type="HBoxContainer" parent="Contents/Original/Monspiritia"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Monspiritia/Value"]
+[node name="Label" type="Label" parent="Contents/Original/Monspiritia/Value"]
 custom_minimum_size = Vector2(75, 0)
 layout_mode = 2
 text = "Value: "
 horizontal_alignment = 2
 
-[node name="LineEdit" type="LineEdit" parent="Monspiritia/Value"]
+[node name="LineEdit" type="LineEdit" parent="Contents/Original/Monspiritia/Value"]
 custom_minimum_size = Vector2(125, 0)
 layout_mode = 2
 alignment = 1
 editable = false
 
-[node name="HSeparator" type="HSeparator" parent="."]
+[node name="HSeparator" type="HSeparator" parent="Contents/Original"]
 layout_mode = 2
 
-[node name="Used Value" type="HBoxContainer" parent="."]
+[node name="Used Value" type="HBoxContainer" parent="Contents/Original"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Used Value"]
+[node name="Label" type="Label" parent="Contents/Original/Used Value"]
 custom_minimum_size = Vector2(125, 0)
 layout_mode = 2
 text = "Used Value: "
 horizontal_alignment = 2
 
-[node name="LineEdit" type="LineEdit" parent="Used Value"]
+[node name="LineEdit" type="LineEdit" parent="Contents/Original/Used Value"]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 alignment = 1
 editable = false
 
-[node name="Current Value" type="HBoxContainer" parent="."]
+[node name="Current Value" type="HBoxContainer" parent="Contents/Original"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Current Value"]
+[node name="Label" type="Label" parent="Contents/Original/Current Value"]
 custom_minimum_size = Vector2(125, 0)
 layout_mode = 2
 text = "Current Value: "
 horizontal_alignment = 2
 
-[node name="LineEdit" type="LineEdit" parent="Current Value"]
+[node name="LineEdit" type="LineEdit" parent="Contents/Original/Current Value"]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 alignment = 1
 editable = false
 
-[node name="Daily Value" type="HBoxContainer" parent="."]
+[node name="Daily Value" type="HBoxContainer" parent="Contents/Original"]
 visible = false
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Daily Value"]
+[node name="Label" type="Label" parent="Contents/Original/Daily Value"]
 custom_minimum_size = Vector2(125, 0)
 layout_mode = 2
 text = "Daily Value: "
 horizontal_alignment = 2
 
-[node name="LineEdit" type="LineEdit" parent="Daily Value"]
+[node name="LineEdit" type="LineEdit" parent="Contents/Original/Daily Value"]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 alignment = 1
 editable = false
 
-[connection signal="item_selected" from="Realm/Realms Options" to="." method="OnRealmOptionSelected"]
-[connection signal="value_changed" from="Used/SpinBox" to="." method="OnUsedElixirsChanged"]
-[connection signal="value_changed" from="Daily/SpinBox" to="." method="OnDailyElixirsChanged"]
-[connection signal="value_changed" from="Monspiritia/Used/SpinBox" to="." method="OnUsedMonspiritiaChanged"]
-[connection signal="value_changed" from="Monspiritia/Planned/SpinBox" to="." method="OnPlannedMonspiritiaChanged"]
+[node name="New" type="VBoxContainer" parent="Contents"]
+visible = false
+layout_mode = 2
+
+[node name="Realms" type="VBoxContainer" parent="Contents/New"]
+layout_mode = 2
+
+[connection signal="item_selected" from="Contents/Original/Realm/Realms Options" to="." method="OnRealmOptionSelected"]
+[connection signal="value_changed" from="Contents/Original/Used/SpinBox" to="." method="OnUsedElixirsChanged"]
+[connection signal="value_changed" from="Contents/Original/Daily/SpinBox" to="." method="OnDailyElixirsChanged"]
+[connection signal="value_changed" from="Contents/Original/Monspiritia/Used/SpinBox" to="." method="OnUsedMonspiritiaChanged"]
+[connection signal="value_changed" from="Contents/Original/Monspiritia/Planned/SpinBox" to="." method="OnPlannedMonspiritiaChanged"]

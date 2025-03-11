@@ -386,6 +386,17 @@ public partial class CultivationStage : Resource
         return result;
     }
 
+    public static int GetTotalXpToCompletion(string majorRealm)
+    {
+        var xp = 0;
+        foreach (var kvp in MajorRealms)
+        {
+            xp += MajorRealmXp[kvp];
+            if (kvp == majorRealm) break;
+        }
+        return xp;
+    }
+
     [Export] public string MajorRealm { get; set; }
     [Export] public string MinorRealm { get; set; }
     [Export] public string Stage { get; set; }
@@ -447,6 +458,4 @@ public partial class CultivationStage : Resource
     public int GetTotalXp(float percentComplete) => GetXpUntil(this) + GetCurrentXp(percentComplete);
 
     public override string ToString() => $"{MajorRealm} {MinorRealm} {Stage}";
-
-
 }

@@ -92,4 +92,11 @@ public partial class ElixirPlanner : VBoxContainer
             : 0;
         if (Data.PlannedMonspiritia != value) Data.PlannedMonspiritia = value;
     }
+
+    
+    public void Setup(StageCalculatorData data)
+    {
+        
+    }
+
 }
