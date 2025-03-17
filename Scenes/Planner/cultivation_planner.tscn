@@ -31,7 +31,7 @@ BasicInformation = NodePath("Contents/Basic Information")
 PillPlanner = NodePath("Contents/Advanced Information/Pills")
 RespiraPlanner = NodePath("Contents/Advanced Information/Respira")
 MyrimonPlanner = NodePath("Contents/Advanced Information/Myrimon")
-ElixirPlanner = NodePath("Contents/Advanced Information/Elixirs")
+ElixirPlanner = NodePath("Contents/Advanced Information/Elixirs (WIP)")
 TargetCalculation = NodePath("Contents/Target Calculation")
 AdvancedTabs = NodePath("Contents/Advanced Information")
 
@@ -56,7 +56,7 @@ visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
-[node name="Elixirs" parent="Contents/Advanced Information" instance=ExtResource("5_najmo")]
+[node name="Elixirs (WIP)" parent="Contents/Advanced Information" instance=ExtResource("5_najmo")]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 2
@@ -74,5 +74,5 @@ size_flags_horizontal = 4
 [connection signal="ValuesChanged" from="Contents/Basic Information" to="." method="OnValuesChanged"]
 [connection signal="ValuesChanged" from="Contents/Advanced Information/Pills" to="." method="OnValuesChanged"]
 [connection signal="ValuesChanged" from="Contents/Advanced Information/Respira" to="." method="OnValuesChanged"]
-[connection signal="ValuesChanged" from="Contents/Advanced Information/Elixirs" to="." method="OnValuesChanged"]
+[connection signal="ValuesChanged" from="Contents/Advanced Information/Elixirs (WIP)" to="." method="OnValuesChanged"]
 [connection signal="ValuesChanged" from="Contents/Advanced Information/Myrimon" to="." method="OnValuesChanged"]

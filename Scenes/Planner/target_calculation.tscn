@@ -95,7 +95,6 @@ editable = false
 
 [node name="CheckBox" type="CheckBox" parent="XP/Elixirs"]
 layout_mode = 2
-button_pressed = true
 
 [node name="Daily" type="HBoxContainer" parent="XP"]
 layout_mode = 2

@@ -44,8 +44,8 @@ public partial class Elixir : Resource
         { Realm.Classification.Voidbreak, 60000 },
         { Realm.Classification.Wholeness, 84000 },
         { Realm.Classification.Perfection, 128000 },
-        { Realm.Classification.Nirvana, 132000 },
-
+        { Realm.Classification.Nirvana, 180000 },
+        // { Realm.Classification.Celestial, 368000 },
     };
 
     private static Dictionary<Realm.Classification, List<(int, float)>> MainPathElixirsMultipliers => new()

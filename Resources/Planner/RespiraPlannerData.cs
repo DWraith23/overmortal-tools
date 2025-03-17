@@ -21,6 +21,14 @@ public partial class RespiraPlannerData : Resource
         { Realm.Classification.Nirvana, 25000 },
     };
 
+    private static List<(float, int)> MultiplierOdds =>
+    [
+        (0.55f, 1),
+        (0.30f, 2),
+        (0.1475f, 5),
+        (0.0025f, 10),
+    ];
+
     private int _realmIndex = 0;
     private int _respiraAttemptsFromTechniques = 0;
     private float _respiraBonusFromTechniques = 0.0f;
@@ -103,6 +111,15 @@ public partial class RespiraPlannerData : Resource
     public float TotalRespiraBonus => 1f + (_respiraBonusFromTechniques + _respiraBonusFromFriends + _respiraBonusFromCurios) / 100f;
 
     public int RespiraValue => (int)Math.Floor(RealmValues[(Realm.Classification)_realmIndex] * TotalRespiraBonus);
-    public int DailyRespiraValue => RespiraValue * TotalRespiraAttempts;
+    public int DailyRespiraValue => GetDailyRespiraValue();
+    private int GetDailyRespiraValue()
+    {
+        var result = 0;
+        foreach (var odds in MultiplierOdds)
+        {
+            result += (int)Math.Floor(RespiraValue * odds.Item1 * odds.Item2 * TotalRespiraAttempts);
+        }
+        return result;
+    }
 
 }
