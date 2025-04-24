@@ -73,32 +73,32 @@ public partial class PillCalculator : PanelContainer
 
     // private Dictionary<Pill, Label> PillValues { get; set; } = [];
 
-    // private int CommonPillValue => PillValues
+    // private long CommonPillValue => PillValues
     //     .Where(kvp => kvp.Key.CultivationRealm == CurrentRealm)
     //     .Where(kvp => kvp.Key.PillQuality == Pill.Quality.Common)
     //     .First().Key.GetValue((float)PillBonusValue);
 
-    // private int UncommonPillValue => PillValues
+    // private long UncommonPillValue => PillValues
     //     .Where(kvp => kvp.Key.CultivationRealm == CurrentRealm)
     //     .Where(kvp => kvp.Key.PillQuality == Pill.Quality.Uncommon)
     //     .First().Key.GetValue((float)PillBonusValue);
 
-    // private int RarePillValue => PillValues
+    // private long RarePillValue => PillValues
     //     .Where(kvp => kvp.Key.CultivationRealm == CurrentRealm)
     //     .Where(kvp => kvp.Key.PillQuality == Pill.Quality.Rare)
     //     .First().Key.GetValue((float)PillBonusValue);
 
-    // private int EpicPillValue => PillValues
+    // private long EpicPillValue => PillValues
     //     .Where(kvp => kvp.Key.CultivationRealm == CurrentRealm)
     //     .Where(kvp => kvp.Key.PillQuality == Pill.Quality.Epic)
     //     .First().Key.GetValue((float)PillBonusValue);
 
-    // private int LegendaryPillValue => PillValues
+    // private long LegendaryPillValue => PillValues
     //     .Where(kvp => kvp.Key.CultivationRealm == CurrentRealm)
     //     .Where(kvp => kvp.Key.PillQuality == Pill.Quality.Legendary)
     //     .First().Key.GetValue((float)PillBonusValue);
 
-    // private int MythicPillValue => PillValues
+    // private long MythicPillValue => PillValues
     //     .Where(kvp => kvp.Key.CultivationRealm == CurrentRealm)
     //     .Where(kvp => kvp.Key.PillQuality == Pill.Quality.Mythic)
     //     .First().Key.GetValue((float)PillBonusValue);
@@ -111,9 +111,9 @@ public partial class PillCalculator : PanelContainer
     // private int MythicsPillsPerDay { get; set; } = 0;
 
     // // Set from BreakthroughCalculator
-    // private int _dailyExp = 0;
-    // private int _targetExp = 0;
-    // public int DailyExp
+    // private long _dailyExp = 0;
+    // private long _targetExp = 0;
+    // public long DailyExp
     // {
     //     get => _dailyExp;
     //     set
@@ -123,7 +123,7 @@ public partial class PillCalculator : PanelContainer
     //         UpdateFinalCalculations();
     //     }
     // }
-    // public int TargetExp
+    // public long TargetExp
     // {
     //     get => _targetExp;
     //     set

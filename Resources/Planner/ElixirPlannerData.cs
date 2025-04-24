@@ -73,14 +73,14 @@ public partial class ElixirPlannerData : Resource
     public bool MonspiritiaAvailable => Elixir.MonspiritiaElixirsCount.ContainsKey(Realm);
     public int MaxMonspiritia => MonspiritiaAvailable ? Elixir.MonspiritiaElixirsCount[Realm] : 0;
     public int MonspiritiaRemaining => MaxMonspiritia - UsedMonspiritia;
-    public int PlannedMonspiritiaValue => Elixir.GetMonspiritiaTotalValue(Realm, UsedMonspiritia, PlannedMonspiritia);
+    public long PlannedMonspiritiaValue => Elixir.GetMonspiritiaTotalValue(Realm, UsedMonspiritia, PlannedMonspiritia);
 
     // Main Path
-    public int UsedValue => Elixir.GetMainPathTotalValue(Realm, 0, UsedElixirs);
-    public int CurrentValue => Elixir.GetMainPathElixirValue(Realm, UsedElixirs);
-    public int DailyValue => CurrentValue * DailyElixirs;
+    public long UsedValue => Elixir.GetMainPathTotalValue(Realm, 0, UsedElixirs);
+    public long CurrentValue => Elixir.GetMainPathElixirValue(Realm, UsedElixirs);
+    public long DailyValue => CurrentValue * DailyElixirs;
 
     // Outputs
-    public int GetValueAfterTime(int days) => Elixir.GetMainPathTotalValue(Realm, UsedElixirs, days * DailyElixirs) + PlannedMonspiritiaValue;
-    public int GetDailyValue(int days) => days == 0 ? 0 : (int)Math.Floor(GetValueAfterTime(days) / days + 0d);
+    public long GetValueAfterTime(int days) => Elixir.GetMainPathTotalValue(Realm, UsedElixirs, days * DailyElixirs) + PlannedMonspiritiaValue;
+    public long GetDailyValue(int days) => days == 0 ? 0 : (int)Math.Floor(GetValueAfterTime(days) / days + 0d);
 }

@@ -109,7 +109,7 @@ public partial class MyrimonPlannerData : Resource
     /// <summary>
     /// The minimum amount of XP you can get from the given parameters.
     /// </summary>
-    public int MinimumXP => MyrimonCalculation.GetMinimumXP(
+    public long MinimumXP => MyrimonCalculation.GetMinimumXP(
         ExtractorQuality,
         QualityLevel,
         FruitQuantity,
@@ -122,7 +122,7 @@ public partial class MyrimonPlannerData : Resource
     /// <summary>
     /// The average xp you can get from the given parameters.
     /// </summary>
-    public int AverageXp => MyrimonCalculation.GetAverageXP(
+    public long AverageXp => MyrimonCalculation.GetAverageXP(
       ExtractorQuality,
       QualityLevel,
       FruitQuantity,
@@ -135,7 +135,7 @@ public partial class MyrimonPlannerData : Resource
     /// <summary>
     /// The absolute maximum amount of XP you can get from the given parameters.
     /// </summary>
-    public int MaximumXp => MyrimonCalculation.GetMaximumXP(
+    public long MaximumXp => MyrimonCalculation.GetMaximumXP(
         ExtractorQuality,
         QualityLevel,
         FruitQuantity,

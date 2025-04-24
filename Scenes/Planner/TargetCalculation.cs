@@ -23,15 +23,15 @@ public partial class TargetCalculation : VBoxContainer
     [Export] private LineEdit WithMyrimonDays { get; set; }
     [Export] private LineEdit WithoutMyrimonDays { get; set; }
 
-    private int _currentXp = 0;
-    private int _targetXp = 2;
-    private int _passiveXp = 0;
-    private int _respiraXp = 60;
-    private int _pillXp = 0;
-    private int _myrimonAverageXp = 0;
+    private long _currentXp = 0;
+    private long _targetXp = 2;
+    private long _passiveXp = 0;
+    private long _respiraXp = 60;
+    private long _pillXp = 0;
+    private long _myrimonAverageXp = 0;
     private ElixirPlannerData _elixirData;
 
-    public int CurrentXp
+    public long CurrentXp
     {
         get => _currentXp;
         set
@@ -41,7 +41,7 @@ public partial class TargetCalculation : VBoxContainer
         }
     }
 
-    public int TargetXp
+    public long TargetXp
     {
         get => _targetXp;
         set
@@ -51,7 +51,7 @@ public partial class TargetCalculation : VBoxContainer
         }
     }
 
-    public int PassiveXp
+    public long PassiveXp
     {
         get => _passiveXp;
         set
@@ -61,7 +61,7 @@ public partial class TargetCalculation : VBoxContainer
         }
     }
 
-    public int RespiraXp
+    public long RespiraXp
     {
         get => _respiraXp;
         set
@@ -71,7 +71,7 @@ public partial class TargetCalculation : VBoxContainer
         }
     }
 
-    public int PillXp
+    public long PillXp
     {
         get => _pillXp;
         set
@@ -81,7 +81,7 @@ public partial class TargetCalculation : VBoxContainer
         }
     }
 
-    public int MyrimonAverageXp
+    public long MyrimonAverageXp
     {
         get => _myrimonAverageXp;
         set
@@ -107,10 +107,10 @@ public partial class TargetCalculation : VBoxContainer
     private bool AddPill => PillCheck.ButtonPressed;
     private bool AddElixir => ElixirCheck.ButtonPressed;
 
-    private int DailyXp => GetDailyXp();
-    private int GetDailyXp()
+    private long DailyXp => GetDailyXp();
+    private long GetDailyXp()
     {
-        var xp = 0;
+        long xp = 0;
         if (AddPassive) xp += PassiveXp;
         if (AddRespira) xp += RespiraXp;
         if (AddPill) xp += PillXp;
@@ -118,10 +118,10 @@ public partial class TargetCalculation : VBoxContainer
         return xp;
     }
 
-    private int DailyElixirXp { get; set; } = 0;
+    private long DailyElixirXp { get; set; } = 0;
 
-    private int RemainingXp => TargetXp - CurrentXp;
-    private int RemainingXpAfterMyrm => RemainingXp - MyrimonAverageXp;
+    private long RemainingXp => TargetXp - CurrentXp;
+    private long RemainingXpAfterMyrm => RemainingXp - MyrimonAverageXp;
     private int DaysNoMyrm => (int)Math.Ceiling(RemainingXp / DailyXp + 0d);
     private int DaysWithMyrm => (int)Math.Ceiling(RemainingXpAfterMyrm / DailyXp + 0d);
 

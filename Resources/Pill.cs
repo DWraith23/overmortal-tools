@@ -36,8 +36,8 @@ public partial class Pill : Resource
     [Export] public Quality.Classification PillQuality { get; set; } = Quality.Classification.Common;
 
     public string PillName => $"{PillQuality} {CultivationRealm} Pill";
-    public int PillValue => (int) Math.Floor(BaseRealmValues[CultivationRealm] * QualityMultipliers[PillQuality]);
-    public int GetValue(float multiplier) => (int) Math.Floor(PillValue * multiplier);
+    public long PillValue => (int) Math.Floor(BaseRealmValues[CultivationRealm] * QualityMultipliers[PillQuality]);
+    public long GetValue(float multiplier) => (int) Math.Floor(PillValue * multiplier);
 
     public static Pill[] GeneratePills()
     {

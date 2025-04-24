@@ -110,9 +110,9 @@ public partial class RespiraPlannerData : Resource
     public int TotalRespiraAttempts => 10 + _respiraAttemptsFromTechniques + _respiraAttempsFromFriends + _respiraAttemptsFromCurios;
     public float TotalRespiraBonus => 1f + (_respiraBonusFromTechniques + _respiraBonusFromFriends + _respiraBonusFromCurios) / 100f;
 
-    public int RespiraValue => (int)Math.Floor(RealmValues[(Realm.Classification)_realmIndex] * TotalRespiraBonus);
-    public int DailyRespiraValue => GetDailyRespiraValue();
-    private int GetDailyRespiraValue()
+    public long RespiraValue => (int)Math.Floor(RealmValues[(Realm.Classification)_realmIndex] * TotalRespiraBonus);
+    public long DailyRespiraValue => GetDailyRespiraValue();
+    private long GetDailyRespiraValue()
     {
         var result = 0;
         foreach (var odds in MultiplierOdds)

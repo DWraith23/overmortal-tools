@@ -99,15 +99,15 @@ public partial class PillPlannerData : Resource
 
     public float PillBonusMultiplier => TotalPillValue / ((float)TotalPillValue - BonusPillValue);
 
-    private int RarePillsValue => GetPillValue(Quality.Classification.Rare) * RarePills;
-    private int EpicPillsValue => GetPillValue(Quality.Classification.Epic) * EpicPills;
-    private int LegendaryPillsValue => GetPillValue(Quality.Classification.Legendary) * LegendaryPills;
-    private int MythicPillsValue => (int)Math.Floor(GetPillValue(Quality.Classification.Mythic) * MythicPills);
+    private long RarePillsValue => GetPillValue(Quality.Classification.Rare) * RarePills;
+    private long EpicPillsValue => GetPillValue(Quality.Classification.Epic) * EpicPills;
+    private long LegendaryPillsValue => GetPillValue(Quality.Classification.Legendary) * LegendaryPills;
+    private long MythicPillsValue => (int)Math.Floor(GetPillValue(Quality.Classification.Mythic) * MythicPills);
 
-    public int DailyPillValue => RarePillsValue + EpicPillsValue + LegendaryPillsValue + MythicPillsValue;
+    public long DailyPillValue => RarePillsValue + EpicPillsValue + LegendaryPillsValue + MythicPillsValue;
 
 
-    private int GetPillValue(Quality.Classification quality)
+    private long GetPillValue(Quality.Classification quality)
     {
         var pill = Pills
             .Where(pill => pill.PillQuality == quality)

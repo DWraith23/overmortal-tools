@@ -353,10 +353,10 @@ public partial class CultivationStage : Resource
     public static List<string> Stages(string majorRealm, string minorRealm) =>
         [.. AllStages.Where(s => s.MajorRealm == majorRealm && s.MinorRealm == minorRealm).Select(s => s.Stage).Distinct()];
 
-    public readonly static Dictionary<string, int> MajorRealmXp = GetMajorRealmXp();
-    private static Dictionary<string, int> GetMajorRealmXp()
+    public readonly static Dictionary<string, long> MajorRealmXp = GetMajorRealmXp();
+    private static Dictionary<string, long> GetMajorRealmXp()
     {
-        var result = new Dictionary<string, int>();
+        var result = new Dictionary<string, long>();
 
         foreach (var realm in MajorRealms)
         {
@@ -366,10 +366,10 @@ public partial class CultivationStage : Resource
         return result;
     }
 
-    public readonly static Dictionary<(string, string), int> MinorRealmXp = GetMinorRealmXp();
-    private static Dictionary<(string, string), int> GetMinorRealmXp()
+    public readonly static Dictionary<(string, string), long> MinorRealmXp = GetMinorRealmXp();
+    private static Dictionary<(string, string), long> GetMinorRealmXp()
     {
-        var result = new Dictionary<(string,string) , int>();
+        var result = new Dictionary<(string,string) , long>();
 
         foreach (var major in MajorRealms)
         {
@@ -386,9 +386,9 @@ public partial class CultivationStage : Resource
         return result;
     }
 
-    public static int GetTotalXpToCompletion(string majorRealm)
+    public static long GetTotalXpToCompletion(string majorRealm)
     {
-        var xp = 0;
+        long xp = 0;
         foreach (var kvp in MajorRealms)
         {
             xp += MajorRealmXp[kvp];
@@ -400,13 +400,13 @@ public partial class CultivationStage : Resource
     [Export] public string MajorRealm { get; set; }
     [Export] public string MinorRealm { get; set; }
     [Export] public string Stage { get; set; }
-    [Export] public int XPRequired { get; set; }
+    [Export] public long XPRequired { get; set; }
 
     public CultivationStage()
     {
     }
 
-    public CultivationStage(string major, string minor, string stage, int xp)
+    public CultivationStage(string major, string minor, string stage, long xp)
     {
         MajorRealm = major;
         MinorRealm = minor;
@@ -419,7 +419,7 @@ public partial class CultivationStage : Resource
     /// </summary>
     /// <param name="percentComplete"></param>
     /// <returns></returns>
-    public int GetCurrentXp(float percentComplete) => (int)Math.Floor(XPRequired * percentComplete);
+    public long GetCurrentXp(float percentComplete) => (long)Math.Floor(XPRequired * percentComplete);
 
     /// <summary>
     /// Returns the amount of XP required to get TO this stage, but does not include this stage.
@@ -427,7 +427,7 @@ public partial class CultivationStage : Resource
     /// </summary>
     /// <param name="stage"></param>
     /// <returns></returns>
-    public static int GetXpUntil(CultivationStage stage)
+    public static long GetXpUntil(CultivationStage stage)
     {
         if (!AllStages.Contains(stage)) return 0;
 
@@ -441,7 +441,7 @@ public partial class CultivationStage : Resource
     /// </summary>
     /// <param name="stage"></param>
     /// <returns></returns>
-    public static int GetXpToComplete(CultivationStage stage)
+    public static long GetXpToComplete(CultivationStage stage)
     {
         if (!AllStages.Contains(stage)) return 0;
 
@@ -455,7 +455,7 @@ public partial class CultivationStage : Resource
     /// </summary>
     /// <param name="percentComplete"></param>
     /// <returns></returns>
-    public int GetTotalXp(float percentComplete) => GetXpUntil(this) + GetCurrentXp(percentComplete);
+    public long GetTotalXp(float percentComplete) => GetXpUntil(this) + GetCurrentXp(percentComplete);
 
     public override string ToString() => $"{MajorRealm} {MinorRealm} {Stage}";
 }

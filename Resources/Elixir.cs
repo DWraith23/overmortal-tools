@@ -63,25 +63,25 @@ public partial class Elixir : Resource
 
     };
 
-    public static int GetMonspiritiaElixirValue(Realm.Classification realm, int used)
+    public static long GetMonspiritiaElixirValue(Realm.Classification realm, int used)
     {
         if (!MonspiritiaElixirsValue.TryGetValue(realm, out int value)) return 0;   // If the realm is not found, return 0
         float multiplier = GetElixirMultiplier(MonspiritiaElixirsMultipliers[realm], used);
         return (int)Math.Floor(value * multiplier);
     }
 
-    public static int GetMainPathElixirValue(Realm.Classification realm, int used)
+    public static long GetMainPathElixirValue(Realm.Classification realm, int used)
     {
         if (!MainPathElixirsValue.TryGetValue(realm, out int value)) return 0;  // If the realm is not found, return 0
         float multiplier = GetElixirMultiplier(MainPathElixirsMultipliers[realm], used);
         return (int)Math.Floor(value * multiplier);
     }
 
-    public static int GetMonspiritiaTotalValue(Realm.Classification realm, int used, int planned)
+    public static long GetMonspiritiaTotalValue(Realm.Classification realm, int used, int planned)
     {
         if (!MonspiritiaElixirsCount.ContainsKey(realm)) return 0;  // If the realm is not found, return 0
 
-        var value = 0;
+        long value = 0;
         for (int i = 0; i < planned; i++)
         {
             value += GetMonspiritiaElixirValue(realm, used + i);
@@ -89,11 +89,11 @@ public partial class Elixir : Resource
         return value;
     }
 
-    public static int GetMainPathTotalValue(Realm.Classification realm, int used, int planned)
+    public static long GetMainPathTotalValue(Realm.Classification realm, int used, int planned)
     {
         if (!MainPathElixirsValue.ContainsKey(realm)) return 0;  // If the realm is not found, return 0
 
-        var value = 0;
+        long value = 0;
         for (int i = 0; i < planned; i++)
         {
             value += GetMainPathElixirValue(realm, used + i);
@@ -101,7 +101,7 @@ public partial class Elixir : Resource
         return value;
     }
 
-    private static float GetElixirMultiplier (List<(int, float)> multipliers, int used)
+    private static float GetElixirMultiplier (List<(int, float)> multipliers, long used)
     {
         var multiplier = 0f;
         var added = 0;

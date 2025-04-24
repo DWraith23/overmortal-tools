@@ -165,7 +165,7 @@ public partial class StageCalculatorData : Resource
     /// <summary>
     /// How much total XP has been accumulated on this Path, including all previous stages.
     /// </summary>
-    public int CurrentXp =>
+    public long CurrentXp =>
         CultivationStage.GetStage(
                 CurrentMajorRealm,
                 CurrentMinorRealm,
@@ -181,7 +181,7 @@ public partial class StageCalculatorData : Resource
     /// <summary>
     /// Total XP required to complete the target stage.
     /// </summary>
-    public int TargetXp =>
+    public long TargetXp =>
         CultivationStage.GetStage(
                 TargetMajorRealm,
                 TargetMinorRealm,
@@ -197,7 +197,7 @@ public partial class StageCalculatorData : Resource
     /// <summary>
     /// The difference between TargetXp and CurrentXp.
     /// </summary>
-    public int RemainingXpValue => TargetXp - CurrentXp;
+    public long RemainingXpValue => TargetXp - CurrentXp;
 
     public Godot.Collections.Array<string> GetAllMajorRealms()
     {
@@ -215,9 +215,9 @@ public partial class StageCalculatorData : Resource
         return result;
     }
 
-    public Godot.Collections.Dictionary<string, int> GetAllMajorRealmsXp()
+    public Godot.Collections.Dictionary<string, long> GetAllMajorRealmsXp()
     {
-        var result = new Godot.Collections.Dictionary<string, int>();
+        var result = new Godot.Collections.Dictionary<string, long>();
 
         foreach (var realm in GetAllMajorRealms())
         {

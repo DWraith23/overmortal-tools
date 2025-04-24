@@ -16,7 +16,7 @@ public partial class RealmElixirData : HBoxContainer
     public int DailyElixirAmount => (int)DailyCount.Value;
     public int UsedElixirAmount => (int)UsedCount.Value;
 
-    public int ElixirValue => GetElixirValue();
+    public long ElixirValue => GetElixirValue();
 
     private int DaysInRealm { get; set; } = 0;
 
@@ -26,7 +26,7 @@ public partial class RealmElixirData : HBoxContainer
         DaysInRealm = daysInRealm;
     }
 
-    private int GetElixirValue()
+    private long GetElixirValue()
     {
         var realm = (Realm.Classification)Realm.NamesList.IndexOf(RealmName.Text);
         var flat = Elixir.GetMainPathTotalValue(realm, UsedElixirAmount, FlatElixirAmount);
