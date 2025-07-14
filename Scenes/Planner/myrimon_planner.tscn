@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://d3yft6mkjvrno"]
+[gd_scene load_steps=3 format=3 uid="uid://d3yft6mkjvrno"]
 
 [ext_resource type="Script" path="res://Scenes/Planner/MyrimonPlanner.cs" id="1_8uunu"]
+[ext_resource type="PackedScene" uid="uid://bqrdrnjp6rlxk" path="res://Scenes/Components/question_button.tscn" id="2_i4cd2"]
 
 [node name="Myrimon Planner" type="VBoxContainer" node_paths=PackedStringArray("ExpSpinBox", "QualitySpinBox", "GushSpinBox", "HighRankSpinBox", "FruitTypeSelect", "ExtractorQualitySelect", "FruitQuantitySpinBox", "RealmMatchCheckBox", "AverageXpValue", "AverageTechValue")]
+size_flags_horizontal = 4
 script = ExtResource("1_8uunu")
 ExpSpinBox = NodePath("Node Values/EXP/SpinBox")
 QualitySpinBox = NodePath("Node Values/Quality/SpinBox")
@@ -29,7 +31,6 @@ horizontal_alignment = 2
 
 [node name="SpinBox" type="SpinBox" parent="Node Values/EXP"]
 layout_mode = 2
-size_flags_horizontal = 3
 max_value = 30.0
 alignment = 1
 
@@ -44,7 +45,6 @@ horizontal_alignment = 2
 
 [node name="SpinBox" type="SpinBox" parent="Node Values/Quality"]
 layout_mode = 2
-size_flags_horizontal = 3
 max_value = 30.0
 alignment = 1
 
@@ -59,7 +59,6 @@ horizontal_alignment = 2
 
 [node name="SpinBox" type="SpinBox" parent="Node Values/Gush"]
 layout_mode = 2
-size_flags_horizontal = 3
 max_value = 30.0
 alignment = 1
 
@@ -74,7 +73,6 @@ horizontal_alignment = 2
 
 [node name="SpinBox" type="SpinBox" parent="Node Values/Tech"]
 layout_mode = 2
-size_flags_horizontal = 3
 max_value = 30.0
 alignment = 1
 
@@ -95,7 +93,6 @@ horizontal_alignment = 2
 
 [node name="OptionButton" type="OptionButton" parent="Options/Fruit Type"]
 layout_mode = 2
-size_flags_horizontal = 3
 alignment = 1
 selected = 0
 item_count = 5
@@ -146,7 +143,6 @@ horizontal_alignment = 2
 
 [node name="SpinBox" type="SpinBox" parent="Options/Fruit Quantity"]
 layout_mode = 2
-size_flags_horizontal = 3
 max_value = 1000.0
 alignment = 1
 
@@ -179,8 +175,8 @@ text = "Average Value: "
 horizontal_alignment = 2
 
 [node name="LineEdit" type="LineEdit" parent="Outputs/Average Value"]
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
-size_flags_horizontal = 3
 alignment = 1
 editable = false
 
@@ -194,10 +190,23 @@ text = "Average Tech Pts: "
 horizontal_alignment = 2
 
 [node name="LineEdit" type="LineEdit" parent="Outputs/Average Tech"]
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
-size_flags_horizontal = 3
 alignment = 1
 editable = false
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Question Button" parent="Node2D" instance=ExtResource("2_i4cd2")]
+offset_left = 272.0
+offset_right = 304.0
+offset_bottom = 32.0
+Title = "Myrimon"
+PopupText = "To calculate your Myrimon bonus, enter in the Extractor node levels that you PLAN to have when you consume your fruit, not necessarily your current levels.
+
+Enter what Realm your fruit are, the Extractor quality, and whether your stage will match the current server stage (for the 50% bonus).
+
+Lastly, enter how many fruit you will be consuming."
 
 [connection signal="value_changed" from="Node Values/EXP/SpinBox" to="." method="OnExpSpinBoxChanged"]
 [connection signal="value_changed" from="Node Values/Quality/SpinBox" to="." method="OnQualitySpinBoxChanged"]

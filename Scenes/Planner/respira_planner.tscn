@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bu0q6r2heryak"]
+[gd_scene load_steps=3 format=3 uid="uid://bu0q6r2heryak"]
 
 [ext_resource type="Script" path="res://Scenes/Planner/RespiraPlanner.cs" id="1_dfppw"]
+[ext_resource type="PackedScene" uid="uid://bqrdrnjp6rlxk" path="res://Scenes/Components/question_button.tscn" id="2_wrvsr"]
 
 [node name="Respira Planner" type="VBoxContainer" node_paths=PackedStringArray("ImmortalFriendsData", "RealmSelector", "RespiraAttemptsFromTechniques", "RespiraBonusFromTechniques", "RespiraAttemptsFromFriends", "RespiraBonusFromFriends", "RespiraAttemptsFromCurios", "RespiraBonusFromCurios", "TotalRespiraAttempts", "TotalRespiraBonus", "TotalRespiraValue", "DailyRespiraValue")]
 offset_right = 1.0
@@ -207,6 +208,19 @@ layout_mode = 2
 size_flags_vertical = 4
 text = "In order to get Respira information, use Compare BR on another Taoist, and check Details in Techniques, Immortal Friends, and Epic and Rare Curios."
 wrap_mode = 1
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Question Button" parent="Node2D" instance=ExtResource("2_wrvsr")]
+offset_left = 432.0
+offset_right = 464.0
+offset_bottom = 32.0
+Title = "Respira"
+PopupText = "To find your Resira bonuses, you'll need to look in a few places:
+First enter your highest cultivation realm.
+Then use Compare BR on any other Taoist, and you'll need to use Check Details in Techniques, Immortal Friends (if Voidbreak+), and Curios.
+
+Curios have Respira-related bonuses in the Epic and Rare sections."
 
 [connection signal="item_selected" from="Contents/Data/Realm Select/Realms" to="." method="OnRealmSelectorOptionSelected"]
 [connection signal="value_changed" from="Contents/Data/Techniques/Attempts/SpinBox" to="." method="OnRespiraAttemptsFromTechniquesValueChanged"]

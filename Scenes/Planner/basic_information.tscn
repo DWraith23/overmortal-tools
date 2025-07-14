@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://b7lpaktb1ga4t"]
+[gd_scene load_steps=7 format=3 uid="uid://b7lpaktb1ga4t"]
 
 [ext_resource type="Script" path="res://Scenes/Planner/BasicInformation.cs" id="1_3rpgl"]
 [ext_resource type="PackedScene" uid="uid://dwx51nt8fxjpe" path="res://Scenes/Planner/stage_calculator.tscn" id="1_tgjly"]
 [ext_resource type="PackedScene" uid="uid://h6ofog5khv2b" path="res://Scenes/Planner/passive_cultivation.tscn" id="2_vg0im"]
+[ext_resource type="PackedScene" uid="uid://bqrdrnjp6rlxk" path="res://Scenes/Components/question_button.tscn" id="3_r1jlk"]
 [ext_resource type="PackedScene" uid="uid://bj4wqwevxef1o" path="res://Scenes/Planner/vase_status.tscn" id="3_wrhd3"]
 [ext_resource type="PackedScene" uid="uid://lj3w3fdb3rd8" path="res://Scenes/Planner/mirror_status.tscn" id="4_tabmb"]
 
@@ -50,6 +51,28 @@ layout_mode = 2
 
 [node name="Mirror Data" parent="HBoxContainer" instance=ExtResource("4_tabmb")]
 layout_mode = 2
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Question Button" parent="Node2D" instance=ExtResource("3_r1jlk")]
+offset_left = 315.0
+offset_top = 374.0
+offset_right = 347.0
+offset_bottom = 406.0
+Title = "Passive Cultivation"
+PopupText = "Enter your total Cosmoapsis (not abode aura or absorb).
+
+Then just select what level your Aura Gem is."
+
+[node name="Question Button2" parent="Node2D" instance=ExtResource("3_r1jlk")]
+offset_left = 315.0
+offset_top = 501.0
+offset_right = 347.0
+offset_bottom = 533.0
+Title = "Artifacts"
+PopupText = "Check the box for each artifact you have, then put in the number of stars.
+
+Support for transmogs is pending."
 
 [connection signal="ValuesChanged" from="Stage Calculator" to="." method="OnValuesChanged"]
 [connection signal="ValuesChanged" from="Passive Cultivation" to="." method="OnValuesChanged"]

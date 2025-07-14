@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://vvlj2y5cqf2q"]
+[gd_scene load_steps=4 format=3 uid="uid://vvlj2y5cqf2q"]
 
 [ext_resource type="Script" path="res://Scenes/Planner/PillPlanner.cs" id="1_xis8l"]
 [ext_resource type="Texture2D" uid="uid://1btukscmcbuj" path="res://assets/pill_example.png" id="2_vrtk7"]
+[ext_resource type="PackedScene" uid="uid://bqrdrnjp6rlxk" path="res://Scenes/Components/question_button.tscn" id="3_gf6lr"]
 
 [node name="Pill Planner" type="VBoxContainer" node_paths=PackedStringArray("RealmSelect", "RarePills", "EpicPills", "LegendaryPills", "TotalPillInput", "BonusPillInput", "MythicPills", "DailyValue", "PillCount", "BonusPercentOutput")]
 offset_right = 352.0
@@ -157,6 +158,28 @@ editable = false
 layout_mode = 2
 size_flags_horizontal = 3
 texture = ExtResource("2_vrtk7")
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Question Button" parent="Node2D" instance=ExtResource("3_gf6lr")]
+offset_left = 358.0
+offset_right = 390.0
+offset_bottom = 32.0
+Title = "Pills"
+PopupText = "Enter what level pills your taking (which will probably be the same as your max realm).
+Then enter how many pills you expect to consume each day on average.  Mythic pills are calculated automatically."
+
+[node name="Question Button2" parent="Node2D" instance=ExtResource("3_gf6lr")]
+offset_left = 358.0
+offset_top = 171.0
+offset_right = 390.0
+offset_bottom = 203.0
+Title = "Pill Bonus"
+PopupText = "For this value, click on a pill in your inventory, then under Total Pill Value enter the \"Gain x\" number.
+
+The Bonus Pill Value is the (+x) number.
+
+Support for Star Marks is upcoming."
 
 [connection signal="item_selected" from="Pill Level/OptionButton" to="." method="OnPillRealmOptionSelected"]
 [connection signal="value_changed" from="Daily Pills/Rare" to="." method="OnRarePillsSpinBoxChanged"]
