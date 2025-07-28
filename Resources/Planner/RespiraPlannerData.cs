@@ -19,6 +19,7 @@ public partial class RespiraPlannerData : Resource
         { Realm.Classification.Wholeness, 10500 },
         { Realm.Classification.Perfection, 13500 },
         { Realm.Classification.Nirvana, 25000 },
+        { Realm.Classification.Celestial, 37500 },
     };
 
     private static List<(float, int)> MultiplierOdds =>

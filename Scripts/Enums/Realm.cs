@@ -16,6 +16,8 @@ public static class Realm
                 Wholeness,
                 Perfection,
                 Nirvana,
+                Celestial,
+                Eternal,
         }
 
         public static readonly Dictionary<Classification, string> Names = new()
@@ -30,9 +32,11 @@ public static class Realm
                 { Classification.Wholeness, "Wholeness" },
                 { Classification.Perfection, "Perfection" },
                 { Classification.Nirvana, "Nirvana" },
+                { Classification.Celestial, "Celestial" },
+                { Classification.Eternal, "Eternal" },
         };
 
-        public static List<string> NamesList => 
+        public static List<string> NamesList =>
         [
                 "Novice",
                 "Connection",
@@ -44,5 +48,7 @@ public static class Realm
                 "Wholeness",
                 "Perfection",
                 "Nirvana",
+                "Celestial",
+                "Eternal",
         ];
 }
