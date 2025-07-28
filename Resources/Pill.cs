@@ -30,6 +30,8 @@ public partial class Pill : Resource
         { Realm.Classification.Wholeness, 20500 },
         { Realm.Classification.Perfection,  31000 },
         { Realm.Classification.Nirvana, 57000 },
+        { Realm.Classification.Celestial, 128375 },
+        { Realm.Classification.Eternal, 304375 },
     };
 
     [Export] public Realm.Classification CultivationRealm { get; set; } = Realm.Classification.Connection;

@@ -23,6 +23,9 @@ public static class MyrimonCalculation
         Voidbreak,
         Wholeness,
         Perfection,
+        Nirvana,
+        Celestial,
+        Eternal
     }
 
     public static Dictionary<Realm, int> BaseFruitValues => new()
@@ -30,7 +33,10 @@ public static class MyrimonCalculation
         { Realm.Mortal, 65000 },
         { Realm.Voidbreak, 96000 },
         { Realm.Wholeness, 130000 },
-        { Realm.Perfection, 240000 }
+        { Realm.Perfection, 240000 },
+        { Realm.Nirvana, 420000 },
+        { Realm.Celestial, 800000 },
+        { Realm.Eternal, 1810000 },
     };
 
     public static Dictionary<Quality, float> QualityMultipliers => new()
