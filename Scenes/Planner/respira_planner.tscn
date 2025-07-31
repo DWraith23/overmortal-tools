@@ -56,6 +56,7 @@ text = "Techniques"
 layout_mode = 2
 
 [node name="Label" type="Label" parent="Contents/Data/Techniques/Attempts"]
+custom_minimum_size = Vector2(81, 0)
 layout_mode = 2
 text = "Attempts: "
 
@@ -67,8 +68,9 @@ alignment = 1
 layout_mode = 2
 
 [node name="Label" type="Label" parent="Contents/Data/Techniques/Bonus"]
+custom_minimum_size = Vector2(81, 0)
 layout_mode = 2
-text = "Attempts: "
+text = "Bonus: "
 
 [node name="SpinBox" type="SpinBox" parent="Contents/Data/Techniques/Bonus"]
 layout_mode = 2
@@ -98,8 +100,9 @@ alignment = 1
 layout_mode = 2
 
 [node name="Label" type="Label" parent="Contents/Data/Curios/Bonus"]
+custom_minimum_size = Vector2(81, 0)
 layout_mode = 2
-text = "Attempts: "
+text = "Bonus: "
 
 [node name="SpinBox" type="SpinBox" parent="Contents/Data/Curios/Bonus"]
 layout_mode = 2
@@ -108,7 +111,6 @@ alignment = 1
 suffix = "%"
 
 [node name="Immortal Friends" type="VBoxContainer" parent="Contents/Data"]
-visible = false
 layout_mode = 2
 
 [node name="Label" type="Label" parent="Contents/Data/Immortal Friends"]
@@ -130,8 +132,9 @@ alignment = 1
 layout_mode = 2
 
 [node name="Label" type="Label" parent="Contents/Data/Immortal Friends/Bonus"]
+custom_minimum_size = Vector2(81, 0)
 layout_mode = 2
-text = "Attempts: "
+text = "Bonus: "
 
 [node name="SpinBox" type="SpinBox" parent="Contents/Data/Immortal Friends/Bonus"]
 layout_mode = 2
