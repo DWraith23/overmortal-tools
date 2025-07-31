@@ -8,6 +8,8 @@ namespace OvermortalTools.Resources.Laws;
 [GlobalClass]
 public partial class ElementalLaw : Resource
 {
+    public override string ToString() =>
+        $"{Name}: Level {Level} - Bonus {Bonus + 1:P0} | To {NextThreshold}: {XpTowards}/{GetNextXpNeeded()}";
     private const int BASE_VALUE = 480;
 
     private static Dictionary<int, long> ThresholdCosts => new()
@@ -33,10 +35,11 @@ public partial class ElementalLaw : Resource
         { 1850, 1510000000000000 },
         { 1950, 3340000000000000 },
         { 2000, 490000000000000 },
+        { 2050, 10000000000000000 },
     };
 
     private string _name = string.Empty;
-    private int _level = 0;
+    private int _level = 1;
     private float _bonus = 0.0f;
 
 
@@ -60,7 +63,6 @@ public partial class ElementalLaw : Resource
         {
             if (_level == value) return;
             _level = value;
-            GD.Print($"ThresholdLevel:{ThresholdLevel}");
             EmitChanged();
         }
     }
@@ -77,23 +79,27 @@ public partial class ElementalLaw : Resource
         }
     }
 
+    private long LeftoverXp { get; set; } = 0;
+
     public int Multiplier => GetMultiplier();
     public long PointsPerHour => GetPointsPerHour();
     public long NextThresholdXp => GetNextXpNeeded();
     public long XpRemaining => GetXpRequired();
     public long XpTowards => GetXpTowards();
+    public long NextLevelXp => GetNextLevelXp();
 
     private int ThresholdLevel => GetThresholdLevel();
     private int GetThresholdLevel()
     {
         var thresholds = ThresholdCosts.Keys.ToList();
-        var result = thresholds.Where(t => t > Level).First();
+        var result = thresholds.Where(t => t > Level).FirstOrDefault();
+        if (result == 0) return -1;
         var index = thresholds.IndexOf(result);
         return index;
     }
 
-    private int NextThreshold =>
-        ThresholdCosts.Keys.ToList().Where(t => t > Level).First();
+    public int NextThreshold =>
+        ThresholdCosts.Keys.ToList().Where(t => t > Level).FirstOrDefault();
 
     private int GetMultiplier() => (int)Math.Pow(2, ThresholdLevel);
 
@@ -105,7 +111,13 @@ public partial class ElementalLaw : Resource
         return result;
     }
 
-    private long GetNextXpNeeded() => ThresholdCosts.Values.ToList()[ThresholdLevel];
+    private long GetNextXpNeeded()
+    {
+        if (Level == 2000) return 0;
+        if (ThresholdLevel == -1) return 0;
+        return ThresholdCosts.Values.ToList()[ThresholdLevel];
+    }
+
 
     private long GetXpTowards()
     {
@@ -117,6 +129,12 @@ public partial class ElementalLaw : Resource
             fraction = Level / 50f;
             return (long)Math.Floor(total * fraction);
         }
+        else if (Level >= 1950)
+        {
+            var distance = 50 - (2000 - Level);
+            fraction = distance / 50f;
+            return (long)Math.Floor(total * fraction);
+        }
 
         var away = 100 - (NextThreshold - Level);
         fraction = away / 100f;
@@ -124,4 +142,28 @@ public partial class ElementalLaw : Resource
     }
 
     private long GetXpRequired() => GetNextXpNeeded() - GetXpTowards();
+
+    private long GetNextLevelXp()
+    {
+        if (Level == 2000) return 0;
+        long total = GetNextXpNeeded();
+        var perLevel = total / 100f;
+        if (NextThreshold - Level > 50)
+        {
+            return (long)Math.Floor(perLevel * 0.6f);
+        }
+        return (long)Math.Floor(perLevel * 1.4f);
+    }
+
+    public void AddXp(long xp)
+    {
+        var remaining = xp + LeftoverXp;
+        while (remaining > NextLevelXp)
+        {
+            remaining -= NextLevelXp;
+            Level++;
+        }
+        LeftoverXp = remaining;
+    }
+
 }

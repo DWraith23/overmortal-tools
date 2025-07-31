@@ -7,31 +7,31 @@
 [sub_resource type="Resource" id="Resource_p8o77"]
 script = ExtResource("2_2e3h8")
 Name = "Metal"
-Level = 0
+Level = 1
 Bonus = 0.0
 
 [sub_resource type="Resource" id="Resource_ycci4"]
 script = ExtResource("2_2e3h8")
 Name = "Earth"
-Level = 0
+Level = 1
 Bonus = 0.0
 
 [sub_resource type="Resource" id="Resource_kbmcr"]
 script = ExtResource("2_2e3h8")
 Name = "Water"
-Level = 0
+Level = 1
 Bonus = 0.0
 
 [sub_resource type="Resource" id="Resource_r7783"]
 script = ExtResource("2_2e3h8")
 Name = "Fire"
-Level = 0
+Level = 1
 Bonus = 0.0
 
 [sub_resource type="Resource" id="Resource_ib6ml"]
 script = ExtResource("2_2e3h8")
 Name = "Wood"
-Level = 0
+Level = 1
 Bonus = 0.0
 
 [node name="_law testing" type="Control"]
@@ -48,130 +48,246 @@ Water = SubResource("Resource_kbmcr")
 Fire = SubResource("Resource_r7783")
 Wood = SubResource("Resource_ib6ml")
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
+[node name="Panel" type="PanelContainer" parent="."]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Laws" type="VBoxContainer" parent="PanelContainer"]
+[node name="Contents" type="VBoxContainer" parent="Panel"]
 layout_mode = 2
 
-[node name="Columns" type="HBoxContainer" parent="PanelContainer/Laws"]
+[node name="Laws" type="VBoxContainer" parent="Panel/Contents"]
 layout_mode = 2
 
-[node name="Spacer 1" type="Control" parent="PanelContainer/Laws/Columns"]
+[node name="Columns" type="HBoxContainer" parent="Panel/Contents/Laws"]
+layout_mode = 2
+
+[node name="Spacer 1" type="Control" parent="Panel/Contents/Laws/Columns"]
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="PanelContainer/Laws/Columns"]
+[node name="Label" type="Label" parent="Panel/Contents/Laws/Columns"]
 layout_mode = 2
 text = "Level"
 
-[node name="Spacer 2" type="Control" parent="PanelContainer/Laws/Columns"]
+[node name="Spacer 2" type="Control" parent="Panel/Contents/Laws/Columns"]
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
 
-[node name="Label2" type="Label" parent="PanelContainer/Laws/Columns"]
+[node name="Label2" type="Label" parent="Panel/Contents/Laws/Columns"]
 layout_mode = 2
 text = "Bonus"
 
-[node name="Spacer 3" type="Control" parent="PanelContainer/Laws/Columns"]
+[node name="Spacer 3" type="Control" parent="Panel/Contents/Laws/Columns"]
 custom_minimum_size = Vector2(90, 0)
 layout_mode = 2
 
-[node name="Label3" type="Label" parent="PanelContainer/Laws/Columns"]
+[node name="Label3" type="Label" parent="Panel/Contents/Laws/Columns"]
 layout_mode = 2
 text = "Multiplier"
 
-[node name="Spacer 4" type="Control" parent="PanelContainer/Laws/Columns"]
+[node name="Spacer 4" type="Control" parent="Panel/Contents/Laws/Columns"]
 custom_minimum_size = Vector2(90, 0)
 layout_mode = 2
 
-[node name="Label4" type="Label" parent="PanelContainer/Laws/Columns"]
+[node name="Label4" type="Label" parent="Panel/Contents/Laws/Columns"]
 layout_mode = 2
 text = "Points per Hour"
 
-[node name="Spacer 5" type="Control" parent="PanelContainer/Laws/Columns"]
+[node name="Spacer 5" type="Control" parent="Panel/Contents/Laws/Columns"]
 custom_minimum_size = Vector2(85, 0)
 layout_mode = 2
 
-[node name="Label5" type="Label" parent="PanelContainer/Laws/Columns"]
+[node name="Label5" type="Label" parent="Panel/Contents/Laws/Columns"]
 layout_mode = 2
 text = "Points Accrued"
 
-[node name="Spacer 6" type="Control" parent="PanelContainer/Laws/Columns"]
+[node name="Spacer 6" type="Control" parent="Panel/Contents/Laws/Columns"]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 
-[node name="Label6" type="Label" parent="PanelContainer/Laws/Columns"]
+[node name="Label6" type="Label" parent="Panel/Contents/Laws/Columns"]
 layout_mode = 2
 text = "Points Needed"
 
-[node name="Spacer 7" type="Control" parent="PanelContainer/Laws/Columns"]
+[node name="Spacer 7" type="Control" parent="Panel/Contents/Laws/Columns"]
 custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
 
-[node name="Label7" type="Label" parent="PanelContainer/Laws/Columns"]
+[node name="Label7" type="Label" parent="Panel/Contents/Laws/Columns"]
 layout_mode = 2
 text = "Hours"
 
-[node name="Metal" parent="PanelContainer/Laws" instance=ExtResource("2_n24qd")]
+[node name="Metal" parent="Panel/Contents/Laws" instance=ExtResource("2_n24qd")]
 layout_mode = 2
 
-[node name="Hours" type="LineEdit" parent="PanelContainer/Laws/Metal"]
-layout_mode = 2
-editable = false
-
-[node name="Wood" parent="PanelContainer/Laws" instance=ExtResource("2_n24qd")]
-layout_mode = 2
-
-[node name="Hours" type="LineEdit" parent="PanelContainer/Laws/Wood"]
+[node name="Hours" type="LineEdit" parent="Panel/Contents/Laws/Metal"]
 layout_mode = 2
 editable = false
 
-[node name="Water" parent="PanelContainer/Laws" instance=ExtResource("2_n24qd")]
+[node name="Wood" parent="Panel/Contents/Laws" instance=ExtResource("2_n24qd")]
 layout_mode = 2
 
-[node name="Hours" type="LineEdit" parent="PanelContainer/Laws/Water"]
-layout_mode = 2
-editable = false
-
-[node name="Fire" parent="PanelContainer/Laws" instance=ExtResource("2_n24qd")]
-layout_mode = 2
-
-[node name="Hours" type="LineEdit" parent="PanelContainer/Laws/Fire"]
+[node name="Hours" type="LineEdit" parent="Panel/Contents/Laws/Wood"]
 layout_mode = 2
 editable = false
 
-[node name="Earth" parent="PanelContainer/Laws" instance=ExtResource("2_n24qd")]
+[node name="Water" parent="Panel/Contents/Laws" instance=ExtResource("2_n24qd")]
 layout_mode = 2
 
-[node name="Hours" type="LineEdit" parent="PanelContainer/Laws/Earth"]
+[node name="Hours" type="LineEdit" parent="Panel/Contents/Laws/Water"]
 layout_mode = 2
 editable = false
 
-[node name="Spacer" type="Control" parent="PanelContainer/Laws"]
+[node name="Fire" parent="Panel/Contents/Laws" instance=ExtResource("2_n24qd")]
+layout_mode = 2
+
+[node name="Hours" type="LineEdit" parent="Panel/Contents/Laws/Fire"]
+layout_mode = 2
+editable = false
+
+[node name="Earth" parent="Panel/Contents/Laws" instance=ExtResource("2_n24qd")]
+layout_mode = 2
+
+[node name="Hours" type="LineEdit" parent="Panel/Contents/Laws/Earth"]
+layout_mode = 2
+editable = false
+
+[node name="Spacer" type="Control" parent="Panel/Contents/Laws"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 
-[node name="Totals" type="HBoxContainer" parent="PanelContainer/Laws"]
+[node name="Totals" type="HBoxContainer" parent="Panel/Contents/Laws"]
 layout_mode = 2
 
-[node name="Total Level Label" type="Label" parent="PanelContainer/Laws/Totals"]
+[node name="Total Level Label" type="Label" parent="Panel/Contents/Laws/Totals"]
 layout_mode = 2
 text = "Total Level: "
 
-[node name="Total Level" type="LineEdit" parent="PanelContainer/Laws/Totals"]
+[node name="Total Level" type="LineEdit" parent="Panel/Contents/Laws/Totals"]
 layout_mode = 2
 alignment = 1
 editable = false
 
-[node name="Points per Hour Label" type="Label" parent="PanelContainer/Laws/Totals"]
+[node name="Points per Hour Label" type="Label" parent="Panel/Contents/Laws/Totals"]
 layout_mode = 2
 text = "Points per Hour:"
 
-[node name="Points per Hour" type="LineEdit" parent="PanelContainer/Laws/Totals"]
+[node name="Points per Hour" type="LineEdit" parent="Panel/Contents/Laws/Totals"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 alignment = 1
 editable = false
+
+[node name="Spacer" type="Control" parent="Panel/Contents"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="Simulation" type="VBoxContainer" parent="Panel/Contents"]
+layout_mode = 2
+
+[node name="Level 2000" type="HBoxContainer" parent="Panel/Contents/Simulation"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/Contents/Simulation/Level 2000"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Days to Total Level 2000:"
+horizontal_alignment = 2
+
+[node name="Days" type="LineEdit" parent="Panel/Contents/Simulation/Level 2000"]
+layout_mode = 2
+alignment = 1
+
+[node name="Level 4000" type="HBoxContainer" parent="Panel/Contents/Simulation"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/Contents/Simulation/Level 4000"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Days to Total Level 4000:"
+horizontal_alignment = 2
+
+[node name="Days" type="LineEdit" parent="Panel/Contents/Simulation/Level 4000"]
+layout_mode = 2
+alignment = 1
+
+[node name="Level 6000" type="HBoxContainer" parent="Panel/Contents/Simulation"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/Contents/Simulation/Level 6000"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Days to Total Level 6000:"
+horizontal_alignment = 2
+
+[node name="Days" type="LineEdit" parent="Panel/Contents/Simulation/Level 6000"]
+layout_mode = 2
+alignment = 1
+
+[node name="Level 8000" type="HBoxContainer" parent="Panel/Contents/Simulation"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/Contents/Simulation/Level 8000"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Days to Total Level 8000:"
+horizontal_alignment = 2
+
+[node name="Days" type="LineEdit" parent="Panel/Contents/Simulation/Level 8000"]
+layout_mode = 2
+alignment = 1
+
+[node name="Level 10000" type="HBoxContainer" parent="Panel/Contents/Simulation"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/Contents/Simulation/Level 10000"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Days to Total Level 10000:"
+horizontal_alignment = 2
+
+[node name="Days" type="LineEdit" parent="Panel/Contents/Simulation/Level 10000"]
+layout_mode = 2
+alignment = 1
+
+[node name="Spacer" type="Control" parent="Panel/Contents/Simulation"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="Blitz" type="HBoxContainer" parent="Panel/Contents/Simulation"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/Contents/Simulation/Blitz"]
+layout_mode = 2
+text = "Average Blitz Hours: "
+
+[node name="Average Blitz Hours" type="SpinBox" parent="Panel/Contents/Simulation/Blitz"]
+layout_mode = 2
+max_value = 200.0
+value = 120.0
+alignment = 1
+
+[node name="Control" type="Control" parent="Panel/Contents/Simulation/Blitz"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="Panel/Contents/Simulation/Blitz"]
+layout_mode = 2
+text = "Average Fruit Quality:"
+
+[node name="Fruit Quality" type="OptionButton" parent="Panel/Contents/Simulation/Blitz"]
+layout_mode = 2
+selected = 2
+item_count = 4
+popup/item_0/text = "Green"
+popup/item_1/text = "Blue"
+popup/item_1/id = 1
+popup/item_2/text = "Purple"
+popup/item_2/id = 2
+popup/item_3/text = "Gold"
+popup/item_3/id = 3
+
+[node name="Button" type="Button" parent="Panel/Contents/Simulation"]
+layout_mode = 2
+text = "Simulate"
