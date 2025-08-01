@@ -76,10 +76,8 @@ public class LawSimulation
 
 
     // Simulation
-    public int SimulateToLevel(int level, List<ElementalLaw> laws)
+    public int SimulateToLevel(int level)
     {
-        Laws = DuplicateLaws(laws);
-
         int days = 0;
         while (TotalLevel < level)
         {
@@ -93,14 +91,37 @@ public class LawSimulation
         return days;
     }
 
-    private static List<ElementalLaw> DuplicateLaws(List<ElementalLaw> laws)
+    public int SimulateLawToNextThreshold(ElementalLaw law)
+    {
+        law = law.Duplicate(true) as ElementalLaw;
+        if (law.Level == 1) return 1;
+        int threshold = law.NextThreshold;
+        int days = 0;
+        int n = 0;
+        while (law.Level < threshold)
+        {
+            n++;
+            days++;
+            SimulateDay(law);
+            if (days > 364) return -1;
+            if (n > 364)
+            {
+                GD.PrintErr($"ERROR: Too many days. n={n}, days={days}");
+                break;
+            }
+        }
+
+        return days;
+    }
+
+    public void DuplicateLaws(List<ElementalLaw> laws)
     {
         var result = new List<ElementalLaw>();
         foreach (var law in laws)
         {
             result.Add(law.Duplicate(true) as ElementalLaw);
         }
-        return result;
+        Laws = result;
     }
 
     private void SimulateDay()
@@ -114,13 +135,13 @@ public class LawSimulation
         if (Laws.Average(law => law.Level) != 1)
         {
             var dailyLaw = GetBestLawToLevel();
-            dailyLaw.AddXp(dailyXp);
-            GD.Print($"Start of daily blitz, adding {dailyXp} to {dailyLaw.Name}");
+            dailyLaw?.AddXp(dailyXp);
         }
 
         while (fruit > 0)
         {
             var law = GetBestLawToLevel();
+            if (law == null) break;
             var xp = (long)Math.Floor(fruitHours * PointsPerHour * 0.95f); // Reducing some due to waste.
             GD.Print($"Adding {xp} ({fruitHours} * {PointsPerHour}) to {law.Name}. {FruitQuality} fruit remaining: {fruit - 1}");
             law.AddXp(xp);
@@ -128,7 +149,36 @@ public class LawSimulation
         }
         for (int i = 0; i < leftover; i++)
         {
-            GetBestLawToLevel().AddXp(PointsPerHour);
+            GetBestLawToLevel()?.AddXp(PointsPerHour);
+        }
+    }
+
+    private void SimulateDay(ElementalLaw law)
+    {
+        var dailyXp = PointsPerHour * 24;
+        var hours = AverageBlitzHours;
+        var fruitHours = FruitHours[FruitQuality];
+        var fruit = (int)Math.Floor(hours / (float)fruitHours);
+        var leftover = hours % fruitHours;
+
+        if (Laws.Average(law => law.Level) != 1) law.AddXp(dailyXp);
+
+        int n = 0;
+        while (fruit > 0)
+        {
+            n++;
+            var xp = (long)Math.Floor(fruitHours * PointsPerHour * 0.95f); // Reducing some due to waste.
+            law.AddXp(xp);
+            fruit--;
+            if (n > 150)
+            {
+                GD.PrintErr($"ERROR: Too many loops.  n={n}, fruit={fruit}");
+                break;
+            }
+        }
+        for (int i = 0; i < leftover; i++)
+        {
+            law.AddXp(PointsPerHour);
         }
     }
 }

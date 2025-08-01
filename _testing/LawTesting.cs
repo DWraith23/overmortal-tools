@@ -82,27 +82,36 @@ public partial class LawTesting : Control
 		TotalLevelDisplay.Text = TotalLevel.ToString("N0");
 		TotalPointsPerHourDisplay.Text = TotalPointsPerHour.ToString("N0");
 
-		MetalHours.Text = (Metal.XpRemaining / TotalPointsPerHour).ToString("N0");
-		WoodHours.Text = (Wood.XpRemaining / TotalPointsPerHour).ToString("N0");
-		WaterHours.Text = (Water.XpRemaining / TotalPointsPerHour).ToString("N0");
-		FireHours.Text = (Fire.XpRemaining / TotalPointsPerHour).ToString("N0");
-		EarthHours.Text = (Earth.XpRemaining / TotalPointsPerHour).ToString("N0");
+		MetalHours.Text = DaysToNextThreshold(Metal).ToString("N0");
+		WoodHours.Text = DaysToNextThreshold(Wood).ToString("N0");
+		WaterHours.Text = DaysToNextThreshold(Water).ToString("N0");
+		FireHours.Text = DaysToNextThreshold(Fire).ToString("N0");
+		EarthHours.Text = DaysToNextThreshold(Earth).ToString("N0");
 	}
 
-	private void Simulate()
+	private int DaysToNextThreshold(ElementalLaw law)
 	{
+		if (law.Level < 1) return 1;
 		var quality = (LawSimulation.LawFruitQuality)FruitQualitySelect.Selected;
 		var simulator = new LawSimulation()
 		{
 			AverageBlitzHours = (int)AverageBlitzBox.Value,
 			FruitQuality = quality
 		};
+		simulator.DuplicateLaws(AllLaws);
 
-		var l2000 = simulator.SimulateToLevel(2000, AllLaws);
-		var l4000 = simulator.SimulateToLevel(4000, AllLaws);
-		var l6000 = simulator.SimulateToLevel(6000, AllLaws);
-		var l8000 = simulator.SimulateToLevel(8000, AllLaws);
-		var l10000 = simulator.SimulateToLevel(9750, AllLaws);
+		return simulator.SimulateLawToNextThreshold(law);
+	}
+
+	private void Simulate()
+	{
+
+
+		var l2000 = GetDaysToLevel(2000);
+		var l4000 = GetDaysToLevel(4000);
+		var l6000 = GetDaysToLevel(6000);
+		var l8000 = GetDaysToLevel(8000);
+		var l10000 = GetDaysToLevel(10000);
 
 		Level2000Display.Text = l2000 == -1 ? ">1 Year" : l2000.ToString("N0");
 		Level4000Display.Text = l4000 == -1 ? ">1 Year" : l4000.ToString("N0");
@@ -110,6 +119,19 @@ public partial class LawTesting : Control
 		Level8000Display.Text = l8000 == -1 ? ">1 Year" : l8000.ToString("N0");
 		Level10000Display.Text = l10000 == -1 ? ">1 Year" : l10000.ToString("N0");
 
+	}
+
+	private int GetDaysToLevel(int level)
+	{
+		var quality = (LawSimulation.LawFruitQuality)FruitQualitySelect.Selected;
+		var simulator = new LawSimulation()
+		{
+			AverageBlitzHours = (int)AverageBlitzBox.Value,
+			FruitQuality = quality
+		};
+		simulator.DuplicateLaws(AllLaws);
+
+		return simulator.SimulateToLevel(level);
 	}
 
 }
