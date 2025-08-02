@@ -2,6 +2,8 @@ using Godot;
 using OvermortalTools.Resources.Laws;
 using System;
 
+namespace OvermortalTools.Scenes.Laws;
+
 public partial class Law : HBoxContainer
 {
 	private Label NameLabel => GetNode<Label>("Name");

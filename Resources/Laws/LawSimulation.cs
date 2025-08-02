@@ -8,35 +8,53 @@ namespace OvermortalTools.Resources.Laws;
 
 public class LawSimulation
 {
-    public enum LawFruitQuality
+    private static Dictionary<LawsData.LawFruitQuality, int> FruitHours => new()
     {
-        Green,
-        Blue,
-        Purple,
-        Gold
-    }
-
-    private static Dictionary<LawFruitQuality, int> FruitHours => new()
-    {
-        { LawFruitQuality.Green, 1 },
-        { LawFruitQuality.Blue, 3 },
-        { LawFruitQuality.Purple, 6 },
-        { LawFruitQuality.Gold, 12 },
+        { LawsData.LawFruitQuality.Green, 1 },
+        { LawsData.LawFruitQuality.Blue, 3 },
+        { LawsData.LawFruitQuality.Purple, 6 },
+        { LawsData.LawFruitQuality.Gold, 12 },
     };
 
     // Public set properties
-    public List<ElementalLaw> Laws { get; set; } = [];
-    public int AverageBlitzHours { get; set; } = 120;
-    public LawFruitQuality FruitQuality { get; set; } = LawFruitQuality.Gold;
+    public LawsData Data { get; set; }
+
+    private List<ElementalLaw> Laws =>
+    [
+        Data.Metal,
+        Data.Wood,
+        Data.Water,
+        Data.Fire,
+        Data.Earth
+    ];
+
+    private int AverageBlitzHours => Data.AverageBlitzHours;
+    private LawsData.LawFruitQuality FruitQuality => Data.FruitQuality;
+
+    private bool HasShears => Data.HasShears;
+    private int ShearsStars => Data.ShearsStars;
 
 
     // Private fields
     private int TotalLevel => Laws.Sum(law => law.Level);
     private long PointsPerHour => Laws.Sum(law => law.PointsPerHour);
 
+    public LawSimulation(LawsData data)
+    {
+        Data = data.Duplicate(true) as LawsData;
+    }
 
-    // Private methods
-    private float GetHoursPerLevel(ElementalLaw law) => law.NextLevelXp / (float)PointsPerHour;
+    private float ShearsHours => (RechargeValues[ShearsStars] * 96f + 100) / 100f * 14;
+
+    private static Dictionary<int, float> RechargeValues => new()
+    {
+        { 0, 1f },
+        { 1, 1.3f },
+        { 2, 1.6f },
+        { 3, 2f },
+        { 4, 2.4f },
+        { 5, 3f }
+    };
 
     private ElementalLaw GetBestLawToLevel()
     {
@@ -61,30 +79,20 @@ public class LawSimulation
         }
 
         return validChoices.MaxBy(law => law.Level);
-
-        // If all laws are equal, choose the one with the highest bonus
-        // if (Laws.All(law => law.Level == Laws[0].Level))
-        // {
-        //     return Laws.MaxBy(law => law.Bonus);
-        // }   // Else return highest valid choice
-        // else
-        // {
-        //     return validChoices.MaxBy(law => law.Level);
-        // }
-
     }
 
 
     // Simulation
     public int SimulateToLevel(int level)
     {
+        if (TotalLevel >= 10000) return 0;
         int days = 0;
         while (TotalLevel < level)
         {
-            GD.Print($"--- NEW DAY: DAY {days} ---");
+            // GD.Print($"--- NEW DAY: DAY {days} ---");
             SimulateDay();
-            GD.Print($"Law Levels: {TotalLevel} - {PointsPerHour} - {AverageBlitzHours}");
-            Laws.ForEach(law => GD.Print($"|     {law}"));
+            // GD.Print($"Law Levels: {TotalLevel} - {PointsPerHour} - {AverageBlitzHours}");
+            // Laws.ForEach(law => GD.Print($"|     {law}"));
             days++;
             if (days > 364) return -1;
         }
@@ -93,6 +101,7 @@ public class LawSimulation
 
     public int SimulateLawToNextThreshold(ElementalLaw law)
     {
+        if (law.Level >= 2000) return 0;
         law = law.Duplicate(true) as ElementalLaw;
         if (law.Level == 1) return 1;
         int threshold = law.NextThreshold;
@@ -100,6 +109,7 @@ public class LawSimulation
         int n = 0;
         while (law.Level < threshold)
         {
+            if (law.Level >= 2000) return days;
             n++;
             days++;
             SimulateDay(law);
@@ -112,16 +122,6 @@ public class LawSimulation
         }
 
         return days;
-    }
-
-    public void DuplicateLaws(List<ElementalLaw> laws)
-    {
-        var result = new List<ElementalLaw>();
-        foreach (var law in laws)
-        {
-            result.Add(law.Duplicate(true) as ElementalLaw);
-        }
-        Laws = result;
     }
 
     private void SimulateDay()
@@ -138,12 +138,14 @@ public class LawSimulation
             dailyLaw?.AddXp(dailyXp);
         }
 
+        if (Data.HasShears) GetBestLawToLevel()?.AddXp((long)Math.Floor(ShearsHours * PointsPerHour));
+
         while (fruit > 0)
         {
             var law = GetBestLawToLevel();
             if (law == null) break;
             var xp = (long)Math.Floor(fruitHours * PointsPerHour * 0.95f); // Reducing some due to waste.
-            GD.Print($"Adding {xp} ({fruitHours} * {PointsPerHour}) to {law.Name}. {FruitQuality} fruit remaining: {fruit - 1}");
+            // GD.Print($"Adding {xp} ({fruitHours} * {PointsPerHour}) to {law.Name}. {FruitQuality} fruit remaining: {fruit - 1}");
             law.AddXp(xp);
             fruit--;
         }
@@ -162,6 +164,12 @@ public class LawSimulation
         var leftover = hours % fruitHours;
 
         if (Laws.Average(law => law.Level) != 1) law.AddXp(dailyXp);
+
+        if (Data.HasShears)
+        {
+            law?.AddXp((long)Math.Floor(ShearsHours * PointsPerHour));
+            GD.Print($"ShearsHours: {ShearsHours} | ShearsStars: {ShearsStars} | Extra Points: {ShearsHours * PointsPerHour}");
+        }
 
         int n = 0;
         while (fruit > 0)

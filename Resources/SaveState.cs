@@ -1,5 +1,7 @@
 using Godot;
+using OvermortalTools.Resources.Laws;
 using OvermortalTools.Resources.Planner;
+using OvermortalTools.Scenes.Laws;
 using OvermortalTools.Scenes.Planner;
 using OvermortalTools.Scripts;
 
@@ -17,10 +19,11 @@ public partial class SaveState : Resource
     [Export] public MyrimonPlannerData MyrimonPlannerData { get; set; }
     [Export] public RespiraPlannerData RespiraPlannerData { get; set; }
     [Export] public ElixirPlannerData ElixirPlannerData { get; set; }
+    [Export] public LawsData LawsData { get; set; }
 
     #endregion
 
-    public static SaveState GenerateSaveState(CultivationPlanner planner, string name)
+    public static SaveState GenerateSaveState(CultivationPlanner planner, LawSimulator simulator, string name)
     {
         var result = new SaveState
         {
@@ -32,13 +35,14 @@ public partial class SaveState : Resource
             PillPlannerData = planner.PillPlanner.Data,
             MyrimonPlannerData = planner.MyrimonPlanner.Data,
             RespiraPlannerData = planner.RespiraPlanner.Data,
-            ElixirPlannerData = planner.ElixirPlanner.Data
+            ElixirPlannerData = planner.ElixirPlanner.Data,
+            LawsData = simulator.Data
         };
 
         return result;
     }
 
-    public static void LoadSaveState(CultivationPlanner planner, SaveState state)
+    public static void LoadSaveState(CultivationPlanner planner, LawSimulator simulator, SaveState state)
     {
         planner.BasicInformation.StageCalculator.Data = state.StageCalculatorData ?? new StageCalculatorData();
         planner.BasicInformation.PassiveCultivation.Data = state.PassiveCultivationData ?? new PassiveCultivationData();
@@ -48,6 +52,7 @@ public partial class SaveState : Resource
         planner.MyrimonPlanner.Data = state.MyrimonPlannerData ?? new MyrimonPlannerData();
         planner.RespiraPlanner.Data = state.RespiraPlannerData ?? new RespiraPlannerData();
         planner.ElixirPlanner.Data = state.ElixirPlannerData ?? new ElixirPlannerData();
+        simulator.Data = state.LawsData ?? new LawsData();
     }
 
     public static SaveState GenerateFreshState()
@@ -61,7 +66,8 @@ public partial class SaveState : Resource
             PillPlannerData = new PillPlannerData(),
             MyrimonPlannerData = new MyrimonPlannerData(),
             RespiraPlannerData = new RespiraPlannerData(),
-            ElixirPlannerData = new ElixirPlannerData()
+            ElixirPlannerData = new ElixirPlannerData(),
+            LawsData = new LawsData()
         };
         return result;
     }

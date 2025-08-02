@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cw65angbc0tcv"]
 
-[ext_resource type="Script" path="res://_testing/Law.cs" id="1_2nwxy"]
+[ext_resource type="Script" path="res://Scenes/Laws/Law.cs" id="1_2nwxy"]
 
 [node name="Law" type="HBoxContainer"]
 script = ExtResource("1_2nwxy")
@@ -14,7 +14,9 @@ horizontal_alignment = 2
 
 [node name="Level" type="SpinBox" parent="."]
 layout_mode = 2
+min_value = 1.0
 max_value = 2000.0
+value = 1.0
 alignment = 1
 
 [node name="Bonus" type="SpinBox" parent="."]

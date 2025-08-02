@@ -1,5 +1,6 @@
 using Godot;
 using OvermortalTools.Resources;
+using OvermortalTools.Scenes.Laws;
 using OvermortalTools.Scenes.Planner;
 using System;
 using System.IO;
@@ -9,7 +10,9 @@ namespace OvermortalTools.Scenes;
 public partial class Main : Control
 {
     [Export] private CultivationPlanner Planner { get; set; }
+    [Export] private LawSimulator Laws { get; set; }
     [Export] private ProfileSwapper ProfileSwapper { get; set; }
+    [Export] private TabBar ToolSwapper { get; set; }
 
     private bool IsLoading { get; set; } = false;
     private int ActiveProfile { get; set; } = 0;
@@ -23,13 +26,19 @@ public partial class Main : Control
     private void OnSaveRequested() => SaveData();
     private void OnChangeProfileRequested(int profile) => SwapProfile(profile);
 
+    private void OnToolsSwapperTabSelected(long index)
+    {
+        Planner.Visible = index == 0;
+        Laws.Visible = index == 1;
+    }
+
     public void SaveData()
     {
         if (!IsNodeReady() || IsLoading) return;
         GD.Print("----------------------------");
         GD.Print("Saving state...");
         var path = OS.GetExecutablePath().GetBaseDir() + $"/savestate{ActiveProfile}.tres";
-        var state = SaveState.GenerateSaveState(Planner, ProfileName);
+        var state = SaveState.GenerateSaveState(Planner, Laws, ProfileName);
         var result = ResourceSaver.Save(state, path);
         if (result != Error.Ok)
         {
@@ -59,7 +68,7 @@ public partial class Main : Control
         if (loaded is SaveState state)
         {
             ProfileSwapper.ProfileName.Text = "";
-            SaveState.LoadSaveState(Planner, state);
+            SaveState.LoadSaveState(Planner, Laws, state);
             ProfileSwapper.ProfileName.Text = state.ProfileName;
             GD.Print("| Loaded state successfully.");
         }

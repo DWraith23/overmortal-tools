@@ -10,7 +10,7 @@ public partial class ElementalLaw : Resource
 {
     public override string ToString() =>
         $"{Name}: Level {Level} - Bonus {Bonus + 1:P0} | To {NextThreshold}: {XpTowards}/{GetNextXpNeeded()}";
-    private const int BASE_VALUE = 480;
+    private const float BASE_VALUE = 480.4f;
 
     private static Dictionary<int, long> ThresholdCosts => new()
     {
@@ -105,9 +105,7 @@ public partial class ElementalLaw : Resource
 
     private long GetPointsPerHour()
     {
-        long result = BASE_VALUE * Level;
-        result *= GetMultiplier();
-        result = (long)Math.Floor(result * (1f + Bonus));
+        long result = (long)Math.Floor(BASE_VALUE * Level * GetMultiplier() * (1f + Bonus));
         return result;
     }
 

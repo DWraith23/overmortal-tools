@@ -1,0 +1,259 @@
+[gd_scene load_steps=3 format=3 uid="uid://ccrxweiqhulul"]
+
+[ext_resource type="Script" path="res://Scenes/Laws/LawSimulator.cs" id="1_3qhhx"]
+[ext_resource type="PackedScene" uid="uid://cw65angbc0tcv" path="res://Scenes/Laws/_law.tscn" id="1_eswjr"]
+
+[node name="Law Simulator" type="VBoxContainer"]
+script = ExtResource("1_3qhhx")
+
+[node name="Laws" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Columns" type="HBoxContainer" parent="Laws"]
+layout_mode = 2
+
+[node name="Spacer 1" type="Control" parent="Laws/Columns"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Laws/Columns"]
+layout_mode = 2
+text = "Level"
+
+[node name="Spacer 2" type="Control" parent="Laws/Columns"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="Laws/Columns"]
+layout_mode = 2
+text = "Bonus"
+
+[node name="Spacer 3" type="Control" parent="Laws/Columns"]
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="Laws/Columns"]
+layout_mode = 2
+text = "Multiplier"
+
+[node name="Spacer 4" type="Control" parent="Laws/Columns"]
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+
+[node name="Label4" type="Label" parent="Laws/Columns"]
+layout_mode = 2
+text = "Points per Hour"
+
+[node name="Spacer 5" type="Control" parent="Laws/Columns"]
+custom_minimum_size = Vector2(85, 0)
+layout_mode = 2
+
+[node name="Label5" type="Label" parent="Laws/Columns"]
+layout_mode = 2
+text = "Points Accrued"
+
+[node name="Spacer 6" type="Control" parent="Laws/Columns"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+
+[node name="Label6" type="Label" parent="Laws/Columns"]
+layout_mode = 2
+text = "Points Needed"
+
+[node name="Spacer 7" type="Control" parent="Laws/Columns"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+
+[node name="Label7" type="Label" parent="Laws/Columns"]
+layout_mode = 2
+text = "Days"
+
+[node name="Metal" parent="Laws" instance=ExtResource("1_eswjr")]
+layout_mode = 2
+
+[node name="Hours" type="LineEdit" parent="Laws/Metal"]
+layout_mode = 2
+editable = false
+
+[node name="Wood" parent="Laws" instance=ExtResource("1_eswjr")]
+layout_mode = 2
+
+[node name="Hours" type="LineEdit" parent="Laws/Wood"]
+layout_mode = 2
+editable = false
+
+[node name="Water" parent="Laws" instance=ExtResource("1_eswjr")]
+layout_mode = 2
+
+[node name="Hours" type="LineEdit" parent="Laws/Water"]
+layout_mode = 2
+editable = false
+
+[node name="Fire" parent="Laws" instance=ExtResource("1_eswjr")]
+layout_mode = 2
+
+[node name="Hours" type="LineEdit" parent="Laws/Fire"]
+layout_mode = 2
+editable = false
+
+[node name="Earth" parent="Laws" instance=ExtResource("1_eswjr")]
+layout_mode = 2
+
+[node name="Hours" type="LineEdit" parent="Laws/Earth"]
+layout_mode = 2
+editable = false
+
+[node name="Spacer" type="Control" parent="Laws"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="Totals" type="HBoxContainer" parent="Laws"]
+layout_mode = 2
+
+[node name="Total Level Label" type="Label" parent="Laws/Totals"]
+layout_mode = 2
+text = "Total Level: "
+
+[node name="Total Level" type="LineEdit" parent="Laws/Totals"]
+layout_mode = 2
+alignment = 1
+editable = false
+
+[node name="Points per Hour Label" type="Label" parent="Laws/Totals"]
+layout_mode = 2
+text = "Points per Hour:"
+
+[node name="Points per Hour" type="LineEdit" parent="Laws/Totals"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+alignment = 1
+editable = false
+
+[node name="Spacer" type="Control" parent="."]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="Simulation" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Level 2000" type="HBoxContainer" parent="Simulation"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Simulation/Level 2000"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Days to Total Level 2000:"
+horizontal_alignment = 2
+
+[node name="Days" type="LineEdit" parent="Simulation/Level 2000"]
+layout_mode = 2
+alignment = 1
+
+[node name="Level 4000" type="HBoxContainer" parent="Simulation"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Simulation/Level 4000"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Days to Total Level 4000:"
+horizontal_alignment = 2
+
+[node name="Days" type="LineEdit" parent="Simulation/Level 4000"]
+layout_mode = 2
+alignment = 1
+
+[node name="Level 6000" type="HBoxContainer" parent="Simulation"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Simulation/Level 6000"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Days to Total Level 6000:"
+horizontal_alignment = 2
+
+[node name="Days" type="LineEdit" parent="Simulation/Level 6000"]
+layout_mode = 2
+alignment = 1
+
+[node name="Level 8000" type="HBoxContainer" parent="Simulation"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Simulation/Level 8000"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Days to Total Level 8000:"
+horizontal_alignment = 2
+
+[node name="Days" type="LineEdit" parent="Simulation/Level 8000"]
+layout_mode = 2
+alignment = 1
+
+[node name="Level 10000" type="HBoxContainer" parent="Simulation"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Simulation/Level 10000"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Days to Total Level 10000:"
+horizontal_alignment = 2
+
+[node name="Days" type="LineEdit" parent="Simulation/Level 10000"]
+layout_mode = 2
+alignment = 1
+
+[node name="Spacer" type="Control" parent="Simulation"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="Blitz" type="HBoxContainer" parent="Simulation"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Simulation/Blitz"]
+layout_mode = 2
+text = "Average Blitz Hours: "
+
+[node name="Average Blitz Hours" type="SpinBox" parent="Simulation/Blitz"]
+layout_mode = 2
+max_value = 136.0
+value = 120.0
+alignment = 1
+
+[node name="Control" type="Control" parent="Simulation/Blitz"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="Simulation/Blitz"]
+layout_mode = 2
+text = "Average Fruit Quality:"
+
+[node name="Fruit Quality" type="OptionButton" parent="Simulation/Blitz"]
+layout_mode = 2
+selected = 3
+item_count = 4
+popup/item_0/text = "Green"
+popup/item_1/text = "Blue"
+popup/item_1/id = 1
+popup/item_2/text = "Purple"
+popup/item_2/id = 2
+popup/item_3/text = "Gold"
+popup/item_3/id = 3
+
+[node name="Shears" type="HBoxContainer" parent="Simulation/Blitz"]
+layout_mode = 2
+
+[node name="CheckBox" type="CheckBox" parent="Simulation/Blitz/Shears"]
+layout_mode = 2
+text = "Shears?"
+
+[node name="Stars" type="HBoxContainer" parent="Simulation/Blitz/Shears"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Simulation/Blitz/Shears/Stars"]
+layout_mode = 2
+text = "Stars: "
+
+[node name="SpinBox" type="SpinBox" parent="Simulation/Blitz/Shears/Stars"]
+layout_mode = 2
+max_value = 5.0
+alignment = 1
