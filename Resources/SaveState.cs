@@ -46,12 +46,12 @@ public partial class SaveState : Resource
     {
         planner.BasicInformation.StageCalculator.Data = state.StageCalculatorData ?? new StageCalculatorData();
         planner.BasicInformation.PassiveCultivation.Data = state.PassiveCultivationData ?? new PassiveCultivationData();
-        planner.BasicInformation.VaseStatus.Data = state.VaseData ?? new VaseData();
-        planner.BasicInformation.MirrorStatus.Data = state.MirrorData ?? new MirrorData();
         planner.PillPlanner.Data = state.PillPlannerData ?? new PillPlannerData();
         planner.MyrimonPlanner.Data = state.MyrimonPlannerData ?? new MyrimonPlannerData();
         planner.RespiraPlanner.Data = state.RespiraPlannerData ?? new RespiraPlannerData();
         planner.ElixirPlanner.Data = state.ElixirPlannerData ?? new ElixirPlannerData();
+        planner.BasicInformation.VaseStatus.Data = state.VaseData ?? new VaseData();
+        planner.BasicInformation.MirrorStatus.Data = state.MirrorData ?? new MirrorData();
         simulator.Data = state.LawsData ?? new LawsData();
     }
 

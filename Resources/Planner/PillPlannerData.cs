@@ -18,8 +18,7 @@ public partial class PillPlannerData : Resource
     private int _bonusPillValue = 0;
 
     private float _mythicPills = 0.0f;
-
-    public float MythicBonus { get; set; } = 1.0f;
+    private float _mythicBonus = 1.0f;
 
     [Export]
     public int PillRealmIndex
@@ -94,6 +93,18 @@ public partial class PillPlannerData : Resource
         set
         {
             _mythicPills = value;
+            EmitChanged();
+        }
+    }
+
+    [Export]
+    public float MythicBonus
+    {
+        get => _mythicBonus;
+        set
+        {
+            if (_mythicBonus == value) return;
+            _mythicBonus = value;
             EmitChanged();
         }
     }
