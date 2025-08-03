@@ -64,7 +64,7 @@ public partial class MyrimonPlanner : VBoxContainer
         AverageTechValue.Text = Data.AverageTechPts.ToString("N0");
         AverageXpValue.Text = Data.AverageXp.ToString("N0");
 
-        EmitSignal(SignalName.ValuesChanged);
+        Tools.EmitLoggedSignal(this, SignalName.ValuesChanged);
     }
 
     private void ValidateInputs()

@@ -1,5 +1,6 @@
 using Godot;
 using OvermortalTools.Resources.Planner;
+using OvermortalTools.Scripts;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -52,7 +53,7 @@ public partial class MirrorStatus : VBoxContainer
         CheckValues();
 
         StarsContainer.Visible = Data.HasMirror;
-        EmitSignal(SignalName.ValuesChanged);
+        Tools.EmitLoggedSignal(this, SignalName.ValuesChanged);
     }
 
     /// <summary>

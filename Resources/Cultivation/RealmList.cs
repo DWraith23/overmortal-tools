@@ -38,7 +38,6 @@ public static class RealmList
     public static long GetMinorRealmXp(MajorRealm major, MinorRealm minor) => GetRealm(major).GetMinorRealmXp(minor);
     public static long GetXpToTarget(RealmInfo current, RealmInfo target)
     {
-        GD.Print($"{current} -> {target}");
         if (current.Major == target.Major)
         {
             if (current.Minor == target.Minor)
@@ -62,7 +61,6 @@ public static class RealmList
         var completed = Realms[..RealmIndex(current.Major)];
         var partial = realm.GetXpCompleted(current.Minor, current.PercentComplete);
         var sum = completed.Select(r => r.GetFullRealmXp()).Sum() + partial;
-        GD.Print($"Completed realms: {string.Join(", ", completed.Select(r => r.Name.ToString()))}");
 
         return sum;
     }

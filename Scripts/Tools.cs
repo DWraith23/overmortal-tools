@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using System.Threading.Tasks;
+using Godot;
 
 namespace OvermortalTools.Scripts;
 
 public static class Tools
 {
-    
+
     public static int GetRandomIndex(List<float> odds)
     {
         var sum = odds.Sum();
@@ -44,12 +45,21 @@ public static class Tools
         var rand = new Random().NextDouble();
         var total = 0f;
         var sorted = odds.ToImmutableSortedDictionary();
-        
+
         foreach (var kvp in sorted)
         {
             total += kvp.Value / sum;
             if (rand < total) return kvp.Key;
         }
         return default;
+    }
+
+    public static void EmitLoggedSignal(GodotObject obj, StringName signal, params Variant[] args)
+    {
+        string signalStr = signal;
+        string argsStr = string.Join(", ", args.Select(a => a.ToString()));
+        string objStr = obj.ToString();
+        GD.PrintRich($"{DateTime.Now} : [color=green]{objStr}[/color] emitting [color=yellow]{signalStr}[/color] with args [color=light_blue]{argsStr}");
+        obj.EmitSignal(signal, args);
     }
 }

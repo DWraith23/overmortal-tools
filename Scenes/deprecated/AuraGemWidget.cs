@@ -1,4 +1,5 @@
 using Godot;
+using OvermortalTools.Scripts;
 using System;
 
 namespace OvermortalTools.Scenes;
@@ -70,6 +71,6 @@ public partial class AuraGemWidget : PanelContainer
         PerWeekField.Text = (perSecond * 60 * 60 * 24 * 7).ToString("N0");
 
         ValuePerDay = perSecond * 60 * 60 * 24;
-        EmitSignal(SignalName.Changed);
+        Tools.EmitLoggedSignal(this, SignalName.Changed);
     }
 }

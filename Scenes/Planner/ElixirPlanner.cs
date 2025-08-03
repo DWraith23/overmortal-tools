@@ -1,5 +1,6 @@
 using Godot;
 using OvermortalTools.Resources.Planner;
+using OvermortalTools.Scripts;
 using System;
 
 namespace OvermortalTools.Scenes.Planner;
@@ -61,7 +62,7 @@ public partial class ElixirPlanner : VBoxContainer
         CheckMonspiritia();
         UpdateOutputs();
 
-        EmitSignal(SignalName.ValuesChanged);
+        Tools.EmitLoggedSignal(this, SignalName.ValuesChanged);
     }
 
     private void ValidateInputs()

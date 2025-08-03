@@ -21,6 +21,7 @@ public partial class VaseData : Resource
 
     private bool _hasVase = false;
     private int _stars = 0;
+    private bool _transmog = false;
 
     [Export]
     public bool HasVase
@@ -45,6 +46,18 @@ public partial class VaseData : Resource
         }
     }
 
+    [Export]
+    public bool Transmog
+    {
+        get => _transmog;
+        set
+        {
+            if (_transmog == value) return;
+            _transmog = value;
+            EmitChanged();
+        }
+    }
+
     /// <summary>
     /// Returns what the XP provided by a generated Mythic Pill is increased by, based on Star count.
     /// </summary>
@@ -52,9 +65,10 @@ public partial class VaseData : Resource
 
     private float GetXpMultiplier()
     {
-        if (Stars == 0) return 1f;  // No bonus
-        if (Stars < 3) return 1.1f; // 10% bonus at 1*
-        return 1.2f;    // 20% bonus at 3*
+        var bonus = Transmog ? 0.08f : 0.0f;
+        if (Stars == 0) return 1f + bonus;  // No bonus
+        if (Stars < 3) return 1.1f + bonus; // 10% bonus at 1*
+        return 1.2f + bonus;    // 20% bonus at 3*
     }
 
     /// <summary>

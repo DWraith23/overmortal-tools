@@ -1,4 +1,5 @@
 using Godot;
+using OvermortalTools.Scripts;
 using System;
 
 public partial class ProfileSwapper : VBoxContainer
@@ -8,6 +9,6 @@ public partial class ProfileSwapper : VBoxContainer
     [Signal] public delegate void SwapButtonPressedEventHandler(int profile);
     [Signal] public delegate void ProfileNameChangedEventHandler();
 
-    private void OnButtonPressed(int profile) => EmitSignal(SignalName.SwapButtonPressed, profile);
-    private void OnProfileNameChanged(string text) => EmitSignal(SignalName.ProfileNameChanged);
+    private void OnButtonPressed(int profile) => Tools.EmitLoggedSignal(this, SignalName.SwapButtonPressed, profile);
+    private void OnProfileNameChanged(string text) => Tools.EmitLoggedSignal(this, SignalName.ProfileNameChanged);
 }

@@ -1,6 +1,7 @@
 using Godot;
 using OvermortalTools.Resources.Cultivation;
 using OvermortalTools.Resources.Planner;
+using OvermortalTools.Scripts;
 using System;
 
 namespace OvermortalTools.Scenes.Planner;
@@ -41,7 +42,7 @@ public partial class CultivationPlanner : VBoxContainer
         TargetCalculation.MyrimonAverageXp = MyrimonPlanner.Data.AverageXp;
         TargetCalculation.ElixirData = ElixirPlanner.Data;
 
-        EmitSignal(SignalName.RequestSave);
+        Tools.EmitLoggedSignal(this, SignalName.RequestSave);
     }
 
     #endregion

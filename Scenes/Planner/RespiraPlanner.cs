@@ -66,7 +66,7 @@ public partial class RespiraPlanner : VBoxContainer
         CheckImmortalFriendsVisibility();
         UpdateOutputs();
         ValidateInputs();
-        EmitSignal(SignalName.ValuesChanged);  
+        Tools.EmitLoggedSignal(this, SignalName.ValuesChanged);  
     }
 
     private void CheckImmortalFriendsVisibility()

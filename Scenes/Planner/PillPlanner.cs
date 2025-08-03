@@ -59,9 +59,14 @@ public partial class PillPlanner : VBoxContainer
     private void OnLegendaryPillsSpinBoxChanged(double value) => Data.LegendaryPills = (int)value;
     private void OnTotalPillValueChanged(double value) => Data.TotalPillValue = (int)value;
     private void OnBonusPillValueChanged(double value) => Data.BonusPillValue = (int)value;
-    private void OnArtifactsUpdated(float value) => Data.MythicPills = value;
+    private void OnArtifactsUpdated(float value, float bonus)
+    {
+        Data.MythicPills = value;
+        Data.MythicBonus = bonus;
+    }
 
     #endregion
+
 
     private void Update()
     {
@@ -69,7 +74,7 @@ public partial class PillPlanner : VBoxContainer
 
         UpdateTextBoxes();
         ValidateInputs();
-        EmitSignal(SignalName.ValuesChanged);
+        Tools.EmitLoggedSignal(this, SignalName.ValuesChanged);
     }
 
     private void ValidateInputs()

@@ -539,6 +539,6 @@ public partial class CosmoapsisCalculator : PanelContainer
         }
     }
 
-    private void EmitChanged() => EmitSignal(SignalName.Changed);
+    private void EmitChanged() => Tools.EmitLoggedSignal(this, SignalName.Changed);
 
 }

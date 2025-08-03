@@ -62,5 +62,5 @@ public partial class PillBonusCalculatorPopup : PopupPanel
         return percent;
     }
 
-    private void OnApplyButtonPressed() => EmitSignal(SignalName.ApplyPercentage, CalculatePercentage());
+    private void OnApplyButtonPressed() => Tools.EmitLoggedSignal(this, SignalName.ApplyPercentage, CalculatePercentage());
 }

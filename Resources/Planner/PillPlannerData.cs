@@ -19,6 +19,8 @@ public partial class PillPlannerData : Resource
 
     private float _mythicPills = 0.0f;
 
+    public float MythicBonus { get; set; } = 1.0f;
+
     [Export]
     public int PillRealmIndex
     {
@@ -103,7 +105,7 @@ public partial class PillPlannerData : Resource
     private long RarePillsValue => GetPillValue(Quality.Classification.Rare) * RarePills;
     private long EpicPillsValue => GetPillValue(Quality.Classification.Epic) * EpicPills;
     private long LegendaryPillsValue => GetPillValue(Quality.Classification.Legendary) * LegendaryPills;
-    private long MythicPillsValue => (int)Math.Floor(GetPillValue(Quality.Classification.Mythic) * MythicPills);
+    private long MythicPillsValue => (int)Math.Floor(GetPillValue(Quality.Classification.Mythic) * MythicBonus * MythicPills);
 
     public long DailyPillValue => RarePillsValue + EpicPillsValue + LegendaryPillsValue + MythicPillsValue;
 

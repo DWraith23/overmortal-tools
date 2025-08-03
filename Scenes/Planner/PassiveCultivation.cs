@@ -69,7 +69,7 @@ public partial class PassiveCultivation : VBoxContainer
         HourlyNode.Text = Data.CosmoPerHour.ToString("N0");
         DailyNode.Text = Data.CosmoPerDay.ToString("N0");
 
-        EmitSignal(SignalName.ValuesChanged);
+        Tools.EmitLoggedSignal(this, SignalName.ValuesChanged);
     }
 
     private void ValidateValues()

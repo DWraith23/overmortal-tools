@@ -1,5 +1,6 @@
 using Godot;
 using OvermortalTools.Resources.Abilities;
+using OvermortalTools.Scripts;
 using System;
 
 namespace OvermortalTools.Scenes.Abilities;
@@ -58,7 +59,7 @@ public partial class Ability : PanelContainer
         SpinBox.MaxValue = Data.MaxLevel;
     }
 
-    private void OnDataChanged() => EmitSignal(SignalName.DataChanged);
+    private void OnDataChanged() => Tools.EmitLoggedSignal(this, SignalName.DataChanged);
     private void OnSpinBoxChanged(double value) => Data.Level = (int)value;
 
     public void CheckAvailability() => Disabled = PrereqAbility.Level < PrereqLevel;

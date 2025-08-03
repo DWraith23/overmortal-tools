@@ -1,5 +1,6 @@
 using Godot;
 using OvermortalTools.Resources.Planner;
+using OvermortalTools.Scripts;
 using System;
 using System.Collections.Generic;
 
@@ -11,7 +12,10 @@ public partial class VaseStatus : VBoxContainer
 
     [Export] private CheckBox HasArtifactCheck { get; set; }
     [Export] private HBoxContainer StarsContainer { get; set; }
+    [Export] private HBoxContainer TransmogContainer { get; set; }
     [Export] private SpinBox StarsBox { get; set; }
+    [Export] private CheckBox TransmogCheck { get; set; }
+
 
     private VaseData _data = new();
     public VaseData Data
@@ -29,6 +33,8 @@ public partial class VaseStatus : VBoxContainer
 
     private void OnHasVaseCheckboxToggled(bool toggledOn) => Data.HasVase = toggledOn;
     private void OnStarsSpinBoxValueChange(double value) => Data.Stars = (int)value;
+    private void OnTransmogCheckboxToggled(bool toggledOn) => Data.Transmog = toggledOn;
+
 
     #endregion
 
@@ -44,9 +50,11 @@ public partial class VaseStatus : VBoxContainer
     {
         GD.Print($"{DateTime.Now} : DEBUG: Updating VaseStatus.");
         CheckValues();
+        TransmogCheck.ButtonPressed = Data.Transmog;
 
         StarsContainer.Visible = Data.HasVase;
-        EmitSignal(SignalName.ValuesChanged);
+        TransmogContainer.Visible = Data.HasVase;
+        Tools.EmitLoggedSignal(this, SignalName.ValuesChanged);
     }
 
     /// <summary>

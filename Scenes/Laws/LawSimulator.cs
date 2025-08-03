@@ -1,5 +1,6 @@
 using Godot;
 using OvermortalTools.Resources.Laws;
+using OvermortalTools.Scripts;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -109,7 +110,7 @@ public partial class LawSimulator : Control
 		EarthHours.Text = DaysToNextThreshold(Data.Earth).ToString("N0");
 
 		Simulate();
-		EmitSignal(SignalName.RequestSave);
+		Tools.EmitLoggedSignal(this, SignalName.RequestSave);
 	}
 
 	private void OnAverageBlitzBoxChanged(double value)

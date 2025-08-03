@@ -66,7 +66,7 @@ public partial class StageCalculator : VBoxContainer
     {
         SetTargetRealmOptionButtons();
         SetRemainingXp();
-        EmitSignal(SignalName.ValuesChanged);
+        Tools.EmitLoggedSignal(this, SignalName.ValuesChanged);
     }
 
     private void SetRemainingXp() =>
