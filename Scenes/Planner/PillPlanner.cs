@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using Godot;
 using OvermortalTools.Resources;
+using OvermortalTools.Resources.Cultivation;
 using OvermortalTools.Resources.Planner;
 using OvermortalTools.Scripts;
 
@@ -48,7 +49,7 @@ public partial class PillPlanner : VBoxContainer
     {
         Data.Changed += Update;
         UpdateTextBoxes();
-        CultivationStage.MajorRealms.ForEach(realm => RealmSelect.AddItem(realm));
+        Enum.GetNames<Realm.MajorRealm>().ToList().ForEach(realm => RealmSelect.AddItem(realm));
     }
 
     #region Events
