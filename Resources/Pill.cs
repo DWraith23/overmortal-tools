@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Godot;
+using OvermortalTools.Resources.Cultivation;
 using OvermortalTools.Scripts.Enums;
 
 namespace OvermortalTools.Resources;
@@ -18,23 +19,23 @@ public partial class Pill : Resource
         { Quality.Classification.Mythic, 24f },
     };
 
-    private static Dictionary<Realm.Classification, int> BaseRealmValues => new()
+    private static Dictionary<Realm.MajorRealm, int> BaseRealmValues => new()
     {
-        { Realm.Classification.Novice, 0 },
-        { Realm.Classification.Connection, 125 },
-        { Realm.Classification.Foundation, 625 },
-        { Realm.Classification.Virtuoso, 1900 },
-        { Realm.Classification.NascentSoul, 5000 },
-        { Realm.Classification.Incarnation, 8000 },
-        { Realm.Classification.Voidbreak, 12000 },
-        { Realm.Classification.Wholeness, 20500 },
-        { Realm.Classification.Perfection,  31000 },
-        { Realm.Classification.Nirvana, 57000 },
-        { Realm.Classification.Celestial, 128375 },
-        { Realm.Classification.Eternal, 304375 },
+        { Realm.MajorRealm.Novice, 0 },
+        { Realm.MajorRealm.Connection, 125 },
+        { Realm.MajorRealm.Foundation, 625 },
+        { Realm.MajorRealm.Virtuoso, 1900 },
+        { Realm.MajorRealm.NascentSoul, 5000 },
+        { Realm.MajorRealm.Incarnation, 8000 },
+        { Realm.MajorRealm.Voidbreak, 12000 },
+        { Realm.MajorRealm.Wholeness, 20500 },
+        { Realm.MajorRealm.Perfection,  31000 },
+        { Realm.MajorRealm.Nirvana, 57000 },
+        { Realm.MajorRealm.Celestial, 128375 },
+        { Realm.MajorRealm.Eternal, 304375 },
     };
 
-    [Export] public Realm.Classification CultivationRealm { get; set; } = Realm.Classification.Connection;
+    [Export] public Realm.MajorRealm CultivationRealm { get; set; } = Realm.MajorRealm.Connection;
     [Export] public Quality.Classification PillQuality { get; set; } = Quality.Classification.Common;
 
     public string PillName => $"{PillQuality} {CultivationRealm} Pill";
@@ -45,7 +46,7 @@ public partial class Pill : Resource
     {
         List<Pill> result = [];
 
-        foreach (var realm in Enum.GetValues<Realm.Classification>())
+        foreach (var realm in Enum.GetValues<Realm.MajorRealm>())
         {
             foreach(var quality in Enum.GetValues<Quality.Classification>())
             {

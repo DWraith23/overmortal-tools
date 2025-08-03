@@ -1,25 +1,26 @@
 using System;
 using System.Collections.Generic;
 using Godot;
+using OvermortalTools.Resources.Cultivation;
 using OvermortalTools.Scripts.Enums;
 
 namespace OvermortalTools.Resources.Planner;
 
 public partial class RespiraPlannerData : Resource
 {
-    private static Dictionary<Realm.Classification, int> RealmValues => new()
+    private static Dictionary<Realm.MajorRealm, int> RealmValues => new()
     {
-        { Realm.Classification.Novice, 6 },
-        { Realm.Classification.Connection, 20 },
-        { Realm.Classification.Foundation, 110 },
-        { Realm.Classification.Virtuoso, 650 },
-        { Realm.Classification.NascentSoul, 3200 },
-        { Realm.Classification.Incarnation, 5300 },
-        { Realm.Classification.Voidbreak, 7800 },
-        { Realm.Classification.Wholeness, 10500 },
-        { Realm.Classification.Perfection, 13500 },
-        { Realm.Classification.Nirvana, 25000 },
-        { Realm.Classification.Celestial, 37500 },
+        { Realm.MajorRealm.Novice, 6 },
+        { Realm.MajorRealm.Connection, 20 },
+        { Realm.MajorRealm.Foundation, 110 },
+        { Realm.MajorRealm.Virtuoso, 650 },
+        { Realm.MajorRealm.NascentSoul, 3200 },
+        { Realm.MajorRealm.Incarnation, 5300 },
+        { Realm.MajorRealm.Voidbreak, 7800 },
+        { Realm.MajorRealm.Wholeness, 10500 },
+        { Realm.MajorRealm.Perfection, 13500 },
+        { Realm.MajorRealm.Nirvana, 25000 },
+        { Realm.MajorRealm.Celestial, 37500 },
     };
 
     private static List<(float, int)> MultiplierOdds =>
@@ -111,7 +112,7 @@ public partial class RespiraPlannerData : Resource
     public int TotalRespiraAttempts => 10 + _respiraAttemptsFromTechniques + _respiraAttempsFromFriends + _respiraAttemptsFromCurios;
     public float TotalRespiraBonus => 1f + (_respiraBonusFromTechniques + _respiraBonusFromFriends + _respiraBonusFromCurios) / 100f;
 
-    public long RespiraValue => (int)Math.Floor(RealmValues[(Realm.Classification)_realmIndex] * TotalRespiraBonus);
+    public long RespiraValue => (int)Math.Floor(RealmValues[(Realm.MajorRealm)_realmIndex] * TotalRespiraBonus);
     public long DailyRespiraValue => GetDailyRespiraValue();
     private long GetDailyRespiraValue()
     {

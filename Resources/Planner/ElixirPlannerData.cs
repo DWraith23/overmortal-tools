@@ -1,5 +1,6 @@
 using System;
 using Godot;
+using OvermortalTools.Resources.Cultivation;
 using OvermortalTools.Scripts.Enums;
 
 namespace OvermortalTools.Resources.Planner;
@@ -67,7 +68,7 @@ public partial class ElixirPlannerData : Resource
         }
     }
 
-    private Realm.Classification Realm => (Realm.Classification)RealmIndex;
+    private Realm.MajorRealm Realm => (Realm.MajorRealm)RealmIndex;
 
     // Monspiritia
     public bool MonspiritiaAvailable => Elixir.MonspiritiaElixirsCount.ContainsKey(Realm);

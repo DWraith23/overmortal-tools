@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using Godot;
+using OvermortalTools.Resources.Cultivation;
 using OvermortalTools.Scripts.Enums;
 
 namespace OvermortalTools.Resources.Planner;
@@ -95,7 +96,7 @@ public partial class PillPlannerData : Resource
         }
     }
 
-    public Realm.Classification PillRealm => (Realm.Classification)PillRealmIndex;
+    public Realm.MajorRealm PillRealm => (Realm.MajorRealm)PillRealmIndex;
 
     public float PillBonusMultiplier => TotalPillValue / ((float)TotalPillValue - BonusPillValue);
 
