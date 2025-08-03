@@ -72,7 +72,6 @@ public class LawSimulation
 
         var currentTarget = min.NextThreshold;
         var optimalChoices = validChoices.Where(law => law.Level < currentTarget);
-        // GD.Print($"Current Target: {currentTarget} | Optimal: {string.Join(", ", optimalChoices.Select(law => law.Name))}");
         if (optimalChoices.Any())
         {
             return optimalChoices.MaxBy(law => law.Level);
@@ -89,10 +88,7 @@ public class LawSimulation
         int days = 0;
         while (TotalLevel < level)
         {
-            // GD.Print($"--- NEW DAY: DAY {days} ---");
             SimulateDay();
-            // GD.Print($"Law Levels: {TotalLevel} - {PointsPerHour} - {AverageBlitzHours}");
-            // Laws.ForEach(law => GD.Print($"|     {law}"));
             days++;
             if (days > 364) return -1;
         }
@@ -145,7 +141,6 @@ public class LawSimulation
             var law = GetBestLawToLevel();
             if (law == null) break;
             var xp = (long)Math.Floor(fruitHours * PointsPerHour * 0.95f); // Reducing some due to waste.
-            // GD.Print($"Adding {xp} ({fruitHours} * {PointsPerHour}) to {law.Name}. {FruitQuality} fruit remaining: {fruit - 1}");
             law.AddXp(xp);
             fruit--;
         }
@@ -168,7 +163,6 @@ public class LawSimulation
         if (Data.HasShears)
         {
             law?.AddXp((long)Math.Floor(ShearsHours * PointsPerHour));
-            GD.Print($"ShearsHours: {ShearsHours} | ShearsStars: {ShearsStars} | Extra Points: {ShearsHours * PointsPerHour}");
         }
 
         int n = 0;

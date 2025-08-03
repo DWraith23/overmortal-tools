@@ -1,5 +1,6 @@
 using Godot;
 using OvermortalTools.Resources;
+using OvermortalTools.Resources.Cultivation;
 using OvermortalTools.Scenes.Laws;
 using OvermortalTools.Scenes.Planner;
 using System;
@@ -17,6 +18,12 @@ public partial class Main : Control
     private bool IsLoading { get; set; } = false;
     private int ActiveProfile { get; set; } = 0;
     private string ProfileName => ProfileSwapper.ProfileName.Text;
+
+    public override void _EnterTree()
+    {
+        RealmList.LoadRealms();
+    }
+
 
     public override void _Ready()
     {
