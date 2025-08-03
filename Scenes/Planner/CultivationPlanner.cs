@@ -1,4 +1,5 @@
 using Godot;
+using OvermortalTools.Resources.Cultivation;
 using OvermortalTools.Resources.Planner;
 using System;
 
@@ -32,8 +33,8 @@ public partial class CultivationPlanner : VBoxContainer
 
     private void UpdateTargetCalculation()
     {
-        TargetCalculation.CurrentXp = BasicInformation.StageCalculator.Data.CurrentXp;
-        TargetCalculation.TargetXp = BasicInformation.StageCalculator.Data.TargetXp;
+        var stageData = BasicInformation.StageCalculator.Data;
+        TargetCalculation.XpNeeded = RealmList.GetXpToTarget(stageData.CurrentRealm, stageData.TargetRealm);
         TargetCalculation.PassiveXp = (int)BasicInformation.PassiveCultivation.Data.CosmoPerDay;
         TargetCalculation.RespiraXp = RespiraPlanner.Data.DailyRespiraValue;
         TargetCalculation.PillXp = PillPlanner.Data.DailyPillValue;

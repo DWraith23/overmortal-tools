@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Godot;
 using OvermortalTools.Scripts;
 using static OvermortalTools.Resources.Cultivation.Realm;
 
@@ -30,12 +31,14 @@ public static class RealmList
         ];
     }
 
+    public static int RealmIndex(MajorRealm realm) => Realms.IndexOf(GetRealm(realm));
+
     public static Realm GetRealm(MajorRealm realm) => Realms.FirstOrDefault(r => r.Name == realm);
     public static long GetTotalRealmXp(MajorRealm realm) => GetRealm(realm).GetFullRealmXp();
     public static long GetMinorRealmXp(MajorRealm major, MinorRealm minor) => GetRealm(major).GetMinorRealmXp(minor);
-
     public static long GetXpToTarget(RealmInfo current, RealmInfo target)
     {
+        GD.Print($"{current} -> {target}");
         if (current.Major == target.Major)
         {
             if (current.Minor == target.Minor)
@@ -44,14 +47,26 @@ public static class RealmList
             }
             else
             {
+
                 return GetXpNeededToCompleteTarget(current, target.Minor);
             }
         }
         else
         {
             return GetXpNeededToCompleteTarget(current, target);
-        }    
+        }
     }
+    public static long SumCompletedXp(RealmInfo current)
+    {
+        var realm = GetRealm(current.Major);
+        var completed = Realms[..RealmIndex(current.Major)];
+        var partial = realm.GetXpCompleted(current.Minor, current.PercentComplete);
+        var sum = completed.Select(r => r.GetFullRealmXp()).Sum() + partial;
+        GD.Print($"Completed realms: {string.Join(", ", completed.Select(r => r.Name.ToString()))}");
+
+        return sum;
+    }
+
 
     private static long GetXpNeededToCompleteCurrent(RealmInfo current)
     {
@@ -100,6 +115,5 @@ public static class RealmList
         }
         return xpNeeded - cXp;
     }
-
 
 }

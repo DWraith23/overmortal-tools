@@ -76,11 +76,21 @@ public partial class Realm : Resource
         { MinorRealm.Late, [MinorRealm.Early, MinorRealm.Middle, MinorRealm.Late] }
     };
 
+    public static Dictionary<MinorRealm, MinorRealm[]> MinorRealmsFrom => new()
+    {
+        { MinorRealm.Early, [MinorRealm.Early, MinorRealm.Middle, MinorRealm.Late] },
+        { MinorRealm.Middle, [MinorRealm.Middle, MinorRealm.Late] },
+        { MinorRealm.Late, [MinorRealm.Late] }
+    };
+
     public struct RealmInfo(MajorRealm major, MinorRealm minor, float percentComplete = 1f)
     {
         public MajorRealm Major = major;
         public MinorRealm Minor = minor;
         public float PercentComplete = percentComplete;
+
+        public override string ToString() =>
+            $"{Major} {Minor} {PercentComplete:P1}";
     }
 
     private MajorRealm _name;

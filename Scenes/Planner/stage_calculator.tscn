@@ -3,17 +3,9 @@
 [ext_resource type="Script" path="res://Scenes/Planner/StageCalculator.cs" id="1_3o1p3"]
 [ext_resource type="PackedScene" uid="uid://bqrdrnjp6rlxk" path="res://Scenes/Components/question_button.tscn" id="2_bujh2"]
 
-[node name="Stage Calculator" type="VBoxContainer" node_paths=PackedStringArray("CurrentMajorRealm", "CurrentMinorRealm", "CurrentStage", "CurrentPercent", "TargetMajorRealm", "TargetMinorRealm", "TargetStage", "RemainingXp")]
+[node name="Stage Calculator" type="VBoxContainer"]
 theme_override_constants/separation = 8
 script = ExtResource("1_3o1p3")
-CurrentMajorRealm = NodePath("Current Level/Major Realm Select")
-CurrentMinorRealm = NodePath("Current Level/Minor Realm Select")
-CurrentStage = NodePath("")
-CurrentPercent = NodePath("Current Level/SpinBox")
-TargetMajorRealm = NodePath("Target Level/Major Realm Select")
-TargetMinorRealm = NodePath("Target Level/Minor Realm Select")
-TargetStage = NodePath("")
-RemainingXp = NodePath("Details/LineEdit")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 2
@@ -27,15 +19,9 @@ offset_top = 2.0
 offset_right = 347.0
 offset_bottom = 34.0
 Title = "Stages"
-PopupText = "Fill out the following: 
-Major Realm (Incarnation, Voidbreak, etc.)
-Minor Realm (Early, Middle, Late)
-Stage (What G)
-Percent towards next G
+PopupText = "Enter your current Major and Minor realm (eg Wholeness Late) and the percent in the top left of your game.
 
-Fill these out for both your current stage and what stage you want to get to.
-
-Make sure to fill them out in order or they reset."
+Then enter what stage you are trying to COMPLETE.  So if you want the end of Perfection, put Perfection Late."
 
 [node name="Current Level" type="GridContainer" parent="."]
 layout_mode = 2
@@ -92,7 +78,7 @@ layout_mode = 2
 
 [node name="Label2" type="Label" parent="."]
 layout_mode = 2
-text = "Target Stage"
+text = "Target Completion Stage"
 horizontal_alignment = 1
 
 [node name="Target Level" type="GridContainer" parent="."]

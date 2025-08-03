@@ -55,10 +55,10 @@ layout_mode = 2
 [node name="Node2D" type="Node2D" parent="."]
 
 [node name="Question Button" parent="Node2D" instance=ExtResource("3_r1jlk")]
-offset_left = 315.0
-offset_top = 374.0
-offset_right = 347.0
-offset_bottom = 406.0
+offset_left = 310.0
+offset_top = 278.0
+offset_right = 342.0
+offset_bottom = 310.0
 Title = "Passive Cultivation"
 PopupText = "Enter your total Cosmoapsis (not abode aura or absorb).
 
@@ -66,9 +66,9 @@ Then just select what level your Aura Gem is."
 
 [node name="Question Button2" parent="Node2D" instance=ExtResource("3_r1jlk")]
 offset_left = 315.0
-offset_top = 501.0
+offset_top = 457.0
 offset_right = 347.0
-offset_bottom = 533.0
+offset_bottom = 489.0
 Title = "Artifacts"
 PopupText = "Check the box for each artifact you have, then put in the number of stars.
 

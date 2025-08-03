@@ -23,30 +23,20 @@ public partial class TargetCalculation : VBoxContainer
     [Export] private LineEdit WithMyrimonDays { get; set; }
     [Export] private LineEdit WithoutMyrimonDays { get; set; }
 
-    private long _currentXp = 0;
-    private long _targetXp = 2;
+    private long _xpNeeded = 0;
     private long _passiveXp = 0;
     private long _respiraXp = 60;
     private long _pillXp = 0;
     private long _myrimonAverageXp = 0;
     private ElixirPlannerData _elixirData;
 
-    public long CurrentXp
+    public long XpNeeded
     {
-        get => _currentXp;
+        get => _xpNeeded;
         set
         {
-            _currentXp = value;
-            Update();
-        }
-    }
-
-    public long TargetXp
-    {
-        get => _targetXp;
-        set
-        {
-            _targetXp = value;
+            if (_xpNeeded == value) return;
+            _xpNeeded = value;
             Update();
         }
     }
@@ -120,9 +110,8 @@ public partial class TargetCalculation : VBoxContainer
 
     private long DailyElixirXp { get; set; } = 0;
 
-    private long RemainingXp => TargetXp - CurrentXp;
-    private long RemainingXpAfterMyrm => RemainingXp - MyrimonAverageXp;
-    private int DaysNoMyrm => (int)Math.Ceiling(RemainingXp / DailyXp + 0d);
+    private long RemainingXpAfterMyrm => XpNeeded - MyrimonAverageXp;
+    private int DaysNoMyrm => (int)Math.Ceiling(XpNeeded / DailyXp + 0d);
     private int DaysWithMyrm => (int)Math.Ceiling(RemainingXpAfterMyrm / DailyXp + 0d);
 
     private void OnCheckBoxChecked(bool buttonPressed) => Update();
@@ -147,10 +136,10 @@ public partial class TargetCalculation : VBoxContainer
             return;
         }
 
-        var cDays = (int)Math.Ceiling(RemainingXp / DailyXp + 0d);
+        var cDays = (int)Math.Ceiling(XpNeeded / DailyXp + 0d);
 
         var nDays = 0;
-        while (RemainingXp - (DailyXp * nDays) - ElixirData.GetDailyValue(nDays) > 0)
+        while (XpNeeded - (DailyXp * nDays) - ElixirData.GetDailyValue(nDays) > 0)
         {
             nDays++;
         }
