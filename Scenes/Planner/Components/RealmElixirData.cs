@@ -1,5 +1,6 @@
 using Godot;
 using OvermortalTools.Resources;
+using OvermortalTools.Resources.Cultivation;
 using OvermortalTools.Scripts.Enums;
 using System;
 
@@ -28,7 +29,7 @@ public partial class RealmElixirData : HBoxContainer
 
     private long GetElixirValue()
     {
-        var realm = (Realm.Classification)Realm.NamesList.IndexOf(RealmName.Text);
+        var realm = (Realm.MajorRealm)Realm.NamesList.IndexOf(RealmName.Text);
         var flat = Elixir.GetMainPathTotalValue(realm, UsedElixirAmount, FlatElixirAmount);
         var daily = Elixir.GetMainPathTotalValue(realm, UsedElixirAmount + FlatElixirAmount, DailyElixirAmount * DaysInRealm);
 

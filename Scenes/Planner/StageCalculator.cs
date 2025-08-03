@@ -16,12 +16,10 @@ public partial class StageCalculator : VBoxContainer
     [ExportSubgroup("Current")]
     [Export] private OptionButton CurrentMajorRealm { get; set; }
     [Export] private OptionButton CurrentMinorRealm { get; set; }
-    [Export] private OptionButton CurrentStage { get; set; }
     [Export] private SpinBox CurrentPercent { get; set; }
     [ExportSubgroup("Target")]
     [Export] private OptionButton TargetMajorRealm { get; set; }
     [Export] private OptionButton TargetMinorRealm { get; set; }
-    [Export] private OptionButton TargetStage { get; set; }
     [ExportSubgroup("Details")]
     [Export] private LineEdit RemainingXp { get; set; }
 
@@ -71,11 +69,9 @@ public partial class StageCalculator : VBoxContainer
 
     private void OnCurrentMajorRealmSelected(int index) => SetCurrentMajorRealm();
     private void OnCurrentMinorRealmSelected(int index) => SetCurrentMinorRealm();
-    private void OnCurrentStageSelected(int index) => SetCurrentStage();
     private void OnCurrentPercentValueChanged(double value) => Data.CurrentPercent = (float)value / 100f;
     private void OnTargetMajorRealmSelected(int index) => SetTargetMajorRealm();
     private void OnTargetMinorRealmSelected(int index) => SetTargetMinorRealm();
-    private void OnTargetStageSelected(int index) => SetTargetStage();
 
     #endregion
 
@@ -93,15 +89,7 @@ public partial class StageCalculator : VBoxContainer
     {
         Data.CurrentMinorRealmIndex = CurrentMinorRealm.Selected;
         Data.CurrentMinorRealm = CurrentMinorRealm.Text;
-        HandleCurrentStageOptions();
         HandleTargetMinorRealmOptions();
-    }
-
-    private void SetCurrentStage()
-    {
-        Data.CurrentStageIndex = CurrentStage.Selected;
-        Data.CurrentStage = CurrentStage.Text;
-        HandleTargetStageOptions();
     }
 
     private void SetTargetMajorRealm()
@@ -115,14 +103,8 @@ public partial class StageCalculator : VBoxContainer
     {
         Data.TargetMinorRealmIndex = TargetMinorRealm.Selected;
         Data.TargetMinorRealm = TargetMinorRealm.Text;
-        HandleTargetStageOptions();
     }
 
-    private void SetTargetStage()
-    {
-        Data.TargetStageIndex = TargetStage.Selected;
-        Data.TargetStage = TargetStage.Text;
-    }
     
     #endregion
     
@@ -143,10 +125,8 @@ public partial class StageCalculator : VBoxContainer
     {
         if (CurrentMajorRealm.Text != Data.CurrentMajorRealm) Data.CurrentMajorRealm = CurrentMajorRealm.Text;
         if (CurrentMinorRealm.Text != Data.CurrentMinorRealm) Data.CurrentMinorRealm = CurrentMinorRealm.Text;
-        if (CurrentStage.Text != Data.CurrentStage) Data.CurrentStage = CurrentStage.Text;
         if (TargetMajorRealm.Text != Data.TargetMajorRealm) Data.TargetMajorRealm = TargetMajorRealm.Text;
         if (TargetMinorRealm.Text != Data.TargetMinorRealm) Data.TargetMinorRealm = TargetMinorRealm.Text;
-        if (TargetStage.Text != Data.TargetStage) Data.TargetStage = TargetStage.Text;
     }
 
     private void SetRemainingXpText()
@@ -173,23 +153,14 @@ public partial class StageCalculator : VBoxContainer
         SetCurrentMajorRealm();
         CurrentMinorRealm.Select(cMinIdx);
         SetCurrentMinorRealm();
-        CurrentStage.Select(cStaIdx);
-        SetCurrentStage();
         TargetMajorRealm.Select(tMajIdx);
         SetTargetMajorRealm();
         TargetMinorRealm.Select(tMinIdx);
         SetTargetMinorRealm();
-        TargetStage.Select(tStaIdx);
-        SetTargetStage();
         CurrentPercent.Value = Data.CurrentPercent * 100f;
     }
 
     #region OptionButton Handling
-
-    private void HandleOptionButtons()
-    {
-        
-    }
 
     
     private void HandleCurrentMinorRealmOptions()
@@ -203,20 +174,6 @@ public partial class StageCalculator : VBoxContainer
             CurrentMinorRealm.AddItem(realm);
         }
         Data.CurrentMinorRealmIndex = 0;
-        HandleCurrentStageOptions();
-    }
-
-    private void HandleCurrentStageOptions()
-    {
-        CurrentStage.Clear();
-
-        if (CurrentMinorRealm.Selected == -1) return;
-
-        foreach (var realm in CultivationStage.Stages(Data.CurrentMajorRealm, Data.CurrentMinorRealm))
-        {
-            CurrentStage.AddItem(realm);
-        }
-        Data.CurrentStageIndex = 0;
     }
 
     private void HandleTargetMajorRealmOptions()
@@ -255,72 +212,6 @@ public partial class StageCalculator : VBoxContainer
             }
         }
         Data.TargetMinorRealmIndex = 0;
-        HandleTargetStageOptions();
-    }
-
-    private void HandleTargetStageOptions()
-    {
-        TargetStage.Clear();
-
-        if (TargetMinorRealm.Selected == -1) return;
-
-        if (Data.CurrentMajorRealm.Equals(Data.TargetMajorRealm) && Data.CurrentMinorRealm.Equals(Data.TargetMinorRealm))
-        {
-            for (int i = 0; i < CultivationStage.Stages(Data.TargetMajorRealm, Data.TargetMinorRealm).Count; i++)
-            {
-                if (i < Data.CurrentStageIndex) continue;
-
-                TargetStage.AddItem(CultivationStage.Stages(Data.TargetMajorRealm, Data.TargetMinorRealm)[i]);
-            }
-        }
-        else
-        {
-            for (int i = 0; i < CultivationStage.Stages(Data.TargetMajorRealm, Data.TargetMinorRealm).Count; i++)
-            {
-                TargetStage.AddItem(CultivationStage.Stages(Data.TargetMajorRealm, Data.TargetMinorRealm)[i]);
-            }
-        }
-        Data.TargetStageIndex = 0;
-    }
-
-    private bool NeedsToUpdate(string type)
-    {
-        var currentMajorIdx = CultivationStage.MajorRealms.Contains(Data.CurrentMajorRealm)
-            ? CultivationStage.MajorRealms.IndexOf(Data.CurrentMajorRealm)
-            : -1;
-        var targetMajorIdx = CultivationStage.MajorRealms.Contains(Data.TargetMajorRealm)
-            ? CultivationStage.MajorRealms.IndexOf(Data.TargetMajorRealm)
-            : -1;
-
-        var currentMinorIdx = CultivationStage.MinorRealms(Data.CurrentMajorRealm).Contains(Data.CurrentMinorRealm)
-            ? CultivationStage.MinorRealms(Data.CurrentMajorRealm).IndexOf(Data.CurrentMinorRealm)
-            : -1;
-        var targetMinorIdx = CultivationStage.MinorRealms(Data.TargetMajorRealm).Contains(Data.TargetMinorRealm)
-            ? CultivationStage.MinorRealms(Data.TargetMajorRealm).IndexOf(Data.TargetMinorRealm)
-            : -1;
-
-        var currentStageIdx = CultivationStage.Stages(Data.CurrentMajorRealm, Data.CurrentMinorRealm).Contains(Data.CurrentStage)
-            ? CultivationStage.Stages(Data.CurrentMajorRealm, Data.CurrentMinorRealm).IndexOf(Data.CurrentStage)
-            : -1;
-        var targetStageIdx = CultivationStage.Stages(Data.TargetMajorRealm, Data.TargetMinorRealm).Contains(Data.CurrentStage)
-            ? CultivationStage.Stages(Data.TargetMajorRealm, Data.TargetMinorRealm).IndexOf(Data.CurrentStage)
-            : -1;
-            
-        if (type == "Major")
-        {
-            
-        }
-        else if (type == "Minor")
-        {
-            
-
-        }
-        else if (type == "Stage")
-        {
-
-
-        }
-        return false;
     }
 
     #endregion
