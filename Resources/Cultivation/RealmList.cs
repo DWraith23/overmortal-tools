@@ -42,16 +42,18 @@ public static class RealmList
         {
             if (current.Minor == target.Minor)
             {
+                GD.Print("A");
                 return GetXpNeededToCompleteCurrent(current);
             }
             else
             {
-
+                GD.Print("B");
                 return GetXpNeededToCompleteTarget(current, target.Minor);
             }
         }
         else
         {
+            GD.Print("C");
             return GetXpNeededToCompleteTarget(current, target);
         }
     }
@@ -103,15 +105,17 @@ public static class RealmList
     {
         var cRealm = GetRealm(current.Major);
         var cXp = cRealm.GetXpCompleted(current.Minor, current.PercentComplete);
+
         var betweenRealms = GetRealmsBetween(current.Major, target.Major);
         var tRealm = GetRealm(target.Major);
 
-        var xpNeeded = tRealm.SumMinorXp(Realm.MinorRealmsTo[target.Minor]);
+        var xpNeeded = cRealm.GetFullRealmXp() - cXp;
+        xpNeeded += tRealm.SumMinorXp(MinorRealmsTo[target.Minor]);
         foreach (var realm in betweenRealms)
         {
             xpNeeded += realm.GetFullRealmXp();
         }
-        return xpNeeded - cXp;
+        return xpNeeded;
     }
 
 }

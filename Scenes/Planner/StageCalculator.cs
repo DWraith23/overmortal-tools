@@ -64,6 +64,8 @@ public partial class StageCalculator : VBoxContainer
 
     private void Update()
     {
+        GD.Print($"{DateTime.Now} : DEBUG: Updating StageCalculator.");
+        GD.Print($"{Data.CurrentRealm} -> {Data.TargetRealm}");
         SetTargetRealmOptionButtons();
         SetRemainingXp();
         Tools.EmitLoggedSignal(this, SignalName.ValuesChanged);
@@ -117,7 +119,8 @@ public partial class StageCalculator : VBoxContainer
         foreach (var stage in Enum.GetNames<Realm.MinorRealm>())
         {
             TargetMinorRealmSelect.AddItem(stage);
-            TargetMinorRealmSelect.SetItemDisabled(idx, idx < (int)Data.CurrentMinorRealm);
+            if (Data.CurrentMajorRealm == Data.TargetMajorRealm)
+                TargetMinorRealmSelect.SetItemDisabled(idx, idx < (int)Data.CurrentMinorRealm);
             idx++;
         }
 
