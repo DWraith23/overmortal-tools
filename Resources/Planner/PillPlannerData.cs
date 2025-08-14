@@ -14,8 +14,8 @@ public partial class PillPlannerData : Resource
     private int _rarePills = 0;
     private int _epicPills = 0;
     private int _legendaryPills = 0;
-    private int _totalPillValue = 100;
-    private int _bonusPillValue = 0;
+    private long _totalPillValue = 100;
+    private long _bonusPillValue = 0;
 
     private float _mythicPills = 0.0f;
     private float _mythicBonus = 1.0f;
@@ -65,7 +65,7 @@ public partial class PillPlannerData : Resource
     }
 
     [Export]
-    public int TotalPillValue
+    public long TotalPillValue
     {
         get => _totalPillValue;
         set
@@ -76,7 +76,7 @@ public partial class PillPlannerData : Resource
     }
 
     [Export]
-    public int BonusPillValue
+    public long BonusPillValue
     {
         get => _bonusPillValue;
         set

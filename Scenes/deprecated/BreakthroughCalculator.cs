@@ -10,8 +10,8 @@ public partial class BreakthroughCalculator : HBoxContainer
     [Export] public CosmoapsisCalculator CosmoapsisCalculator { get; set; }
     [Export] public PillCalculator PillCalculator { get; set; }
 
-    private int PassiveDailyCultivation => (int) Math.Floor(CosmoapsisCalculator.PerDay + CosmoapsisCalculator.AuraGem.ValuePerDay);
-    private int ExpToTarget => (int) CosmoapsisCalculator.XPRemaining;
+    private long PassiveDailyCultivation => (long) Math.Floor(CosmoapsisCalculator.PerDay + CosmoapsisCalculator.AuraGem.ValuePerDay);
+    private long ExpToTarget => (long) CosmoapsisCalculator.XPRemaining;
 
 
     public override void _Ready()

@@ -13,8 +13,8 @@ public static class Extensions
         node.SetText(newText);
     }
 
-    public static long RoundDown(this float f) => (int)Math.Floor(f);
-    public static long RoundUp(this float f) => (int)Math.Ceiling(f);
+    public static long RoundDown(this float f) => (long)Math.Floor(f);
+    public static long RoundUp(this float f) => (long)Math.Ceiling(f);
 
     public static long RoundDown(this double d) => (long)Math.Floor(d);
     public static long RoundUp(this double d) => (long)Math.Ceiling(d);

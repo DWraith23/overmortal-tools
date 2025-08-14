@@ -80,7 +80,9 @@ public static class RealmList
         MinorRealm[] realms = (current.Minor == MinorRealm.Early && target == MinorRealm.Late)
             ? [MinorRealm.Early, MinorRealm.Middle, MinorRealm.Late]
             : [current.Minor, target];
-        return GetRealm(current.Major).SumMinorXp(realms) - cXp;
+        var tXp = GetRealm(current.Major).SumMinorXp(realms);
+        GD.Print($"Current: {current.Major} {current.Minor} {current.PercentComplete:P1}, Target: {target}, cXp: {cXp:N0}, tXp: {tXp:N0}, tXp - cXp: {tXp - cXp:N0}");
+        return tXp - cXp;
     }
 
     private static List<Realm> GetRealmsBetween(MajorRealm from, MajorRealm to)
@@ -110,11 +112,14 @@ public static class RealmList
         var tRealm = GetRealm(target.Major);
 
         var xpNeeded = cRealm.GetFullRealmXp() - cXp;
-        xpNeeded += tRealm.SumMinorXp(MinorRealmsTo[target.Minor]);
+        GD.Print($"Current Realm: {cRealm.Name}, Target Realm: {tRealm.Name}, XP Needed to complete current realm: {xpNeeded:N0}");
         foreach (var realm in betweenRealms)
         {
+            GD.Print($"Adding XP for realm: {realm.Name} ({realm.GetFullRealmXp():N0})");
             xpNeeded += realm.GetFullRealmXp();
         }
+        GD.Print($"Adding XP for target realm: {tRealm.Name} ({tRealm.SumMinorXp(MinorRealmsTo[target.Minor]):N0})");
+        xpNeeded += tRealm.SumMinorXp(MinorRealmsTo[target.Minor]);
         return xpNeeded;
     }
 
