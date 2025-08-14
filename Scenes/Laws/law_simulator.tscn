@@ -29,15 +29,7 @@ layout_mode = 2
 text = "Bonus"
 
 [node name="Spacer 3" type="Control" parent="Laws/Columns"]
-custom_minimum_size = Vector2(90, 0)
-layout_mode = 2
-
-[node name="Label3" type="Label" parent="Laws/Columns"]
-layout_mode = 2
-text = "Multiplier"
-
-[node name="Spacer 4" type="Control" parent="Laws/Columns"]
-custom_minimum_size = Vector2(90, 0)
+custom_minimum_size = Vector2(43, 0)
 layout_mode = 2
 
 [node name="Label4" type="Label" parent="Laws/Columns"]
@@ -45,62 +37,84 @@ layout_mode = 2
 text = "Points per Hour"
 
 [node name="Spacer 5" type="Control" parent="Laws/Columns"]
-custom_minimum_size = Vector2(85, 0)
-layout_mode = 2
-
-[node name="Label5" type="Label" parent="Laws/Columns"]
-layout_mode = 2
-text = "Points Accrued"
-
-[node name="Spacer 6" type="Control" parent="Laws/Columns"]
-custom_minimum_size = Vector2(80, 0)
+custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 
 [node name="Label6" type="Label" parent="Laws/Columns"]
 layout_mode = 2
-text = "Points Needed"
+text = "Days"
 
 [node name="Spacer 7" type="Control" parent="Laws/Columns"]
-custom_minimum_size = Vector2(60, 0)
+custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 
 [node name="Label7" type="Label" parent="Laws/Columns"]
 layout_mode = 2
-text = "Days"
+text = "Hours"
 
 [node name="Metal" parent="Laws" instance=ExtResource("1_eswjr")]
 layout_mode = 2
 
+[node name="Days" type="LineEdit" parent="Laws/Metal"]
+layout_mode = 2
+alignment = 1
+editable = false
+
 [node name="Hours" type="LineEdit" parent="Laws/Metal"]
 layout_mode = 2
+alignment = 1
 editable = false
 
 [node name="Wood" parent="Laws" instance=ExtResource("1_eswjr")]
 layout_mode = 2
 
+[node name="Days" type="LineEdit" parent="Laws/Wood"]
+layout_mode = 2
+alignment = 1
+editable = false
+
 [node name="Hours" type="LineEdit" parent="Laws/Wood"]
 layout_mode = 2
+alignment = 1
 editable = false
 
 [node name="Water" parent="Laws" instance=ExtResource("1_eswjr")]
 layout_mode = 2
 
+[node name="Days" type="LineEdit" parent="Laws/Water"]
+layout_mode = 2
+alignment = 1
+editable = false
+
 [node name="Hours" type="LineEdit" parent="Laws/Water"]
 layout_mode = 2
+alignment = 1
 editable = false
 
 [node name="Fire" parent="Laws" instance=ExtResource("1_eswjr")]
 layout_mode = 2
 
+[node name="Days" type="LineEdit" parent="Laws/Fire"]
+layout_mode = 2
+alignment = 1
+editable = false
+
 [node name="Hours" type="LineEdit" parent="Laws/Fire"]
 layout_mode = 2
+alignment = 1
 editable = false
 
 [node name="Earth" parent="Laws" instance=ExtResource("1_eswjr")]
 layout_mode = 2
 
+[node name="Days" type="LineEdit" parent="Laws/Earth"]
+layout_mode = 2
+alignment = 1
+editable = false
+
 [node name="Hours" type="LineEdit" parent="Laws/Earth"]
 layout_mode = 2
+alignment = 1
 editable = false
 
 [node name="Spacer" type="Control" parent="Laws"]

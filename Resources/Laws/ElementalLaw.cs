@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
+using OvermortalTools.Scripts;
 
 namespace OvermortalTools.Resources.Laws;
 
@@ -35,7 +36,6 @@ public partial class ElementalLaw : Resource
         { 1850, 1510000000000000 },
         { 1950, 3340000000000000 },
         { 2000, 490000000000000 },
-        { 2050, 10000000000000000 },
     };
 
     private string _name = string.Empty;
@@ -92,14 +92,22 @@ public partial class ElementalLaw : Resource
     private int GetThresholdLevel()
     {
         var thresholds = ThresholdCosts.Keys.ToList();
+        if (Level == 2000) return thresholds.Count - 1;
         var result = thresholds.Where(t => t > Level).FirstOrDefault();
-        if (result == 0) return -1;
+        // if (result == 0) return -1; // No threshold found
         var index = thresholds.IndexOf(result);
         return index;
     }
 
-    public int NextThreshold =>
-        ThresholdCosts.Keys.ToList().Where(t => t > Level).FirstOrDefault();
+    public int NextThreshold => GetNextThreshold();
+        
+
+    private int GetNextThreshold()
+    {
+        if (Level >= 2000) return -1;
+        if (Level >= 1950) return 2000;
+        return ThresholdCosts.Keys.ToList().Where(t => t > Level).FirstOrDefault();
+    }
 
     private int GetMultiplier() => (int)Math.Pow(2, ThresholdLevel);
 
@@ -111,15 +119,15 @@ public partial class ElementalLaw : Resource
 
     private long GetNextXpNeeded()
     {
-        if (Level == 2000) return 0;
-        if (ThresholdLevel == -1) return 0;
+        if (Level >= 2000) return 0;
+        if (Level >= 1950) return 490000000000000;
         return ThresholdCosts.Values.ToList()[ThresholdLevel];
     }
 
 
     private long GetXpTowards()
     {
-        if (Level == 0 || Level == 2000) return 0;
+        if (Level == 0 || Level >= 2000) return 0;
         long total = GetNextXpNeeded();
         float fraction;
         if (Level < 50)
@@ -143,7 +151,11 @@ public partial class ElementalLaw : Resource
 
     private long GetNextLevelXp()
     {
-        if (Level == 2000) return 0;
+        if (Level >= 2000) return 0;
+        if (Level >= 1950)
+        {
+            return (490000000000000 / 50f).RoundDown();
+        }
         long total = GetNextXpNeeded();
         var perLevel = total / 100f;
         if (NextThreshold - Level > 50)
@@ -156,7 +168,7 @@ public partial class ElementalLaw : Resource
     public void AddXp(long xp)
     {
         var remaining = xp + LeftoverXp;
-        while (remaining > NextLevelXp)
+        while (remaining > NextLevelXp && Level < 2000)
         {
             remaining -= NextLevelXp;
             Level++;

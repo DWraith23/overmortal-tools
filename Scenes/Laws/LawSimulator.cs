@@ -26,14 +26,19 @@ public partial class LawSimulator : Control
 
 	private VBoxContainer Laws => GetNode<VBoxContainer>("Laws");
 	private Law MetalLaw => Laws.GetNode<Law>("Metal");
+	private LineEdit MetalDays => MetalLaw.GetNode<LineEdit>("Days");
 	private LineEdit MetalHours => MetalLaw.GetNode<LineEdit>("Hours");
 	private Law WoodLaw => Laws.GetNode<Law>("Wood");
+	private LineEdit WoodDays => WoodLaw.GetNode<LineEdit>("Days");
 	private LineEdit WoodHours => WoodLaw.GetNode<LineEdit>("Hours");
 	private Law WaterLaw => Laws.GetNode<Law>("Water");
+	private LineEdit WaterDays => WaterLaw.GetNode<LineEdit>("Days");
 	private LineEdit WaterHours => WaterLaw.GetNode<LineEdit>("Hours");
 	private Law FireLaw => Laws.GetNode<Law>("Fire");
+	private LineEdit FireDays => FireLaw.GetNode<LineEdit>("Days");
 	private LineEdit FireHours => FireLaw.GetNode<LineEdit>("Hours");
 	private Law EarthLaw => Laws.GetNode<Law>("Earth");
+	private LineEdit EarthDays => EarthLaw.GetNode<LineEdit>("Days");
 	private LineEdit EarthHours => EarthLaw.GetNode<LineEdit>("Hours");
 
 	private HBoxContainer Totals => Laws.GetNode<HBoxContainer>("Totals");
@@ -78,6 +83,12 @@ public partial class LawSimulator : Control
 		FruitQualitySelect.ItemSelected += OnFruitQualitySelected;
 		ShearsCheck.Toggled += OnShearsCheckToggled;
 		StarsBox.ValueChanged += OnShearsStarsValueChanged;
+
+		MetalLaw.Changed += Update;
+		WoodLaw.Changed += Update;
+		WaterLaw.Changed += Update;
+		FireLaw.Changed += Update;
+		EarthLaw.Changed += Update;
 	}
 
 	private void SetNodes()
@@ -101,16 +112,41 @@ public partial class LawSimulator : Control
 		if (Data == null) return;
 
 		TotalLevelDisplay.Text = TotalLevel.ToString("N0");
-		TotalPointsPerHourDisplay.Text = TotalPointsPerHour.ToString("N0");
+		TotalPointsPerHourDisplay.Text = FormatLargeNumber(TotalPointsPerHour);
 
-		MetalHours.Text = DaysToNextThreshold(Data.Metal).ToString("N0");
-		WoodHours.Text = DaysToNextThreshold(Data.Wood).ToString("N0");
-		WaterHours.Text = DaysToNextThreshold(Data.Water).ToString("N0");
-		FireHours.Text = DaysToNextThreshold(Data.Fire).ToString("N0");
-		EarthHours.Text = DaysToNextThreshold(Data.Earth).ToString("N0");
+		var metalTime = GetTimeToNextThreshold(Data.Metal);
+		var woodTime = GetTimeToNextThreshold(Data.Wood);
+		var waterTime = GetTimeToNextThreshold(Data.Water);
+		var fireTime = GetTimeToNextThreshold(Data.Fire);
+		var earthTime = GetTimeToNextThreshold(Data.Earth);
+
+		MetalDays.Text = metalTime.Item1.ToString("N0");
+		MetalHours.Text = metalTime.Item2.ToString("N0");
+
+		WoodDays.Text = woodTime.Item1.ToString("N0");
+		WoodHours.Text = woodTime.Item2.ToString("N0");
+
+		WaterDays.Text = waterTime.Item1.ToString("N0");
+		WaterHours.Text = waterTime.Item2.ToString("N0");
+
+		FireDays.Text = fireTime.Item1.ToString("N0");
+		FireHours.Text = fireTime.Item2.ToString("N0");
+
+		EarthDays.Text = earthTime.Item1.ToString("N0");
+		EarthHours.Text = earthTime.Item2.ToString("N0");
 
 		Simulate();
 		Tools.EmitLoggedSignal(this, SignalName.RequestSave);
+	}
+
+	private static string FormatLargeNumber(long number)
+	{
+		if (number < 10000) return number.ToString("N0");
+		if (number < 1000000) return $"{number / 1000f:N2}K";
+		if (number < 1_000_000_000) return $"{number / 1_000_000f:N2}M";
+		if (number < 1_000_000_000_000L) return $"{number / 1_000_000_000d:N2}B";
+		if (number < 1_000_000_000_000_000L) return $"{number / 1_000_000_000_000d:N2}T";
+		return $"{number / 1_000_000_000_000_000d:N2}Q";
 	}
 
 	private void OnAverageBlitzBoxChanged(double value)
@@ -142,12 +178,11 @@ public partial class LawSimulator : Control
 		Data.ShearsStars = (int)value;
 	}
 
-	private int DaysToNextThreshold(ElementalLaw law)
+	private (int, int) GetTimeToNextThreshold(ElementalLaw law)
 	{
-		if (law.Level < 1) return 1;
+		if (law.Level >= 2000) return (0, 0);
 		var simulator = new LawSimulation(Data);
-
-		return simulator.SimulateLawToNextThreshold(law);
+		return simulator.SimulateLawHoursNeeded(law);
 	}
 
 	private void Simulate()

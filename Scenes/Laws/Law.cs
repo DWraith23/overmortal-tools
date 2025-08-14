@@ -1,19 +1,19 @@
 using Godot;
 using OvermortalTools.Resources.Laws;
+using OvermortalTools.Scripts;
 using System;
 
 namespace OvermortalTools.Scenes.Laws;
 
 public partial class Law : HBoxContainer
 {
+	[Signal] public delegate void ChangedEventHandler();
+
 	private Label NameLabel => GetNode<Label>("Name");
 	private SpinBox LevelBox => GetNode<SpinBox>("Level");
 	private SpinBox BonusBox => GetNode<SpinBox>("Bonus");
 
-	private LineEdit MultiplierDisplay => GetNode<LineEdit>("Multiplier");
 	private LineEdit PointsPerHourDisplay => GetNode<LineEdit>("Points per Hour");
-	private LineEdit PointsTowardDisplay => GetNode<LineEdit>("Points Toward");
-	private LineEdit PointsNeededDisplay => GetNode<LineEdit>("Points Needed");
 
 	private ElementalLaw _lawData;
 	public ElementalLaw LawData
@@ -24,6 +24,7 @@ public partial class Law : HBoxContainer
 			if (_lawData == value) return;
 			_lawData = value;
 			Update();
+			if (_lawData == null) return;
 			_lawData.Changed += Update;
 		}
 	}
@@ -34,10 +35,19 @@ public partial class Law : HBoxContainer
 		NameLabel.Text = LawData.Name;
 		LevelBox.Value = LawData.Level;
 		BonusBox.Value = LawData.Bonus * 100f;
-		MultiplierDisplay.Text = LawData.Multiplier.ToString("N0");
-		PointsPerHourDisplay.Text = LawData.PointsPerHour.ToString("N0");
-		PointsTowardDisplay.Text = LawData.XpTowards.ToString("N0");
-		PointsNeededDisplay.Text = LawData.XpRemaining.ToString("N0");
+		PointsPerHourDisplay.Text = FormatLargeNumber(LawData.PointsPerHour);
+		Tools.EmitLoggedSignal(this, SignalName.Changed);
+	}
+
+	private static string FormatLargeNumber(long number)
+	{
+		if (number < 1000) return number.ToString("N2");
+		if (number < 10000) return number.ToString("N0");
+		if (number < 1000000) return $"{number / 1000f:N2}K";
+		if (number < 1_000_000_000) return $"{number / 1_000_000f:N2}M";
+		if (number < 1_000_000_000_000L) return $"{number / 1_000_000_000d:N2}B";
+		if (number < 1_000_000_000_000_000L) return $"{number / 1_000_000_000_000d:N2}T";
+		return $"{number / 1_000_000_000_000_000d:N2}Q";
 	}
 
 	public override void _Ready()

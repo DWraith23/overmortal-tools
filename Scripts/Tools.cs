@@ -58,7 +58,7 @@ public static class Tools
     {
         string signalStr = signal;
         string argsStr = string.Join(", ", args.Select(a => a.ToString()));
-        string objStr = obj.ToString();
+        string objStr = obj is Node node ? node.Name : obj.ToString();
         GD.PrintRich($"{DateTime.Now} : [color=green]{objStr}[/color] emitting [color=yellow]{signalStr}[/color] with args [color=light_blue]{argsStr}");
         obj.EmitSignal(signal, args);
     }
