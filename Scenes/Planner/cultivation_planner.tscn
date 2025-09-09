@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://d3yft6mkjvrno" path="res://Scenes/Planner/myrimon_planner.tscn" id="4_jyk7a"]
 [ext_resource type="PackedScene" uid="uid://bu0q6r2heryak" path="res://Scenes/Planner/respira_planner.tscn" id="4_nlgta"]
 [ext_resource type="PackedScene" uid="uid://chnmskh3rlqkl" path="res://Scenes/Planner/target_calculation.tscn" id="5_im5p8"]
-[ext_resource type="PackedScene" uid="uid://cj0xt5owab7bl" path="res://Scenes/Planner/elixir_planner.tscn" id="5_najmo"]
+[ext_resource type="PackedScene" uid="uid://cuyw5ejsrpu1h" path="res://Scenes/Planner/star_marks.tscn" id="6_00rkv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t54bn"]
 content_margin_left = 8.0
@@ -31,7 +31,7 @@ BasicInformation = NodePath("Contents/Basic Information")
 PillPlanner = NodePath("Contents/Advanced Information/Pills")
 RespiraPlanner = NodePath("Contents/Advanced Information/Respira")
 MyrimonPlanner = NodePath("Contents/Advanced Information/Myrimon")
-ElixirPlanner = NodePath("Contents/Advanced Information/Elixirs (WIP)")
+ElixirPlanner = NodePath("")
 TargetCalculation = NodePath("Contents/Target Calculation")
 AdvancedTabs = NodePath("Contents/Advanced Information")
 
@@ -45,9 +45,10 @@ layout_mode = 2
 custom_minimum_size = Vector2(490, 555)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_t54bn")
-current_tab = 0
+current_tab = 3
 
 [node name="Pills" parent="Contents/Advanced Information" instance=ExtResource("3_xmuxf")]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -56,13 +57,12 @@ visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
-[node name="Elixirs (WIP)" parent="Contents/Advanced Information" instance=ExtResource("5_najmo")]
+[node name="Myrimon" parent="Contents/Advanced Information" instance=ExtResource("4_jyk7a")]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 2
 
-[node name="Myrimon" parent="Contents/Advanced Information" instance=ExtResource("4_jyk7a")]
-visible = false
+[node name="Star Marks" parent="Contents/Advanced Information" instance=ExtResource("6_00rkv")]
 layout_mode = 2
 metadata/_tab_index = 3
 
@@ -74,5 +74,4 @@ size_flags_horizontal = 4
 [connection signal="ValuesChanged" from="Contents/Basic Information" to="." method="OnValuesChanged"]
 [connection signal="ValuesChanged" from="Contents/Advanced Information/Pills" to="." method="OnValuesChanged"]
 [connection signal="ValuesChanged" from="Contents/Advanced Information/Respira" to="." method="OnValuesChanged"]
-[connection signal="ValuesChanged" from="Contents/Advanced Information/Elixirs (WIP)" to="." method="OnValuesChanged"]
 [connection signal="ValuesChanged" from="Contents/Advanced Information/Myrimon" to="." method="OnValuesChanged"]

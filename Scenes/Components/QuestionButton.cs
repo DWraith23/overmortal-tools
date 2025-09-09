@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-[GlobalClass]
+[GlobalClass, Tool]
 public partial class QuestionButton : Button
 {
     [Export] public string Title { get; set; }

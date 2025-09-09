@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=3 uid="uid://cuyw5ejsrpu1h"]
+
+[ext_resource type="PackedScene" uid="uid://vlwh3qtnsgyq" path="res://Scenes/Components/labeled_spinbox.tscn" id="1_61456"]
+[ext_resource type="Script" path="res://Scenes/Planner/StarMarks.cs" id="1_qrquh"]
+
+[node name="Star Marks" type="VBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_qrquh")
+
+[node name="Rare Pills" parent="." instance=ExtResource("1_61456")]
+layout_mode = 2
+LabelWidth = 150.0
+LabelText = "Rare Pills %"
+Step = 0.1
+Suffix = "%"
+
+[node name="Epic Pills" parent="." instance=ExtResource("1_61456")]
+layout_mode = 2
+LabelWidth = 150.0
+LabelText = "Epic Pills %"
+Step = 0.1
+Suffix = "%"
+
+[node name="Legendary Pills" parent="." instance=ExtResource("1_61456")]
+layout_mode = 2
+LabelWidth = 150.0
+LabelText = "Legendary Pills %"
+Step = 0.1
+Suffix = "%"
+
+[node name="Respira" parent="." instance=ExtResource("1_61456")]
+layout_mode = 2
+LabelWidth = 150.0
+LabelText = "Respira %"
+Step = 0.1
+Suffix = "%"
