@@ -25,13 +25,13 @@ corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
 
-[node name="Cultivation Planner" type="VBoxContainer" node_paths=PackedStringArray("BasicInformation", "PillPlanner", "RespiraPlanner", "MyrimonPlanner", "ElixirPlanner", "TargetCalculation", "AdvancedTabs")]
+[node name="Cultivation Planner" type="VBoxContainer" node_paths=PackedStringArray("BasicInformation", "PillPlanner", "RespiraPlanner", "MyrimonPlanner", "StarMarks", "TargetCalculation", "AdvancedTabs")]
 script = ExtResource("1_x5if4")
 BasicInformation = NodePath("Contents/Basic Information")
 PillPlanner = NodePath("Contents/Advanced Information/Pills")
 RespiraPlanner = NodePath("Contents/Advanced Information/Respira")
 MyrimonPlanner = NodePath("Contents/Advanced Information/Myrimon")
-ElixirPlanner = NodePath("")
+StarMarks = NodePath("Contents/Advanced Information/Star Marks")
 TargetCalculation = NodePath("Contents/Target Calculation")
 AdvancedTabs = NodePath("Contents/Advanced Information")
 
@@ -75,3 +75,4 @@ size_flags_horizontal = 4
 [connection signal="ValuesChanged" from="Contents/Advanced Information/Pills" to="." method="OnValuesChanged"]
 [connection signal="ValuesChanged" from="Contents/Advanced Information/Respira" to="." method="OnValuesChanged"]
 [connection signal="ValuesChanged" from="Contents/Advanced Information/Myrimon" to="." method="OnValuesChanged"]
+[connection signal="ValuesChanged" from="Contents/Advanced Information/Star Marks" to="." method="OnValuesChanged"]

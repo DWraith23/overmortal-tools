@@ -14,8 +14,9 @@ public partial class PillPlannerData : Resource
     private int _rarePills = 0;
     private int _epicPills = 0;
     private int _legendaryPills = 0;
-    private long _totalPillValue = 100;
-    private long _bonusPillValue = 0;
+    private float _techniquesPercent = 0;
+    private float _epicCurioPercent = 0;
+    private float _immortalFriendsPercent = 0;
 
     private float _mythicPills = 0.0f;
     private float _mythicBonus = 1.0f;
@@ -65,26 +66,38 @@ public partial class PillPlannerData : Resource
     }
 
     [Export]
-    public long TotalPillValue
+    public float TechniquesPercent
     {
-        get => _totalPillValue;
+        get => _techniquesPercent;
         set
         {
-            _totalPillValue = value;
+            _techniquesPercent = value;
             EmitChanged();
         }
     }
 
     [Export]
-    public long BonusPillValue
+    public float EpicCurioPercent
     {
-        get => _bonusPillValue;
+        get => _epicCurioPercent;
         set
         {
-            _bonusPillValue = value;
+            _epicCurioPercent = value;
             EmitChanged();
         }
     }
+
+    [Export]
+    public float ImmortalFriendsPercent
+    {
+        get => _immortalFriendsPercent;
+        set
+        {
+            _immortalFriendsPercent = value;
+            EmitChanged();
+        }
+    }
+
 
     [Export]
     public float MythicPills
@@ -111,12 +124,12 @@ public partial class PillPlannerData : Resource
 
     public Realm.MajorRealm PillRealm => (Realm.MajorRealm)PillRealmIndex;
 
-    public float PillBonusMultiplier => TotalPillValue / ((float)TotalPillValue - BonusPillValue);
+    public float PillBonusMultiplier => 1f + (TechniquesPercent + EpicCurioPercent + ImmortalFriendsPercent) / 100f;
 
-    private long RarePillsValue => GetPillValue(Quality.Classification.Rare) * RarePills;
-    private long EpicPillsValue => GetPillValue(Quality.Classification.Epic) * EpicPills;
-    private long LegendaryPillsValue => GetPillValue(Quality.Classification.Legendary) * LegendaryPills;
-    private long MythicPillsValue => (int)Math.Floor(GetPillValue(Quality.Classification.Mythic) * MythicBonus * MythicPills);
+    public long RarePillsValue => GetPillValue(Quality.Classification.Rare) * RarePills;
+    public long EpicPillsValue => GetPillValue(Quality.Classification.Epic) * EpicPills;
+    public long LegendaryPillsValue => GetPillValue(Quality.Classification.Legendary) * LegendaryPills;
+    public long MythicPillsValue => (int)Math.Floor(GetPillValue(Quality.Classification.Mythic) * MythicBonus * MythicPills);
 
     public long DailyPillValue => RarePillsValue + EpicPillsValue + LegendaryPillsValue + MythicPillsValue;
 
@@ -130,4 +143,43 @@ public partial class PillPlannerData : Resource
         if (pill == null) return 0;
         return pill.GetValue(PillBonusMultiplier);
     }
+
+    public long GetPillValue(Quality.Classification quality, float starMarkBonus)
+    {
+        var pill = Pills
+            .Where(pill => pill.PillQuality == quality)
+            .Where(pill => pill.CultivationRealm == PillRealm)
+            .FirstOrDefault();
+        if (pill == null) return 0;
+        return pill.GetValue(PillBonusMultiplier + starMarkBonus);
+    }
+
+    #region Deprecated - Compatibility
+    private long _totalPillValue = 100;
+    private long _bonusPillValue = 0;
+
+    [Export]
+    public long TotalPillValue
+    {
+        get => _totalPillValue;
+        set
+        {
+            _totalPillValue = value;
+            EmitChanged();
+        }
+    }
+
+    [Export]
+    public long BonusPillValue
+    {
+        get => _bonusPillValue;
+        set
+        {
+            _bonusPillValue = value;
+            EmitChanged();
+        }
+    }
+
+
+    #endregion
 }

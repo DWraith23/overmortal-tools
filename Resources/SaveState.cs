@@ -19,6 +19,7 @@ public partial class SaveState : Resource
     [Export] public MyrimonPlannerData MyrimonPlannerData { get; set; }
     [Export] public RespiraPlannerData RespiraPlannerData { get; set; }
     [Export] public ElixirPlannerData ElixirPlannerData { get; set; }
+    [Export] public StarMarksData StarMarksData { get; set; }
     [Export] public LawsData LawsData { get; set; }
 
     #endregion
@@ -35,7 +36,8 @@ public partial class SaveState : Resource
             PillPlannerData = planner.PillPlanner.Data,
             MyrimonPlannerData = planner.MyrimonPlanner.Data,
             RespiraPlannerData = planner.RespiraPlanner.Data,
-            ElixirPlannerData = planner.ElixirPlanner.Data,
+            // ElixirPlannerData = planner.ElixirPlanner.Data,
+            StarMarksData = planner.StarMarks.Data,
             LawsData = simulator.Data
         };
 
@@ -49,7 +51,8 @@ public partial class SaveState : Resource
         planner.PillPlanner.Data = state.PillPlannerData ?? new PillPlannerData();
         planner.MyrimonPlanner.Data = state.MyrimonPlannerData ?? new MyrimonPlannerData();
         planner.RespiraPlanner.Data = state.RespiraPlannerData ?? new RespiraPlannerData();
-        planner.ElixirPlanner.Data = state.ElixirPlannerData ?? new ElixirPlannerData();
+        // planner.ElixirPlanner.Data = state.ElixirPlannerData ?? new ElixirPlannerData();
+        planner.StarMarks.Data = state.StarMarksData ?? new StarMarksData();
         planner.BasicInformation.VaseStatus.Data = state.VaseData ?? new VaseData();
         planner.BasicInformation.MirrorStatus.Data = state.MirrorData ?? new MirrorData();
         simulator.Data = state.LawsData ?? new LawsData();
@@ -66,7 +69,8 @@ public partial class SaveState : Resource
             PillPlannerData = new PillPlannerData(),
             MyrimonPlannerData = new MyrimonPlannerData(),
             RespiraPlannerData = new RespiraPlannerData(),
-            ElixirPlannerData = new ElixirPlannerData(),
+            // ElixirPlannerData = new ElixirPlannerData(),
+            StarMarksData = new StarMarksData(),
             LawsData = new LawsData()
         };
         return result;

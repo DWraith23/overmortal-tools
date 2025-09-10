@@ -6,6 +6,8 @@ namespace OvermortalTools.Scenes.Components;
 [GlobalClass, Tool]
 public partial class LabeledSpinbox : HBoxContainer
 {
+	[Signal] public delegate void ValueChangedEventHandler(double value);
+
 	public Label Label => GetNode<Label>("Label");
 	public SpinBox SpinBox => GetNode<SpinBox>("SpinBox");
 	public QuestionButton Tooltip => GetNode<QuestionButton>("Question Button");
@@ -208,5 +210,7 @@ public partial class LabeledSpinbox : HBoxContainer
 		SpinBox.Rounded = _rounded;
 		Tooltip.PopupText = _tooltipText;
 		Tooltip.Visible = _tooltipVisible;
+
+		SpinBox.ValueChanged += (value) => EmitSignal(SignalName.ValueChanged, value);
 	}
 }

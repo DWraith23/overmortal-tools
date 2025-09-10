@@ -41,6 +41,18 @@ public partial class RespiraPlanner : VBoxContainer
         }
     }
 
+    private StarMarksData _starMarks = new();
+    public StarMarksData StarMarks
+    {
+        get => _starMarks;
+        set
+        {
+            _starMarks = value;
+        }
+    }
+
+    public long DailyRespiraExp => Data.GetDailyRespiraValue(StarMarks.RespiraExp);
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {

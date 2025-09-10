@@ -1,10 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://vvlj2y5cqf2q"]
+[gd_scene load_steps=5 format=3 uid="uid://vvlj2y5cqf2q"]
 
 [ext_resource type="Script" path="res://Scenes/Planner/PillPlanner.cs" id="1_xis8l"]
 [ext_resource type="Texture2D" uid="uid://1btukscmcbuj" path="res://assets/pill_example.png" id="2_vrtk7"]
+[ext_resource type="PackedScene" uid="uid://vlwh3qtnsgyq" path="res://Scenes/Components/labeled_spinbox.tscn" id="2_wemvo"]
 [ext_resource type="PackedScene" uid="uid://bqrdrnjp6rlxk" path="res://Scenes/Components/question_button.tscn" id="3_gf6lr"]
 
-[node name="Pill Planner" type="VBoxContainer" node_paths=PackedStringArray("RealmSelect", "RarePills", "EpicPills", "LegendaryPills", "TotalPillInput", "BonusPillInput", "MythicPills", "DailyValue", "PillCount", "BonusPercentOutput")]
+[node name="Pill Planner" type="VBoxContainer" node_paths=PackedStringArray("RealmSelect", "RarePills", "EpicPills", "LegendaryPills", "TechniquesPercentInput", "EpicCurioPercentInput", "ImmortalFriendsPercentInput", "MythicPills", "DailyValue", "PillCount", "BonusPercentOutput")]
 offset_right = 352.0
 offset_bottom = 120.0
 script = ExtResource("1_xis8l")
@@ -12,8 +13,9 @@ RealmSelect = NodePath("Pill Level/OptionButton")
 RarePills = NodePath("Daily Pills/Rare")
 EpicPills = NodePath("Daily Pills/Epic")
 LegendaryPills = NodePath("Daily Pills/Legendary")
-TotalPillInput = NodePath("Bonus/Bonus Calculator/Total Value/SpinBox")
-BonusPillInput = NodePath("Bonus/Bonus Calculator/Base Value/SpinBox")
+TechniquesPercentInput = NodePath("Bonus/Bonus Calculator/Techniques")
+EpicCurioPercentInput = NodePath("Bonus/Bonus Calculator/Epic Curio")
+ImmortalFriendsPercentInput = NodePath("Bonus/Bonus Calculator/Immortal Friends")
 MythicPills = NodePath("Daily Pills/Mythic")
 DailyValue = NodePath("Daily Value/LineEdit")
 PillCount = NodePath("Daily Value/Pill Count")
@@ -111,35 +113,26 @@ layout_mode = 2
 [node name="Bonus Calculator" type="VBoxContainer" parent="Bonus"]
 layout_mode = 2
 
-[node name="Total Value" type="HBoxContainer" parent="Bonus/Bonus Calculator"]
+[node name="Techniques" parent="Bonus/Bonus Calculator" instance=ExtResource("2_wemvo")]
 layout_mode = 2
+LabelWidth = 140.0
+LabelText = "Techniques:"
+Step = 0.1
+Suffix = "%"
 
-[node name="Label" type="Label" parent="Bonus/Bonus Calculator/Total Value"]
-custom_minimum_size = Vector2(150, 0)
+[node name="Epic Curio" parent="Bonus/Bonus Calculator" instance=ExtResource("2_wemvo")]
 layout_mode = 2
-text = "Total Pill Value: "
-horizontal_alignment = 2
+LabelWidth = 140.0
+LabelText = "Epic Curio:"
+Step = 0.1
+Suffix = "%"
 
-[node name="SpinBox" type="SpinBox" parent="Bonus/Bonus Calculator/Total Value"]
-custom_minimum_size = Vector2(125, 0)
+[node name="Immortal Friends" parent="Bonus/Bonus Calculator" instance=ExtResource("2_wemvo")]
 layout_mode = 2
-max_value = 1e+07
-alignment = 1
-
-[node name="Base Value" type="HBoxContainer" parent="Bonus/Bonus Calculator"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Bonus/Bonus Calculator/Base Value"]
-custom_minimum_size = Vector2(150, 0)
-layout_mode = 2
-text = "Bonus Pill Value: "
-horizontal_alignment = 2
-
-[node name="SpinBox" type="SpinBox" parent="Bonus/Bonus Calculator/Base Value"]
-custom_minimum_size = Vector2(125, 0)
-layout_mode = 2
-max_value = 1e+07
-alignment = 1
+LabelWidth = 140.0
+LabelText = "Immortal Friends:"
+Step = 0.1
+Suffix = "%"
 
 [node name="Bonus" type="HBoxContainer" parent="Bonus/Bonus Calculator"]
 layout_mode = 2
@@ -175,15 +168,14 @@ offset_top = 171.0
 offset_right = 390.0
 offset_bottom = 203.0
 Title = "Pill Bonus"
-PopupText = "For this value, click on a pill in your inventory, then under Total Pill Value enter the \"Gain x\" number.
+PopupText = "To find these numbers, click on another Taoist and select \"Compare BR\".
 
-The Bonus Pill Value is the (+x) number.
-
-Support for Star Marks is upcoming."
+If you check details in Techjniques, Epic Curios, and Immortal Friends you can find your \"Cultivation Pill Effect\" values."
 
 [connection signal="item_selected" from="Pill Level/OptionButton" to="." method="OnPillRealmOptionSelected"]
 [connection signal="value_changed" from="Daily Pills/Rare" to="." method="OnRarePillsSpinBoxChanged"]
 [connection signal="value_changed" from="Daily Pills/Epic" to="." method="OnEpicPillsSpinBoxChanged"]
 [connection signal="value_changed" from="Daily Pills/Legendary" to="." method="OnLegendaryPillsSpinBoxChanged"]
-[connection signal="value_changed" from="Bonus/Bonus Calculator/Total Value/SpinBox" to="." method="OnTotalPillValueChanged"]
-[connection signal="value_changed" from="Bonus/Bonus Calculator/Base Value/SpinBox" to="." method="OnBonusPillValueChanged"]
+[connection signal="ValueChanged" from="Bonus/Bonus Calculator/Techniques" to="." method="OnTechniquePercentValueChanged"]
+[connection signal="ValueChanged" from="Bonus/Bonus Calculator/Epic Curio" to="." method="OnEpicCurioPercentValueChanged"]
+[connection signal="ValueChanged" from="Bonus/Bonus Calculator/Immortal Friends" to="." method="OnImmortalFriendsPercentValueChanged"]

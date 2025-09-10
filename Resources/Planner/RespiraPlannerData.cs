@@ -39,7 +39,8 @@ public partial class RespiraPlannerData : Resource
     private int _respiraAttemptsFromCurios = 0;
     private float _respiraBonusFromCurios = 0.0f;
 
-    [Export] public int RealmIndex
+    [Export]
+    public int RealmIndex
     {
         get => _realmIndex;
         set
@@ -49,7 +50,8 @@ public partial class RespiraPlannerData : Resource
         }
     }
 
-    [Export] public int RespiraAttemptsFromTechniques
+    [Export]
+    public int RespiraAttemptsFromTechniques
     {
         get => _respiraAttemptsFromTechniques;
         set
@@ -59,7 +61,8 @@ public partial class RespiraPlannerData : Resource
         }
     }
 
-    [Export] public float RespiraBonusFromTechniques
+    [Export]
+    public float RespiraBonusFromTechniques
     {
         get => _respiraBonusFromTechniques;
         set
@@ -69,7 +72,8 @@ public partial class RespiraPlannerData : Resource
         }
     }
 
-    [Export] public int RespiraAttemptsFromFriends
+    [Export]
+    public int RespiraAttemptsFromFriends
     {
         get => _respiraAttempsFromFriends;
         set
@@ -79,7 +83,8 @@ public partial class RespiraPlannerData : Resource
         }
     }
 
-    [Export] public float RespiraBonusFromFriends
+    [Export]
+    public float RespiraBonusFromFriends
     {
         get => _respiraBonusFromFriends;
         set
@@ -89,7 +94,8 @@ public partial class RespiraPlannerData : Resource
         }
     }
 
-    [Export] public int RespiraAttemptsFromCurios
+    [Export]
+    public int RespiraAttemptsFromCurios
     {
         get => _respiraAttemptsFromCurios;
         set
@@ -99,7 +105,8 @@ public partial class RespiraPlannerData : Resource
         }
     }
 
-    [Export] public float RespiraBonusFromCurios
+    [Export]
+    public float RespiraBonusFromCurios
     {
         get => _respiraBonusFromCurios;
         set
@@ -122,6 +129,19 @@ public partial class RespiraPlannerData : Resource
             result += (int)Math.Floor(RespiraValue * odds.Item1 * odds.Item2 * TotalRespiraAttempts);
         }
         return result;
+    }
+
+    public long GetDailyRespiraValue(float starMarksBonus)
+    {
+       var result = 0;
+       var bonus = 1f + (_respiraBonusFromTechniques + _respiraBonusFromFriends + _respiraBonusFromCurios + starMarksBonus) / 100f;
+       var value = (int)Math.Floor(RealmValues[(Realm.MajorRealm)_realmIndex] * bonus);
+
+        foreach (var odds in MultiplierOdds)
+        {
+            result += (int)Math.Floor(value * odds.Item1 * odds.Item2 * TotalRespiraAttempts);
+        }
+        return result; 
     }
 
 }

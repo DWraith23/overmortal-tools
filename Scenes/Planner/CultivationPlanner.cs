@@ -18,6 +18,7 @@ public partial class CultivationPlanner : VBoxContainer
     [Export] public RespiraPlanner RespiraPlanner { get; set; }
     [Export] public MyrimonPlanner MyrimonPlanner { get; set; }
     [Export] public ElixirPlanner ElixirPlanner { get; set; }
+    [Export] public StarMarks StarMarks { get; set; }
     [Export] private TargetCalculation TargetCalculation { get; set; }
     [ExportSubgroup("Nodes")]
     [Export] private TabContainer AdvancedTabs { get; set; }
@@ -35,12 +36,16 @@ public partial class CultivationPlanner : VBoxContainer
     private void UpdateTargetCalculation()
     {
         var stageData = BasicInformation.StageCalculator.Data;
+
+        PillPlanner.StarMarks = StarMarks.Data;
+        RespiraPlanner.StarMarks = StarMarks.Data;
+
         TargetCalculation.XpNeeded = RealmList.GetXpToTarget(stageData.CurrentRealm, stageData.TargetRealm);
         TargetCalculation.PassiveXp = (int)BasicInformation.PassiveCultivation.Data.CosmoPerDay;
-        TargetCalculation.RespiraXp = RespiraPlanner.Data.DailyRespiraValue;
-        TargetCalculation.PillXp = PillPlanner.Data.DailyPillValue;
+        TargetCalculation.RespiraXp = RespiraPlanner.DailyRespiraExp;
+        TargetCalculation.PillXp = PillPlanner.DailyPillXp;
         TargetCalculation.MyrimonAverageXp = MyrimonPlanner.Data.AverageXp;
-        TargetCalculation.ElixirData = ElixirPlanner.Data;
+        // TargetCalculation.ElixirData = ElixirPlanner.Data;
 
         Tools.EmitLoggedSignal(this, SignalName.RequestSave);
     }

@@ -18,7 +18,7 @@ public partial class StarMarksData : Resource
         {
             if (_rarePills == value) return;
             _rarePills = value;
-            Tools.EmitLoggedSignal(this, Resource.SignalName.Changed);
+            EmitChanged();
         }
     }
 
@@ -30,7 +30,7 @@ public partial class StarMarksData : Resource
         {
             if (_epicPills == value) return;
             _epicPills = value;
-            Tools.EmitLoggedSignal(this, Resource.SignalName.Changed);
+            EmitChanged();
         }
     }
 
@@ -42,7 +42,7 @@ public partial class StarMarksData : Resource
         {
             if (_legendaryPills == value) return;
             _legendaryPills = value;
-            Tools.EmitLoggedSignal(this, Resource.SignalName.Changed);
+            EmitChanged();
         }
     }
 
@@ -54,7 +54,7 @@ public partial class StarMarksData : Resource
         {
             if (_respiraExp == value) return;
             _respiraExp = value;
-            Tools.EmitLoggedSignal(this, Resource.SignalName.Changed);
+            EmitChanged();
         }
     }
 }

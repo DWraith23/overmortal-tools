@@ -18,9 +18,19 @@ public partial class StarMarks : VBoxContainer
 		set
 		{
 			_data = value;
-			_data.Changed += () => EmitSignal(SignalName.ValuesChanged);
+			_data.Changed += Update;
 			Update();
+			UpdateSpinboxes();
 		}
+	}
+
+	private void UpdateSpinboxes()
+	{
+		if (Data == null) return;
+		RarePills.SpinBox.Value = Data.RarePills;
+		EpicPills.SpinBox.Value = Data.EpicPills;
+		LegendaryPills.SpinBox.Value = Data.LegendaryPills;
+		RespiraExp.SpinBox.Value = Data.RespiraExp;
 	}
 
 	private LabeledSpinbox RarePills => GetNode<LabeledSpinbox>("Rare Pills");
@@ -30,11 +40,8 @@ public partial class StarMarks : VBoxContainer
 
 	private void Update()
 	{
-		if (Data == null) return;
-		RarePills.SpinBox.Value = Data.RarePills;
-		EpicPills.SpinBox.Value = Data.EpicPills;
-		LegendaryPills.SpinBox.Value = Data.LegendaryPills;
-		RespiraExp.SpinBox.Value = Data.RespiraExp;
+
+		Tools.EmitLoggedSignal(this, SignalName.ValuesChanged);  
 	}
 
 	public override void _Ready()

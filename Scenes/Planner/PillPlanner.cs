@@ -4,7 +4,9 @@ using Godot;
 using OvermortalTools.Resources;
 using OvermortalTools.Resources.Cultivation;
 using OvermortalTools.Resources.Planner;
+using OvermortalTools.Scenes.Components;
 using OvermortalTools.Scripts;
+using static OvermortalTools.Scripts.Enums.Quality;
 
 namespace OvermortalTools.Scenes.Planner;
 
@@ -20,8 +22,9 @@ public partial class PillPlanner : VBoxContainer
     [Export] private SpinBox RarePills { get; set; }
     [Export] private SpinBox EpicPills { get; set; }
     [Export] private SpinBox LegendaryPills { get; set; }
-    [Export] private SpinBox TotalPillInput { get; set; }
-    [Export] private SpinBox BonusPillInput { get; set; }
+    [Export] private LabeledSpinbox TechniquesPercentInput { get; set; }
+    [Export] private LabeledSpinbox EpicCurioPercentInput { get; set; }
+    [Export] private LabeledSpinbox ImmortalFriendsPercentInput { get; set; }
     [ExportSubgroup("Outputs")]
     [Export] private LineEdit MythicPills { get; set; }
     [Export] private LineEdit DailyValue { get; set; }
@@ -38,9 +41,20 @@ public partial class PillPlanner : VBoxContainer
         {
             _data = value;
             _data.Changed += Update;
-            TotalPillInput.Value = Data.TotalPillValue;
-            BonusPillInput.Value = Data.BonusPillValue;
+            TechniquesPercentInput.Value = Data.TechniquesPercent;
+            EpicCurioPercentInput.Value = Data.EpicCurioPercent;
+            ImmortalFriendsPercentInput.Value = Data.ImmortalFriendsPercent;
             Update();
+        }
+    }
+
+    private StarMarksData _starMarks = new();
+    public StarMarksData StarMarks
+    {
+        get => _starMarks;
+        set
+        {
+            _starMarks = value;
         }
     }
     
@@ -52,13 +66,23 @@ public partial class PillPlanner : VBoxContainer
         Enum.GetNames<Realm.MajorRealm>().ToList().ForEach(realm => RealmSelect.AddItem(realm));
     }
 
+    public long DailyPillXp => GetDailyPillXp();
+    private long GetDailyPillXp()
+    {
+        var rare = Data.GetPillValue(Classification.Rare, StarMarks.RarePills / 100f) * Data.RarePills;
+        var epic = Data.GetPillValue(Classification.Epic, StarMarks.EpicPills / 100f) * Data.EpicPills;
+        var legendary = Data.GetPillValue(Classification.Legendary, StarMarks.LegendaryPills / 100f) * Data.LegendaryPills;
+        return rare + epic + legendary + Data.MythicPillsValue;
+    }
+
     #region Events
     private void OnPillRealmOptionSelected(int index) => Data.PillRealmIndex = index;
     private void OnRarePillsSpinBoxChanged(double value) => Data.RarePills = (int)value;
     private void OnEpicPillsSpinBoxChanged(double value) => Data.EpicPills = (int)value;
     private void OnLegendaryPillsSpinBoxChanged(double value) => Data.LegendaryPills = (int)value;
-    private void OnTotalPillValueChanged(double value) => Data.TotalPillValue = (int)value;
-    private void OnBonusPillValueChanged(double value) => Data.BonusPillValue = (int)value;
+    private void OnTechniquePercentValueChanged(double value) => Data.TechniquesPercent = (float)value;
+    private void OnEpicCurioPercentValueChanged(double value) => Data.EpicCurioPercent = (float)value;
+    private void OnImmortalFriendsPercentValueChanged(double value) => Data.ImmortalFriendsPercent = (float)value;
     private void OnArtifactsUpdated(float value, float bonus)
     {
         Data.MythicPills = value;

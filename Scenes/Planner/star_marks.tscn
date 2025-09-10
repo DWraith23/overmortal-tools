@@ -1,12 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://cuyw5ejsrpu1h"]
+[gd_scene load_steps=4 format=3 uid="uid://cuyw5ejsrpu1h"]
 
 [ext_resource type="PackedScene" uid="uid://vlwh3qtnsgyq" path="res://Scenes/Components/labeled_spinbox.tscn" id="1_61456"]
 [ext_resource type="Script" path="res://Scenes/Planner/StarMarks.cs" id="1_qrquh"]
+[ext_resource type="PackedScene" uid="uid://bqrdrnjp6rlxk" path="res://Scenes/Components/question_button.tscn" id="3_6hgxj"]
 
 [node name="Star Marks" type="VBoxContainer"]
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_qrquh")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "Star Mark Bonuses"
+horizontal_alignment = 1
 
 [node name="Rare Pills" parent="." instance=ExtResource("1_61456")]
 layout_mode = 2
@@ -35,3 +41,21 @@ LabelWidth = 150.0
 LabelText = "Respira %"
 Step = 0.1
 Suffix = "%"
+
+[node name="Question Button" parent="." instance=ExtResource("3_6hgxj")]
+layout_mode = 2
+size_flags_horizontal = 4
+Title = "Star Marks"
+PopupText = "Star Marks are part of the Nirvana realm Reincarnation system.  You gain specific bonuses to rare (blue), epic (purple), and legendary (gold) pills, as well as to respira and abode.
+
+They correspond as follows:
+Rare - Ghost Mansion
+Epic - Turtle Beak Mansion
+Legendary - Chariot Mansion
+Respira - Dipper Mansion
+If you aren't Nirvana or above, ignore this screen."
+
+[connection signal="ValueChanged" from="Rare Pills" to="." method="OnRarePillsSpinBoxChanged"]
+[connection signal="ValueChanged" from="Epic Pills" to="." method="OnEpicPillsSpinBoxChanged"]
+[connection signal="ValueChanged" from="Legendary Pills" to="." method="OnLegendaryPillsSpinBoxChanged"]
+[connection signal="ValueChanged" from="Respira" to="." method="OnRespiraExpSpinBoxChanged"]
