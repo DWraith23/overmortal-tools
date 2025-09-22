@@ -1,0 +1,83 @@
+[gd_scene load_steps=2 format=3 uid="uid://bpl667xd0vf8v"]
+
+[ext_resource type="Script" uid="uid://cgy7twb8qk8um" path="res://V2/Scenes/DailyExp.cs" id="1_ht560"]
+
+[node name="Daily Exp" type="VBoxContainer"]
+custom_minimum_size = Vector2(350, 250)
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/separation = 10
+script = ExtResource("1_ht560")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "Daily Cultivation"
+horizontal_alignment = 1
+
+[node name="Spacer 1" type="Control" parent="."]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+
+[node name="Passive" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Passive"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+text = "Passive:"
+horizontal_alignment = 2
+
+[node name="LineEdit" type="LineEdit" parent="Passive"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+alignment = 1
+editable = false
+
+[node name="Pills" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Pills"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+text = "Pills:"
+horizontal_alignment = 2
+
+[node name="LineEdit" type="LineEdit" parent="Pills"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+alignment = 1
+editable = false
+
+[node name="Respira" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Respira"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+text = "Respira:"
+horizontal_alignment = 2
+
+[node name="LineEdit" type="LineEdit" parent="Respira"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+alignment = 1
+editable = false
+
+[node name="Spacer 2" type="Control" parent="."]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+
+[node name="Total" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Total"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+text = "Total:"
+horizontal_alignment = 2
+
+[node name="LineEdit" type="LineEdit" parent="Total"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+alignment = 1
+editable = false

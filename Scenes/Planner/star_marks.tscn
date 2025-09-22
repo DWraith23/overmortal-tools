@@ -1,21 +1,28 @@
 [gd_scene load_steps=4 format=3 uid="uid://cuyw5ejsrpu1h"]
 
 [ext_resource type="PackedScene" uid="uid://vlwh3qtnsgyq" path="res://Scenes/Components/labeled_spinbox.tscn" id="1_61456"]
-[ext_resource type="Script" path="res://Scenes/Planner/StarMarks.cs" id="1_qrquh"]
+[ext_resource type="Script" uid="uid://dbfilmosgljuw" path="res://Scenes/Planner/StarMarks.cs" id="1_qrquh"]
 [ext_resource type="PackedScene" uid="uid://bqrdrnjp6rlxk" path="res://Scenes/Components/question_button.tscn" id="3_6hgxj"]
 
 [node name="Star Marks" type="VBoxContainer"]
+custom_minimum_size = Vector2(350, 300)
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_qrquh")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 2
+theme_override_font_sizes/font_size = 24
 text = "Star Mark Bonuses"
 horizontal_alignment = 1
 
+[node name="Spacer" type="Control" parent="."]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
 [node name="Rare Pills" parent="." instance=ExtResource("1_61456")]
 layout_mode = 2
+size_flags_horizontal = 4
 LabelWidth = 150.0
 LabelText = "Rare Pills %"
 Step = 0.1
@@ -23,6 +30,7 @@ Suffix = "%"
 
 [node name="Epic Pills" parent="." instance=ExtResource("1_61456")]
 layout_mode = 2
+size_flags_horizontal = 4
 LabelWidth = 150.0
 LabelText = "Epic Pills %"
 Step = 0.1
@@ -30,6 +38,7 @@ Suffix = "%"
 
 [node name="Legendary Pills" parent="." instance=ExtResource("1_61456")]
 layout_mode = 2
+size_flags_horizontal = 4
 LabelWidth = 150.0
 LabelText = "Legendary Pills %"
 Step = 0.1
@@ -37,6 +46,7 @@ Suffix = "%"
 
 [node name="Respira" parent="." instance=ExtResource("1_61456")]
 layout_mode = 2
+size_flags_horizontal = 4
 LabelWidth = 150.0
 LabelText = "Respira %"
 Step = 0.1

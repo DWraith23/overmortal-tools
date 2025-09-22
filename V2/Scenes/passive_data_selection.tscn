@@ -1,0 +1,75 @@
+[gd_scene load_steps=3 format=3 uid="uid://cod7aksiwiq8s"]
+
+[ext_resource type="Script" uid="uid://cxmen02vd8rcn" path="res://V2/Scenes/PassiveDataSelection.cs" id="1_caeap"]
+[ext_resource type="PackedScene" uid="uid://vlwh3qtnsgyq" path="res://Scenes/Components/labeled_spinbox.tscn" id="1_ir33n"]
+
+[node name="Passive Data Selection" type="VBoxContainer"]
+custom_minimum_size = Vector2(350, 264)
+offset_right = 350.0
+offset_bottom = 264.0
+script = ExtResource("1_caeap")
+
+[node name="Section Header 1" type="Label" parent="."]
+layout_mode = 2
+text = "Cosmoapsis"
+horizontal_alignment = 1
+
+[node name="Cosmoapsis" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Abode Aura" parent="Cosmoapsis" instance=ExtResource("1_ir33n")]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+LabelWidth = 100.0
+LabelText = "Abode Aura:"
+MaxValue = 9999.0
+Step = 0.01
+
+[node name="Virya" parent="Cosmoapsis" instance=ExtResource("1_ir33n")]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+LabelWidth = 100.0
+LabelText = "Virya %:"
+MaxValue = 999.0
+Step = 0.01
+Suffix = "%"
+
+[node name="Strive" parent="Cosmoapsis" instance=ExtResource("1_ir33n")]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+LabelWidth = 100.0
+LabelText = "Strive %:"
+MaxValue = 999.0
+Step = 0.01
+Suffix = "%"
+
+[node name="Spacer" type="Control" parent="."]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="Section Header 2" type="Label" parent="."]
+layout_mode = 2
+text = "Aura Gem"
+horizontal_alignment = 1
+
+[node name="Aura Gem" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Quality" type="OptionButton" parent="Aura Gem"]
+layout_mode = 2
+size_flags_horizontal = 4
+selected = 0
+item_count = 1
+popup/item_0/text = "None"
+popup/item_0/id = 0
+
+[node name="Auraseep Bonus" parent="Aura Gem" instance=ExtResource("1_ir33n")]
+layout_mode = 2
+size_flags_horizontal = 4
+LabelWidth = 100.0
+LabelText = "Auraseep Bonus:"
+Step = 0.01
+Suffix = "%"

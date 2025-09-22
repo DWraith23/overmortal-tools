@@ -1,0 +1,145 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2ynbpoxk8tnn"]
+
+[ext_resource type="Script" uid="uid://brvw48hmuwt8k" path="res://V2/Scenes/RespiraDataSelection.cs" id="1_70xa0"]
+[ext_resource type="PackedScene" uid="uid://bqrdrnjp6rlxk" path="res://Scenes/Components/question_button.tscn" id="1_yjpt4"]
+
+[node name="Respira Data Selection" type="VBoxContainer"]
+custom_minimum_size = Vector2(350, 264)
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_70xa0")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "Respira"
+horizontal_alignment = 1
+
+[node name="Bonuses" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Columns" type="VBoxContainer" parent="Bonuses"]
+layout_mode = 2
+
+[node name="Spacer" type="Control" parent="Bonuses/Columns"]
+custom_minimum_size = Vector2(0, 23)
+layout_mode = 2
+
+[node name="Attempts" type="Label" parent="Bonuses/Columns"]
+custom_minimum_size = Vector2(0, 31)
+layout_mode = 2
+text = "Attempts:"
+
+[node name="Bonus" type="Label" parent="Bonuses/Columns"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Bonus %:"
+
+[node name="Techniques" type="VBoxContainer" parent="Bonuses"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Bonuses/Techniques"]
+custom_minimum_size = Vector2(0, 23)
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Techniques"
+vertical_alignment = 1
+
+[node name="Attempts" type="SpinBox" parent="Bonuses/Techniques"]
+layout_mode = 2
+rounded = true
+alignment = 1
+
+[node name="Bonus" type="SpinBox" parent="Bonuses/Techniques"]
+layout_mode = 2
+max_value = 999.0
+step = 0.01
+alignment = 1
+suffix = "%"
+
+[node name="Curios" type="VBoxContainer" parent="Bonuses"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Bonuses/Curios"]
+custom_minimum_size = Vector2(0, 23)
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Curios"
+vertical_alignment = 1
+
+[node name="Attempts" type="SpinBox" parent="Bonuses/Curios"]
+layout_mode = 2
+rounded = true
+alignment = 1
+
+[node name="Bonus" type="SpinBox" parent="Bonuses/Curios"]
+layout_mode = 2
+max_value = 999.0
+step = 0.01
+alignment = 1
+suffix = "%"
+
+[node name="Friends" type="VBoxContainer" parent="Bonuses"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Bonuses/Friends"]
+custom_minimum_size = Vector2(0, 23)
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Imm. Friends"
+vertical_alignment = 1
+
+[node name="Attempts" type="SpinBox" parent="Bonuses/Friends"]
+layout_mode = 2
+rounded = true
+alignment = 1
+
+[node name="Bonus" type="SpinBox" parent="Bonuses/Friends"]
+layout_mode = 2
+max_value = 999.0
+step = 0.01
+alignment = 1
+suffix = "%"
+
+[node name="Question Button" parent="." instance=ExtResource("1_yjpt4")]
+layout_mode = 2
+Title = "How to Find Respira Data"
+PopupText = "To find your Resira bonuses, you'll need to look in a few places:
+
+Use Compare BR on any other Taoist, and you'll need to use Check Details in Techniques, Immortal Friends (if Voidbreak+), and Curios.
+
+Curios have Respira-related bonuses in the Epic and Rare sections."
+
+[node name="Spacer" type="Control" parent="."]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="Outputs" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Attempts" type="HBoxContainer" parent="Outputs"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Outputs/Attempts"]
+custom_minimum_size = Vector2(115, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Attempts:"
+horizontal_alignment = 2
+
+[node name="LineEdit" type="LineEdit" parent="Outputs/Attempts"]
+layout_mode = 2
+alignment = 1
+editable = false
+
+[node name="Avg Value" type="HBoxContainer" parent="Outputs"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Outputs/Avg Value"]
+layout_mode = 2
+text = "Average Value:"
+
+[node name="LineEdit" type="LineEdit" parent="Outputs/Avg Value"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+alignment = 1
+editable = false

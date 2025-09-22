@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://8j8tibss4am4"]
+
+[ext_resource type="Script" uid="uid://dwmjygrovlmgy" path="res://V2/Scenes/DailyExpTabContainer.cs" id="1_7suwr"]
+[ext_resource type="PackedScene" uid="uid://cod7aksiwiq8s" path="res://V2/Scenes/passive_data_selection.tscn" id="1_kj6xo"]
+[ext_resource type="PackedScene" uid="uid://djavr8tyhxrvn" path="res://V2/Scenes/pill_data_selection.tscn" id="2_uc732"]
+[ext_resource type="PackedScene" uid="uid://b2ynbpoxk8tnn" path="res://V2/Scenes/respira_data_selection.tscn" id="4_kwnuk"]
+
+[node name="Daily Exp Tab Container" type="TabContainer"]
+custom_minimum_size = Vector2(350, 300)
+offset_right = 40.0
+offset_bottom = 40.0
+tab_alignment = 1
+current_tab = 0
+script = ExtResource("1_7suwr")
+
+[node name="Passive" parent="." instance=ExtResource("1_kj6xo")]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="Pills" parent="." instance=ExtResource("2_uc732")]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="Respira" parent="." instance=ExtResource("4_kwnuk")]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2

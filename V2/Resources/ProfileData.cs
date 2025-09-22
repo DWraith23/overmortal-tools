@@ -83,6 +83,24 @@ public partial class ProfileData : Resource
         }
     }
 
+    // Passive Cultivation
+    private PassiveData _passiveCultivation = new();
+    [Export]
+    public PassiveData PassiveCultivation
+    {
+        get => _passiveCultivation;
+        set
+        {
+            if (_passiveCultivation == value) return;
+            _passiveCultivation = value;
+            Tools.EmitLoggedSignal(this, Resource.SignalName.Changed);
+            if (value != null)
+            {
+                _passiveCultivation.Changed += () => Tools.EmitLoggedSignal(this, Resource.SignalName.Changed);
+            }
+        }
+    }
+
     // Pills
     private PillData _pillData = new();
     [Export]
@@ -97,6 +115,24 @@ public partial class ProfileData : Resource
             if (value != null)
             {
                 _pillData.Changed += () => Tools.EmitLoggedSignal(this, Resource.SignalName.Changed);
+            }
+        }
+    }
+
+    // Respira
+    private RespiraData _respiraData = new();
+    [Export]
+    public RespiraData RespiraData
+    {
+        get => _respiraData;
+        set
+        {
+            if (_respiraData == value) return;
+            _respiraData = value;
+            Tools.EmitLoggedSignal(this, Resource.SignalName.Changed);
+            if (value != null)
+            {
+                _respiraData.Changed += () => Tools.EmitLoggedSignal(this, Resource.SignalName.Changed);
             }
         }
     }
@@ -120,19 +156,27 @@ public partial class ProfileData : Resource
     }
 
 
+
+
     #endregion
 
 
     #region Calculated Properties
 
-    public PathData.Realm HighestRealm => GetHighestRealmInformation().Item1;
+    private (PathData.Realm, PathData.MinorRealm) HighestRealm => (GetHighestRealmInformation().Item1, GetHighestRealmInformation().Item2);
+
+    public long DailyPassiveExp => PassiveCultivation.GetDailyCosmoapsisExp(HighestRealm) + PassiveCultivation.GetDailyAuraGemExp(HighestRealm);
 
     public long DailyPillExp =>
-            PillData.GetTotalRareValue(HighestRealm, StarMarks.RarePills) +
-            PillData.GetTotalEpicValue(HighestRealm, StarMarks.EpicPills) +
-            PillData.GetTotalLegendaryValue(HighestRealm, StarMarks.LegendaryPills) +
-            PillData.GetTotalMythicValue(HighestRealm, StarMarks.RespiraExp);
+            PillData.GetTotalRareValue(HighestRealm.Item1, StarMarks.RarePills) +
+            PillData.GetTotalEpicValue(HighestRealm.Item1, StarMarks.EpicPills) +
+            PillData.GetTotalLegendaryValue(HighestRealm.Item1, StarMarks.LegendaryPills) +
+            PillData.GetTotalMythicValue(HighestRealm.Item1, StarMarks.RespiraExp);
 
+    public long DailyRespiraExp => RespiraData.GetDailyRespiraValue(HighestRealm.Item1);
+
+
+    public long TotalDailyExp => DailyPassiveExp + DailyPillExp + DailyRespiraExp;
 
     #endregion
 
@@ -165,5 +209,17 @@ public partial class ProfileData : Resource
 
 
     #endregion
+
+    public ProfileData()
+    {
+        Path1.Changed += () => Tools.EmitLoggedSignal(this, Resource.SignalName.Changed);
+        Path2.Changed += () => Tools.EmitLoggedSignal(this, Resource.SignalName.Changed);
+        Path3.Changed += () => Tools.EmitLoggedSignal(this, Resource.SignalName.Changed);
+        Path4.Changed += () => Tools.EmitLoggedSignal(this, Resource.SignalName.Changed);
+        PassiveCultivation.Changed += () => Tools.EmitLoggedSignal(this, Resource.SignalName.Changed);
+        PillData.Changed += () => Tools.EmitLoggedSignal(this, Resource.SignalName.Changed);
+        RespiraData.Changed += () => Tools.EmitLoggedSignal(this, Resource.SignalName.Changed);
+        StarMarks.Changed += () => Tools.EmitLoggedSignal(this, Resource.SignalName.Changed);
+    }
 
 }

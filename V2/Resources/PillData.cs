@@ -138,7 +138,7 @@ public partial class PillData : Resource
     #endregion
 
     #region Calculated Properties
-    public float TotalBonus => TechniquesBonus + EpicCurioBonus + ImmortalFriendsBonus / 100f;
+    public float TotalBonus => (TechniquesBonus + EpicCurioBonus + ImmortalFriendsBonus) / 100.0f;
 
     public int TotalDailyPills => DailyRare + DailyEpic + DailyLegendary;
 

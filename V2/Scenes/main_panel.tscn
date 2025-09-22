@@ -1,10 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://cqwm343d6he2"]
+[gd_scene load_steps=9 format=3 uid="uid://cqwm343d6he2"]
 
 [ext_resource type="Theme" uid="uid://difyenc5vtxtx" path="res://Themes/main_theme_2.tres" id="1_jmb5c"]
+[ext_resource type="Script" uid="uid://djyuia007yfcs" path="res://V2/Scenes/MainPanel.cs" id="2_arl0s"]
 [ext_resource type="PackedScene" uid="uid://d2rokqglew081" path="res://V2/Scenes/path_tab_container.tscn" id="2_e5ir8"]
+[ext_resource type="PackedScene" uid="uid://bpl667xd0vf8v" path="res://V2/Scenes/daily_exp.tscn" id="3_30265"]
 [ext_resource type="PackedScene" uid="uid://5qdm8u3mcqj7" path="res://Scenes/Planner/profile_swapper.tscn" id="3_40434"]
-[ext_resource type="PackedScene" uid="uid://djavr8tyhxrvn" path="res://V2/Scenes/pill_data_selection.tscn" id="3_ik4jb"]
 [ext_resource type="PackedScene" uid="uid://cuyw5ejsrpu1h" path="res://Scenes/Planner/star_marks.tscn" id="4_arl0s"]
+[ext_resource type="PackedScene" uid="uid://8j8tibss4am4" path="res://V2/Scenes/daily_exp_tab_container.tscn" id="5_arl0s"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ik4jb"]
 content_margin_left = 4.0
@@ -29,6 +31,7 @@ offset_right = 360.0
 offset_bottom = 800.0
 theme = ExtResource("1_jmb5c")
 theme_override_styles/panel = SubResource("StyleBoxFlat_ik4jb")
+script = ExtResource("2_arl0s")
 
 [node name="Contents" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -43,10 +46,16 @@ horizontal_alignment = 1
 [node name="Info Tabs" type="TabContainer" parent="Contents"]
 custom_minimum_size = Vector2(350, 281)
 layout_mode = 2
+current_tab = 0
+
+[node name="Daily" parent="Contents/Info Tabs" instance=ExtResource("3_30265")]
+layout_mode = 2
+metadata/_tab_index = 0
 
 [node name="Section Tabs" type="TabContainer" parent="Contents"]
 custom_minimum_size = Vector2(350, 331)
 layout_mode = 2
+tab_alignment = 1
 current_tab = 0
 tabs_position = 1
 
@@ -54,7 +63,7 @@ tabs_position = 1
 layout_mode = 2
 metadata/_tab_index = 0
 
-[node name="Pills" parent="Contents/Section Tabs" instance=ExtResource("3_ik4jb")]
+[node name="Daily" parent="Contents/Section Tabs" instance=ExtResource("5_arl0s")]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 1

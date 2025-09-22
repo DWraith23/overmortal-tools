@@ -48,6 +48,8 @@ public partial class PillDataSelection : VBoxContainer
     {
         if (Data == null) return;
 
+        GD.Print("PillDataSelection Update() called");
+
         RareQtySpinBox.SetValueNoSignal(Data.DailyRare);
         EpicQtySpinBox.SetValueNoSignal(Data.DailyEpic);
         LegendaryQtySpinBox.SetValueNoSignal(Data.DailyLegendary);
@@ -58,11 +60,13 @@ public partial class PillDataSelection : VBoxContainer
         EpicCurioSpinBox.SetValueNoSignal(Data.EpicCurioBonus);
         ImmortalFriendsSpinBox.SetValueNoSignal(Data.ImmortalFriendsBonus);
 
-        TotalBonusOutput.Text = Data.TotalBonus.ToString("N2");
+        TotalBonusOutput.Text = Data.TotalBonus.ToString("P2");
     }
 
     private void ConnectSignals()
     {
+        _data.Changed += Update;
+
         RareQtySpinBox.ValueChanged += value =>
         {
             if (Data == null) return;

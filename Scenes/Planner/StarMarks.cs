@@ -17,10 +17,14 @@ public partial class StarMarks : VBoxContainer
 		get => _data;
 		set
 		{
+			if (_data == value) return;
 			_data = value;
-			_data.Changed += Update;
 			Update();
 			UpdateSpinboxes();
+			if (value != null)
+			{
+				_data.Changed += Update;
+			}
 		}
 	}
 
