@@ -124,9 +124,9 @@ public partial class CreationArtifactData : Resource
     private float GetVaseXpMultiplier()
     {
         var bonus = HasVaseTransmog ? 0.08f : 0.0f;
-        if (VaseStars == 0) return 1f + bonus;  // No bonus
-        if (VaseStars < 3) return 1.1f + bonus; // 10% bonus at 1*
-        return 1.2f + bonus;    // 20% bonus at 3*
+        if (VaseStars == 0) return 0f + bonus;  // No bonus
+        if (VaseStars < 3) return 0.1f + bonus; // 10% bonus at 1*
+        return 0.2f + bonus;    // 20% bonus at 3*
     }
 
     public float DailyMythicPills => GetVaseMythicPills() + GetMirrorMythicPills();

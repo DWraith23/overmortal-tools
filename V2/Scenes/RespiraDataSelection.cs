@@ -66,10 +66,10 @@ public partial class RespiraDataSelection : VBoxContainer
         CurioBonusSpinBox.SetValueNoSignal(Data.RespiraBonusFromCurios);
 
         FriendAttemptsSpinBox.SetValueNoSignal(Data.RespiraAttemptsFromFriends);
-        FriendBonusSpinBox.SetValueNoSignal(Data.RespiraBonusFromFriends * 100);
+        FriendBonusSpinBox.SetValueNoSignal(Data.RespiraBonusFromFriends);
 
         TotalAttemptsOutput.Text = Data.TotalRespiraAttempts.ToString("N0");
-        AverageValueOutput.Text = Data.GetAverageRespiraValue(Profile.GetHighestRealmInformation().Item1).ToString("N2");
+        AverageValueOutput.Text = Data.GetTotalAverageRespiraValue(Profile.GetHighestRealmInformation().Item1).ToString("N2");
     }
 
     private void ConnectSignals()
@@ -109,7 +109,7 @@ public partial class RespiraDataSelection : VBoxContainer
         FriendBonusSpinBox.ValueChanged += value =>
         {
             if (Data == null) return;
-            Data.RespiraBonusFromFriends = (float)value / 100f;
+            Data.RespiraBonusFromFriends = (float)value;
         };
     }
 

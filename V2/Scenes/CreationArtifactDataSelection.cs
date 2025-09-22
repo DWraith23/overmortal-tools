@@ -16,21 +16,23 @@ public partial class CreationArtifactDataSelection : VBoxContainer
     private PanelContainer VasePanel => GetNode<PanelContainer>("Artifacts/Vase/Panel");
     private PanelContainer MirrorPanel => GetNode<PanelContainer>("Artifacts/Mirror/Panel");
 
-    private CreationArtifactData _data = new();
-    public CreationArtifactData Data
+    private ProfileData _profile = new();
+    public ProfileData Profile
     {
-        get => _data;
+        get => _profile;
         set
         {
-            if (_data == value) return;
-            _data = value;
+            if (_profile == value) return;
+            _profile = value;
             Update();
             if (value != null)
             {
-                _data.Changed += Update;
+                _profile.Changed += Update;
             }
         }
     }
+
+    private CreationArtifactData Data => Profile.CreationArtifacts;
 
     public override void _Ready()
     {
@@ -40,7 +42,7 @@ public partial class CreationArtifactDataSelection : VBoxContainer
 
     private void ConnectSignals()
     {
-        _data.Changed += Update;
+        _profile.Changed += Update;
 
         HasVaseCheckBox.Toggled += pressed =>
         {

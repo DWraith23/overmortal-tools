@@ -187,12 +187,16 @@ public partial class ProfileData : Resource
     public long DailyPassiveExp => PassiveCultivation.GetDailyCosmoapsisExp(HighestRealm) + PassiveCultivation.GetDailyAuraGemExp(HighestRealm);
 
     public long DailyPillExp =>
-            PillData.GetTotalRareValue(HighestRealm.Item1, StarMarks.RarePills * 0.1f) +
-            PillData.GetTotalEpicValue(HighestRealm.Item1, StarMarks.EpicPills * 0.1f) +
-            PillData.GetTotalLegendaryValue(HighestRealm.Item1, StarMarks.LegendaryPills * 0.1f) +
-            PillData.GetTotalMythicValue(HighestRealm.Item1, StarMarks.RespiraExp * 0.1f);
+            PillData.GetTotalRareValue(HighestRealm.Item1, StarMarks.RarePills / 100f) +
+            PillData.GetTotalEpicValue(HighestRealm.Item1, StarMarks.EpicPills / 100f) +
+            PillData.GetTotalLegendaryValue(HighestRealm.Item1, StarMarks.LegendaryPills / 100f) +
+            PillData.GetTotalMythicValue(HighestRealm.Item1, CreationArtifacts.XpMultiplier);
 
-    public long DailyRespiraExp => RespiraData.GetDailyRespiraValue(HighestRealm.Item1) * (long)Math.Floor(1 + StarMarks.RespiraExp * 0.1f);
+    public long DailyRespiraExp =>
+        (long)Math.Floor(RespiraData.GetAverageRespiraValue(HighestRealm.Item1)
+            * (RespiraData.TotalRespiraBonus + StarMarks.RespiraExp / 100f)
+            * RespiraData.TotalRespiraAttempts
+        );
 
 
     public long TotalDailyExp => DailyPassiveExp + DailyPillExp + DailyRespiraExp;

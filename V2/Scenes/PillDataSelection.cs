@@ -23,21 +23,23 @@ public partial class PillDataSelection : VBoxContainer
 
     #endregion
 
-    private PillData _data = new();
-    public PillData Data
+    private ProfileData _profile = new();
+    public ProfileData Profile
     {
-        get => _data;
+        get => _profile;
         set
         {
-            if (_data == value) return;
-            _data = value;
+            if (_profile == value) return;
+            _profile = value;
             Update();
             if (value != null)
             {
-                _data.Changed += Update;
+                _profile.Changed += Update;
             }
         }
     }
+
+    private PillData Data => Profile.PillData;
 
     public override void _Ready()
     {
@@ -46,13 +48,15 @@ public partial class PillDataSelection : VBoxContainer
 
     private void Update()
     {
-        if (Data == null) return;
+        if (Profile == null) return;
 
         GD.Print("PillDataSelection Update() called");
 
         RareQtySpinBox.SetValueNoSignal(Data.DailyRare);
         EpicQtySpinBox.SetValueNoSignal(Data.DailyEpic);
         LegendaryQtySpinBox.SetValueNoSignal(Data.DailyLegendary);
+
+        Data.DailyMythic = Profile.CreationArtifacts.DailyMythicPills;
 
         MythicQtyInput.Text = Data.DailyMythic.ToString("N2");
 
@@ -65,41 +69,41 @@ public partial class PillDataSelection : VBoxContainer
 
     private void ConnectSignals()
     {
-        _data.Changed += Update;
+        _profile.Changed += Update;
 
         RareQtySpinBox.ValueChanged += value =>
         {
-            if (Data == null) return;
+            if (Profile == null) return;
             Data.DailyRare = (int)value;
         };
 
         EpicQtySpinBox.ValueChanged += value =>
         {
-            if (Data == null) return;
+            if (Profile == null) return;
             Data.DailyEpic = (int)value;
         };
 
         LegendaryQtySpinBox.ValueChanged += value =>
         {
-            if (Data == null) return;
+            if (Profile == null) return;
             Data.DailyLegendary = (int)value;
         };
 
         TechniquesSpinBox.ValueChanged += value =>
         {
-            if (Data == null) return;
+            if (Profile == null) return;
             Data.TechniquesBonus = (float)value;
         };
 
         EpicCurioSpinBox.ValueChanged += value =>
         {
-            if (Data == null) return;
+            if (Profile == null) return;
             Data.EpicCurioBonus = (float)value;
         };
 
         ImmortalFriendsSpinBox.ValueChanged += value =>
         {
-            if (Data == null) return;
+            if (Profile == null) return;
             Data.ImmortalFriendsBonus = (float)value;
         };
     }

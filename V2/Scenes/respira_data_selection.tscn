@@ -120,7 +120,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="Label" type="Label" parent="Outputs/Attempts"]
-custom_minimum_size = Vector2(115, 0)
+custom_minimum_size = Vector2(127, 0)
 layout_mode = 2
 size_flags_horizontal = 8
 text = "Attempts:"
@@ -136,7 +136,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="Outputs/Avg Value"]
 layout_mode = 2
-text = "Average Value:"
+text = "Daily Avg. Value:"
 
 [node name="LineEdit" type="LineEdit" parent="Outputs/Avg Value"]
 custom_minimum_size = Vector2(120, 0)

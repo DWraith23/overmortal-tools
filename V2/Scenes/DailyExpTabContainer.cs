@@ -11,6 +11,8 @@ public partial class DailyExpTabContainer : TabContainer
     private PassiveDataSelection Passive => GetNode<PassiveDataSelection>("Passive");
     private PillDataSelection Pills => GetNode<PillDataSelection>("Pills");
     private RespiraDataSelection Respira => GetNode<RespiraDataSelection>("Respira");
+    private CreationArtifactDataSelection Artifacts => GetNode<CreationArtifactDataSelection>("Artifacts");
+
 
     #endregion
 
@@ -39,9 +41,10 @@ public partial class DailyExpTabContainer : TabContainer
     {
         GD.Print("DailyExpTabContainer Update() called");
 
-        Passive.Data = Data.PassiveCultivation;
-        Pills.Profile = Data.PillData;
+        Passive.Profile = Data;
+        Pills.Profile = Data;
         Respira.Profile = Data;
+        Artifacts.Profile = Data;
     }
 
 }

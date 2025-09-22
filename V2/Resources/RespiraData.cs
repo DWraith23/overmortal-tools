@@ -135,8 +135,14 @@ public partial class RespiraData : Resource
     public long GetAverageRespiraValue(PathData.Realm realm)
     {
         var value = RealmValues[realm];
-        var withOdds = value * TotalRespiraBonus * MultiplierOdds.Sum(mo => mo.Item1 * mo.Item2);
+        var withOdds = value * MultiplierOdds.Sum(mo => mo.Item1 * mo.Item2);
         return (long)Math.Floor(withOdds);
+    }
+
+    public long GetTotalAverageRespiraValue(PathData.Realm realm)
+    {
+        var value = GetAverageRespiraValue(realm);
+        return (long)Math.Floor(value * TotalRespiraBonus);
     }
 
     public long GetDailyRespiraValue(PathData.Realm realm) => GetAverageRespiraValue(realm) * TotalRespiraAttempts;

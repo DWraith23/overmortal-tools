@@ -21,21 +21,23 @@ public partial class PassiveDataSelection : VBoxContainer
 
     #endregion
 
-    private PassiveData _data = new();
-    public PassiveData Data
+    private ProfileData _profile = new();
+    public ProfileData Profile
     {
-        get => _data;
+        get => _profile;
         set
         {
-            if (_data == value) return;
-            _data = value;
+            if (_profile == value) return;
+            _profile = value;
             Update();
             if (value != null)
             {
-                _data.Changed += Update;
+                _profile.Changed += Update;
             }
         }
     }
+
+    private PassiveData Data => Profile.PassiveCultivation;
 
     public override void _Ready()
     {
@@ -68,7 +70,7 @@ public partial class PassiveDataSelection : VBoxContainer
 
     private void ConnectSignals()
     {
-        _data.Changed += Update;
+        _profile.Changed += Update;
 
         AbodeAuraSpinBox.ValueChanged += value =>
         {
