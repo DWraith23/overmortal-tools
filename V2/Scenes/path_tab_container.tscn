@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://d2rokqglew081"]
+
+[ext_resource type="Script" uid="uid://cgayqft8ns85n" path="res://V2/Scenes/PathTabContainer.cs" id="1_dt6j4"]
+[ext_resource type="PackedScene" uid="uid://femlajkgascb" path="res://V2/Scenes/path_data_selection.tscn" id="1_oa2fu"]
+
+[node name="Path Tab Container" type="TabContainer"]
+custom_minimum_size = Vector2(350, 300)
+offset_right = 350.0
+offset_bottom = 300.0
+tab_alignment = 1
+current_tab = 0
+script = ExtResource("1_dt6j4")
+
+[node name="Main" parent="." instance=ExtResource("1_oa2fu")]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="Aux 1" parent="." instance=ExtResource("1_oa2fu")]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="Aux 2" parent="." instance=ExtResource("1_oa2fu")]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="Aux 3" parent="." instance=ExtResource("1_oa2fu")]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 3

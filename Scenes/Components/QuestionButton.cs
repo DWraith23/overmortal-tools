@@ -16,7 +16,7 @@ public partial class QuestionButton : Button
     {
         var popup = new Popup()
         {
-            Size = new Vector2I(400, 300),
+            Size = new Vector2I(250, 500),
             InitialPosition = Window.WindowInitialPosition.CenterPrimaryScreen,
             Borderless = false,
             Title = Title,
@@ -25,7 +25,7 @@ public partial class QuestionButton : Button
         var label = new Label()
         {
             Text = PopupText,
-            CustomMinimumSize = new Vector2I(400, 300),
+            CustomMinimumSize = new Vector2I(250, 500),
             AutowrapMode = TextServer.AutowrapMode.WordSmart,
         };
         popup.AddChild(label);

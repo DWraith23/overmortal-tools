@@ -1,0 +1,139 @@
+[gd_scene load_steps=3 format=3 uid="uid://djavr8tyhxrvn"]
+
+[ext_resource type="Script" uid="uid://d3s45uo87e308" path="res://V2/Scenes/PillDataSelection.cs" id="1_h1drk"]
+[ext_resource type="PackedScene" uid="uid://vlwh3qtnsgyq" path="res://Scenes/Components/labeled_spinbox.tscn" id="1_qcxy5"]
+
+[node name="Pill Data Selection" type="VBoxContainer"]
+custom_minimum_size = Vector2(350, 300)
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_h1drk")
+
+[node name="Daily Pills" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Section 1 Header" type="Label" parent="Daily Pills"]
+layout_mode = 2
+text = "Daily Pills"
+horizontal_alignment = 1
+
+[node name="Rarities" type="GridContainer" parent="Daily Pills"]
+layout_mode = 2
+size_flags_horizontal = 4
+columns = 2
+
+[node name="Rare" type="VBoxContainer" parent="Daily Pills/Rarities"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Daily Pills/Rarities/Rare"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.7176471, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+text = "Rare"
+horizontal_alignment = 1
+
+[node name="SpinBox" type="SpinBox" parent="Daily Pills/Rarities/Rare"]
+layout_mode = 2
+alignment = 1
+
+[node name="Epic" type="VBoxContainer" parent="Daily Pills/Rarities"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Daily Pills/Rarities/Epic"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8509804, 0, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+text = "Epic"
+horizontal_alignment = 1
+
+[node name="SpinBox" type="SpinBox" parent="Daily Pills/Rarities/Epic"]
+layout_mode = 2
+alignment = 1
+
+[node name="Legendary" type="VBoxContainer" parent="Daily Pills/Rarities"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Daily Pills/Rarities/Legendary"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.827451, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+text = "Legendary"
+horizontal_alignment = 1
+
+[node name="SpinBox" type="SpinBox" parent="Daily Pills/Rarities/Legendary"]
+layout_mode = 2
+alignment = 1
+
+[node name="Mythic" type="VBoxContainer" parent="Daily Pills/Rarities"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Daily Pills/Rarities/Mythic"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0.15294118, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+text = "Mythic"
+horizontal_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="Daily Pills/Rarities/Mythic"]
+layout_mode = 2
+alignment = 1
+editable = false
+
+[node name="Spacer" type="Control" parent="Daily Pills"]
+custom_minimum_size = Vector2(0, 17)
+layout_mode = 2
+
+[node name="Section 2 Header" type="Label" parent="Daily Pills"]
+layout_mode = 2
+text = "Pill Bonus"
+horizontal_alignment = 1
+
+[node name="Bonus Section" type="HBoxContainer" parent="Daily Pills"]
+layout_mode = 2
+alignment = 1
+
+[node name="Bonuses" type="VBoxContainer" parent="Daily Pills/Bonus Section"]
+layout_mode = 2
+
+[node name="Techniques" parent="Daily Pills/Bonus Section/Bonuses" instance=ExtResource("1_qcxy5")]
+layout_mode = 2
+alignment = 2
+LabelText = "Techniques:"
+Step = 0.01
+Suffix = "%"
+
+[node name="Epic Curio" parent="Daily Pills/Bonus Section/Bonuses" instance=ExtResource("1_qcxy5")]
+layout_mode = 2
+alignment = 2
+LabelText = "Epic Curio:"
+Step = 0.01
+Suffix = "%"
+
+[node name="Immortal Friends" parent="Daily Pills/Bonus Section/Bonuses" instance=ExtResource("1_qcxy5")]
+layout_mode = 2
+alignment = 1
+LabelText = "Immortal Friends:"
+Step = 0.01
+Suffix = "%"
+
+[node name="Total Bonus" type="VBoxContainer" parent="Daily Pills/Bonus Section"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Daily Pills/Bonus Section/Total Bonus"]
+layout_mode = 2
+text = "Total Bonus %"
+
+[node name="LineEdit" type="LineEdit" parent="Daily Pills/Bonus Section/Total Bonus"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_uneditable_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+text = "0%"
+alignment = 1
+editable = false

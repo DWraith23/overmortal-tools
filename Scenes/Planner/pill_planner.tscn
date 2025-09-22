@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://vvlj2y5cqf2q"]
+[gd_scene load_steps=4 format=3 uid="uid://vvlj2y5cqf2q"]
 
 [ext_resource type="Script" path="res://Scenes/Planner/PillPlanner.cs" id="1_xis8l"]
-[ext_resource type="Texture2D" uid="uid://1btukscmcbuj" path="res://assets/pill_example.png" id="2_vrtk7"]
 [ext_resource type="PackedScene" uid="uid://vlwh3qtnsgyq" path="res://Scenes/Components/labeled_spinbox.tscn" id="2_wemvo"]
 [ext_resource type="PackedScene" uid="uid://bqrdrnjp6rlxk" path="res://Scenes/Components/question_button.tscn" id="3_gf6lr"]
 
@@ -147,11 +146,6 @@ horizontal_alignment = 2
 layout_mode = 2
 editable = false
 
-[node name="TextureRect" type="TextureRect" parent="Bonus/Bonus Calculator"]
-layout_mode = 2
-size_flags_horizontal = 3
-texture = ExtResource("2_vrtk7")
-
 [node name="Node2D" type="Node2D" parent="."]
 
 [node name="Question Button" parent="Node2D" instance=ExtResource("3_gf6lr")]
@@ -170,7 +164,7 @@ offset_bottom = 203.0
 Title = "Pill Bonus"
 PopupText = "To find these numbers, click on another Taoist and select \"Compare BR\".
 
-If you check details in Techjniques, Epic Curios, and Immortal Friends you can find your \"Cultivation Pill Effect\" values."
+If you check details in Techniques, Epic Curios, and Immortal Friends you can find your \"Cultivation Pill Effect\" values."
 
 [connection signal="item_selected" from="Pill Level/OptionButton" to="." method="OnPillRealmOptionSelected"]
 [connection signal="value_changed" from="Daily Pills/Rare" to="." method="OnRarePillsSpinBoxChanged"]

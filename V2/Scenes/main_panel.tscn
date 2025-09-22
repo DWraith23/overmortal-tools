@@ -1,0 +1,75 @@
+[gd_scene load_steps=7 format=3 uid="uid://cqwm343d6he2"]
+
+[ext_resource type="Theme" uid="uid://difyenc5vtxtx" path="res://Themes/main_theme_2.tres" id="1_jmb5c"]
+[ext_resource type="PackedScene" uid="uid://d2rokqglew081" path="res://V2/Scenes/path_tab_container.tscn" id="2_e5ir8"]
+[ext_resource type="PackedScene" uid="uid://5qdm8u3mcqj7" path="res://Scenes/Planner/profile_swapper.tscn" id="3_40434"]
+[ext_resource type="PackedScene" uid="uid://djavr8tyhxrvn" path="res://V2/Scenes/pill_data_selection.tscn" id="3_ik4jb"]
+[ext_resource type="PackedScene" uid="uid://cuyw5ejsrpu1h" path="res://Scenes/Planner/star_marks.tscn" id="4_arl0s"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ik4jb"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.14767182, 0.14767182, 0.14767176, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0.06666667, 0.2627451, 1)
+border_blend = true
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="Main Panel" type="PanelContainer"]
+custom_minimum_size = Vector2(360, 800)
+offset_right = 360.0
+offset_bottom = 800.0
+theme = ExtResource("1_jmb5c")
+theme_override_styles/panel = SubResource("StyleBoxFlat_ik4jb")
+
+[node name="Contents" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="Label" type="Label" parent="Contents"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Overmortal Tools"
+horizontal_alignment = 1
+
+[node name="Info Tabs" type="TabContainer" parent="Contents"]
+custom_minimum_size = Vector2(350, 281)
+layout_mode = 2
+
+[node name="Section Tabs" type="TabContainer" parent="Contents"]
+custom_minimum_size = Vector2(350, 331)
+layout_mode = 2
+current_tab = 0
+tabs_position = 1
+
+[node name="Paths" parent="Contents/Section Tabs" instance=ExtResource("2_e5ir8")]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="Pills" parent="Contents/Section Tabs" instance=ExtResource("3_ik4jb")]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="Star Marks" parent="Contents/Section Tabs" instance=ExtResource("4_arl0s")]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="Profile Swapper" parent="Contents" instance=ExtResource("3_40434")]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="Settings Button" type="Button" parent="."]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+text = "Settings"

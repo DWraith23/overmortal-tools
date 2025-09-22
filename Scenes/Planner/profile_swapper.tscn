@@ -1,8 +1,9 @@
 [gd_scene load_steps=2 format=3 uid="uid://5qdm8u3mcqj7"]
 
-[ext_resource type="Script" path="res://Scenes/Planner/ProfileSwapper.cs" id="1_cf2c0"]
+[ext_resource type="Script" uid="uid://d3olgmnsdxx8" path="res://Scenes/Planner/ProfileSwapper.cs" id="1_cf2c0"]
 
 [node name="Profile Swapper" type="VBoxContainer" node_paths=PackedStringArray("ProfileName")]
+custom_minimum_size = Vector2(350, 0)
 offset_right = 161.0
 offset_bottom = 101.0
 script = ExtResource("1_cf2c0")

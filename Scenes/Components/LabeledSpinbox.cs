@@ -213,4 +213,6 @@ public partial class LabeledSpinbox : HBoxContainer
 
 		SpinBox.ValueChanged += (value) => EmitSignal(SignalName.ValueChanged, value);
 	}
+
+    public void SetValueNoSignal(double value) => SpinBox?.SetValueNoSignal(value);
 }
