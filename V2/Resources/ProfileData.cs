@@ -156,14 +156,15 @@ public partial class ProfileData : Resource
     }
 
 
-
+    [Export] public int TargetMajorRealm { get; set; } = (int)PathData.Realm.Novice;
+    [Export] public int TargetMinorRealm { get; set; } = (int)PathData.MinorRealm.Early;
 
     #endregion
 
 
     #region Calculated Properties
 
-    private (PathData.Realm, PathData.MinorRealm) HighestRealm => (GetHighestRealmInformation().Item1, GetHighestRealmInformation().Item2);
+    public (PathData.Realm, PathData.MinorRealm) HighestRealm => (GetHighestRealmInformation().Item1, GetHighestRealmInformation().Item2);
 
     public long DailyPassiveExp => PassiveCultivation.GetDailyCosmoapsisExp(HighestRealm) + PassiveCultivation.GetDailyAuraGemExp(HighestRealm);
 

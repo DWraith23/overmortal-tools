@@ -1,0 +1,58 @@
+[gd_scene load_steps=2 format=3 uid="uid://d1h3tw8l41qut"]
+
+[ext_resource type="Script" uid="uid://baqicmg5nv50r" path="res://V2/Scenes/TargetRealmCalculation.cs" id="1_7qfqg"]
+
+[node name="Target Realm Calculation" type="VBoxContainer"]
+custom_minimum_size = Vector2(350, 250)
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_7qfqg")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Days to Target Realm"
+horizontal_alignment = 1
+
+[node name="Spacer 1" type="Control" parent="."]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+
+[node name="Target" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Major Realm" type="OptionButton" parent="Target"]
+layout_mode = 2
+size_flags_horizontal = 4
+selected = 0
+item_count = 1
+popup/item_0/text = "Select Major Realm"
+popup/item_0/id = 0
+
+[node name="Minor Realm" type="OptionButton" parent="Target"]
+layout_mode = 2
+size_flags_horizontal = 4
+selected = 0
+item_count = 1
+popup/item_0/text = "Select Minor Realm"
+popup/item_0/id = 0
+
+[node name="Spacer 2" type="Control" parent="."]
+custom_minimum_size = Vector2(0, 12)
+layout_mode = 2
+
+[node name="Output" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Days" type="HBoxContainer" parent="Output"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Output/Days"]
+layout_mode = 2
+text = "Days via Passive Cultvation:"
+
+[node name="LineEdit" type="LineEdit" parent="Output/Days"]
+layout_mode = 2
+alignment = 1
+editable = false

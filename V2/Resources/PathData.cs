@@ -117,6 +117,9 @@ public partial class PathData : Resource
         { (Realm.Eternal, MinorRealm.Late), 12813035198 },
     };
 
+    public static long GetRealmExpReq(Realm realm, MinorRealm minorRealm) =>
+        ExperienceReqs.TryGetValue((realm, minorRealm), out var req) ? req : 0;
+
 
     #endregion
 

@@ -2,6 +2,7 @@ using Godot;
 using OvermortalTools.Scenes.Planner;
 using OvermortalTools.V2.Resources;
 using OvermortalTools.V2.Scenes;
+using OvermortalTools.V2.Scripts;
 using System;
 
 public partial class MainPanel : PanelContainer
@@ -11,6 +12,7 @@ public partial class MainPanel : PanelContainer
 
     private TabContainer InfoTabs => Contents.GetNode<TabContainer>("Info Tabs");
     private DailyExp DailyExp => InfoTabs.GetNode<DailyExp>("Daily");
+    private TargetRealmCalculation TargetRealm => InfoTabs.GetNode<TargetRealmCalculation>("Target");
     
 
     private TabContainer SectionTabs => Contents.GetNode<TabContainer>("Section Tabs");
@@ -56,6 +58,7 @@ public partial class MainPanel : PanelContainer
         StarMarks.Data = Data.StarMarks;
 
         DailyExp.Data = Data;
+        TargetRealm.Data = Data;
     }
 
     private void ConnectSignals()

@@ -54,6 +54,7 @@ public static class Tools
         return default;
     }
 
+    public static bool LogSignals = true;
     public static void EmitLoggedSignal(GodotObject obj, StringName signal, params Variant[] args)
     {
         string signalStr = signal;
@@ -66,7 +67,7 @@ public static class Tools
         var str = args.Length == 0
             ? $"{DateTime.Now} : DEBUG: Emitting signal [color=yellow]{signalStr}[/color] from [color=green]{objStr}[/color] with no args."
             : $"{DateTime.Now} : DEBUG: Emitting signal [color=yellow]{signalStr}[/color] from [color=green]{objStr}[/color] with args [color=light_blue]{argsStr}[/color].";
-        GD.PrintRich(str);
+        if (LogSignals) GD.PrintRich(str);
         obj.EmitSignal(signal, args);
     }
 }
