@@ -155,9 +155,27 @@ public partial class ProfileData : Resource
         }
     }
 
+    // Creation Artifacts
+    private CreationArtifactData _creationArtifacts = new();
+    [Export]
+    public CreationArtifactData CreationArtifacts
+    {
+        get => _creationArtifacts;
+        set
+        {
+            if (_creationArtifacts == value) return;
+            _creationArtifacts = value;
+            Tools.EmitLoggedSignal(this, Resource.SignalName.Changed);
+            if (value != null)
+            {
+                _creationArtifacts.Changed += () => Tools.EmitLoggedSignal(this, Resource.SignalName.Changed);
+            }
+        }
+    }
 
-    [Export] public int TargetMajorRealm { get; set; } = (int)PathData.Realm.Novice;
-    [Export] public int TargetMinorRealm { get; set; } = (int)PathData.MinorRealm.Early;
+    // Target Realms
+    [Export] public PathData.Realm TargetMajorRealm { get; set; } = PathData.Realm.Novice;
+    [Export] public PathData.MinorRealm TargetMinorRealm { get; set; } = PathData.MinorRealm.Early;
 
     #endregion
 
@@ -169,12 +187,12 @@ public partial class ProfileData : Resource
     public long DailyPassiveExp => PassiveCultivation.GetDailyCosmoapsisExp(HighestRealm) + PassiveCultivation.GetDailyAuraGemExp(HighestRealm);
 
     public long DailyPillExp =>
-            PillData.GetTotalRareValue(HighestRealm.Item1, StarMarks.RarePills) +
-            PillData.GetTotalEpicValue(HighestRealm.Item1, StarMarks.EpicPills) +
-            PillData.GetTotalLegendaryValue(HighestRealm.Item1, StarMarks.LegendaryPills) +
-            PillData.GetTotalMythicValue(HighestRealm.Item1, StarMarks.RespiraExp);
+            PillData.GetTotalRareValue(HighestRealm.Item1, StarMarks.RarePills * 0.1f) +
+            PillData.GetTotalEpicValue(HighestRealm.Item1, StarMarks.EpicPills * 0.1f) +
+            PillData.GetTotalLegendaryValue(HighestRealm.Item1, StarMarks.LegendaryPills * 0.1f) +
+            PillData.GetTotalMythicValue(HighestRealm.Item1, StarMarks.RespiraExp * 0.1f);
 
-    public long DailyRespiraExp => RespiraData.GetDailyRespiraValue(HighestRealm.Item1);
+    public long DailyRespiraExp => RespiraData.GetDailyRespiraValue(HighestRealm.Item1) * (long)Math.Floor(1 + StarMarks.RespiraExp * 0.1f);
 
 
     public long TotalDailyExp => DailyPassiveExp + DailyPillExp + DailyRespiraExp;
@@ -221,6 +239,7 @@ public partial class ProfileData : Resource
         PillData.Changed += () => Tools.EmitLoggedSignal(this, Resource.SignalName.Changed);
         RespiraData.Changed += () => Tools.EmitLoggedSignal(this, Resource.SignalName.Changed);
         StarMarks.Changed += () => Tools.EmitLoggedSignal(this, Resource.SignalName.Changed);
+        CreationArtifacts.Changed += () => Tools.EmitLoggedSignal(this, Resource.SignalName.Changed);
     }
 
 }

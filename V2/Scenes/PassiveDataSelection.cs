@@ -40,6 +40,16 @@ public partial class PassiveDataSelection : VBoxContainer
     public override void _Ready()
     {
         ConnectSignals();
+        AddAuraGemOptions();
+    }
+
+    private void AddAuraGemOptions()
+    {
+        AuraGemQualitySelect.Clear();
+        foreach (var quality in Enum.GetNames<Quality>())
+        {
+            AuraGemQualitySelect.AddItem(quality);
+        }
     }
 
     private void Update()

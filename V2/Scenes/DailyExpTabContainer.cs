@@ -40,7 +40,7 @@ public partial class DailyExpTabContainer : TabContainer
         GD.Print("DailyExpTabContainer Update() called");
 
         Passive.Data = Data.PassiveCultivation;
-        Pills.Data = Data.PillData;
+        Pills.Profile = Data.PillData;
         Respira.Profile = Data;
     }
 

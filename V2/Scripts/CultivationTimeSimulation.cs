@@ -30,14 +30,14 @@ public static class CultivationTimeSimulation
             clone.CurrentRealmProgress = currentXp / (float)PathData.GetRealmExpReq(clone.CurrentRealm, clone.CurrentMinorRealm);
             if (clone.CurrentRealmProgress >= 1f)
             {
-                currentXp = (long)Math.Floor((clone.CurrentRealmProgress - 1f) * PathData.GetRealmExpReq(clone.CurrentRealm, clone.CurrentMinorRealm));
-                AdvanceMinorRealm(clone);
-
                 if (clone.CurrentRealm == targetRealm && clone.CurrentMinorRealm == targetMinorRealm)
                 {
                     days++;
                     break;
                 }
+                
+                currentXp = (long)Math.Floor((clone.CurrentRealmProgress - 1f) * PathData.GetRealmExpReq(clone.CurrentRealm, clone.CurrentMinorRealm));
+                AdvanceMinorRealm(clone);
 
                 clone.CurrentRealmProgress = currentXp / (float)PathData.GetRealmExpReq(clone.CurrentRealm, clone.CurrentMinorRealm);
             }

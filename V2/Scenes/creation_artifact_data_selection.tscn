@@ -1,0 +1,105 @@
+[gd_scene load_steps=3 format=3 uid="uid://celqxjo73n0jp"]
+
+[ext_resource type="Script" uid="uid://ktujoten3epe" path="res://V2/Scenes/CreationArtifactDataSelection.cs" id="1_prddt"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0eyuq"]
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="Creation Artifact Data Selection" type="VBoxContainer"]
+custom_minimum_size = Vector2(350, 300)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -10.0
+offset_bottom = -500.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+script = ExtResource("1_prddt")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "Creation Artifacts"
+horizontal_alignment = 1
+
+[node name="Artifacts" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Vase" type="HBoxContainer" parent="Artifacts"]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+
+[node name="CheckBox" type="CheckBox" parent="Artifacts/Vase"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "Vase"
+alignment = 1
+
+[node name="Panel" type="PanelContainer" parent="Artifacts/Vase"]
+visible = false
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0eyuq")
+
+[node name="Info" type="HBoxContainer" parent="Artifacts/Vase/Panel"]
+layout_mode = 2
+
+[node name="Stars" type="HBoxContainer" parent="Artifacts/Vase/Panel/Info"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Artifacts/Vase/Panel/Info/Stars"]
+layout_mode = 2
+text = "Stars:"
+
+[node name="SpinBox" type="SpinBox" parent="Artifacts/Vase/Panel/Info/Stars"]
+layout_mode = 2
+max_value = 5.0
+rounded = true
+alignment = 1
+
+[node name="CheckBox" type="CheckBox" parent="Artifacts/Vase/Panel/Info"]
+layout_mode = 2
+text = "Transmog?"
+
+[node name="Mirror" type="HBoxContainer" parent="Artifacts"]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+
+[node name="CheckBox" type="CheckBox" parent="Artifacts/Mirror"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "Mirror"
+
+[node name="Panel" type="PanelContainer" parent="Artifacts/Mirror"]
+visible = false
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0eyuq")
+
+[node name="Info" type="HBoxContainer" parent="Artifacts/Mirror/Panel"]
+layout_mode = 2
+
+[node name="Stars" type="HBoxContainer" parent="Artifacts/Mirror/Panel/Info"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Artifacts/Mirror/Panel/Info/Stars"]
+layout_mode = 2
+text = "Stars:"
+
+[node name="SpinBox" type="SpinBox" parent="Artifacts/Mirror/Panel/Info/Stars"]
+layout_mode = 2
+max_value = 5.0
+rounded = true
+alignment = 1
+
+[node name="CheckBox" type="CheckBox" parent="Artifacts/Mirror/Panel/Info"]
+visible = false
+layout_mode = 2
+text = "Transmog?"

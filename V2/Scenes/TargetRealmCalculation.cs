@@ -63,8 +63,11 @@ public partial class TargetRealmCalculation : VBoxContainer
         if (Data == null) return;
         GD.Print("TargetRealmCalculation Update() called");
 
-        MajorRealmSelect.Select(Data.TargetMajorRealm);
-        MinorRealmSelect.Select(Data.TargetMinorRealm);
+        if (Data.TargetMajorRealm < Data.Path1.CurrentRealm) Data.TargetMajorRealm = Data.Path1.CurrentRealm;
+        if (Data.TargetMajorRealm == Data.Path1.CurrentRealm && Data.TargetMinorRealm < Data.Path1.CurrentMinorRealm) Data.TargetMinorRealm = Data.Path1.CurrentMinorRealm;
+
+        MajorRealmSelect.Select((int)Data.TargetMajorRealm);
+        MinorRealmSelect.Select((int)Data.TargetMinorRealm);
 
         for (int i = 1; i < Enum.GetValues<PathData.Realm>().Length; i++)
         {
@@ -81,8 +84,8 @@ public partial class TargetRealmCalculation : VBoxContainer
         var days = CultivationTimeSimulation.CountDaysToTargetRealm(
             Data.Path1,
             Data.TotalDailyExp,
-            (PathData.Realm)Data.TargetMajorRealm,
-            (PathData.MinorRealm)Data.TargetMinorRealm
+            Data.TargetMajorRealm,
+            Data.TargetMinorRealm
         );
         NumberOfDaysOutput.Text = days.ToString();
 
@@ -92,10 +95,10 @@ public partial class TargetRealmCalculation : VBoxContainer
     {
         if (Data == null) return;
 
-        Data.TargetMajorRealm = MajorRealmSelect.Selected;
-        Data.TargetMinorRealm = MinorRealmSelect.Selected;
+        Data.TargetMajorRealm = (PathData.Realm)MajorRealmSelect.Selected;
+        Data.TargetMinorRealm = (PathData.MinorRealm)MinorRealmSelect.Selected;
 
-        GD.Print($"Target changed to {Data.TargetMajorRealm} ({(PathData.Realm)Data.TargetMajorRealm}) {Data.TargetMinorRealm} ({(PathData.MinorRealm)Data.TargetMinorRealm})");
+        GD.Print($"Target changed to {Data.TargetMajorRealm} ({Data.TargetMajorRealm}) {Data.TargetMinorRealm} ({Data.TargetMinorRealm})");
         
         Update();
     }
