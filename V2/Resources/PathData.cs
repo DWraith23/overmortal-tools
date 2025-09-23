@@ -120,6 +120,22 @@ public partial class PathData : Resource
     public static long GetRealmExpReq(Realm realm, MinorRealm minorRealm) =>
         ExperienceReqs.TryGetValue((realm, minorRealm), out var req) ? req : 0;
 
+    public enum Virya
+    {
+        None,
+        Eminence,
+        Perfection,
+        HalfStep
+    }
+
+    public static Dictionary<Virya, string> ViryaNames => new()
+    {
+        { Virya.None, "None" },
+        { Virya.Eminence, "Eminence" },
+        { Virya.Perfection, "Perfection" },
+        { Virya.HalfStep, "Half-Step" },
+    };
+
 
     #endregion
 
@@ -225,5 +241,10 @@ public partial class PathData : Resource
     public int GetCurrentMinorRealmIndex() =>
         Array.IndexOf(Enum.GetValues<MinorRealm>(), CurrentMinorRealm);
 
+    public long GetCurrentExpTowards() =>
+        (long)Math.Floor(ExperienceReqs[(CurrentRealm, CurrentMinorRealm)] * CurrentRealmProgress);
+
+    public float AddExp(long amount) =>
+        (GetCurrentExpTowards() + amount) / ExperienceReqs[(CurrentRealm, CurrentMinorRealm)];
 
 }
