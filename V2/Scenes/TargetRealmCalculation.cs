@@ -98,7 +98,7 @@ public partial class TargetRealmCalculation : VBoxContainer
         Data.TargetMajorRealm = (PathData.Realm)MajorRealmSelect.Selected;
         Data.TargetMinorRealm = (PathData.MinorRealm)MinorRealmSelect.Selected;
 
-        GD.Print($"Target changed to {Data.TargetMajorRealm} ({Data.TargetMajorRealm}) {Data.TargetMinorRealm} ({Data.TargetMinorRealm})");
+        // GD.Print($"Target changed to {Data.TargetMajorRealm} ({Data.TargetMajorRealm}) {Data.TargetMinorRealm} ({Data.TargetMinorRealm})");
         
         Update();
     }

@@ -42,8 +42,8 @@ public static class CultivationTimeSimulation
                 clone.CurrentRealmProgress = currentXp / (float)PathData.GetRealmExpReq(clone.CurrentRealm, clone.CurrentMinorRealm);
             }
 
-            if (days % 10 == 0)
-                GD.Print($"Day {days + 1}: {clone.CurrentRealm} {clone.CurrentMinorRealm} - {clone.CurrentRealmProgress:P2} ({currentXp:N0} XP)");
+            // if (days % 10 == 0)
+                // GD.Print($"Day {days + 1}: {clone.CurrentRealm} {clone.CurrentMinorRealm} - {clone.CurrentRealmProgress:P2} ({currentXp:N0} XP)");
 
             days++;
             if (days > 999) break; // Prevent infinite loop
