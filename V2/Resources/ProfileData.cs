@@ -173,6 +173,24 @@ public partial class ProfileData : Resource
         }
     }
 
+    // Myrimon
+    private MyrimonData _myrimonData = new();
+    [Export]
+    public MyrimonData MyrmimonData
+    {
+        get => _myrimonData;
+        set
+        {
+            if (_myrimonData == value) return;
+            _myrimonData = value;
+            Tools.EmitLoggedSignal(this, Resource.SignalName.Changed);
+            if (value != null)
+            {
+                _myrimonData.Changed += () => Tools.EmitLoggedSignal(this, Resource.SignalName.Changed);
+            }
+        }
+    }
+
     // Target Realms
     [Export] public PathData.Realm TargetMajorRealm { get; set; } = PathData.Realm.Novice;
     [Export] public PathData.MinorRealm TargetMinorRealm { get; set; } = PathData.MinorRealm.Early;
@@ -244,6 +262,7 @@ public partial class ProfileData : Resource
         RespiraData.Changed += () => Tools.EmitLoggedSignal(this, Resource.SignalName.Changed);
         StarMarks.Changed += () => Tools.EmitLoggedSignal(this, Resource.SignalName.Changed);
         CreationArtifacts.Changed += () => Tools.EmitLoggedSignal(this, Resource.SignalName.Changed);
+        MyrmimonData.Changed += () => Tools.EmitLoggedSignal(this, Resource.SignalName.Changed);
     }
 
 }

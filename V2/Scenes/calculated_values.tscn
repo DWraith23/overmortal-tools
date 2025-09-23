@@ -1,0 +1,66 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4a5336e3ucjs"]
+
+[ext_resource type="Script" uid="uid://dfsyugaux40cq" path="res://V2/Scenes/CalculatedValues.cs" id="1_cucm2"]
+
+[node name="Calculated Values" type="VBoxContainer"]
+custom_minimum_size = Vector2(350, 250)
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_cucm2")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "Misc. Calculated Values"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="."]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="Cosmoapsis" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 2
+
+[node name="Label" type="Label" parent="Cosmoapsis"]
+layout_mode = 2
+text = "Cosmoapsis:"
+
+[node name="LineEdit" type="LineEdit" parent="Cosmoapsis"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+alignment = 1
+editable = false
+
+[node name="Average Myrimon" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 2
+
+[node name="Label" type="Label" parent="Average Myrimon"]
+layout_mode = 2
+text = "Avg Myrimon Value:"
+
+[node name="LineEdit" type="LineEdit" parent="Average Myrimon"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+alignment = 1
+editable = false
+
+[node name="Myrimon Tech" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 2
+
+[node name="Label" type="Label" parent="Myrimon Tech"]
+layout_mode = 2
+text = "Avg Myrimon Tech Pts:"
+
+[node name="LineEdit" type="LineEdit" parent="Myrimon Tech"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+alignment = 1
+editable = false

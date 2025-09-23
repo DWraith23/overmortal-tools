@@ -13,12 +13,14 @@ public partial class MainPanel : PanelContainer
     private TabContainer InfoTabs => Contents.GetNode<TabContainer>("Info Tabs");
     private DailyExp DailyExp => InfoTabs.GetNode<DailyExp>("Daily");
     private TargetRealmCalculation TargetRealm => InfoTabs.GetNode<TargetRealmCalculation>("Target");
+    private CalculatedValues MiscValues => InfoTabs.GetNode<CalculatedValues>("Misc");
     
 
     private TabContainer SectionTabs => Contents.GetNode<TabContainer>("Section Tabs");
     private PathTabContainer Paths => SectionTabs.GetNode<PathTabContainer>("Paths");
     private DailyExpTabContainer Daily => SectionTabs.GetNode<DailyExpTabContainer>("Daily");
     private StarMarks StarMarks => SectionTabs.GetNode<StarMarks>("Star Marks");
+    private MyrimonDataSelection Myrimon => SectionTabs.GetNode<MyrimonDataSelection>("Myrimon");
 
     private ProfileSwapper Profiles => Contents.GetNode<ProfileSwapper>("Profile Swapper");
 
@@ -56,9 +58,11 @@ public partial class MainPanel : PanelContainer
         Paths.Data = Data;
         Daily.Data = Data;
         StarMarks.Data = Data.StarMarks;
+        Myrimon.Profile = Data;
 
         DailyExp.Data = Data;
         TargetRealm.Data = Data;
+        MiscValues.Data = Data;
     }
 
     private void ConnectSignals()

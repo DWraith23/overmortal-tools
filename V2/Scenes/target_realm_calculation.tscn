@@ -46,6 +46,7 @@ layout_mode = 2
 
 [node name="Days" type="HBoxContainer" parent="Output"]
 layout_mode = 2
+size_flags_horizontal = 4
 alignment = 1
 
 [node name="Label" type="Label" parent="Output/Days"]
@@ -53,6 +54,21 @@ layout_mode = 2
 text = "Days via Passive Cultvation:"
 
 [node name="LineEdit" type="LineEdit" parent="Output/Days"]
+layout_mode = 2
+alignment = 1
+editable = false
+
+[node name="With Myrm" type="HBoxContainer" parent="Output"]
+custom_minimum_size = Vector2(286, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 2
+
+[node name="Label" type="Label" parent="Output/With Myrm"]
+layout_mode = 2
+text = "Days Including Myrimon:"
+
+[node name="LineEdit" type="LineEdit" parent="Output/With Myrm"]
 layout_mode = 2
 alignment = 1
 editable = false

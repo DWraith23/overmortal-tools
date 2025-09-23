@@ -13,6 +13,7 @@ public partial class TargetRealmCalculation : VBoxContainer
     private OptionButton MinorRealmSelect => GetNode<OptionButton>("Target/Minor Realm");
 
     private LineEdit NumberOfDaysOutput => GetNode<LineEdit>("Output/Days/LineEdit");
+    private LineEdit MyrimonDaysOutput => GetNode<LineEdit>("Output/With Myrm/LineEdit");
 
     #endregion
 
@@ -88,6 +89,16 @@ public partial class TargetRealmCalculation : VBoxContainer
             Data.TargetMinorRealm
         );
         NumberOfDaysOutput.Text = days.ToString();
+
+        var myrmValue = Data.MyrmimonData.GetAverageValue(Data.HighestRealm.Item1);
+        var myrmDays = CultivationTimeSimulation.CountDaysToTargetRealm(
+            Data.Path1,
+            Data.TotalDailyExp,
+            Data.TargetMajorRealm,
+            Data.TargetMinorRealm,
+            myrmValue
+        );
+        MyrimonDaysOutput.Text = myrmDays.ToString();
 
     }
 

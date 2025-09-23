@@ -1,0 +1,87 @@
+[gd_scene load_steps=3 format=3 uid="uid://d1vdsiqak1gc4"]
+
+[ext_resource type="Script" uid="uid://b20ndl17lka2a" path="res://V2/Scenes/MyrimonDataSelection.cs" id="1_pgb8f"]
+[ext_resource type="PackedScene" uid="uid://vlwh3qtnsgyq" path="res://Scenes/Components/labeled_spinbox.tscn" id="1_rj0gv"]
+
+[node name="Myrimon Data Selection" type="VBoxContainer"]
+custom_minimum_size = Vector2(350, 300)
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_pgb8f")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Myrimon"
+horizontal_alignment = 1
+
+[node name="Upgrades" type="GridContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+columns = 2
+
+[node name="Exp" parent="Upgrades" instance=ExtResource("1_rj0gv")]
+layout_mode = 2
+LabelWidth = 75.0
+LabelText = "Exp:"
+MaxValue = 30.0
+
+[node name="Quality" parent="Upgrades" instance=ExtResource("1_rj0gv")]
+layout_mode = 2
+LabelWidth = 75.0
+LabelText = "Quality:"
+MaxValue = 30.0
+
+[node name="Gush" parent="Upgrades" instance=ExtResource("1_rj0gv")]
+layout_mode = 2
+LabelWidth = 75.0
+LabelText = "Gush:"
+MaxValue = 30.0
+
+[node name="Tech Pts" parent="Upgrades" instance=ExtResource("1_rj0gv")]
+layout_mode = 2
+LabelWidth = 75.0
+LabelText = "Tech Pts:"
+MaxValue = 30.0
+
+[node name="Rank Select" type="OptionButton" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+selected = 0
+item_count = 1
+popup/item_0/text = "Extractor Rank"
+popup/item_0/id = 0
+
+[node name="Fruit" parent="." instance=ExtResource("1_rj0gv")]
+layout_mode = 2
+size_flags_horizontal = 4
+LabelText = "Current Fruit Quantity:"
+MaxValue = 999.0
+
+[node name="Spacer 1" type="Control" parent="."]
+custom_minimum_size = Vector2(0, 6)
+layout_mode = 2
+
+[node name="Weekly Fruit Options" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Fruit Packs" type="CheckBox" parent="Weekly Fruit Options"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Do you buy the fruit packs weekly?"
+
+[node name="Token Packs" type="CheckBox" parent="Weekly Fruit Options"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Do you buy the token pack weekly?"
+
+[node name="Spacer 2" type="Control" parent="."]
+custom_minimum_size = Vector2(0, 6)
+layout_mode = 2
+
+[node name="Realm Match" type="CheckBox" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+button_pressed = true
+text = "Do you match the server realm? (+50%)"
