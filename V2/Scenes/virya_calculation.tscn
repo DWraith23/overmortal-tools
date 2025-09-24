@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dthk3wenwa1s6"]
+[gd_scene load_steps=3 format=3 uid="uid://dthk3wenwa1s6"]
 
 [ext_resource type="Script" uid="uid://bw4c40ql6ay0n" path="res://V2/Scenes/ViryaCalculation.cs" id="1_fg5qo"]
+[ext_resource type="PackedScene" uid="uid://bqrdrnjp6rlxk" path="res://Scenes/Components/question_button.tscn" id="2_0q6xj"]
 
 [node name="Virya Calculation" type="VBoxContainer"]
 custom_minimum_size = Vector2(350, 214)
@@ -59,6 +60,28 @@ layout_mode = 2
 text = "Days to Virya Completion:"
 
 [node name="LineEdit" type="LineEdit" parent="Output/Completion"]
+layout_mode = 2
+alignment = 1
+editable = false
+
+[node name="Myrimon" type="HBoxContainer" parent="Output"]
+custom_minimum_size = Vector2(311, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 2
+
+[node name="Question Button" parent="Output/Myrimon" instance=ExtResource("2_0q6xj")]
+layout_mode = 2
+Title = "Myrimon Info"
+PopupText = "This uses the CURRENT information you have in your Myrimon tab.
+
+For best accuracy for this value, put your Myrimon extractor levels to where you want to be when you pop, and your fruit quantities to your CURRENT fruit levels."
+
+[node name="Label" type="Label" parent="Output/Myrimon"]
+layout_mode = 2
+text = "Factoring Myrimon:"
+
+[node name="LineEdit" type="LineEdit" parent="Output/Myrimon"]
 layout_mode = 2
 alignment = 1
 editable = false

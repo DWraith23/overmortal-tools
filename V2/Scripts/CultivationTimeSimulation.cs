@@ -110,7 +110,7 @@ public static class CultivationTimeSimulation
         }
     }
 
-    public static int CalculateDaysToVirya(ProfileData data, PathData.Virya virya)
+    public static int CalculateDaysToVirya(ProfileData data, PathData.Virya virya, bool usingMyrm = false)
     {
         var clone = data.Duplicate(true) as ProfileData;
         int days = 0;
@@ -129,13 +129,33 @@ public static class CultivationTimeSimulation
         while (days < 999)
         {
             var path = CheckIfPathAtCompletion(main) ? aux : main;
-            CultivatePath(clone, path);
-            days++;
-
+            if (usingMyrm)
+            {
+                if (days % 7 == 0)
+                {
+                    var fruitPacks = clone.MyrmimonData.BuysFruitPacks ? 6 : 0;
+                    var tokenPacks = clone.MyrmimonData.BuysTokenPacks ? 6 : 0;
+                    clone.MyrmimonData.CurrentFruitQuantity += 9 + fruitPacks + tokenPacks;
+                }
+                var remainder = path.GetXpToTargetRealm(main.CurrentRealm, PathData.MinorRealm.Late);
+                var myrmValue = clone.MyrmimonData.GetAverageValue(main.CurrentRealm);
+                if (myrmValue >= remainder)
+                {
+                    while (clone.MyrmimonData.CurrentFruitQuantity > 0 && !CheckIfPathAtCompletion(path))
+                    {
+                        var singleFruit = clone.MyrmimonData.GetSingleFruitValue(main.CurrentRealm);
+                        GenericAddXpToPath(path, singleFruit);
+                        clone.MyrmimonData.CurrentFruitQuantity--;
+                    }
+                }
+            }
             if (days % 10 == 0)
             {
                 GD.Print($"Day {days}: {path.SelectedPath} {path.CurrentRealm} {path.CurrentMinorRealm} - {path.CurrentRealmProgress:P2}");
             }
+            CultivatePath(clone, path);
+
+            days++;
 
             if (main.CurrentMinorRealm >= PathData.MinorRealm.Late && main.CurrentRealmProgress < 1f)
                 clone.PassiveCultivation.ViryaPercent = 0f;
@@ -145,7 +165,7 @@ public static class CultivationTimeSimulation
 
             if (CheckViryaStatus(clone, virya)) break;
 
-            if (path.CurrentRealmProgress >= 1f)
+            if (path.CurrentRealmProgress >= 1f && path != main)
             {
                 AdvanceMinorRealm(path);
             }
@@ -168,19 +188,27 @@ public static class CultivationTimeSimulation
 
         if (main.CurrentMinorRealm < PathData.MinorRealm.Late || main.CurrentRealmProgress < 1f) return false;
 
-        if (virya == PathData.Virya.Eminence)
+        if (virya == PathData.Virya.Completion)
         {
+            if (CheckIfPathAtCompletion(main)) return true;
+            return false;
+        }
+        else if (virya == PathData.Virya.Eminence)
+        {
+            GD.Print($"|    Eminence check: auxIndex: {auxIndex} mainIndex: {mainIndex} - {auxIndex >= mainIndex} | {aux.CurrentMinorRealm >= PathData.MinorRealm.Middle}");
             if (auxIndex >= mainIndex) return true;
             if (auxIndex == mainIndex - 1 && aux.CurrentMinorRealm >= PathData.MinorRealm.Middle) return true;
             return false;
         }
         else if (virya == PathData.Virya.Perfection)
         {
+            GD.Print($"|    Perfection check: auxIndex {auxIndex} mainIndex {mainIndex} - {auxIndex >= mainIndex}");
             if (auxIndex >= mainIndex) return true;
             return false;
         }
         else if (virya == PathData.Virya.HalfStep)
         {
+            GD.Print($"|    Half-Step check: auxIndex {auxIndex} mainIndex {mainIndex} - !{auxIndex < mainIndex} | {aux.CurrentRealm == main.CurrentRealm} {aux.CurrentMinorRealm == PathData.MinorRealm.Late} {aux.CurrentRealmProgress >= 1f}");
             if (auxIndex < mainIndex) return false;
             if (aux.CurrentRealm == main.CurrentRealm
                 && aux.CurrentMinorRealm == PathData.MinorRealm.Late
@@ -195,11 +223,36 @@ public static class CultivationTimeSimulation
 
     private static void CultivatePath(ProfileData data, PathData path)
     {
-        var dailyExp = data.DailyPassiveExp;
+        var dailyExp = data.TotalDailyExp;
         var c = path.CurrentRealmProgress;
         var newProgress = path.AddExp(dailyExp);
         path.CurrentRealmProgress = newProgress;
+        if (path.CurrentRealmProgress >= 1f && path.CurrentMinorRealm < PathData.MinorRealm.Late)
+        {
+            var req = PathData.ExperienceReqs[(path.CurrentRealm, path.CurrentMinorRealm)];
+            var exp = (long)(path.CurrentRealmProgress * req);
+            exp -= req;
+            AdvanceMinorRealm(path);
+            req = PathData.ExperienceReqs[(path.CurrentRealm, path.CurrentMinorRealm)];
+            path.CurrentRealmProgress = (float)((float)exp / req);
+        }
         GD.Print($"|    Path progress: {c} -> {path.CurrentRealmProgress}");
+    }
+
+    private static void GenericAddXpToPath(PathData path, long xp)
+    {
+        var c = path.CurrentRealmProgress;
+        var newProgress = path.AddExp(xp);
+        path.CurrentRealmProgress = newProgress;
+        if (path.CurrentRealmProgress >= 1f && path.CurrentMinorRealm < PathData.MinorRealm.Late)
+        {
+            var req = PathData.ExperienceReqs[(path.CurrentRealm, path.CurrentMinorRealm)];
+            var exp = (long)(path.CurrentRealmProgress * req);
+            exp -= req;
+            AdvanceMinorRealm(path);
+            req = PathData.ExperienceReqs[(path.CurrentRealm, path.CurrentMinorRealm)];
+            path.CurrentRealmProgress = (float)((float)exp / req);
+        }
     }
 
 }

@@ -287,7 +287,6 @@ public partial class MyrimonData : Resource
 
         foreach (var kvp in GetQualityChances())
         {
-            GD.Print($"DEBUG: kvp.Key:{kvp.Key}|kvp.Value:{kvp.Value}");
             if (kvp.Value == 0) continue;
             if (kvp.Value == 1)
             {
@@ -298,6 +297,18 @@ public partial class MyrimonData : Resource
         }
 
         return result;
+    }
+
+    public long GetSingleFruitValue(PathData.Realm realm)
+    {
+        var possibleQualities = GetQualityChances().Where(key => key.Value > 0f);
+        long value = 0;
+        foreach (var kvp in possibleQualities)
+        {
+            var qualityValue = (long)Math.Floor((GetFruitValue(realm, kvp.Key) + (GetFruitValue(realm, kvp.Key) * GushChance * GushMultiplier)) * kvp.Value);
+            value += qualityValue;
+        }
+        return value;
     }
 
     public long GetFruitValue(PathData.Realm realm, Quality quality)

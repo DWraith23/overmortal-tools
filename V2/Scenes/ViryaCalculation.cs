@@ -12,6 +12,7 @@ public partial class ViryaCalculation : VBoxContainer
     private OptionButton ViryaSelect => GetNode<OptionButton>("Virya");
     private LineEdit MainPathOutput => GetNode<LineEdit>("Output/Main Path/LineEdit");
     private LineEdit AuxPathOutput => GetNode<LineEdit>("Output/Completion/LineEdit");
+    private LineEdit MyrimonFactorOutput => GetNode<LineEdit>("Output/Myrimon/LineEdit");
 
     private ProfileData _data = new();
     public ProfileData Data
@@ -58,6 +59,13 @@ public partial class ViryaCalculation : VBoxContainer
             : completionDays == -2
                 ? "0"
                 : completionDays.ToString();
+
+        var myrmDays = CultivationTimeSimulation.CalculateDaysToVirya(Data, Data.TargetVirya, true);
+        MyrimonFactorOutput.Text = myrmDays == -1
+            ? "N/A"
+            : myrmDays == -2
+                ? "0"
+                : myrmDays.ToString();
     }
 
     private void ConnectSignals()

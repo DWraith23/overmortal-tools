@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://d1h3tw8l41qut"]
+[gd_scene load_steps=3 format=3 uid="uid://d1h3tw8l41qut"]
 
 [ext_resource type="Script" uid="uid://baqicmg5nv50r" path="res://V2/Scenes/TargetRealmCalculation.cs" id="1_7qfqg"]
+[ext_resource type="PackedScene" uid="uid://bqrdrnjp6rlxk" path="res://Scenes/Components/question_button.tscn" id="2_nhgp2"]
 
 [node name="Target Realm Calculation" type="VBoxContainer"]
 custom_minimum_size = Vector2(350, 214)
@@ -45,9 +46,10 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="Days" type="HBoxContainer" parent="Output"]
+custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_horizontal = 4
-alignment = 1
+alignment = 2
 
 [node name="Label" type="Label" parent="Output/Days"]
 layout_mode = 2
@@ -59,10 +61,17 @@ alignment = 1
 editable = false
 
 [node name="With Myrm" type="HBoxContainer" parent="Output"]
-custom_minimum_size = Vector2(286, 0)
+custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 alignment = 2
+
+[node name="Question Button" parent="Output/With Myrm" instance=ExtResource("2_nhgp2")]
+layout_mode = 2
+Title = "Myrimon Info"
+PopupText = "This uses the CURRENT information you have in your Myrimon tab.
+
+If you anticipate your myrmimon fruit quantities or extractor levels being higher, change them to reflect what they will be when you pop your fruit."
 
 [node name="Label" type="Label" parent="Output/With Myrm"]
 layout_mode = 2

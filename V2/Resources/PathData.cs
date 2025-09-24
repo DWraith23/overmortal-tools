@@ -123,6 +123,7 @@ public partial class PathData : Resource
     public enum Virya
     {
         None,
+        Completion,
         Eminence,
         Perfection,
         HalfStep
@@ -131,6 +132,7 @@ public partial class PathData : Resource
     public static Dictionary<Virya, string> ViryaNames => new()
     {
         { Virya.None, "None" },
+        { Virya.Completion, "Completion" },
         { Virya.Eminence, "Eminence" },
         { Virya.Perfection, "Perfection" },
         { Virya.HalfStep, "Half-Step" },
@@ -245,6 +247,6 @@ public partial class PathData : Resource
         (long)Math.Floor(ExperienceReqs[(CurrentRealm, CurrentMinorRealm)] * CurrentRealmProgress);
 
     public float AddExp(long amount) =>
-        (GetCurrentExpTowards() + amount) / ExperienceReqs[(CurrentRealm, CurrentMinorRealm)];
+        (float)(GetCurrentExpTowards() + amount) / ExperienceReqs[(CurrentRealm, CurrentMinorRealm)];
 
 }
