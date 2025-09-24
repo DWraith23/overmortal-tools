@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://cvagxxg3eq25a"]
+
+[ext_resource type="PackedScene" uid="uid://d1h3tw8l41qut" path="res://V2/Scenes/target_realm_calculation.tscn" id="1_7fgi2"]
+[ext_resource type="Script" uid="uid://d4gne25rpowmq" path="res://V2/Scenes/TargetsTabContainer.cs" id="1_v0nup"]
+[ext_resource type="PackedScene" uid="uid://dthk3wenwa1s6" path="res://V2/Scenes/virya_calculation.tscn" id="2_v0nup"]
+
+[node name="Targets Tab Container" type="TabContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+tab_alignment = 1
+current_tab = 1
+tabs_position = 1
+script = ExtResource("1_v0nup")
+
+[node name="Target" parent="." instance=ExtResource("1_7fgi2")]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="Virya" parent="." instance=ExtResource("2_v0nup")]
+layout_mode = 2
+metadata/_tab_index = 1

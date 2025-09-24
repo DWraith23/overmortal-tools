@@ -194,6 +194,7 @@ public partial class ProfileData : Resource
     // Target Realms
     [Export] public PathData.Realm TargetMajorRealm { get; set; } = PathData.Realm.Novice;
     [Export] public PathData.MinorRealm TargetMinorRealm { get; set; } = PathData.MinorRealm.Early;
+    [Export] public PathData.Virya TargetVirya { get; set; } = PathData.Virya.None;
 
     #endregion
 

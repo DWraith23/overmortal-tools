@@ -5,8 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://d2rokqglew081" path="res://V2/Scenes/path_tab_container.tscn" id="2_e5ir8"]
 [ext_resource type="PackedScene" uid="uid://bpl667xd0vf8v" path="res://V2/Scenes/daily_exp.tscn" id="3_30265"]
 [ext_resource type="PackedScene" uid="uid://5qdm8u3mcqj7" path="res://Scenes/Planner/profile_swapper.tscn" id="3_40434"]
-[ext_resource type="PackedScene" uid="uid://d1h3tw8l41qut" path="res://V2/Scenes/target_realm_calculation.tscn" id="4_30265"]
 [ext_resource type="PackedScene" uid="uid://cuyw5ejsrpu1h" path="res://Scenes/Planner/star_marks.tscn" id="4_arl0s"]
+[ext_resource type="PackedScene" uid="uid://cvagxxg3eq25a" path="res://V2/Scenes/targets_tab_container.tscn" id="4_jue6p"]
 [ext_resource type="PackedScene" uid="uid://8j8tibss4am4" path="res://V2/Scenes/daily_exp_tab_container.tscn" id="5_arl0s"]
 [ext_resource type="PackedScene" uid="uid://b4a5336e3ucjs" path="res://V2/Scenes/calculated_values.tscn" id="5_jue6p"]
 [ext_resource type="PackedScene" uid="uid://d1vdsiqak1gc4" path="res://V2/Scenes/myrimon_data_selection.tscn" id="8_ppjsg"]
@@ -56,7 +56,7 @@ current_tab = 0
 layout_mode = 2
 metadata/_tab_index = 0
 
-[node name="Target" parent="Contents/Info Tabs" instance=ExtResource("4_30265")]
+[node name="Targets" parent="Contents/Info Tabs" instance=ExtResource("4_jue6p")]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 1

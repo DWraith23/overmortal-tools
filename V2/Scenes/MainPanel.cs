@@ -12,7 +12,7 @@ public partial class MainPanel : PanelContainer
 
     private TabContainer InfoTabs => Contents.GetNode<TabContainer>("Info Tabs");
     private DailyExp DailyExp => InfoTabs.GetNode<DailyExp>("Daily");
-    private TargetRealmCalculation TargetRealm => InfoTabs.GetNode<TargetRealmCalculation>("Target");
+    private TargetsTabContainer TargetRealms => InfoTabs.GetNode<TargetsTabContainer>("Targets");
     private CalculatedValues MiscValues => InfoTabs.GetNode<CalculatedValues>("Misc");
     
 
@@ -61,7 +61,7 @@ public partial class MainPanel : PanelContainer
         Myrimon.Profile = Data;
 
         DailyExp.Data = Data;
-        TargetRealm.Data = Data;
+        TargetRealms.Data = Data;
         MiscValues.Data = Data;
     }
 

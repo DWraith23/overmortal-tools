@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://baqicmg5nv50r" path="res://V2/Scenes/TargetRealmCalculation.cs" id="1_7qfqg"]
 
 [node name="Target Realm Calculation" type="VBoxContainer"]
-custom_minimum_size = Vector2(350, 250)
+custom_minimum_size = Vector2(350, 214)
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_7qfqg")

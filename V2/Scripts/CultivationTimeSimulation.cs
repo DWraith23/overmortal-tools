@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Godot;
@@ -122,13 +123,25 @@ public static class CultivationTimeSimulation
         var aux = paths.ToList()[1];
         if (aux.CurrentRealm <= PathData.Realm.Novice) return -1; // Set path to Novice at least to Virya.
 
+        if (CheckViryaStatus(clone, virya)) return -2;  // Already at that virya, you silly goose.
 
-
+        Tools.LogSignals = false;
         while (days < 999)
         {
             var path = CheckIfPathAtCompletion(main) ? aux : main;
             CultivatePath(clone, path);
             days++;
+
+            if (days % 10 == 0)
+            {
+                GD.Print($"Day {days}: {path.SelectedPath} {path.CurrentRealm} {path.CurrentMinorRealm} - {path.CurrentRealmProgress:P2}");
+            }
+
+            if (main.CurrentMinorRealm >= PathData.MinorRealm.Late && main.CurrentRealmProgress < 1f)
+                clone.PassiveCultivation.ViryaPercent = 0f;
+
+            if (CheckViryaStatus(clone, PathData.Virya.Eminence) || CheckViryaStatus(clone, PathData.Virya.Perfection))
+                clone.PassiveCultivation.ViryaPercent = 0.2f;
 
             if (CheckViryaStatus(clone, virya)) break;
 
@@ -137,6 +150,7 @@ public static class CultivationTimeSimulation
                 AdvanceMinorRealm(path);
             }
         }
+        Tools.LogSignals = true;
 
         return days;
     }
@@ -182,8 +196,10 @@ public static class CultivationTimeSimulation
     private static void CultivatePath(ProfileData data, PathData path)
     {
         var dailyExp = data.DailyPassiveExp;
+        var c = path.CurrentRealmProgress;
         var newProgress = path.AddExp(dailyExp);
         path.CurrentRealmProgress = newProgress;
+        GD.Print($"|    Path progress: {c} -> {path.CurrentRealmProgress}");
     }
 
 }
