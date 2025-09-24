@@ -1,8 +1,67 @@
-[gd_resource type="Theme" load_steps=18 format=4 uid="uid://difyenc5vtxtx"]
+[gd_resource type="Theme" load_steps=24 format=4 uid="uid://difyenc5vtxtx"]
 
 [ext_resource type="StyleBox" uid="uid://c1ildtk5stqx1" path="res://Themes/style_box_editable.tres" id="1_nv5do"]
 [ext_resource type="StyleBox" uid="uid://da0q65nfjey7x" path="res://Themes/style_box_calculated.tres" id="2_0v5d3"]
 [ext_resource type="FontFile" uid="uid://d0tkut2o7lx0j" path="res://Themes/fonts/bembo-similar/BrophyOpti/BrophyOpti.otf" id="3_0v5d3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0v5d3"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.3)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ev1oq"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 0.75)
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kjlp3"]
+bg_color = Color(1, 1, 1, 0.25490198)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 1, 0, 0.74509805)
+border_blend = true
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ed3es"]
+bg_color = Color(1, 1, 1, 0.25490198)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 1, 1, 0.74509805)
+border_blend = true
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
 [sub_resource type="Image" id="Image_ev1oq"]
 data = {
@@ -1823,8 +1882,39 @@ _source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\">
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0v5d3"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c6tpt"]
+bg_color = Color(0, 0, 0, 1)
+border_width_top = 2
+border_color = Color(0, 1, 0, 0.74509805)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d8j48"]
+bg_color = Color(0.12955844, 0.1295585, 0.12955838, 1)
+
 [resource]
 default_font = ExtResource("3_0v5d3")
+Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
+Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
+Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
+Button/colors/icon_focus_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_normal_color = Color(1, 1, 1, 1)
+Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
+Button/constants/align_to_largest_stylebox = 0
+Button/constants/h_separation = 4
+Button/constants/icon_max_width = 0
+Button/constants/outline_size = 0
+Button/font_sizes/font_size = 16
+Button/styles/disabled = SubResource("StyleBoxFlat_0v5d3")
+Button/styles/focus = SubResource("StyleBoxFlat_ev1oq")
+Button/styles/hover = SubResource("StyleBoxFlat_kjlp3")
+Button/styles/normal = ExtResource("1_nv5do")
+Button/styles/pressed = SubResource("StyleBoxFlat_ed3es")
 LineEdit/colors/caret_color = Color(0.95, 0.95, 0.95, 1)
 LineEdit/colors/clear_button_color = Color(0.875, 0.875, 0.875, 1)
 LineEdit/colors/clear_button_color_pressed = Color(1, 1, 1, 1)
@@ -1843,3 +1933,5 @@ LineEdit/icons/clear = SubResource("DPITexture_a0edb")
 LineEdit/styles/focus = SubResource("StyleBoxEmpty_0v5d3")
 LineEdit/styles/normal = ExtResource("1_nv5do")
 LineEdit/styles/read_only = ExtResource("2_0v5d3")
+TabContainer/styles/tab_selected = SubResource("StyleBoxFlat_c6tpt")
+TabContainer/styles/tabbar_background = SubResource("StyleBoxFlat_d8j48")
