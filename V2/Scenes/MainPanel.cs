@@ -53,10 +53,20 @@ public partial class MainPanel : PanelContainer
         }
     }
 
+    private int ActiveProfile { get; set; } = 0;
+
+    public override void _EnterTree()
+    {
+        ProfileManagement.FileAlterationInProgress = true;
+    }
+
+
     public override void _Ready()
     {
         Update();
         ConnectSignals();
+        var profile = ProfileManagement.LoadProfile(0);
+        if (profile != null) Data = profile;
     }
 
     private void Update()
@@ -73,6 +83,10 @@ public partial class MainPanel : PanelContainer
         MiscValues.Data = Data;
 
         Laws.Data = Data;
+
+        Profiles.ProfileName.Text = Data.ProfileName;
+
+        ProfileManagement.SaveProfile(Data, ActiveProfile);
     }
 
     private void ConnectSignals()
@@ -98,12 +112,19 @@ public partial class MainPanel : PanelContainer
 
         Profiles.SwapButtonPressed += profile =>
         {
-            
+            var loaded = ProfileManagement.LoadProfile(profile);
+            if (loaded == null) return;
+            Data = loaded;
+            ActiveProfile = profile;
+            Profiles.ProfileName.Text = Data.ProfileName;
+            GD.Print($"Profile {ActiveProfile + 1} loaded");
         };
 
         Profiles.ProfileNameChanged += name =>
         {
+            GD.Print($"Profile {ActiveProfile + 1} name changed to {name}");
             Data.ProfileName = name;
+            ProfileManagement.SaveProfile(Data, ActiveProfile);
         };
 
     }

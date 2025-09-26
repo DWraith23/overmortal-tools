@@ -21,7 +21,7 @@ public partial class LawsCalculator : VBoxContainer
             Update();
             if (value != null)
             {
-                _data.Changed += Update;
+                _data.Laws.Changed += Update;
             }
         }
     }
@@ -34,7 +34,7 @@ public partial class LawsCalculator : VBoxContainer
 
     public override void _Ready()
     {
-        _data.Changed += Update;
+        _data.Laws.Changed += Update;
     }
 
 

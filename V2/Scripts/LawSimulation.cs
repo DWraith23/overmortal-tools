@@ -51,8 +51,6 @@ public static class LawSimulation
         var fruitHours = FruitHours[clone.FruitQuality];
         var leftover = dailyHours % fruitHours;
 
-        GD.Print($"dailyHours = {dailyHours}, fruitHours = {fruitHours}, leftover = {leftover}");
-
         var days = 0;
 
 
@@ -68,7 +66,6 @@ public static class LawSimulation
                 law = ChooseLaw(clone);
                 var cLevel = law.Level;
                 law.AddXp(fruitHours * clone.TotalXpPerHour);
-                if (law.Level > cLevel) GD.Print($"Law raised: {cLevel} -> {law.Level} - Added {fruitHours * clone.TotalXpPerHour} XP");
                 fruit--;
             }
 

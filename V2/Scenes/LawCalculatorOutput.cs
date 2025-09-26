@@ -39,7 +39,7 @@ public partial class LawCalculatorOutput : VBoxContainer
             Update();
             if (value != null)
             {
-                _profile.Changed += Update;
+                _profile.Laws.Changed += Update;
             }
         }
     }
