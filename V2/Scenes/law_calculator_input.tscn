@@ -1,0 +1,101 @@
+[gd_scene load_steps=4 format=3 uid="uid://c74gov63b0w7w"]
+
+[ext_resource type="PackedScene" uid="uid://b5cfhwat3gv6i" path="res://V2/Scenes/law_node.tscn" id="1_4vqor"]
+[ext_resource type="Script" uid="uid://bo4eus8phgafk" path="res://V2/Scenes/LawCalculatorInput.cs" id="1_wir6g"]
+[ext_resource type="PackedScene" uid="uid://bqrdrnjp6rlxk" path="res://Scenes/Components/question_button.tscn" id="3_vu7af"]
+
+[node name="Law Calculator Input" type="VBoxContainer"]
+custom_minimum_size = Vector2(352, 568)
+script = ExtResource("1_wir6g")
+metadata/_tab_index = 0
+
+[node name="Header" type="Label" parent="."]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Input Information"
+horizontal_alignment = 1
+
+[node name="Blitz" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Spacer" type="Control" parent="Blitz"]
+custom_minimum_size = Vector2(50, 24)
+layout_mode = 2
+
+[node name="Blitz Label" type="Label" parent="Blitz"]
+layout_mode = 2
+text = "Average Blitz Hours: "
+
+[node name="Average Blitz Hours" type="SpinBox" parent="Blitz"]
+layout_mode = 2
+max_value = 136.0
+value = 120.0
+alignment = 1
+
+[node name="Avg Fruit Label" type="Label" parent="Blitz"]
+layout_mode = 2
+text = "Average Fruit Quality:"
+
+[node name="Fruit Quality" type="OptionButton" parent="Blitz"]
+layout_mode = 2
+alignment = 1
+selected = 0
+item_count = 1
+popup/item_0/text = "Pick Usual Fruit Type"
+popup/item_0/id = 0
+
+[node name="Shears" type="HBoxContainer" parent="Blitz"]
+layout_mode = 2
+
+[node name="CheckBox" type="CheckBox" parent="Blitz/Shears"]
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Shears?"
+
+[node name="Stars" type="HBoxContainer" parent="Blitz"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Blitz/Stars"]
+layout_mode = 2
+text = "Stars: "
+
+[node name="SpinBox" type="SpinBox" parent="Blitz/Stars"]
+layout_mode = 2
+max_value = 5.0
+alignment = 1
+editable = false
+
+[node name="Laws" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Metal" parent="Laws" instance=ExtResource("1_4vqor")]
+layout_mode = 2
+alignment = 1
+LawName = "Metal"
+
+[node name="Wood" parent="Laws" instance=ExtResource("1_4vqor")]
+layout_mode = 2
+alignment = 1
+LawName = "Wood"
+
+[node name="Water" parent="Laws" instance=ExtResource("1_4vqor")]
+layout_mode = 2
+alignment = 1
+LawName = "Water"
+
+[node name="Fire" parent="Laws" instance=ExtResource("1_4vqor")]
+layout_mode = 2
+alignment = 1
+LawName = "Fire"
+
+[node name="Earth" parent="Laws" instance=ExtResource("1_4vqor")]
+layout_mode = 2
+alignment = 1
+LawName = "Earth"
+
+[node name="Question Button" parent="." instance=ExtResource("3_vu7af")]
+layout_mode = 2
+Title = "Determing Law Information"

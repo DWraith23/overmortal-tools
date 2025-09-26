@@ -1,0 +1,182 @@
+[gd_scene load_steps=3 format=3 uid="uid://ciubgc6qqi3va"]
+
+[ext_resource type="Script" uid="uid://b8cuk8ibolg8r" path="res://V2/Scenes/LawCalculatorOutput.cs" id="1_r52tj"]
+[ext_resource type="PackedScene" uid="uid://b2e3in5xe7ip1" path="res://V2/Scenes/law_output_node.tscn" id="2_41xyq"]
+
+[node name="Law Calculator Output" type="VBoxContainer"]
+custom_minimum_size = Vector2(352, 568)
+theme_override_constants/separation = 24
+script = ExtResource("1_r52tj")
+metadata/_tab_index = 1
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Output Information"
+horizontal_alignment = 1
+
+[node name="Laws" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Laws"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="Laws/HBoxContainer"]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+
+[node name="Points" type="Label" parent="Laws/HBoxContainer"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+text = "Points/Hour"
+horizontal_alignment = 1
+
+[node name="Hours" type="Label" parent="Laws/HBoxContainer"]
+custom_minimum_size = Vector2(65, 0)
+layout_mode = 2
+text = "Hours"
+horizontal_alignment = 1
+
+[node name="Metal" parent="Laws" instance=ExtResource("2_41xyq")]
+layout_mode = 2
+LawName = "Metal"
+
+[node name="Wood" parent="Laws" instance=ExtResource("2_41xyq")]
+layout_mode = 2
+LawName = "Wood"
+
+[node name="Water" parent="Laws" instance=ExtResource("2_41xyq")]
+layout_mode = 2
+LawName = "Water"
+
+[node name="Fire" parent="Laws" instance=ExtResource("2_41xyq")]
+layout_mode = 2
+LawName = "Fire"
+
+[node name="Earth" parent="Laws" instance=ExtResource("2_41xyq")]
+layout_mode = 2
+LawName = "Earth"
+
+[node name="General Info" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Total Level" type="HBoxContainer" parent="General Info"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="General Info/Total Level"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+text = "Total Law Level:"
+horizontal_alignment = 2
+
+[node name="LineEdit" type="LineEdit" parent="General Info/Total Level"]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+alignment = 1
+editable = false
+
+[node name="Total Hourly" type="HBoxContainer" parent="General Info"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="General Info/Total Hourly"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+text = "Total Hourly XP:"
+horizontal_alignment = 2
+
+[node name="LineEdit" type="LineEdit" parent="General Info/Total Hourly"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+alignment = 1
+editable = false
+
+[node name="Major Thresholds" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Major Thresholds"]
+layout_mode = 2
+text = "Days to Major Threshold Levels"
+horizontal_alignment = 1
+
+[node name="2000" type="HBoxContainer" parent="Major Thresholds"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Major Thresholds/2000"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+text = "2000:"
+horizontal_alignment = 2
+
+[node name="LineEdit" type="LineEdit" parent="Major Thresholds/2000"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+alignment = 1
+editable = false
+
+[node name="4000" type="HBoxContainer" parent="Major Thresholds"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Major Thresholds/4000"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+text = "4000:"
+horizontal_alignment = 2
+
+[node name="LineEdit" type="LineEdit" parent="Major Thresholds/4000"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+alignment = 1
+editable = false
+
+[node name="6000" type="HBoxContainer" parent="Major Thresholds"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Major Thresholds/6000"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+text = "6000:"
+horizontal_alignment = 2
+
+[node name="LineEdit" type="LineEdit" parent="Major Thresholds/6000"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+alignment = 1
+editable = false
+
+[node name="8000" type="HBoxContainer" parent="Major Thresholds"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Major Thresholds/8000"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+text = "8000:"
+horizontal_alignment = 2
+
+[node name="LineEdit" type="LineEdit" parent="Major Thresholds/8000"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+alignment = 1
+editable = false
+
+[node name="10000" type="HBoxContainer" parent="Major Thresholds"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Major Thresholds/10000"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+text = "10000:"
+horizontal_alignment = 2
+
+[node name="LineEdit" type="LineEdit" parent="Major Thresholds/10000"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+alignment = 1
+editable = false

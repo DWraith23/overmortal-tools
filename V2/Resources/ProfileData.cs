@@ -13,6 +13,8 @@ public partial class ProfileData : Resource
 
 
     #region Properties and Exports
+    [Export] public string ProfileName { get; set; } = "New Profile";
+
     // Paths
     private PathData _path1 = new();
     private PathData _path2 = new();
@@ -191,6 +193,24 @@ public partial class ProfileData : Resource
         }
     }
 
+    // Laws
+    private Laws _laws = new();
+    [Export]
+    public Laws Laws
+    {
+        get => _laws;
+        set
+        {
+            if (_laws == value) return;
+            _laws = value;
+            Tools.EmitLoggedSignal(this, Resource.SignalName.Changed);
+            if (value != null)
+            {
+                _laws.Changed += () => Tools.EmitLoggedSignal(this, Resource.SignalName.Changed);
+            }
+        }
+    }
+
     // Target Realms
     [Export] public PathData.Realm TargetMajorRealm { get; set; } = PathData.Realm.Novice;
     [Export] public PathData.MinorRealm TargetMinorRealm { get; set; } = PathData.MinorRealm.Early;
@@ -264,6 +284,7 @@ public partial class ProfileData : Resource
         StarMarks.Changed += () => Tools.EmitLoggedSignal(this, Resource.SignalName.Changed);
         CreationArtifacts.Changed += () => Tools.EmitLoggedSignal(this, Resource.SignalName.Changed);
         MyrmimonData.Changed += () => Tools.EmitLoggedSignal(this, Resource.SignalName.Changed);
+        Laws.Changed += () => Tools.EmitLoggedSignal(this, Resource.SignalName.Changed);
     }
 
 }

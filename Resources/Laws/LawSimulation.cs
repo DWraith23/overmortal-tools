@@ -45,9 +45,9 @@ public class LawSimulation
         Data = data.Duplicate(true) as LawsData;
     }
 
-    private float ShearsHours => (RechargeValues[ShearsStars] * 96f + 100) / 100f * 14;
+    private float ShearsHours => (ShearsRechargeValues[ShearsStars] * 96f + 100) / 100f * 14;
 
-    private static Dictionary<int, float> RechargeValues => new()
+    private static Dictionary<int, float> ShearsRechargeValues => new()
     {
         { 0, 1f },
         { 1, 1.3f },

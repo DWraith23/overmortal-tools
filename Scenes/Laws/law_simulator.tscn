@@ -1,9 +1,12 @@
 [gd_scene load_steps=3 format=3 uid="uid://ccrxweiqhulul"]
 
-[ext_resource type="Script" path="res://Scenes/Laws/LawSimulator.cs" id="1_3qhhx"]
+[ext_resource type="Script" uid="uid://bwhoq66yp6a4l" path="res://Scenes/Laws/LawSimulator.cs" id="1_3qhhx"]
 [ext_resource type="PackedScene" uid="uid://cw65angbc0tcv" path="res://Scenes/Laws/_law.tscn" id="1_eswjr"]
 
 [node name="Law Simulator" type="VBoxContainer"]
+custom_minimum_size = Vector2(352, 626)
+offset_right = 655.0
+offset_bottom = 665.0
 script = ExtResource("1_3qhhx")
 
 [node name="Laws" type="VBoxContainer" parent="."]
@@ -118,11 +121,12 @@ alignment = 1
 editable = false
 
 [node name="Spacer" type="Control" parent="Laws"]
-custom_minimum_size = Vector2(0, 50)
+custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 
-[node name="Totals" type="HBoxContainer" parent="Laws"]
+[node name="Totals" type="VBoxContainer" parent="Laws"]
 layout_mode = 2
+size_flags_horizontal = 0
 
 [node name="Total Level Label" type="Label" parent="Laws/Totals"]
 layout_mode = 2
@@ -144,7 +148,7 @@ alignment = 1
 editable = false
 
 [node name="Spacer" type="Control" parent="."]
-custom_minimum_size = Vector2(0, 50)
+custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 
 [node name="Simulation" type="VBoxContainer" parent="."]
@@ -216,11 +220,12 @@ layout_mode = 2
 alignment = 1
 
 [node name="Spacer" type="Control" parent="Simulation"]
-custom_minimum_size = Vector2(0, 20)
+custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 
-[node name="Blitz" type="HBoxContainer" parent="Simulation"]
+[node name="Blitz" type="VBoxContainer" parent="Simulation"]
 layout_mode = 2
+size_flags_horizontal = 0
 
 [node name="Label" type="Label" parent="Simulation/Blitz"]
 layout_mode = 2
@@ -232,7 +237,7 @@ max_value = 136.0
 value = 120.0
 alignment = 1
 
-[node name="Control" type="Control" parent="Simulation/Blitz"]
+[node name="Spacer" type="Control" parent="Simulation/Blitz"]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 
@@ -245,6 +250,7 @@ layout_mode = 2
 selected = 3
 item_count = 4
 popup/item_0/text = "Green"
+popup/item_0/id = 0
 popup/item_1/text = "Blue"
 popup/item_1/id = 1
 popup/item_2/text = "Purple"

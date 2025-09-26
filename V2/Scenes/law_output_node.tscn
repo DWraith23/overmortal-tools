@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2e3in5xe7ip1"]
+
+[ext_resource type="Script" uid="uid://crk5lxuiwgl42" path="res://V2/Scenes/LawOutputNode.cs" id="1_nwg5k"]
+
+[node name="Law Output Node" type="HBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_nwg5k")
+
+[node name="Label" type="Label" parent="."]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+text = "[NAME]"
+horizontal_alignment = 2
+
+[node name="Hourly" type="LineEdit" parent="."]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+alignment = 1
+editable = false
+
+[node name="Hours" type="LineEdit" parent="."]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+alignment = 1
+editable = false

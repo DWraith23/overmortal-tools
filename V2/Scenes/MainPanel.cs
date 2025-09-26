@@ -8,23 +8,31 @@ using System;
 public partial class MainPanel : PanelContainer
 {
     #region Nodes
-    private VBoxContainer Contents => GetNode<VBoxContainer>("Contents");
+    private VBoxContainer Cultivation => GetNode<VBoxContainer>("Sections/Cultivation");
 
-    private TabContainer InfoTabs => Contents.GetNode<TabContainer>("Info Tabs");
+    #region Cultivation Nodes
+    private TabContainer InfoTabs => Cultivation.GetNode<TabContainer>("Info Tabs");
     private DailyExp DailyExp => InfoTabs.GetNode<DailyExp>("Daily");
     private TargetsTabContainer TargetRealms => InfoTabs.GetNode<TargetsTabContainer>("Targets");
     private CalculatedValues MiscValues => InfoTabs.GetNode<CalculatedValues>("Misc");
     
 
-    private TabContainer SectionTabs => Contents.GetNode<TabContainer>("Section Tabs");
+    private TabContainer SectionTabs => Cultivation.GetNode<TabContainer>("Section Tabs");
     private PathTabContainer Paths => SectionTabs.GetNode<PathTabContainer>("Paths");
     private DailyExpTabContainer Daily => SectionTabs.GetNode<DailyExpTabContainer>("Daily");
     private StarMarks StarMarks => SectionTabs.GetNode<StarMarks>("Star Marks");
     private MyrimonDataSelection Myrimon => SectionTabs.GetNode<MyrimonDataSelection>("Myrimon");
 
-    private ProfileSwapper Profiles => Contents.GetNode<ProfileSwapper>("Profile Swapper");
+    #endregion
 
-    private Button SettingsButton => GetNode<Button>("Settings Button");
+    private LawsCalculator Laws => GetNode<LawsCalculator>("Sections/Laws");
+
+
+    private TabBar FeaturesTabs => GetNode<TabBar>("Sections/Bottom Bar/Features");
+
+    private ProfileSwapper Profiles => GetNode<ProfileSwapper>("Sections/Profile Swapper");
+
+    private Button SettingsButton => GetNode<Button>("Sections/Bottom Bar/Settings Button");
 
 
     #endregion
@@ -63,11 +71,40 @@ public partial class MainPanel : PanelContainer
         DailyExp.Data = Data;
         TargetRealms.Data = Data;
         MiscValues.Data = Data;
+
+        Laws.Data = Data;
     }
 
     private void ConnectSignals()
     {
         _data.Changed += Update;
+
+        FeaturesTabs.TabChanged += tab =>
+        {
+            switch (tab)
+            {
+                case 0:
+                    Cultivation.Visible = true;
+                    Laws.Visible = false;
+                    break;
+                case 1:
+                    Cultivation.Visible = false;
+                    Laws.Visible = true;
+                    break;
+                default:
+                    break;
+            }
+        };
+
+        Profiles.SwapButtonPressed += profile =>
+        {
+            
+        };
+
+        Profiles.ProfileNameChanged += name =>
+        {
+            Data.ProfileName = name;
+        };
 
     }
 }
