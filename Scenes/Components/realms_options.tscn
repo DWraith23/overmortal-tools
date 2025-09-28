@@ -1,9 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bawydrulf7m1f"]
-
-[ext_resource type="Script" path="res://Scenes/Components/RealmsOptions.cs" id="1_te4ae"]
-
-[node name="Realms Options" type="OptionButton"]
-custom_minimum_size = Vector2(135, 31)
-offset_right = 32.0
-offset_bottom = 20.0
-script = ExtResource("1_te4ae")

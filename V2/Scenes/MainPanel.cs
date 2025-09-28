@@ -1,9 +1,7 @@
 using Godot;
-using OvermortalTools.Scenes.Planner;
 using OvermortalTools.V2.Resources;
 using OvermortalTools.V2.Scenes;
 using OvermortalTools.V2.Scripts;
-using System;
 
 public partial class MainPanel : PanelContainer
 {

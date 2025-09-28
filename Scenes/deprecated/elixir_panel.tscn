@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://ce2new0bm5gm"]
-
-[ext_resource type="Script" path="res://Scenes/ElixirPanel.cs" id="1_l27e7"]
-
-[node name="Elixir Panel" type="PanelContainer"]
-script = ExtResource("1_l27e7")

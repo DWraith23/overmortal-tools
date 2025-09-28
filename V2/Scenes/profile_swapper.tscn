@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://5qdm8u3mcqj7"]
 
-[ext_resource type="Script" uid="uid://d3olgmnsdxx8" path="res://Scenes/Planner/ProfileSwapper.cs" id="1_cf2c0"]
+[ext_resource type="Script" uid="uid://d3olgmnsdxx8" path="res://V2/Scenes/ProfileSwapper.cs" id="1_cf2c0"]
 
 [node name="Profile Swapper" type="VBoxContainer" node_paths=PackedStringArray("ProfileName")]
 custom_minimum_size = Vector2(350, 0)
@@ -41,6 +41,3 @@ layout_mode = 2
 text = "Slot 3"
 
 [connection signal="text_changed" from="Name/LineEdit" to="." method="OnProfileNameChanged"]
-[connection signal="pressed" from="Buttons/Profile 1" to="." method="OnButtonPressed" binds= [0]]
-[connection signal="pressed" from="Buttons/Profile 2" to="." method="OnButtonPressed" binds= [1]]
-[connection signal="pressed" from="Buttons/Profile 3" to="." method="OnButtonPressed" binds= [2]]

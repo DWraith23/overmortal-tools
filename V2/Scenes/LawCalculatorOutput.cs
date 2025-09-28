@@ -1,8 +1,6 @@
 using Godot;
-using OvermortalTools.Resources.Laws;
 using OvermortalTools.Scripts;
 using OvermortalTools.V2.Resources;
-using System;
 
 namespace OvermortalTools.V2.Scenes;
 

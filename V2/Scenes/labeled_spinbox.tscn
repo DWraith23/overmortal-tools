@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://vlwh3qtnsgyq"]
 
-[ext_resource type="PackedScene" uid="uid://bqrdrnjp6rlxk" path="res://Scenes/Components/question_button.tscn" id="1_gpj70"]
-[ext_resource type="Script" path="res://Scenes/Components/LabeledSpinbox.cs" id="1_vkx5a"]
+[ext_resource type="PackedScene" path="res://V2/Scenes/question_button.tscn" id="1_gpj70"]
+[ext_resource type="Script" uid="uid://biriknyoq18fm" path="res://V2/Scenes/LabeledSpinbox.cs" id="1_vkx5a"]
 
 [node name="Labeled Spinbox" type="HBoxContainer"]
 offset_right = 40.0

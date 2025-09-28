@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://b2ynbpoxk8tnn"]
 
 [ext_resource type="Script" uid="uid://brvw48hmuwt8k" path="res://V2/Scenes/RespiraDataSelection.cs" id="1_70xa0"]
-[ext_resource type="PackedScene" uid="uid://bqrdrnjp6rlxk" path="res://Scenes/Components/question_button.tscn" id="1_yjpt4"]
+[ext_resource type="PackedScene" path="res://V2/Scenes/question_button.tscn" id="1_yjpt4"]
 
 [node name="Respira Data Selection" type="VBoxContainer"]
 custom_minimum_size = Vector2(350, 264)

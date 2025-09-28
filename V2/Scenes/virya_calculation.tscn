@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dthk3wenwa1s6"]
 
 [ext_resource type="Script" uid="uid://bw4c40ql6ay0n" path="res://V2/Scenes/ViryaCalculation.cs" id="1_fg5qo"]
-[ext_resource type="PackedScene" uid="uid://bqrdrnjp6rlxk" path="res://Scenes/Components/question_button.tscn" id="2_0q6xj"]
+[ext_resource type="PackedScene" path="res://V2/Scenes/question_button.tscn" id="2_0q6xj"]
 
 [node name="Virya Calculation" type="VBoxContainer"]
 custom_minimum_size = Vector2(350, 214)

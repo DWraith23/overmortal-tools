@@ -1,10 +1,8 @@
 using Godot;
 using OvermortalTools.Resources.Planner;
-using OvermortalTools.Scenes.Components;
 using OvermortalTools.Scripts;
-using System;
 
-namespace OvermortalTools.Scenes.Planner;
+namespace OvermortalTools.V2.Scenes;
 
 [GlobalClass, Tool]
 public partial class StarMarks : VBoxContainer

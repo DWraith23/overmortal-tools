@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://cuyw5ejsrpu1h"]
 
-[ext_resource type="PackedScene" uid="uid://vlwh3qtnsgyq" path="res://Scenes/Components/labeled_spinbox.tscn" id="1_61456"]
-[ext_resource type="Script" uid="uid://dbfilmosgljuw" path="res://Scenes/Planner/StarMarks.cs" id="1_qrquh"]
-[ext_resource type="PackedScene" uid="uid://bqrdrnjp6rlxk" path="res://Scenes/Components/question_button.tscn" id="3_6hgxj"]
+[ext_resource type="PackedScene" path="res://V2/Scenes/labeled_spinbox.tscn" id="1_61456"]
+[ext_resource type="Script" uid="uid://dbfilmosgljuw" path="res://V2/Scenes/StarMarks.cs" id="1_qrquh"]
+[ext_resource type="PackedScene" path="res://V2/Scenes/question_button.tscn" id="3_6hgxj"]
 
 [node name="Star Marks" type="VBoxContainer"]
 custom_minimum_size = Vector2(350, 300)

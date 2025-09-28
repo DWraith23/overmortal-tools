@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://d1h3tw8l41qut"]
 
 [ext_resource type="Script" uid="uid://baqicmg5nv50r" path="res://V2/Scenes/TargetRealmCalculation.cs" id="1_7qfqg"]
-[ext_resource type="PackedScene" uid="uid://bqrdrnjp6rlxk" path="res://Scenes/Components/question_button.tscn" id="2_nhgp2"]
+[ext_resource type="PackedScene" path="res://V2/Scenes/question_button.tscn" id="2_nhgp2"]
 
 [node name="Target Realm Calculation" type="VBoxContainer"]
 custom_minimum_size = Vector2(350, 214)

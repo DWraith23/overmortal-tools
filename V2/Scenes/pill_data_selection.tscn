@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://djavr8tyhxrvn"]
 
 [ext_resource type="Script" uid="uid://d3s45uo87e308" path="res://V2/Scenes/PillDataSelection.cs" id="1_h1drk"]
-[ext_resource type="PackedScene" uid="uid://vlwh3qtnsgyq" path="res://Scenes/Components/labeled_spinbox.tscn" id="1_qcxy5"]
-[ext_resource type="PackedScene" uid="uid://bqrdrnjp6rlxk" path="res://Scenes/Components/question_button.tscn" id="3_ocjhj"]
+[ext_resource type="PackedScene" uid="uid://vlwh3qtnsgyq" path="res://V2/Scenes/labeled_spinbox.tscn" id="1_qcxy5"]
+[ext_resource type="PackedScene" path="res://V2/Scenes/question_button.tscn" id="3_ocjhj"]
 
 [node name="Pill Data Selection" type="VBoxContainer"]
 custom_minimum_size = Vector2(350, 264)

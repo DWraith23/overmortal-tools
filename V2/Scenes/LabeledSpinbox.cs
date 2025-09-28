@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-namespace OvermortalTools.Scenes.Components;
+namespace OvermortalTools.V2.Scenes;
 
 [GlobalClass, Tool]
 public partial class LabeledSpinbox : HBoxContainer

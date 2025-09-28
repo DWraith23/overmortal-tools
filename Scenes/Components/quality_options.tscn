@@ -1,9 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://cqo5h1vc8fx4k"]
-
-[ext_resource type="Script" path="res://Scenes/Components/QualityOptions.cs" id="1_cw75i"]
-
-[node name="Quality Options" type="OptionButton"]
-custom_minimum_size = Vector2(115, 31)
-offset_right = 32.0
-offset_bottom = 20.0
-script = ExtResource("1_cw75i")

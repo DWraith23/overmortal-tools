@@ -1,6 +1,8 @@
 using Godot;
 using System;
 
+namespace OvermortalTools.V2.Scenes;
+
 [GlobalClass, Tool]
 public partial class QuestionButton : Button
 {

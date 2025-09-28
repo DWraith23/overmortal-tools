@@ -1,6 +1,4 @@
 using Godot;
-using OvermortalTools.Scenes.Components;
-using OvermortalTools.Scripts;
 using OvermortalTools.V2.Resources;
 using System;
 
