@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://vlwh3qtnsgyq"]
 
-[ext_resource type="PackedScene" path="res://V2/Scenes/question_button.tscn" id="1_gpj70"]
+[ext_resource type="PackedScene" uid="uid://bqrdrnjp6rlxk" path="res://V2/Scenes/question_button.tscn" id="1_gpj70"]
 [ext_resource type="Script" uid="uid://biriknyoq18fm" path="res://V2/Scenes/LabeledSpinbox.cs" id="1_vkx5a"]
 
 [node name="Labeled Spinbox" type="HBoxContainer"]
@@ -10,6 +10,7 @@ script = ExtResource("1_vkx5a")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 2
+text = "[LABEL]"
 horizontal_alignment = 2
 
 [node name="SpinBox" type="SpinBox" parent="."]
@@ -17,5 +18,5 @@ layout_mode = 2
 alignment = 1
 
 [node name="Question Button" parent="." instance=ExtResource("1_gpj70")]
-custom_minimum_size = Vector2(40, 40)
+visible = false
 layout_mode = 2

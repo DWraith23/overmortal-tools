@@ -3,6 +3,7 @@ using System;
 
 namespace OvermortalTools.V2.Scenes;
 
+[GlobalClass, Tool]
 public partial class QuestionButton : Button
 {
     [Export] public string Title { get; set; }
