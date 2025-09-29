@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Overmortal Tools"
-run/main_scene="res://main.tscn"
+run/main_scene="uid://cqwm343d6he2"
 config/features=PackedStringArray("4.5", "C#", "Forward Plus")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/image="res://mitty_eye.png"

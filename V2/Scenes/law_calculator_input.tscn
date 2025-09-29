@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://c74gov63b0w7w"]
+[gd_scene load_steps=5 format=3 uid="uid://c74gov63b0w7w"]
 
 [ext_resource type="PackedScene" uid="uid://b5cfhwat3gv6i" path="res://V2/Scenes/law_node.tscn" id="1_4vqor"]
 [ext_resource type="Script" uid="uid://bo4eus8phgafk" path="res://V2/Scenes/LawCalculatorInput.cs" id="1_wir6g"]
-[ext_resource type="PackedScene" path="res://V2/Scenes/question_button.tscn" id="3_vu7af"]
+[ext_resource type="PackedScene" uid="uid://bqrdrnjp6rlxk" path="res://V2/Scenes/question_button.tscn" id="3_vu7af"]
+[ext_resource type="Script" uid="uid://cbx88oo17ttkc" path="res://V2/Scenes/QuestionButton.cs" id="4_070b0"]
 
 [node name="Law Calculator Input" type="VBoxContainer"]
 custom_minimum_size = Vector2(352, 568)
@@ -98,4 +99,10 @@ LawName = "Earth"
 
 [node name="Question Button" parent="." instance=ExtResource("3_vu7af")]
 layout_mode = 2
-Title = "Determing Law Information"
+script = ExtResource("4_070b0")
+Title = "Law Information"
+PopupText = "For the highest accuracy, input the average number of hours you think you blitz per day, and the quality of fruit you grow in your garden.
+
+If you have shears at 1 or 3 stars, make sure to include the extra hours you get (not the mythic fruit, but the extra blitz hours).  Mythic fruit is calculated automatically.
+
+Put your current law levels and the bonus %.  Law bonuses can be found in the Technique screen under Details."

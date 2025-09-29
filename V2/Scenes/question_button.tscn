@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bqrdrnjp6rlxk"]
 
-[ext_resource type="Script" uid="uid://bvsw4tay8l6el" path="res://Scenes/Components/QuestionButton.cs" id="1_rnjrp"]
+[ext_resource type="Script" uid="uid://cbx88oo17ttkc" path="res://V2/Scenes/QuestionButton.cs" id="1_rnjrp"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_53y88"]
 bg_color = Color(1, 1, 1, 1)

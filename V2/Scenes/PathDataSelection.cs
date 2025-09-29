@@ -10,7 +10,7 @@ public partial class PathDataSelection : VBoxContainer
     private OptionButton PathOptions => GetNode<OptionButton>("Path");
     private OptionButton RealmOptions => GetNode<OptionButton>("Realm");
     private OptionButton MinorRealmOptions => GetNode<OptionButton>("Minor Realm");
-    private SpinBox RealmProgress => GetNode<SpinBox>("Realm Progress");
+    private SpinBox RealmProgress => GetNode<SpinBox>("Progress/Realm Progress");
     private LineEdit TotalXp => GetNode<LineEdit>("Total XP");
 
     private PathData _data = new();

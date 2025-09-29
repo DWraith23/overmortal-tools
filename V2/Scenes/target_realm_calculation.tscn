@@ -1,12 +1,13 @@
 [gd_scene load_steps=3 format=3 uid="uid://d1h3tw8l41qut"]
 
 [ext_resource type="Script" uid="uid://baqicmg5nv50r" path="res://V2/Scenes/TargetRealmCalculation.cs" id="1_7qfqg"]
-[ext_resource type="PackedScene" path="res://V2/Scenes/question_button.tscn" id="2_nhgp2"]
+[ext_resource type="PackedScene" uid="uid://bqrdrnjp6rlxk" path="res://V2/Scenes/question_button.tscn" id="2_nhgp2"]
 
 [node name="Target Realm Calculation" type="VBoxContainer"]
 custom_minimum_size = Vector2(350, 214)
 offset_right = 40.0
 offset_bottom = 40.0
+theme_override_constants/separation = 3
 script = ExtResource("1_7qfqg")
 
 [node name="Label" type="Label" parent="."]
@@ -16,7 +17,7 @@ text = "Days to Target Realm"
 horizontal_alignment = 1
 
 [node name="Spacer 1" type="Control" parent="."]
-custom_minimum_size = Vector2(0, 8)
+custom_minimum_size = Vector2(0, 1)
 layout_mode = 2
 
 [node name="Target" type="VBoxContainer" parent="."]
@@ -37,10 +38,6 @@ selected = 0
 item_count = 1
 popup/item_0/text = "Select Minor Realm"
 popup/item_0/id = 0
-
-[node name="Spacer 2" type="Control" parent="."]
-custom_minimum_size = Vector2(0, 12)
-layout_mode = 2
 
 [node name="Output" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -81,3 +78,10 @@ text = "Days Including Myrimon:"
 layout_mode = 2
 alignment = 1
 editable = false
+
+[node name="Question Button" parent="." instance=ExtResource("2_nhgp2")]
+layout_mode = 2
+Title = "Target Realm"
+PopupText = "The target realm refers to the realm you want to COMPLETE.  So if you are looking for the time to Perfection Completion, you put Perfection Late.  
+
+Don't put Nirvana Early, it will calculate the time to the Nirvana Early 100%."
