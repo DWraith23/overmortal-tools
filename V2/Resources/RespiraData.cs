@@ -148,4 +148,9 @@ public partial class RespiraData : Resource
     public long GetDailyRespiraValue(PathData.Realm realm) => GetAverageRespiraValue(realm) * TotalRespiraAttempts;
 
     #endregion
+
+
+    public bool NeedsAttention =>
+        TotalRespiraAttempts == 10 || TotalRespiraBonus == 1;
+
 }

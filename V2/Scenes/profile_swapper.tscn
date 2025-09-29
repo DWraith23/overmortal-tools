@@ -39,5 +39,3 @@ text = "Slot 2"
 [node name="Profile 3" type="Button" parent="Buttons"]
 layout_mode = 2
 text = "Slot 3"
-
-[connection signal="text_changed" from="Name/LineEdit" to="." method="OnProfileNameChanged"]

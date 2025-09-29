@@ -15,7 +15,7 @@ public partial class MainPanel : PanelContainer
     private CalculatedValues MiscValues => InfoTabs.GetNode<CalculatedValues>("Misc");
     
 
-    private TabContainer SectionTabs => Cultivation.GetNode<TabContainer>("Section Tabs");
+    private SectionTabs SectionTabs => Cultivation.GetNode<SectionTabs>("Section Tabs");
     private PathTabContainer Paths => SectionTabs.GetNode<PathTabContainer>("Paths");
     private DailyExpTabContainer Daily => SectionTabs.GetNode<DailyExpTabContainer>("Daily");
     private StarMarks StarMarks => SectionTabs.GetNode<StarMarks>("Star Marks");
@@ -65,6 +65,7 @@ public partial class MainPanel : PanelContainer
         ConnectSignals();
         var profile = ProfileManagement.LoadProfile(0);
         if (profile != null) Data = profile;
+        ProfileManagement.FileAlterationInProgress = false;
     }
 
     private void Update()
@@ -75,6 +76,11 @@ public partial class MainPanel : PanelContainer
         Daily.Data = Data;
         StarMarks.Data = Data.StarMarks;
         Myrimon.Profile = Data;
+
+        SectionTabs.SetTabDisabled(2, Data.HighestRealm.Item1 < PathData.Realm.Nirvana);
+        SectionTabs.SetTabDisabled(3, Data.HighestRealm.Item1 < PathData.Realm.Virtuoso);
+
+        SectionTabs.Data = Data;
 
         DailyExp.Data = Data;
         TargetRealms.Data = Data;
@@ -111,9 +117,15 @@ public partial class MainPanel : PanelContainer
         Profiles.SwapButtonPressed += profile =>
         {
             var loaded = ProfileManagement.LoadProfile(profile);
-            if (loaded == null) return;
-            Data = loaded;
+            if (loaded == null)
+            {
+                ActiveProfile = profile;
+                Data = new();
+                GD.Print($"Generated new profile in slot {profile}.");
+                return;
+            }
             ActiveProfile = profile;
+            Data = loaded;
             Profiles.ProfileName.Text = Data.ProfileName;
             GD.Print($"Profile {ActiveProfile + 1} loaded");
         };

@@ -67,7 +67,7 @@ public static class Tools
         var str = args.Length == 0
             ? $"{DateTime.Now} : DEBUG: Emitting signal [color=yellow]{signalStr}[/color] from [color=green]{objStr}[/color] with no args."
             : $"{DateTime.Now} : DEBUG: Emitting signal [color=yellow]{signalStr}[/color] from [color=green]{objStr}[/color] with args [color=light_blue]{argsStr}[/color].";
-        if (LogSignals) GD.PrintRich(str);
+        // if (LogSignals) GD.PrintRich(str);
         obj.EmitSignal(signal, args);
     }
 }

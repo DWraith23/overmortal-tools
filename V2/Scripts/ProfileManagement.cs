@@ -38,7 +38,7 @@ public static class ProfileManagement
         }
         else
         {
-            GD.Print("| Saved state successfully.");
+            GD.Print($"| Saved state successfully to {path}.");
         }
         GD.Print("----------------------------");
     }
@@ -56,7 +56,11 @@ public static class ProfileManagement
     private static ProfileData LoadWindows(int slot)
     {
         var path = $"user://saves/savestate{slot}.tres";
-        // if (!File.Exists(path)) return null; // Check if the profile save path exists
+        if (!ResourceLoader.Exists(path))
+        {
+            GD.Print($"No profile data found at {path}");
+            return null; // Check if the profile save path exists
+        }
 
         FileAlterationInProgress = true;
 

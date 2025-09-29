@@ -131,4 +131,23 @@ public partial class CreationArtifactData : Resource
 
     public float DailyMythicPills => GetVaseMythicPills() + GetMirrorMythicPills();
     public float XpMultiplier => GetVaseXpMultiplier();
+
+    #region Attention
+
+    private bool _viewed = false;
+    [Export]
+    public bool Viewed
+    {
+        get => _viewed;
+        set
+        {
+            if (_viewed == value) return;
+            _viewed = value;
+            Tools.EmitLoggedSignal(this, Resource.SignalName.Changed);
+        }
+    }
+
+    public bool NeedsAttention => !Viewed;
+
+    #endregion
 }

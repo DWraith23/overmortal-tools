@@ -1,12 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://d2rokqglew081"]
+[gd_scene load_steps=5 format=3 uid="uid://d2rokqglew081"]
 
 [ext_resource type="Script" uid="uid://cgayqft8ns85n" path="res://V2/Scenes/PathTabContainer.cs" id="1_dt6j4"]
 [ext_resource type="PackedScene" uid="uid://femlajkgascb" path="res://V2/Scenes/path_data_selection.tscn" id="1_oa2fu"]
+[ext_resource type="Theme" uid="uid://difyenc5vtxtx" path="res://Themes/main_theme_2.tres" id="1_yw381"]
+[ext_resource type="PackedScene" uid="uid://bpsr4jlm7yaxl" path="res://V2/Scenes/attention_exclamation.tscn" id="4_bfcv7"]
 
 [node name="Path Tab Container" type="TabContainer"]
 custom_minimum_size = Vector2(350, 300)
 offset_right = 350.0
 offset_bottom = 300.0
+theme = ExtResource("1_yw381")
 tab_alignment = 1
 current_tab = 0
 script = ExtResource("1_dt6j4")
@@ -29,3 +32,25 @@ metadata/_tab_index = 2
 visible = false
 layout_mode = 2
 metadata/_tab_index = 3
+
+[node name="Exclamations" type="Node2D" parent="."]
+
+[node name="Main" parent="Exclamations" instance=ExtResource("4_bfcv7")]
+offset_left = 90.0
+offset_right = 110.0
+offset_bottom = 20.0
+
+[node name="Aux 1" parent="Exclamations" instance=ExtResource("4_bfcv7")]
+offset_left = 151.0
+offset_right = 171.0
+offset_bottom = 20.0
+
+[node name="Aux 2" parent="Exclamations" instance=ExtResource("4_bfcv7")]
+offset_left = 214.0
+offset_right = 234.0
+offset_bottom = 20.0
+
+[node name="Aux 3" parent="Exclamations" instance=ExtResource("4_bfcv7")]
+offset_left = 276.0
+offset_right = 296.0
+offset_bottom = 20.0

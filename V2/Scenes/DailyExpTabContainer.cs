@@ -13,6 +13,11 @@ public partial class DailyExpTabContainer : TabContainer
     private RespiraDataSelection Respira => GetNode<RespiraDataSelection>("Respira");
     private CreationArtifactDataSelection Artifacts => GetNode<CreationArtifactDataSelection>("Artifacts");
 
+    private Label PassiveExclamation => GetNode<Label>("Exclamations/Passive");
+    private Label PillExclamation => GetNode<Label>("Exclamations/Pills");
+    private Label RespiraExclamation => GetNode<Label>("Exclamations/Respira");
+    private Label ArtifactExclamation => GetNode<Label>("Exclamations/Artifacts");
+
 
     #endregion
 
@@ -45,6 +50,13 @@ public partial class DailyExpTabContainer : TabContainer
         Pills.Profile = Data;
         Respira.Profile = Data;
         Artifacts.Profile = Data;
+
+        PassiveExclamation.Visible = Data.PassiveCultivation.NeedsAttention;
+        PillExclamation.Visible = Data.PillData.NeedsAttention;
+        RespiraExclamation.Visible = Data.RespiraData.NeedsAttention;
+        ArtifactExclamation.Visible = Data.CreationArtifacts.NeedsAttention;
+
     }
+
 
 }

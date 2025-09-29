@@ -249,4 +249,12 @@ public partial class PathData : Resource
     public float AddExp(long amount) =>
         (float)(GetCurrentExpTowards() + amount) / ExperienceReqs[(CurrentRealm, CurrentMinorRealm)];
 
+    public bool NeedsAttention =>
+        (SelectedPath != Path.None && CurrentRealm == Realm.None) ||
+        (SelectedPath != Path.None && CurrentMinorRealm == MinorRealm.None);
+
+    public bool MainNeedsAttention =>
+        SelectedPath == Path.None || CurrentRealm == Realm.None || CurrentMinorRealm == MinorRealm.None;
+
+
 }

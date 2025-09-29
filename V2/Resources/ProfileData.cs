@@ -287,4 +287,30 @@ public partial class ProfileData : Resource
         Laws.Changed += () => Tools.EmitLoggedSignal(this, Resource.SignalName.Changed);
     }
 
+    public bool PathsNeedAttention =>
+        Path1.MainNeedsAttention ||
+        Path2.NeedsAttention ||
+        Path3.NeedsAttention ||
+        Path4.NeedsAttention;
+
+    public bool DailyNeedsAttention =>
+        PassiveCultivation.NeedsAttention ||
+        PillData.NeedsAttention ||
+        RespiraData.NeedsAttention ||
+        CreationArtifacts.NeedsAttention;
+
+    public bool StarMarksNeedAttention =>
+        HighestRealm.Item1 >= PathData.Realm.Nirvana &&
+        StarMarks.RarePills == 0 &&
+        StarMarks.EpicPills == 0 &&
+        StarMarks.LegendaryPills == 0 &&
+        StarMarks.RespiraExp == 0;
+
+    public bool MyrimonNeedsAttention =>
+        MyrmimonData.NeedsAttention &&
+        HighestRealm.Item1 >= PathData.Realm.Virtuoso;
+
+
+
+
 }

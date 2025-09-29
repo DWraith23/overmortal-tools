@@ -387,4 +387,10 @@ public partial class MyrimonData : Resource
 
     #endregion
 
+    public bool NeedsAttention =>
+        ExpLevel == 0 &&
+        QualityLevel == 0 &&
+        GushLevel == 0 &&
+        TechLevel == 0;
+
 }

@@ -165,4 +165,7 @@ public partial class PillData : Resource
 
     #endregion
 
+    public bool NeedsAttention =>
+        TotalDailyPills == 0 || TotalBonus == 0;
+
 }

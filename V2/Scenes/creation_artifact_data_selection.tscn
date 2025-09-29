@@ -15,12 +15,12 @@ corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
 [node name="Creation Artifact Data Selection" type="VBoxContainer"]
-custom_minimum_size = Vector2(350, 300)
+custom_minimum_size = Vector2(350, 264)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_right = -10.0
-offset_bottom = -500.0
+offset_bottom = -536.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 16

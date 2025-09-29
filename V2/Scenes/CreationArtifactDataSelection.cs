@@ -73,6 +73,11 @@ public partial class CreationArtifactDataSelection : VBoxContainer
             if (Data == null) return;
             Data.HasVaseTransmog = pressed;
         };
+
+        VisibilityChanged += () =>
+        {
+            if (Visible) Data.Viewed = true;
+        };
     }
 
 

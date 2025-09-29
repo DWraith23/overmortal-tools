@@ -162,4 +162,8 @@ public partial class PassiveData : Resource
     }
 
 
+    public bool NeedsAttention =>
+        AbodeAura == 0f;
+
+
 }

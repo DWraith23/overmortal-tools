@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=24 format=4 uid="uid://difyenc5vtxtx"]
+[gd_resource type="Theme" load_steps=25 format=4 uid="uid://difyenc5vtxtx"]
 
 [ext_resource type="StyleBox" uid="uid://c1ildtk5stqx1" path="res://Themes/style_box_editable.tres" id="1_nv5do"]
 [ext_resource type="StyleBox" uid="uid://da0q65nfjey7x" path="res://Themes/style_box_calculated.tres" id="2_0v5d3"]
@@ -1887,6 +1887,15 @@ bg_color = Color(0, 0, 0, 1)
 border_width_top = 2
 border_color = Color(0, 1, 0, 0.74509805)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tpo6j"]
+bg_color = Color(0.14509805, 0.14117648, 0.14117648, 1)
+border_width_left = 1
+border_blend = true
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d8j48"]
 bg_color = Color(0.12955844, 0.1295585, 0.12955838, 1)
 
@@ -1933,5 +1942,7 @@ LineEdit/icons/clear = SubResource("DPITexture_a0edb")
 LineEdit/styles/focus = SubResource("StyleBoxEmpty_0v5d3")
 LineEdit/styles/normal = ExtResource("1_nv5do")
 LineEdit/styles/read_only = ExtResource("2_0v5d3")
+TabContainer/constants/tab_separation = 0
 TabContainer/styles/tab_selected = SubResource("StyleBoxFlat_c6tpt")
+TabContainer/styles/tab_unselected = SubResource("StyleBoxFlat_tpo6j")
 TabContainer/styles/tabbar_background = SubResource("StyleBoxFlat_d8j48")

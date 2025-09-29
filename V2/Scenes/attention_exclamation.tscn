@@ -1,0 +1,34 @@
+[gd_scene load_steps=4 format=3 uid="uid://bpsr4jlm7yaxl"]
+
+[ext_resource type="FontFile" uid="uid://d0tkut2o7lx0j" path="res://Themes/fonts/bembo-similar/BrophyOpti/BrophyOpti.otf" id="1_tina3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xmkek"]
+bg_color = Color(1, 0.28235295, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="LabelSettings" id="LabelSettings_pgdjd"]
+font = ExtResource("1_tina3")
+font_size = 12
+font_color = Color(0, 0, 0, 1)
+outline_size = 4
+
+[node name="Attention Exclamation" type="Label"]
+custom_minimum_size = Vector2(20, 20)
+offset_right = 6.0
+offset_bottom = 19.0
+scale = Vector2(0.5, 0.5)
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxFlat_xmkek")
+text = "!"
+label_settings = SubResource("LabelSettings_pgdjd")
+horizontal_alignment = 1
+vertical_alignment = 1
