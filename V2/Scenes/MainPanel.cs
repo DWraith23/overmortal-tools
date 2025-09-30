@@ -68,6 +68,23 @@ public partial class MainPanel : PanelContainer
         ProfileManagement.FileAlterationInProgress = false;
     }
 
+    public override void _Process(double delta)
+    {
+        if (OS.GetName() != "Android") return;
+        var height = DisplayServer.VirtualKeyboardGetHeight();
+        if (height == 0)
+        {
+            Position = Vector2.Zero;
+            return;
+        }
+
+        var screenSize = DisplayServer.WindowGetSizeWithDecorations();
+        var keyboardPercent = height / (float)screenSize.Y;
+
+        var newPos = keyboardPercent * 800;
+        Position = new Vector2(0, -newPos);
+    }
+
     private void Update()
     {
         GD.Print("MainPanel Update() called");
