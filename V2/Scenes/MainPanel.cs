@@ -154,5 +154,13 @@ public partial class MainPanel : PanelContainer
             ProfileManagement.SaveProfile(Data, ActiveProfile);
         };
 
+        SettingsButton.Pressed += () =>
+        {
+            var menu = SettingsMenu.CreateInstance();
+            menu.Data = Data.Settings;
+            AddChild(menu);
+            menu.Popup();
+        };
+
     }
 }

@@ -216,6 +216,8 @@ public partial class ProfileData : Resource
     [Export] public PathData.MinorRealm TargetMinorRealm { get; set; } = PathData.MinorRealm.Early;
     [Export] public PathData.Virya TargetVirya { get; set; } = PathData.Virya.None;
 
+    [Export] public SettingsData Settings { get; set; } = new();
+
     #endregion
 
 
