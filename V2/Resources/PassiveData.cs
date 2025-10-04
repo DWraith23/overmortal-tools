@@ -157,7 +157,7 @@ public partial class PassiveData : Resource
         var daily = GetDailyCosmoapsisExp(realm);
         var auraGemMultiplier = AuraGemValues[AuraGemIndex];
         var auraGemValue = (long)Math.Floor(daily * auraGemMultiplier);
-        var auraseepBonusValue = (long)Math.Floor(auraGemValue * AuraseepBonus);
+        var auraseepBonusValue = (long)Math.Floor(auraGemValue * AuraseepBonus / 100f);
         return auraGemValue + auraseepBonusValue;
     }
 
