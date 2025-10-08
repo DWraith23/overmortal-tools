@@ -12,7 +12,8 @@ public partial class MainPanel : PanelContainer
     private TabContainer InfoTabs => Cultivation.GetNode<TabContainer>("Info Tabs");
     private DailyExp DailyExp => InfoTabs.GetNode<DailyExp>("Daily");
     private TargetsTabContainer TargetRealms => InfoTabs.GetNode<TargetsTabContainer>("Targets");
-    private CalculatedValues MiscValues => InfoTabs.GetNode<CalculatedValues>("Misc");
+    private OvercappingDisplay Overcapping => InfoTabs.GetNode<OvercappingDisplay>("Overcap");
+    private CalculatedValues MiscValues => InfoTabs.GetNode<CalculatedValues>("Numbers");
     
 
     private SectionTabs SectionTabs => Cultivation.GetNode<SectionTabs>("Section Tabs");
@@ -101,6 +102,7 @@ public partial class MainPanel : PanelContainer
 
         DailyExp.Data = Data;
         TargetRealms.Data = Data;
+        Overcapping.Data = Data;
         MiscValues.Data = Data;
 
         Laws.Data = Data;

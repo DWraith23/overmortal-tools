@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cqwm343d6he2"]
+[gd_scene load_steps=16 format=3 uid="uid://cqwm343d6he2"]
 
 [ext_resource type="Theme" uid="uid://difyenc5vtxtx" path="res://Themes/main_theme_2.tres" id="1_jmb5c"]
 [ext_resource type="Script" uid="uid://djyuia007yfcs" path="res://V2/Scenes/MainPanel.cs" id="2_arl0s"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cvagxxg3eq25a" path="res://V2/Scenes/targets_tab_container.tscn" id="4_jue6p"]
 [ext_resource type="PackedScene" uid="uid://8j8tibss4am4" path="res://V2/Scenes/daily_exp_tab_container.tscn" id="5_arl0s"]
 [ext_resource type="PackedScene" uid="uid://b4a5336e3ucjs" path="res://V2/Scenes/calculated_values.tscn" id="5_jue6p"]
+[ext_resource type="PackedScene" uid="uid://biplv3p4lryrr" path="res://V2/Scenes/overcapping_display.tscn" id="5_mc7ny"]
 [ext_resource type="Script" uid="uid://pcyl2ui7pb81" path="res://V2/Scenes/SectionTabs.cs" id="6_u5mty"]
 [ext_resource type="PackedScene" uid="uid://d1vdsiqak1gc4" path="res://V2/Scenes/myrimon_data_selection.tscn" id="8_ppjsg"]
 [ext_resource type="PackedScene" uid="uid://bpsr4jlm7yaxl" path="res://V2/Scenes/attention_exclamation.tscn" id="10_0sybx"]
@@ -71,10 +72,15 @@ visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
-[node name="Misc" parent="Sections/Cultivation/Info Tabs" instance=ExtResource("5_jue6p")]
+[node name="Overcap" parent="Sections/Cultivation/Info Tabs" instance=ExtResource("5_mc7ny")]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 2
+
+[node name="Numbers" parent="Sections/Cultivation/Info Tabs" instance=ExtResource("5_jue6p")]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 3
 
 [node name="Section Tabs" type="TabContainer" parent="Sections/Cultivation"]
 custom_minimum_size = Vector2(350, 331)

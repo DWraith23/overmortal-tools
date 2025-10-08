@@ -102,6 +102,7 @@ public partial class PassiveData : Resource
 
     // Aura Gem
     private int _auraGemIndex = 0;
+    private float _auraseepSpeedBonus = 0.0f;
     private float _auraseepBonus = 0.0f;
 
     [Export]
@@ -112,6 +113,18 @@ public partial class PassiveData : Resource
         {
             if (_auraGemIndex == value) return;
             _auraGemIndex = value;
+            Tools.EmitLoggedSignal(this, Resource.SignalName.Changed);
+        }
+    }
+
+    [Export]
+    public float AuraseepSpeedBonus
+    {
+        get => _auraseepSpeedBonus;
+        set
+        {
+            if (_auraseepSpeedBonus == value) return;
+            _auraseepSpeedBonus = value;
             Tools.EmitLoggedSignal(this, Resource.SignalName.Changed);
         }
     }
@@ -156,7 +169,7 @@ public partial class PassiveData : Resource
     {
         var daily = GetDailyCosmoapsisExp(realm);
         var auraGemMultiplier = AuraGemValues[AuraGemIndex];
-        var auraGemValue = (long)Math.Floor(daily * auraGemMultiplier);
+        var auraGemValue = (long)Math.Floor(daily * (auraGemMultiplier + AuraseepSpeedBonus / 100f));
         var auraseepBonusValue = (long)Math.Floor(auraGemValue * AuraseepBonus / 100f);
         return auraGemValue + auraseepBonusValue;
     }

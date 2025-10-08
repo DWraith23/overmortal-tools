@@ -209,7 +209,7 @@ public partial class PathData : Resource
     public long GetXpToTargetRealm(Realm targetRealm, MinorRealm targetMinorRealm)
     {
         if (targetRealm < CurrentRealm ||
-            (targetRealm == CurrentRealm && targetMinorRealm <= CurrentMinorRealm))
+            (targetRealm == CurrentRealm && targetMinorRealm < CurrentMinorRealm))
             return 0;
 
         var totalXp = GetTotalXp();

@@ -14,7 +14,8 @@ public partial class PassiveDataSelection : VBoxContainer
     private LabeledSpinbox StriveSpinBox => CosmoapsisContainer.GetNode<LabeledSpinbox>("Strive");
 
     private VBoxContainer AuraGemContainer => GetNode<VBoxContainer>("Aura Gem");
-    private OptionButton AuraGemQualitySelect => AuraGemContainer.GetNode<OptionButton>("Quality");
+    private OptionButton AuraGemQualitySelect => AuraGemContainer.GetNode<OptionButton>("Quality Modifiers/Quality");
+    private SpinBox AuraGemSpeedBonusSpinBox => AuraGemContainer.GetNode<SpinBox>("Quality Modifiers/Auraseep Speed");
     private LabeledSpinbox AuraseepBonusSpinBox => AuraGemContainer.GetNode<LabeledSpinbox>("Auraseep Bonus");
 
 
@@ -64,6 +65,7 @@ public partial class PassiveDataSelection : VBoxContainer
         StriveSpinBox.SetValueNoSignal(Data.StrivePercent * 100);
 
         AuraGemQualitySelect.Select(Data.AuraGemIndex);
+        AuraGemSpeedBonusSpinBox.SetValueNoSignal(Data.AuraseepSpeedBonus);
         AuraseepBonusSpinBox.SetValueNoSignal(Data.AuraseepBonus);
     }
 
@@ -93,6 +95,12 @@ public partial class PassiveDataSelection : VBoxContainer
         {
             if (Data == null) return;
             Data.AuraGemIndex = (int)value;
+        };
+
+        AuraGemSpeedBonusSpinBox.ValueChanged += value =>
+        {
+            if (Data == null) return;
+            Data.AuraseepSpeedBonus = (float)value;
         };
 
         AuraseepBonusSpinBox.ValueChanged += value =>

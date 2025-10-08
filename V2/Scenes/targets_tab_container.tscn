@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dthk3wenwa1s6" path="res://V2/Scenes/virya_calculation.tscn" id="2_v0nup"]
 
 [node name="Targets Tab Container" type="TabContainer"]
+custom_minimum_size = Vector2(350, 250)
 offset_right = 40.0
 offset_bottom = 40.0
 tab_alignment = 1

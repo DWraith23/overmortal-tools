@@ -1,0 +1,269 @@
+[gd_scene load_steps=3 format=3 uid="uid://biplv3p4lryrr"]
+
+[ext_resource type="Script" uid="uid://vng356b25guo" path="res://V2/Scenes/OvercappingDisplay.cs" id="1_y482m"]
+[ext_resource type="PackedScene" uid="uid://vlwh3qtnsgyq" path="res://V2/Scenes/labeled_spinbox.tscn" id="2_n3j5x"]
+
+[node name="Overcapping Display" type="VBoxContainer"]
+custom_minimum_size = Vector2(350, 250)
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_y482m")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "Overcapping Estimates"
+horizontal_alignment = 1
+
+[node name="Timegate" parent="." instance=ExtResource("2_n3j5x")]
+layout_mode = 2
+alignment = 1
+LabelText = "Days to Timegate:"
+MaxValue = 365.0
+
+[node name="Scroller" type="ScrollContainer" parent="."]
+custom_minimum_size = Vector2(350, 198)
+layout_mode = 2
+
+[node name="Container" type="VBoxContainer" parent="Scroller"]
+layout_mode = 2
+
+[node name="No Myrimon" type="VBoxContainer" parent="Scroller/Container"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Scroller/Container/No Myrimon"]
+layout_mode = 2
+text = "Not Including Myrimon"
+horizontal_alignment = 1
+
+[node name="Columns" type="HBoxContainer" parent="Scroller/Container/No Myrimon"]
+layout_mode = 2
+
+[node name="Label 1" type="Label" parent="Scroller/Container/No Myrimon/Columns"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Virya"
+horizontal_alignment = 1
+
+[node name="Label 2" type="Label" parent="Scroller/Container/No Myrimon/Columns"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+text = "Days To"
+horizontal_alignment = 1
+
+[node name="Label 3" type="Label" parent="Scroller/Container/No Myrimon/Columns"]
+custom_minimum_size = Vector2(172, 0)
+layout_mode = 2
+text = "Overcap"
+horizontal_alignment = 1
+
+[node name="Completion" type="HBoxContainer" parent="Scroller/Container/No Myrimon"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Scroller/Container/No Myrimon/Completion"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Completion:"
+horizontal_alignment = 2
+
+[node name="Days To" type="LineEdit" parent="Scroller/Container/No Myrimon/Completion"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+alignment = 1
+editable = false
+
+[node name="Overcap" type="LineEdit" parent="Scroller/Container/No Myrimon/Completion"]
+custom_minimum_size = Vector2(172, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+editable = false
+
+[node name="Eminence" type="HBoxContainer" parent="Scroller/Container/No Myrimon"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Scroller/Container/No Myrimon/Eminence"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Eminence:"
+horizontal_alignment = 2
+
+[node name="Days To" type="LineEdit" parent="Scroller/Container/No Myrimon/Eminence"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+alignment = 1
+editable = false
+
+[node name="Overcap" type="LineEdit" parent="Scroller/Container/No Myrimon/Eminence"]
+custom_minimum_size = Vector2(172, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+editable = false
+
+[node name="Perfection" type="HBoxContainer" parent="Scroller/Container/No Myrimon"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Scroller/Container/No Myrimon/Perfection"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Perfection:"
+horizontal_alignment = 2
+
+[node name="Days To" type="LineEdit" parent="Scroller/Container/No Myrimon/Perfection"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+alignment = 1
+editable = false
+
+[node name="Overcap" type="LineEdit" parent="Scroller/Container/No Myrimon/Perfection"]
+custom_minimum_size = Vector2(172, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+editable = false
+
+[node name="Half Step" type="HBoxContainer" parent="Scroller/Container/No Myrimon"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Scroller/Container/No Myrimon/Half Step"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Half-Step:"
+horizontal_alignment = 2
+
+[node name="Days To" type="LineEdit" parent="Scroller/Container/No Myrimon/Half Step"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+alignment = 1
+editable = false
+
+[node name="Overcap" type="LineEdit" parent="Scroller/Container/No Myrimon/Half Step"]
+custom_minimum_size = Vector2(172, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+editable = false
+
+[node name="HSeparator2" type="HSeparator" parent="Scroller/Container"]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="Scroller/Container"]
+layout_mode = 2
+
+[node name="With Myrimon" type="VBoxContainer" parent="Scroller/Container"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Scroller/Container/With Myrimon"]
+layout_mode = 2
+text = "Including Myrimon"
+horizontal_alignment = 1
+
+[node name="Columns" type="HBoxContainer" parent="Scroller/Container/With Myrimon"]
+layout_mode = 2
+
+[node name="Label 1" type="Label" parent="Scroller/Container/With Myrimon/Columns"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Virya"
+horizontal_alignment = 1
+
+[node name="Label 2" type="Label" parent="Scroller/Container/With Myrimon/Columns"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+text = "Days To"
+horizontal_alignment = 1
+
+[node name="Label 3" type="Label" parent="Scroller/Container/With Myrimon/Columns"]
+custom_minimum_size = Vector2(172, 0)
+layout_mode = 2
+text = "Overcap"
+horizontal_alignment = 1
+
+[node name="Completion" type="HBoxContainer" parent="Scroller/Container/With Myrimon"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Scroller/Container/With Myrimon/Completion"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Completion:"
+horizontal_alignment = 2
+
+[node name="Days To" type="LineEdit" parent="Scroller/Container/With Myrimon/Completion"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+alignment = 1
+editable = false
+
+[node name="Overcap" type="LineEdit" parent="Scroller/Container/With Myrimon/Completion"]
+custom_minimum_size = Vector2(172, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+editable = false
+
+[node name="Eminence" type="HBoxContainer" parent="Scroller/Container/With Myrimon"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Scroller/Container/With Myrimon/Eminence"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Eminence:"
+horizontal_alignment = 2
+
+[node name="Days To" type="LineEdit" parent="Scroller/Container/With Myrimon/Eminence"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+alignment = 1
+editable = false
+
+[node name="Overcap" type="LineEdit" parent="Scroller/Container/With Myrimon/Eminence"]
+custom_minimum_size = Vector2(172, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+editable = false
+
+[node name="Perfection" type="HBoxContainer" parent="Scroller/Container/With Myrimon"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Scroller/Container/With Myrimon/Perfection"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Perfection:"
+horizontal_alignment = 2
+
+[node name="Days To" type="LineEdit" parent="Scroller/Container/With Myrimon/Perfection"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+alignment = 1
+editable = false
+
+[node name="Overcap" type="LineEdit" parent="Scroller/Container/With Myrimon/Perfection"]
+custom_minimum_size = Vector2(172, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+editable = false
+
+[node name="Half Step" type="HBoxContainer" parent="Scroller/Container/With Myrimon"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Scroller/Container/With Myrimon/Half Step"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Half-Step:"
+horizontal_alignment = 2
+
+[node name="Days To" type="LineEdit" parent="Scroller/Container/With Myrimon/Half Step"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+alignment = 1
+editable = false
+
+[node name="Overcap" type="LineEdit" parent="Scroller/Container/With Myrimon/Half Step"]
+custom_minimum_size = Vector2(172, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+editable = false

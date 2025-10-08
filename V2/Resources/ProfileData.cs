@@ -216,6 +216,18 @@ public partial class ProfileData : Resource
     [Export] public PathData.MinorRealm TargetMinorRealm { get; set; } = PathData.MinorRealm.Early;
     [Export] public PathData.Virya TargetVirya { get; set; } = PathData.Virya.None;
 
+    private int _daysToTimegate = 0;
+    [Export] public int DaysToTimegate
+    {
+        get => _daysToTimegate;
+        set
+        {
+            if (_daysToTimegate == value) return;
+            _daysToTimegate = value;
+            Tools.EmitLoggedSignal(this, Resource.SignalName.Changed);
+        }
+    }
+
     [Export] public SettingsData Settings { get; set; } = new();
 
     #endregion
