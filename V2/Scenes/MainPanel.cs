@@ -79,10 +79,20 @@ public partial class MainPanel : PanelContainer
             return;
         }
 
+        var focused = GetViewport().GuiGetFocusOwner();
+        var focusedPos = focused == null ? 0 : focused.GlobalPosition.Y; 
+
         var screenSize = DisplayServer.WindowGetSizeWithDecorations();
         var keyboardPercent = height / (float)screenSize.Y;
 
+        // GD.Print($"{focused} - {height} - {focusedPos} - {keyboardPercent}");
+        
+
         var newPos = keyboardPercent * 800;
+
+        var focusedBelowKeyboard = focused != null && 800 - focusedPos < newPos;
+        if (!focusedBelowKeyboard) return; 
+
         Position = new Vector2(0, -newPos);
     }
 
