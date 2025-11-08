@@ -9,6 +9,7 @@ public partial class CreationArtifactDataSelection : VBoxContainer
     private CheckBox HasVaseCheckBox => GetNode<CheckBox>("Artifacts/Vase/CheckBox");
     private CheckBox HasMirrorCheckBox => GetNode<CheckBox>("Artifacts/Mirror/CheckBox");
     private CheckBox HasVaseTransmogCheckBox => GetNode<CheckBox>("Artifacts/Vase/Panel/Info/CheckBox");
+    private CheckBox HasMirrorTransmogCheckBox => GetNode<CheckBox>("Artifacts/Mirror/Panel/Info/CheckBox");
 
     private SpinBox VaseStarsSpinBox => GetNode<SpinBox>("Artifacts/Vase/Panel/Info/Stars/SpinBox");
     private SpinBox MirrorStarsSpinBox => GetNode<SpinBox>("Artifacts/Mirror/Panel/Info/Stars/SpinBox");
@@ -73,6 +74,11 @@ public partial class CreationArtifactDataSelection : VBoxContainer
             if (Data == null) return;
             Data.HasVaseTransmog = pressed;
         };
+        HasMirrorTransmogCheckBox.Toggled += pressed =>
+        {
+            if (Data == null) return;
+            Data.HasMirrorTransmog = pressed;
+        };
 
         VisibilityChanged += () =>
         {
@@ -97,6 +103,7 @@ public partial class CreationArtifactDataSelection : VBoxContainer
         MirrorStarsSpinBox.Value = Data.MirrorStars;
 
         HasVaseTransmogCheckBox.ButtonPressed = Data.HasVaseTransmog;
+        HasMirrorTransmogCheckBox.ButtonPressed = Data.HasMirrorTransmog;
     }
 
 }

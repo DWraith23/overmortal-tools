@@ -224,7 +224,30 @@ public partial class ProfileData : Resource
         {
             if (_daysToTimegate == value) return;
             _daysToTimegate = value;
+
+            if (value > 0)
+            {
+                TimeGateDate = DateTime.Now.AddDays(value).ToString("yyyy-MM-dd");
+            }
+            else
+            {
+                TimeGateDate = "---";
+            }
+
             Tools.EmitLoggedSignal(this, Resource.SignalName.Changed);
+        }
+    }
+
+    [Export] public string TimeGateDate { get; set; } = "---";
+    public DateTime? ParsedTimegateDate
+    {
+        get
+        {
+            if (DateTime.TryParse(TimeGateDate, out var parsedDate))
+            {
+                return parsedDate;
+            }
+            return null;
         }
     }
 

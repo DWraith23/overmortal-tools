@@ -26,6 +26,7 @@ public partial class CreationArtifactData : Resource
     private int _mirrorStars = 0;
 
     private bool _hasVaseTransmog = false;
+    private bool _hasMirrorTransmog = false;
 
     [Export]
     public bool HasVase
@@ -98,6 +99,18 @@ public partial class CreationArtifactData : Resource
         }
     }
 
+    [Export]
+    public bool HasMirrorTransmog
+    {
+        get => _hasMirrorTransmog;
+        set
+        {
+            if (_hasMirrorTransmog == value) return;
+            _hasMirrorTransmog = value;
+            Tools.EmitLoggedSignal(this, Resource.SignalName.Changed);
+        }
+    }
+
     private float GetVaseMythicPills()
     {
         if (!HasVase) return 0f;
@@ -116,6 +129,7 @@ public partial class CreationArtifactData : Resource
             MirrorStars == 0 ? 1f
                 : MirrorStars < 3 ? 0.95f // 1* mirror has 5% cost reduction
                 : 0.9f; // 3* mirror has 10% cost reduction
+        if (HasMirrorTransmog) efficiencyMultiplier -= 0.1f; // Transmog gives additional 10% cost reduction
         var duplicationMultiplier = MirrorStars == 5 ? 1.15f : 1f; // 5* mirror has 15% chance of double duplication
         var cost = 200 * efficiencyMultiplier;
         return energy / cost * duplicationMultiplier;

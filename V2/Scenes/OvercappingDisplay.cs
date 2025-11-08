@@ -9,6 +9,7 @@ namespace OvermortalTools.V2.Scenes;
 public partial class OvercappingDisplay : VBoxContainer
 {
     private LabeledSpinbox DaysToTimegateSpinBox => GetNode<LabeledSpinbox>("Timegate");
+    private LineEdit TimegateDateEdit => GetNode<LineEdit>("Timegate Date/LineEdit");
 
     private LineEdit CompletionDaysToNoMyrm => GetNode<LineEdit>("Scroller/Container/No Myrimon/Completion/Days To");
     private LineEdit CompletionOvercapNoMyrm => GetNode<LineEdit>("Scroller/Container/No Myrimon/Completion/Overcap");
@@ -57,7 +58,37 @@ public partial class OvercappingDisplay : VBoxContainer
     {
         if (Data == null) return;
 
-        DaysToTimegateSpinBox.SetValueNoSignal(Data.DaysToTimegate);
+        if (Data.TimeGateDate != "---")
+        {
+            var date = Data.ParsedTimegateDate;
+            var span = (TimeSpan)(date - DateTime.Today);
+            var days = span.Days;
+            if (days == Data.DaysToTimegate)
+            {
+                DaysToTimegateSpinBox.SetValueNoSignal(Data.DaysToTimegate);
+            }
+            else
+            {
+                Data.DaysToTimegate = days;
+            }
+        }
+        else
+        {
+            DaysToTimegateSpinBox.SetValueNoSignal(Data.DaysToTimegate);
+        }
+
+        if (Data.DaysToTimegate <= 0)
+        {
+            TimegateDateEdit.Text = "N/A";
+        }
+        else
+        {
+            var timegateDate = DateTime.Now.AddDays(Data.DaysToTimegate);
+            var dateString = timegateDate.ToString("dddd, MMM dd, yyyy");
+            // var day = timegateDate.DayOfWeek;
+            TimegateDateEdit.Text = $"{dateString}";
+        }
+        
 
         CompletionDaysToNoMyrm.Text = GetDaysToVirya(PathData.Virya.Completion, false);
         CompletionOvercapNoMyrm.Text = GetOvercap(PathData.Virya.Completion, false);

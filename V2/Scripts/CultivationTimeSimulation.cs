@@ -136,7 +136,7 @@ public static class CultivationTimeSimulation
                     var fruitPacks = clone.MyrmimonData.BuysFruitPacks ? 6 : 0;
                     var tokenPacks = clone.MyrmimonData.BuysTokenPacks ? 6 : 0;
                     clone.MyrmimonData.CurrentFruitQuantity += 9 + fruitPacks + tokenPacks;
-                    GD.Print($"|    Day {days}: Gained {9 + fruitPacks + tokenPacks} fruits, now have {clone.MyrmimonData.CurrentFruitQuantity} fruits.");
+                    // GD.Print($"|    Day {days}: Gained {9 + fruitPacks + tokenPacks} fruits, now have {clone.MyrmimonData.CurrentFruitQuantity} fruits.");
                 }
                 var remainder = path.GetXpToTargetRealm(main.CurrentRealm, PathData.MinorRealm.Late);
                 var myrmValue = clone.MyrmimonData.GetAverageValue(main.CurrentRealm);
